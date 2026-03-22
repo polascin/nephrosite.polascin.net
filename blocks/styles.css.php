@@ -453,6 +453,11 @@ main#content > section:first-child {
 	border: 0;
 }
 
+.cookie-banner[hidden],
+.cookie-modal-backdrop[hidden] {
+	display: none !important;
+}
+
 .cookie-banner {
 	position: fixed;
 	left: 1rem;

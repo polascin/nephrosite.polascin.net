@@ -1,6 +1,7 @@
 <script>
 (function () {
   var STORAGE_KEY = "nephro_consent_v1";
+  var COOKIE_NAME = "nephro_consent_v1";
   var CONSENT_TTL_DAYS = 180;
   var VERSION = 2;
 
@@ -67,6 +68,78 @@
     return date.toISOString();
   }
 
+  function getCookieExpiryDate() {
+    var date = new Date();
+    date.setDate(date.getDate() + CONSENT_TTL_DAYS);
+    return date;
+  }
+
+  function encodeStoredValue(value) {
+    return encodeURIComponent(value);
+  }
+
+  function decodeStoredValue(value) {
+    return decodeURIComponent(value);
+  }
+
+  function readConsentCookie() {
+    var escapedName = COOKIE_NAME.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    var match = document.cookie.match(new RegExp("(?:^|; )" + escapedName + "=([^;]*)"));
+    if (!match) {
+      return null;
+    }
+
+    try {
+      return decodeStoredValue(match[1]);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function writeConsentCookie(rawValue) {
+    document.cookie = COOKIE_NAME + "=" + encodeStoredValue(rawValue) +
+      "; expires=" + getCookieExpiryDate().toUTCString() +
+      "; path=/; SameSite=Lax";
+  }
+
+  function clearConsentCookie() {
+    document.cookie = COOKIE_NAME + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax";
+  }
+
+  function readStoredValue() {
+    try {
+      var localValue = localStorage.getItem(STORAGE_KEY);
+      if (localValue) {
+        return localValue;
+      }
+    } catch (err) {
+    }
+
+    return readConsentCookie();
+  }
+
+  function persistStoredValue(rawValue) {
+    var savedToLocalStorage = false;
+
+    try {
+      localStorage.setItem(STORAGE_KEY, rawValue);
+      savedToLocalStorage = true;
+    } catch (err) {
+    }
+
+    writeConsentCookie(rawValue);
+    return savedToLocalStorage;
+  }
+
+  function clearStoredValue() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (err) {
+    }
+
+    clearConsentCookie();
+  }
+
   function normalizeChoices(choices) {
     var safe = isObject(choices) ? choices : {};
     return {
@@ -79,26 +152,26 @@
 
   function readStoredConsent() {
     try {
-      var raw = localStorage.getItem(STORAGE_KEY);
+      var raw = readStoredValue();
       if (!raw) {
         return null;
       }
 
       var parsed = JSON.parse(raw);
       if (!isObject(parsed) || parsed.version !== VERSION || !parsed.expiresAt) {
-        localStorage.removeItem(STORAGE_KEY);
+        clearStoredValue();
         return null;
       }
 
       if (new Date(parsed.expiresAt).getTime() <= Date.now()) {
-        localStorage.removeItem(STORAGE_KEY);
+        clearStoredValue();
         return null;
       }
 
       parsed.choices = normalizeChoices(parsed.choices);
       return parsed;
     } catch (err) {
-      localStorage.removeItem(STORAGE_KEY);
+      clearStoredValue();
       return null;
     }
   }
@@ -112,9 +185,17 @@
       choices: normalizeChoices(choices)
     };
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(consentRecord));
-    applyConsent(consentRecord.choices);
-    fireConsentChange();
+    persistStoredValue(JSON.stringify(consentRecord));
+
+    try {
+      applyConsent(consentRecord.choices);
+    } catch (err) {
+    }
+
+    try {
+      fireConsentChange();
+    } catch (err) {
+    }
 
     setStatusText(
       "Volba ulozena: preferencie " + (consentRecord.choices.preferences ? "povolene" : "zakazane") +
@@ -474,15 +555,15 @@
 
     if (acceptAll) {
       acceptAll.addEventListener("click", function () {
-        saveConsent({ preferences: true, analytics: true, marketing: true }, "accept_all");
         setBannerVisible(false);
+        saveConsent({ preferences: true, analytics: true, marketing: true }, "accept_all");
       });
     }
 
     if (rejectAll) {
       rejectAll.addEventListener("click", function () {
-        saveConsent({ preferences: false, analytics: false, marketing: false }, "reject_all");
         setBannerVisible(false);
+        saveConsent({ preferences: false, analytics: false, marketing: false }, "reject_all");
       });
     }
 
@@ -496,30 +577,30 @@
         var analytics = document.getElementById("cookie-pref-analytics");
         var marketing = document.getElementById("cookie-pref-marketing");
 
+        setBannerVisible(false);
+        closeModal();
+
         saveConsent({
           preferences: preferences ? preferences.checked : false,
           analytics: analytics ? analytics.checked : false,
           marketing: marketing ? marketing.checked : false
         }, "custom");
-
-        setBannerVisible(false);
-        closeModal();
       });
     }
 
     if (modalAccept) {
       modalAccept.addEventListener("click", function () {
-        saveConsent({ preferences: true, analytics: true, marketing: true }, "modal_accept_all");
         setBannerVisible(false);
         closeModal();
+        saveConsent({ preferences: true, analytics: true, marketing: true }, "modal_accept_all");
       });
     }
 
     if (modalReject) {
       modalReject.addEventListener("click", function () {
-        saveConsent({ preferences: false, analytics: false, marketing: false }, "modal_reject");
         setBannerVisible(false);
         closeModal();
+        saveConsent({ preferences: false, analytics: false, marketing: false }, "modal_reject");
       });
     }
 
@@ -568,7 +649,7 @@
     getConsent: getConsent,
     openPreferences: openModal,
     reset: function () {
-      localStorage.removeItem(STORAGE_KEY);
+      clearStoredValue();
       consentRecord = null;
       updateUiSummary(defaultChoices, false);
       setBannerVisible(true);
