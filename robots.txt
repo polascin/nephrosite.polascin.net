@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /blocks/
+Disallow: /ipvrm.files/
+Disallow: /segments/
+
+Sitemap: https://nephrosite.polascin.net/sitemap.xml

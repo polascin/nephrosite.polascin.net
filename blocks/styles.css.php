@@ -234,4 +234,189 @@ hr.promohr {
 	max-width: 100%;
 }
 
+.ns-panel-image {
+	width: 1024px;
+	max-width: 100%;
+}
+
+.ns-panel-subtitle {
+	color: green;
+	font-size: small;
+	font-style: italic;
+}
+
+.intro-wrap {
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+.intro-left {
+	display: inline-table;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.intro-right {
+	display: inline-table;
+	float: right;
+}
+
+.title-sc {
+	font-variant: small-caps;
+}
+
+.intro-portrait {
+	border: 0;
+	width: 500px;
+	max-width: 100%;
+}
+
+.age-main {
+	font-weight: bold;
+	font-size: 2.5em;
+}
+
+.top-gap {
+	margin-top: 5em;
+}
+
+.linkedin-logo {
+	height: 3em;
+}
+
+.doctor-card {
+	background-color: mintcream;
+	border-color: black;
+	border-style: solid;
+	border-width: thin;
+	display: inline-table;
+	padding: 0.5em;
+}
+
+.amazon-box {
+	border-block-end-color: gray;
+	border-style: solid;
+	border-width: thin;
+	background-color: ghostwhite;
+}
+
+.footer-rule {
+	width: 96%;
+}
+
+.copyright-name {
+	font-variant: small-caps;
+	font-size: 1.6em;
+}
+
+.centered {
+	text-align: center;
+}
+
+.meta-muted {
+	color: gray;
+	font-size: smaller;
+}
+
+.meta-light {
+	color: silver;
+	font-size: small;
+	font-style: italic;
+}
+
+.tools-muted {
+	color: gray;
+}
+
+.inline-table-box {
+	display: inline-table;
+	border-width: thin;
+	border-style: solid;
+}
+
+.w3-logo {
+	height: 5em;
+}
+
+.thanks-box {
+	display: inline-table;
+	border: thin solid silver;
+	padding: 1em;
+	background-color: whitesmoke;
+}
+
+.dw-banner {
+	width: 300px;
+	max-width: 50%;
+}
+
+.info-justify {
+	text-align: justify;
+}
+
+.bg-ivory {
+	background-color: ivory;
+}
+
+.bg-honeydew {
+	background-color: honeydew;
+}
+
+.bg-lavenderblush {
+	background-color: lavenderblush;
+}
+
+.bg-seashell {
+	background-color: seashell;
+}
+
+.bg-ghostwhite {
+	background-color: ghostwhite;
+}
+
+.inline-table {
+	display: inline-table;
+}
+
+.info-title {
+	font-size: 3em;
+	font-variant: small-caps;
+	text-align: center;
+}
+
+.teal-frame {
+	border: 3px solid teal;
+}
+
+.frame-mel {
+	width: 100%;
+	height: 50em;
+}
+
+.kidney-icon {
+	vertical-align: middle;
+	height: 3vw;
+}
+
+.text-right {
+	text-align: right;
+}
+
+main#content > section {
+	margin-top: 1.5rem;
+}
+
+main#content > section.section-lg {
+	margin-top: 3rem;
+}
+
+main#content > section.section-xl {
+	margin-top: 4.5rem;
+}
+
+main#content > section:first-child {
+	margin-top: 0;
+}
+
 </style>

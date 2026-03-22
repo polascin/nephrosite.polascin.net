@@ -1,5 +1,5 @@
 <!-- Polascin.Net SK Footer -->
-<hr style="width: 96%;">
+<hr class="footer-rule">
 
 <!-- Copyright Statement -->
 <div>
@@ -7,7 +7,7 @@
 	<br>
 	<strong>
 		<a href="mailto:lubomir@polascin.net" target="_blank" title="Pošli e-mail">
-			<span style="font-variant: small-caps; font-size: 1.6em;">
+			<span class="copyright-name">
 				Ľubomír Polaščín
 				&copy; <small>1998 - <?php echo(date("Y"));?></small>
 			</span>
@@ -21,7 +21,7 @@
 <br>
 
 <!-- ClustrMaps Code -->
-<p style="text-align: center; ">
+<p class="centered">
 	<a href='https://clustrmaps.com/site/1ak7d' target="_blank" title='Visit tracker'>
 		<img src='//clustrmaps.com/map_v2.png?cl=080808&w=300&t=tt&d=6Uv4S4WFV1sb8yPD3S6mHHJAc2s-xvFu85nftKYGceU&co=ffffff&ct=808080' alt="Clustrmaps.com">
 	</a>
@@ -29,7 +29,7 @@
 <!-- The End of the ClustrMaps Code -->
 
 <!-- Last modification date in PHP -->
-<div style="color: gray; font-size: smaller;">
+<div class="meta-muted">
 	<em>
 		This WebPage was last modified on <?php setlocale(LC_ALL, 'en-US');?><?php echo(date("l, ", getlastmod()));?>
 		<strong>
@@ -50,25 +50,25 @@
 </div>
 <!-- The End of the Last modification date in PHP -->
 
-<div style="color: silver; font-size: small; font-style: italic;">
+<div class="meta-light">
 	Generated on
 	<?php echo(date("r", time()));?>
 </div>
 
-<hr style="width: 96%;">
+<hr class="footer-rule">
 
 <br>
 
-<p style="color: gray; ">
+<p class="tools-muted">
 	<small><i>Webstránky vytvárané aj pomocou</i></small>
 	<br>
 	<a href="https://bluefish.openoffice.nl/" target="_blank" title="Bluefish">
 		<img src="https://polascin.net/weblogo/bluefish_gb.png" alt="Bluefish">
 	</a>
 </p>
-<div style="display: inline-table; border-width: thin; border-style: solid;">
+<div class="inline-table-box">
   <a href="https://www.w3schools.com/" target="_blank" title="W3 Schools">
-    <img src="https://polascin.net/weblogo/w3schools-logo.png" alt="W3 Schools" style="height: 5em;">
+    <img src="https://polascin.net/weblogo/w3schools-logo.png" alt="W3 Schools" class="w3-logo">
   </a>
 </div>
 <p>
@@ -84,7 +84,7 @@
 
 <br>
 
-<div style="display: inline-table; border: thin solid silver; padding: 1em; background-color: whitesmoke;">
+<div class="thanks-box">
 	<div>Last But Not Least: My Thanks are due to the FOSS Community Creators and Contributors and among them also to</div>
 	<a href="https://opensuse.org/" target="_blank" title="openSUSE">
 		<img src="https://polascin.net/weblogo/OIP.jpg" alt="openSUSE" class="imgpromo">
@@ -112,7 +112,7 @@
 	</a>
 	<br>
 	<a href="https://www.distrowatch.com/" target="_blank" title="DistroWatch">
-		<img src="https://polascin.net/weblogo/dwbanner.png" alt="DistroWatch" style="width: 300px; max-width: 50%;">
+		<img src="https://polascin.net/weblogo/dwbanner.png" alt="DistroWatch" class="dw-banner">
 	</a>
 	<div>and many others. I apologize for not mentioning them all ;-).</div>
 </div>

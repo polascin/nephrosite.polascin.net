@@ -5,11 +5,11 @@
 	<thead>
 		<tr>
 			<th>
-				<img src="./pix/kidneyonleft.gif" alt="Kidney on Left" style="vertical-align: middle; height: 3vw; ">
+				<img src="./pix/kidneyonleft.gif" alt="Kidney on Left" class="kidney-icon">
 				&nbsp;&nbsp;&nbsp;
 				Prednášky, prezentácie, články, texty, materiály, suplementá ...
 				&nbsp;&nbsp;&nbsp;
-				<img src="./pix/kidneyonright.gif" alt="Kidney on Right"  style="vertical-align: middle; height: 3vw; ">
+				<img src="./pix/kidneyonright.gif" alt="Kidney on Right" class="kidney-icon">
 			</th>
 		</tr>
 	</thead>
@@ -54,7 +54,7 @@
 				</strong>
 				<br>
 				<hr>
-				<div style="text-align: right;">
+				<div class="text-right">
 					<a href="./docs/fosdl.pdf" target="_blank">
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
@@ -148,7 +148,7 @@
 				</strong>
 				<br>
 				<hr>
-				<div style="text-align: right;">
+				<div class="text-right">
 					<a href="./docs/foazo.pdf" target="_blank">
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
@@ -252,7 +252,7 @@
 				</strong>
 				<br>
 				<hr>
-				<div style="text-align: right;">
+				<div class="text-right">
 					<a href="./docs/ktx.pdf" target="_blank">
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
@@ -346,7 +346,7 @@
 				</strong>
 				<br>
 				<hr>
-				<div style="text-align: right;">
+				<div class="text-right">
 					<a href="./docs/aem.pdf" target="_blank">
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
@@ -401,7 +401,7 @@
 				</strong>
 				<br>
 				<hr>
-				<div style="text-align: right;">
+				<div class="text-right">
 					<a href="./docs/vmppd.pdf" target="_blank">
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
@@ -463,7 +463,7 @@
 				</strong>
 				<br>
 				<hr>
-				<div style="text-align: right;">
+				<div class="text-right">
 					<a href="./docs/nephrogame.pdf" target="_blank">
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
@@ -478,7 +478,7 @@
 						<em>Autor: Ľubomír Polaščín</em>
 					</a>
 					<br><br>
-					<iframe src="https://nephrosite.polascin.net/ipvrm.htm" height="500" style="border:3px solid teal;" title="Inovatívne prístupy vo výučbe renálnej medicíny"></iframe>
+					<iframe src="https://nephrosite.polascin.net/ipvrm.htm" height="500" class="teal-frame" title="Inovatívne prístupy vo výučbe renálnej medicíny"></iframe>
 				</div>
 			</td>
 		</tr>
