@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="sk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zasady ochrany sukromia | NephroSite</title>
+    <meta
+      name="description"
+      content="Informacie o cookies, ochrane sukromia, GDPR pravach a spracuvani osobnych udajov na NephroSite."
+    />
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1.5rem;
+        line-height: 1.6;
+        color: #222;
+        background: #fff;
+      }
+      h1,
+      h2 {
+        color: #5a0f0f;
+      }
+      .meta {
+        color: #666;
+        font-size: 0.95rem;
+      }
+      a {
+        color: #7a1f1f;
+      }
+      .panel {
+        border: 1px solid #d8d0c8;
+        background: #faf7f2;
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+      .status {
+        font-weight: 600;
+        color: #4b1f1f;
+      }
+      .btn {
+        font: inherit;
+        border: 1px solid #8b7d7d;
+        background: #fff;
+        color: #4b1f1f;
+        padding: 0.35rem 0.65rem;
+        cursor: pointer;
+      }
+      .btn:focus-visible,
+      .btn:hover {
+        outline: 2px solid #3d6d7a;
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Zasady ochrany sukromia</h1>
+    <p class="meta">Posledna aktualizacia: 22.03.2026</p>
+
+    <h2>1. Prevadzkovatel</h2>
+    <p>
+      Prevadzkovatelom webu je MUDr. Lubomir Polascin. Kontakt:
+      <a href="mailto:lubomir@polascin.net">lubomir@polascin.net</a>.
+    </p>
+
+    <h2>2. Typy cookies</h2>
+    <p>
+      Web pouziva nevyhnutne cookies pre zakladnu funkcnost. Analyticke a
+      marketingove cookies sa aktivuju az po vasej volbe v cookie liste.
+    </p>
+
+    <h2>3. Pravny zaklad (GDPR/ePrivacy)</h2>
+    <p>
+      Nevyhnutne cookies spracuvame na zaklade opravneneho zaujmu zabezpecit
+      funkcnost webu. Nepovinne cookies (analyticke, marketingove, preferencne)
+      spracuvame iba na zaklade suhlasu.
+    </p>
+
+    <h2>4. Vasa kontrola</h2>
+    <p>
+      Suhlas mozete kedykolvek zmenit cez tlacidlo "Nastavenie cookies" v pate
+      webu. Mozete tiez vymazat cookies vo vasom prehliadaci.
+    </p>
+
+    <h2>5. Vasa prava</h2>
+    <p>
+      Podla GDPR mate pravo na pristup, opravu, vymaz, obmedzenie spracuvania,
+      prenositelnost udajov, namietku a pravo odvolat suhlas. Mate pravo podat
+      staznost na dozorny organ.
+    </p>
+
+    <h2>6. Tretie strany</h2>
+    <p>
+      Po udeleni suhlasu mozu byt aktivovane sluzby tretich stran (napr.
+      analytika a marketing). Aktualny zoznam je uvedeny v cookie nastaveniach.
+    </p>
+
+    <h2>7. Uchovavanie suhlasu</h2>
+    <p>
+      Volby suhlasu uchovavame lokalne vo vasom prehliadaci v trvani 180 dni,
+      potom vyzveme na novu volbu.
+    </p>
+
+    <h2>8. Spracovatelia po udeleni suhlasu</h2>
+    <p>
+      Pri udeleni suhlasu mozeme aktivovat: Piwik PRO (analyza), Microsoft
+      Clarity (analyza spravania), Google Analytics (analyza) a Fastbase
+      (marketing).
+    </p>
+
+    <div class="panel" aria-live="polite">
+      <p class="status" id="consent-summary">
+        Aktualny stav suhlasu: nezisteny.
+      </p>
+      <button type="button" class="btn" id="reset-consent">
+        Vymazat ulozeny suhlas na tomto zariadeni
+      </button>
+      <p>
+        Po vymazani sa pri najblizsej navsteve hlavnej stranky zobrazi nova
+        vyzva na volbu cookies.
+      </p>
+      <p>
+        <a href="/">Prejst na hlavnu stranku</a>
+      </p>
+    </div>
+
+    <script>
+      (function () {
+        var key = "nephro_consent_v1";
+        var summary = document.getElementById("consent-summary");
+        var reset = document.getElementById("reset-consent");
+
+        function render() {
+          var raw = localStorage.getItem(key);
+          if (!raw) {
+            summary.textContent = "Aktualny stav suhlasu: neulozeny.";
+            return;
+          }
+
+          try {
+            var parsed = JSON.parse(raw);
+            var c = parsed.choices || {};
+            summary.textContent =
+              "Aktualny stav suhlasu: preferencie=" +
+              (c.preferences ? "ano" : "nie") +
+              ", analyticke=" +
+              (c.analytics ? "ano" : "nie") +
+              ", marketingove=" +
+              (c.marketing ? "ano" : "nie") +
+              ".";
+          } catch (err) {
+            summary.textContent = "Aktualny stav suhlasu: poskodeny zaznam.";
+          }
+        }
+
+        reset.addEventListener("click", function () {
+          localStorage.removeItem(key);
+          render();
+        });
+
+        render();
+      })();
+    </script>
+  </body>
+</html>

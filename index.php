@@ -10,7 +10,7 @@
   <?php include "./blocks/metatags.sk.php"; ?>
   <?php include "./blocks/links.sk.php"; ?>
   <?php include "./blocks/styles.css.php"; ?>
-  <!-- <?php require "./blocks/scripts.sk.php"; ?> -->
+  <?php // require "./blocks/scripts.sk.php"; ?>
 
   <style>
     .skip-link {
@@ -85,6 +85,9 @@
   <footer>
     <?php include "./blocks/footer.sk.php"; ?>
   </footer>
+
+  <?php include "./blocks/cookie-banner.sk.php"; ?>
+  <?php require "./blocks/scripts.sk.php"; ?>
 
 </body>
 

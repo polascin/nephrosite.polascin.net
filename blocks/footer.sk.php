@@ -55,6 +55,12 @@
 	<?php echo(date("r", time()));?>
 </div>
 
+<p class="privacy-links">
+	<a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">Zasady ochrany sukromia</a>
+	&nbsp;|&nbsp;
+	<button type="button" id="open-cookie-settings" class="cookie-settings-button">Nastavenie cookies</button>
+</p>
+
 <hr class="footer-rule">
 
 <br>
