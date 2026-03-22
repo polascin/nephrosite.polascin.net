@@ -2,7 +2,7 @@
 (function () {
   var STORAGE_KEY = "nephro_consent_v1";
   var CONSENT_TTL_DAYS = 180;
-  var VERSION = 1;
+  var VERSION = 2;
 
   var defaultChoices = {
     necessary: true,
@@ -22,6 +22,7 @@
   var googleTagReady = false;
   var googleAnalyticsConfigured = false;
   var GA_MEASUREMENT_IDS = ["G-QRSPED10HK", "G-E5ZP1RCYNE", "G-KQK88SFRVE"];
+  var previouslyFocused = null;
 
   function setStatusText(text) {
     var status = document.getElementById("cookie-consent-status");
@@ -332,6 +333,45 @@
     }
   }
 
+  function getChoiceSummary(choices) {
+    return "preferencie " + (choices.preferences ? "povolene" : "zakazane") +
+      ", analyticke " + (choices.analytics ? "povolene" : "zakazane") +
+      ", marketingove " + (choices.marketing ? "povolene" : "zakazane") + ".";
+  }
+
+  function setCustomizeExpanded(expanded) {
+    var customize = document.getElementById("cookie-customize");
+    if (customize) {
+      customize.setAttribute("aria-expanded", expanded ? "true" : "false");
+    }
+  }
+
+  function syncPreferenceInputs(choices) {
+    var current = normalizeChoices(choices || defaultChoices);
+    var pref = document.getElementById("cookie-pref-preferences");
+    var analytics = document.getElementById("cookie-pref-analytics");
+    var marketing = document.getElementById("cookie-pref-marketing");
+
+    if (pref) {
+      pref.checked = current.preferences;
+    }
+    if (analytics) {
+      analytics.checked = current.analytics;
+    }
+    if (marketing) {
+      marketing.checked = current.marketing;
+    }
+  }
+
+  function updateUiSummary(choices, hasSavedConsent) {
+    var summary = hasSavedConsent
+      ? "Aktualna volba: " + getChoiceSummary(choices)
+      : "Bez vasej volby zostavaju aktivne iba nevyhnutne cookies.";
+
+    setStatusText(summary);
+    syncPreferenceInputs(choices);
+  }
+
   function setBannerVisible(visible) {
     var banner = document.getElementById("cookie-banner");
     if (!banner) {
@@ -349,8 +389,6 @@
     }
   }
 
-  var previouslyFocused = null;
-
   function openModal() {
     var backdrop = document.getElementById("cookie-modal-backdrop");
     var modal = document.getElementById("cookie-modal");
@@ -363,21 +401,8 @@
     backdrop.setAttribute("aria-hidden", "false");
     document.body.classList.add("cookie-modal-open");
 
-    var current = (consentRecord && consentRecord.choices) ? consentRecord.choices : defaultChoices;
-
-    var pref = document.getElementById("cookie-pref-preferences");
-    var analytics = document.getElementById("cookie-pref-analytics");
-    var marketing = document.getElementById("cookie-pref-marketing");
-
-    if (pref) {
-      pref.checked = Boolean(current.preferences);
-    }
-    if (analytics) {
-      analytics.checked = Boolean(current.analytics);
-    }
-    if (marketing) {
-      marketing.checked = Boolean(current.marketing);
-    }
+    syncPreferenceInputs((consentRecord && consentRecord.choices) ? consentRecord.choices : defaultChoices);
+    setCustomizeExpanded(true);
 
     var firstFocusable = modal.querySelector("button, input, a, [tabindex]:not([tabindex='-1'])");
     if (firstFocusable) {
@@ -395,6 +420,7 @@
     }
 
     document.body.classList.remove("cookie-modal-open");
+    setCustomizeExpanded(false);
 
     if (previouslyFocused && typeof previouslyFocused.focus === "function") {
       previouslyFocused.focus();
@@ -441,6 +467,7 @@
     var customize = document.getElementById("cookie-customize");
     var savePrefs = document.getElementById("cookie-save-preferences");
     var modalReject = document.getElementById("cookie-modal-reject");
+    var modalAccept = document.getElementById("cookie-modal-accept");
     var modalClose = document.getElementById("cookie-modal-close");
     var openSettings = document.getElementById("open-cookie-settings");
     var backdrop = document.getElementById("cookie-modal-backdrop");
@@ -475,6 +502,14 @@
           marketing: marketing ? marketing.checked : false
         }, "custom");
 
+        setBannerVisible(false);
+        closeModal();
+      });
+    }
+
+    if (modalAccept) {
+      modalAccept.addEventListener("click", function () {
+        saveConsent({ preferences: true, analytics: true, marketing: true }, "modal_accept_all");
         setBannerVisible(false);
         closeModal();
       });
@@ -519,7 +554,9 @@
 
     if (consentRecord) {
       applyConsent(consentRecord.choices);
-      setStatusText("Mate ulozenu volbu cookies. Nastavenie mozete kedykolvek zmenit.");
+      updateUiSummary(consentRecord.choices, true);
+    } else {
+      updateUiSummary(defaultChoices, false);
     }
 
     wireUiEvents();
@@ -533,6 +570,7 @@
     reset: function () {
       localStorage.removeItem(STORAGE_KEY);
       consentRecord = null;
+      updateUiSummary(defaultChoices, false);
       setBannerVisible(true);
     },
     onChange: function (callback) {

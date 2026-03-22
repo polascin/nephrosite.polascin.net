@@ -58,6 +58,8 @@
 <p class="privacy-links">
 	<a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">Zasady ochrany sukromia</a>
 	&nbsp;|&nbsp;
+	<a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+	&nbsp;|&nbsp;
 	<button type="button" id="open-cookie-settings" class="cookie-settings-button">Nastavenie cookies</button>
 </p>
 
