@@ -10,9 +10,11 @@
     	<a href="https://sk.wikipedia.org/wiki/Dospelos%C5%A5" target="_blank" title="Vek v rokoch">
 				<?php
         	$vek = (time() - mktime(8,30,0,3,4,1971)) / (60 * 60 * 24 * 365.25) ;
-	  			echo "<span class='age-main'>".floor($vek)."</span>"."\n" ;
-  		  	echo "<br>(".floor($vek)."<small>".substr(round($vek, 3), strpos(round($vek, 3), "."))."</small>)<br>"."\n" ;
+				$vekCely = floor($vek);
+				$vekDesatinnaCast = strstr((string) round($vek, 3), ".");
 				?>
+				<span class="age-main"><?php echo $vekCely; ?></span>
+				<br>(<?php echo $vekCely; ?><small><?php echo ($vekDesatinnaCast !== false) ? $vekDesatinnaCast : ".0"; ?></small>)<br>
 			</a>
 		</div>
   </div>
