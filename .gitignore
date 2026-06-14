@@ -30,3 +30,8 @@ php_errors.log
 
 # Git LFS large files backup
 *.orig
+
+# Lokálne PHP dev nástroje (stiahne tools/install-dev-tools.ps1) — NEdeployovať
+tools/*.phar
+.php-cs-fixer.cache
+.phpstan.cache/
