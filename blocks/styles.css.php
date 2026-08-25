@@ -419,6 +419,27 @@ main#content > section:first-child {
 	margin-top: 0;
 }
 
+.archive-notice {
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 96%;
+	box-sizing: border-box;
+	padding: 1em 2em;
+	background-color: cornsilk;
+	border: medium solid darkgoldenrod;
+}
+
+.archive-notice h2 {
+	margin: 0.2em 0;
+	color: sienna;
+	font-variant: small-caps;
+}
+
+.archive-notice p {
+	margin: 0.5em 0;
+}
+
 .privacy-links {
 	color: #666666;
 	font-size: 0.95rem;
