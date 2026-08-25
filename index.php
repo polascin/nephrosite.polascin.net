@@ -56,6 +56,11 @@
 	</section>
 
 	<section>
+	  <?php include "./blocks/archive-notice.sk.php"; ?>
+	  <hr>
+	</section>
+
+	<section>
 	  <?php include "./blocks/foazosszu.sk.php"; ?>
 	  <hr>
 	</section>

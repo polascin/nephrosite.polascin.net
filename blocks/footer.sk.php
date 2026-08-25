@@ -56,6 +56,10 @@
 </div>
 
 <p class="privacy-links">
+	<em>Obsah tejto stránky má vzdelávací a informačný charakter a nenahrádza odbornú lekársku starostlivosť ani konzultáciu s lekárom.</em>
+</p>
+
+<p class="privacy-links">
 	<a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">Zasady ochrany sukromia</a>
 	&nbsp;|&nbsp;
 	<a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">Disclaimer</a>
