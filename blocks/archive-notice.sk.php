@@ -7,7 +7,7 @@
 		<a href="https://nefro.polascin.net/" target="_blank" rel="noopener noreferrer" title="nefro.polascin.net">nefro.polascin.net</a>.
 	</p>
 	<p>
-		<small><em>Posledná aktualizácia stránky:</em> <strong>25. augusta 2026</strong></small>
+		<small><em>Posledná aktualizácia stránky:</em> <strong><?php echo(date("j. n. Y", getlastmod())); ?></strong></small>
 	</p>
 </div>
 <!-- The End of the Archive Content Notice -->
