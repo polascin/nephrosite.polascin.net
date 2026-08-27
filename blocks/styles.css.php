@@ -626,6 +626,7 @@ main#content > section:first-child {
 .cookie-btn {
 	font: inherit;
 	padding: 0.6rem 0.95rem;
+	min-height: 44px;
 	border: 1px solid #7a6d5d;
 	cursor: pointer;
 	border-radius: 999px;
@@ -665,8 +666,8 @@ main#content > section:first-child {
 	border: 1px solid #d4c3af;
 	background: #ffffff;
 	color: #4b2b18;
-	width: 2.4rem;
-	height: 2.4rem;
+	width: 2.75rem;
+	height: 2.75rem;
 	border-radius: 999px;
 	font-size: 1.3rem;
 	line-height: 1;

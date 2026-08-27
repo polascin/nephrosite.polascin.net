@@ -1,4 +1,4 @@
-<a href="./docs/regcitra.pdf" target="_blank" title="Regionálna antikoagulácia citrátom (Ci-Ca)">
+<a href="./docs/regcitra.pdf" target="_blank" rel="noopener noreferrer" title="Regionálna antikoagulácia citrátom (Ci-Ca)">
 	<h1>Regionálna antikoagulácia citrátom sodným počas kontinuálnej renálnej nahradzujúcej liečby (CRRT)</h1>
 	<img src="./docs/regcitra/regcitra1.jpg" alt="Regionálna antikoagulácia citrátom (Ci-Ca) 1 z 5" style="max-width: 100%;">
 	<img src="./docs/regcitra/regcitra2.jpg" alt="Regionálna antikoagulácia citrátom (Ci-Ca) 2 z 5" style="max-width: 100%;">

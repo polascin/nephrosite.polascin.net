@@ -3,12 +3,14 @@ $siteName = "NephroSite";
 $siteUrl = "https://nephrosite.polascin.net/";
 $pageTitle = "NephroSite | Nefrológia, dialýza a interná medicína";
 $pageDescription = "Odborné stránky MUDr. Ľubomíra Polaščína venované nefrológii, dialýze, purifikácii krvi, internej medicíne a edukácii pacientov.";
+$pageKeywords = "nefrológia, dialýza, hemodialýza, peritoneálna dialýza, transplantácia obličky, purifikácia krvi, chronická obličková choroba, glomerulonefritída, interná medicína, edukácia pacientov";
 $ogImage = "https://polascin.net/pix/elpi.jpg";
 $publishedDate = "2024-01-01T13:08:53+01:00";
 $modifiedDate = date("c", getlastmod());
 ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, 'UTF-8'); ?>">
+<meta name="keywords" content="<?php echo htmlspecialchars($pageKeywords, ENT_QUOTES, 'UTF-8'); ?>">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="bingbot" content="index, follow">

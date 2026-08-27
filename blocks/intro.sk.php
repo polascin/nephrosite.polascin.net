@@ -7,7 +7,7 @@
 			</a>
 		</div>
     <div>
-    	<a href="https://sk.wikipedia.org/wiki/Dospelos%C5%A5" target="_blank" title="Vek v rokoch">
+    	<a href="https://sk.wikipedia.org/wiki/Dospelos%C5%A5" target="_blank" rel="noopener noreferrer" title="Vek v rokoch">
 				<?php
         	$vek = (time() - mktime(8,30,0,3,4,1971)) / (60 * 60 * 24 * 365.25) ;
 				$vekCely = floor($vek);
@@ -19,11 +19,11 @@
 		</div>
   </div>
 	<div class="intro-right top-gap">
-  	  	<a href="https://www.linkedin.com/in/lubomirpolascin/" target="_blank" title="Lubomir Polacin's LinkedIn Profile">
+  	  	<a href="https://www.linkedin.com/in/lubomirpolascin/" target="_blank" rel="noopener noreferrer" title="Lubomir Polacin's LinkedIn Profile">
 		<img src="https://polascin.net/weblogo/LinkedIn-logo.png" alt="LinkedIn Logo" class="linkedin-logo">
   	</a>
 		<br><br><br>
-    <!--<a href="https://nemocnica-bory.sk/ambulancia/nefrologicka/" target="_blank" title="Nefrologická ambulancia Nemocnice Bory">-->
+    <!--<a href="https://nemocnica-bory.sk/ambulancia/nefrologicka/" target="_blank" rel="noopener noreferrer" title="Nefrologická ambulancia Nemocnice Bory">-->
 	    <div class="doctor-card">
   			<strong>MUDr. Ľubomír POLAŠČÍN</strong>
 				<br>
@@ -33,29 +33,29 @@
 			</div>
 		<!--</a>-->
 		<br><br>
-		<a href="https://www.amazon.com/stores/Lubomir-Polascin/author/B07PN436VJ?store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true&linkCode=ll2&tag=mobile0f21130-20&linkId=857497f66a358285c30f667879e75f8e&language=en_US&ref_=as_li_ss_tl" target="_blank" title="Moje knihy na Amazon-e">
+		<a href="https://www.amazon.com/stores/Lubomir-Polascin/author/B07PN436VJ?store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true&linkCode=ll2&tag=mobile0f21130-20&linkId=857497f66a358285c30f667879e75f8e&language=en_US&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer" title="Moje knihy na Amazon-e">
 			<h3 class="amazon-box">
 				Moje knihy na Amazon-e
 			</h3>
 		</a>
 		<br>
 		<!--<div style="border-style: solid; border-width: thin; border-color: gray; padding: 0.3em;">
-			<a href="https://nemocnica-bory.sk/pacient/ambulancie/#objednanie" target="_blank" title="Nefrologická ambulancia Nemocnice Bory - OBJEDNANIE">
+			<a href="https://nemocnica-bory.sk/pacient/ambulancie/#objednanie" target="_blank" rel="noopener noreferrer" title="Nefrologická ambulancia Nemocnice Bory - OBJEDNANIE">
 				<small><em>Nájdete ma v Nemocnici novej generácie Bory</em></small>
 			</a>
 			<br>
-			<a href="https://nemocnica-bory.sk/" target="_blank" title="Nemocnica Bory - Penta Hospitals">
+			<a href="https://nemocnica-bory.sk/" target="_blank" rel="noopener noreferrer" title="Nemocnica Bory - Penta Hospitals">
 				<img src="https://polascin.net/weblogo/nngb-logo.svg" height="50" alt="Nemocnica Bory - Penta Hospitals">
 			</a>
-			<a href="https://nemocnica-bory.sk/pacient/ambulancie/#objednanie" target="_blank" title="Ako sa objednať?">
+			<a href="https://nemocnica-bory.sk/pacient/ambulancie/#objednanie" target="_blank" rel="noopener noreferrer" title="Ako sa objednať?">
 				<div style="font-weight: bold;"><hr class="promohr">0950 105 510<hr class="promohr"></div>
 			</a>
 			<div style="font-size: small; font-style: italic;">
-				<a href="https://nemocnica-bory.sk/pracovisko/dialyza/" target="_blank" title="Dialyzačný stacionár Nemocnice Bory">
+				<a href="https://nemocnica-bory.sk/pracovisko/dialyza/" target="_blank" rel="noopener noreferrer" title="Dialyzačný stacionár Nemocnice Bory">
 					Dialýza (Dialyzačný stacionár)
 				</a>
 				&nbsp;&nbsp;&nbsp;
-				<a href="https://nemocnica-bory.sk/ambulancia/nefrologicka/" target="_blank" title="Nefrologická ambulancia Nemocnice Bory">
+				<a href="https://nemocnica-bory.sk/ambulancia/nefrologicka/" target="_blank" rel="noopener noreferrer" title="Nefrologická ambulancia Nemocnice Bory">
 					Nefrologická ambulancia
 				</a>
 			</div>

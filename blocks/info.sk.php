@@ -36,7 +36,7 @@
 
 <div class="info bg-honeydew inline-table">
 	<div class="info-title">
-		<a href="./docs/mel.pdf" target="_blank">
+		<a href="./docs/mel.pdf" target="_blank" rel="noopener noreferrer">
 			Mimotelová eliminačná liečba. &copy; 2009.
 		</a>
 	</div>

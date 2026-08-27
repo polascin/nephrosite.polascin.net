@@ -1,5 +1,7 @@
 # Bezpečnostné nastavenia
 Options -Indexes
+# Všetky textové súbory sú UTF-8 – deklaruj to aj v HTTP hlavičke.
+AddDefaultCharset UTF-8
 ServerSignature Off
 
 # Globálne bezpečnostné HTTP hlavičky
@@ -34,6 +36,10 @@ ServerSignature Off
 </FilesMatch>
 
 RewriteEngine on
+
+# Interné include fragmenty sa vkladajú cez PHP include zo súborového systému;
+# priamy prístup cez HTTP nie je nikdy potrebný (obrana do hĺbky).
+RewriteRule ^(?:blocks|segments)/ - [F,L]
 
 # Enforce one canonical HTTPS hostname for stronger SEO canonicalization.
 RewriteCond %{HTTP_HOST} !^nephrosite\.polascin\.net$ [NC,OR]

@@ -15,11 +15,11 @@
 	</p>
 
 	<div>
-		<a href="./docs/KTx2023.pdf" target="_blank" title="Transplantácie obličiek 2023">
+		<a href="./docs/KTx2023.pdf" target="_blank" rel="noopener noreferrer" title="Transplantácie obličiek 2023">
 			<img src="./docs/ktx2023.gif" alt="Transplantácie obličiek 2023" class="halfslide">
 		</a>
 		&nbsp;&nbsp;&nbsp;
-		<a href="./docs/CRRT2023.pdf" target="_blank" title="Akútne eliminačné metodiky (CRRT) 2023">
+		<a href="./docs/CRRT2023.pdf" target="_blank" rel="noopener noreferrer" title="Akútne eliminačné metodiky (CRRT) 2023">
 			<img src="./docs/crrt2023.gif" alt="Akútne eliminačné metodiky (CRRT) 2023" class="halfslide">
 		</a>
 	</div>
