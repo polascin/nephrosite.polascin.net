@@ -899,4 +899,16 @@ body.cookie-modal-open {
 	font-weight: 600;
 }
 
+/* Perex témy na hlavnej stránke (blocks/topic-teaser.php). */
+.topic-teaser {
+	margin-bottom: 0.5rem;
+}
+
+.topic-more {
+	clear: both;
+	margin: 1.2rem 0 0;
+	font-weight: 600;
+	text-align: left;
+}
+
 </style>

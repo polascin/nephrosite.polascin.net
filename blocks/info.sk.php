@@ -1,41 +1,52 @@
+<?php
+
+/**
+ * Prehľad tém na hlavnej stránke.
+ *
+ * Sekcie zobrazujú iba perex (úvodný obrázok, nadpis a prvý odstavec)
+ * s odkazom na samostatnú tematickú stránku, kde je celé znenie.
+ * Perex generuje blocks/topic-teaser.php priamo z fragmentu v files/.
+ */
+
+?>
 <div class="info info-justify bg-ivory">
-	<?php require "./files/nefrologia.html"; ?>
-	<p class="topic-permalink"><a href="/nefrologia.php">Klinická nefrológia &ndash; samostatná stránka</a></p>
+	<?php $teaser = ["file" => "nefrologia.html", "title" => "Klinická nefrológia", "slug" => "nefrologia.php"]; ?>
+	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify bg-honeydew">
-	<?php require "./files/dialyza.html"; ?>
-	<p class="topic-permalink"><a href="/dialyza.php">Dialýza &ndash; samostatná stránka</a></p>
+	<?php $teaser = ["file" => "dialyza.html", "title" => "Dialýza", "slug" => "dialyza.php"]; ?>
+	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify bg-lavenderblush">
-	<?php require "./files/purifikacia.html"; ?>
-	<p class="topic-permalink"><a href="/purifikacia.php">Purifikácia krvi &ndash; samostatná stránka</a></p>
+	<?php $teaser = ["file" => "purifikacia.html", "title" => "Purifikácia krvi", "slug" => "purifikacia.php"]; ?>
+	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify bg-seashell">
-	<?php require "./files/transplantacia.html"; ?>
-	<p class="topic-permalink"><a href="/transplantacia.php">Transplantácia obličky &ndash; samostatná stránka</a></p>
+	<?php $teaser = ["file" => "transplantacia.html", "title" => "Transplantácia obličky", "slug" => "transplantacia.php"]; ?>
+	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify bg-ghostwhite">
-	<?php require "./files/usgo.html"; ?>
-	<p class="topic-permalink"><a href="/usgo.php">Ultrazvukové vyšetrenie obličiek &ndash; samostatná stránka</a></p>
+	<?php $teaser = ["file" => "usgo.html", "title" => "Ultrazvukové vyšetrenie obličiek", "slug" => "usgo.php"]; ?>
+	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify">
-	<?php require "./files/nefamb.html"; ?>
-	<p class="topic-permalink"><a href="/nefamb.php">Nefrologická ambulancia &ndash; samostatná stránka</a></p>
+	<?php $teaser = ["file" => "nefamb.html", "title" => "Nefrologická ambulancia", "slug" => "nefamb.php"]; ?>
+	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
