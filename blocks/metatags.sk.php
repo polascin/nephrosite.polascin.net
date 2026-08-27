@@ -1,8 +1,8 @@
 <?php
 $siteName = "NephroSite";
 $siteUrl = "https://nephrosite.polascin.net/";
-$pageTitle = "NephroSite | Nefrologia, dialyza a interna medicina";
-$pageDescription = "Odborne stranky MUDr. Lubomira Polascina venovane nefrologii, dialyze, purifikacii krvi, internej medicine a edukacii pacientov.";
+$pageTitle = "NephroSite | Nefrológia, dialýza a interná medicína";
+$pageDescription = "Odborné stránky MUDr. Ľubomíra Polaščína venované nefrológii, dialýze, purifikácii krvi, internej medicíne a edukácii pacientov.";
 $ogImage = "https://polascin.net/pix/elpi.jpg";
 $publishedDate = "2024-01-01T13:08:53+01:00";
 $modifiedDate = date("c", getlastmod());
@@ -12,8 +12,8 @@ $modifiedDate = date("c", getlastmod());
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="bingbot" content="index, follow">
-<meta name="author" content="MUDr. Lubomir Polascin">
-<meta name="copyright" content="Lubomir Polascin">
+<meta name="author" content="MUDr. Ľubomír Polaščín">
+<meta name="copyright" content="Ľubomír Polaščín">
 <meta name="language" content="sk">
 <meta name="geo.region" content="SK">
 <meta name="theme-color" content="#ffffff">
@@ -25,7 +25,7 @@ $modifiedDate = date("c", getlastmod());
 <meta property="og:description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, 'UTF-8'); ?>">
 <meta property="og:url" content="<?php echo htmlspecialchars($siteUrl, ENT_QUOTES, 'UTF-8'); ?>">
 <meta property="og:image" content="<?php echo htmlspecialchars($ogImage, ENT_QUOTES, 'UTF-8'); ?>">
-<meta property="og:image:alt" content="MUDr. Lubomir Polascin - NephroSite">
+<meta property="og:image:alt" content="MUDr. Ľubomír Polaščín – NephroSite">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="<?php echo htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8'); ?>">
@@ -49,11 +49,11 @@ $modifiedDate = date("c", getlastmod());
             "@type": "WebPage",
             "@id": "https://nephrosite.polascin.net/#webpage",
             "url": "https://nephrosite.polascin.net/",
-            "name": "NephroSite | Nefrologia, dialyza a interna medicina",
+            "name": "NephroSite | Nefrológia, dialýza a interná medicína",
             "isPartOf": {
                 "@id": "https://nephrosite.polascin.net/#website"
             },
-            "description": "Odborne stranky MUDr. Lubomira Polascina venovane nefrologii, dialyze, purifikacii krvi, internej medicine a edukacii pacientov.",
+            "description": "Odborné stránky MUDr. Ľubomíra Polaščína venované nefrológii, dialýze, purifikácii krvi, internej medicíne a edukácii pacientov.",
             "inLanguage": "sk",
             "datePublished": "<?php echo $publishedDate; ?>",
             "dateModified": "<?php echo $modifiedDate; ?>",
@@ -68,9 +68,9 @@ $modifiedDate = date("c", getlastmod());
         {
             "@type": ["Person", "Physician"],
             "@id": "https://nephrosite.polascin.net/#person",
-            "name": "MUDr. Lubomir Polascin",
+            "name": "MUDr. Ľubomír Polaščín",
             "url": "https://nephrosite.polascin.net/",
-            "jobTitle": "Nefrolog",
+            "jobTitle": "Nefrológ",
             "medicalSpecialty": "Nephrologic",
             "sameAs": [
                 "https://www.linkedin.com/in/lubomirpolascin/"

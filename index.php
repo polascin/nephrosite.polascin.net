@@ -42,7 +42,7 @@
 
 <body>
 
-  <a class="skip-link" href="#content">Preskocit na hlavny obsah</a>
+  <a class="skip-link" href="#content">Preskočiť na hlavný obsah</a>
 
   <header>
     <?php include "./blocks/ns.sk.php"; ?>

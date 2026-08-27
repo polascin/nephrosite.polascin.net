@@ -198,9 +198,9 @@
     }
 
     setStatusText(
-      "Volba ulozena: preferencie " + (consentRecord.choices.preferences ? "povolene" : "zakazane") +
-      ", analyticke " + (consentRecord.choices.analytics ? "povolene" : "zakazane") +
-      ", marketingove " + (consentRecord.choices.marketing ? "povolene" : "zakazane") + "."
+      "Voľba uložená: preferencie " + (consentRecord.choices.preferences ? "povolené" : "zakázané") +
+      ", analytické " + (consentRecord.choices.analytics ? "povolené" : "zakázané") +
+      ", marketingové " + (consentRecord.choices.marketing ? "povolené" : "zakázané") + "."
     );
 
     flashSavedStatus();
@@ -415,9 +415,9 @@
   }
 
   function getChoiceSummary(choices) {
-    return "preferencie " + (choices.preferences ? "povolene" : "zakazane") +
-      ", analyticke " + (choices.analytics ? "povolene" : "zakazane") +
-      ", marketingove " + (choices.marketing ? "povolene" : "zakazane") + ".";
+    return "preferencie " + (choices.preferences ? "povolené" : "zakázané") +
+      ", analytické " + (choices.analytics ? "povolené" : "zakázané") +
+      ", marketingové " + (choices.marketing ? "povolené" : "zakázané") + ".";
   }
 
   function setCustomizeExpanded(expanded) {
@@ -446,8 +446,8 @@
 
   function updateUiSummary(choices, hasSavedConsent) {
     var summary = hasSavedConsent
-      ? "Aktualna volba: " + getChoiceSummary(choices)
-      : "Bez vasej volby zostavaju aktivne iba nevyhnutne cookies.";
+      ? "Aktuálna voľba: " + getChoiceSummary(choices)
+      : "Bez vašej voľby zostávajú aktívne iba nevyhnutné cookies.";
 
     setStatusText(summary);
     syncPreferenceInputs(choices);

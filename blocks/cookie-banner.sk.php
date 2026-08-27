@@ -4,30 +4,30 @@
         <p class="cookie-eyebrow">Privacy center</p>
         <div class="cookie-banner-grid">
             <div class="cookie-banner-copy">
-                <h2 id="cookie-banner-title" class="cookie-title">Cookies iba pod vasou kontrolou</h2>
+                <h2 id="cookie-banner-title" class="cookie-title">Cookies iba pod vašou kontrolou</h2>
                 <p id="cookie-banner-desc" class="cookie-text">
-                    Nevyhnutne cookies pouzivame pre bezpecnost a funkcnost webu. Preferencie, analyticke a marketingove
-                    uloziska su standardne vypnute a aktivuju sa az po vasom vyslovnom suhlase.
+                    Nevyhnutné cookies používame pre bezpečnosť a funkčnosť webu. Preferencie, analytické a marketingové
+                    úložiská sú štandardne vypnuté a aktivujú sa až po vašom výslovnom súhlase.
                 </p>
-                <ul class="cookie-points" aria-label="Zakladne pravidla suhlasu">
-                    <li>rovnako jednoduche prijatie aj odmietnutie</li>
-                    <li>moznost vybrat jednotlive kategorie</li>
-                    <li>zmena suhlasu kedykolvek cez patu webu</li>
+                <ul class="cookie-points" aria-label="Základné pravidlá súhlasu">
+                    <li>rovnako jednoduché prijatie aj odmietnutie</li>
+                    <li>možnosť vybrať jednotlivé kategórie</li>
+                    <li>zmena súhlasu kedykoľvek cez pätu webu</li>
                 </ul>
             </div>
 
-            <aside class="cookie-banner-side" aria-label="Zhrnutie ochrany sukromia">
+            <aside class="cookie-banner-side" aria-label="Zhrnutie ochrany súkromia">
                 <div class="cookie-pill-list" aria-hidden="true">
-                    <span class="cookie-pill">defaultne vypnute</span>
-                    <span class="cookie-pill">platnost 180 dni</span>
-                    <span class="cookie-pill">GPC a DNT respektujeme</span>
+                    <span class="cookie-pill">predvolene vypnuté</span>
+                    <span class="cookie-pill">platnosť 180 dní</span>
+                    <span class="cookie-pill">GPC a DNT rešpektujeme</span>
                 </div>
                 <p id="cookie-banner-disclaimer" class="cookie-disclaimer">
-                    Dolezite upozornenie: obsah webu sluzi na informacne a edukacne ucely a nenahradza odborne lekarske,
-                    pravne ani ine profesionalne poradenstvo. Precitajte si aj
+                    Dôležité upozornenie: obsah webu slúži na informačné a edukačné účely a nenahrádza odborné lekárske,
+                    právne ani iné profesionálne poradenstvo. Prečítajte si aj
                     <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">disclaimer</a>
                     a
-                    <a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">zasady ochrany sukromia</a>.
+                    <a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">zásady ochrany súkromia</a>.
                 </p>
             </aside>
         </div>
@@ -35,10 +35,10 @@
         <p id="cookie-consent-status" class="cookie-status" role="status" aria-live="polite"></p>
 
         <div class="cookie-actions cookie-actions-primary">
-            <button type="button" id="cookie-reject-all" class="cookie-btn cookie-btn-secondary">Len nevyhnutne</button>
+            <button type="button" id="cookie-reject-all" class="cookie-btn cookie-btn-secondary">Len nevyhnutné</button>
             <button type="button" id="cookie-customize" class="cookie-btn cookie-btn-ghost" aria-haspopup="dialog"
-                aria-controls="cookie-modal" aria-expanded="false">Vybrat kategorie</button>
-            <button type="button" id="cookie-accept-all" class="cookie-btn cookie-btn-primary">Prijat vsetko</button>
+                aria-controls="cookie-modal" aria-expanded="false">Vybrať kategórie</button>
+            <button type="button" id="cookie-accept-all" class="cookie-btn cookie-btn-primary">Prijať všetko</button>
         </div>
     </div>
 </section>
@@ -49,86 +49,86 @@
         <div class="cookie-modal-header">
             <div>
                 <p class="cookie-eyebrow">Preference center</p>
-                <h2 id="cookie-modal-title">Podrobne nastavenie cookies</h2>
+                <h2 id="cookie-modal-title">Podrobné nastavenie cookies</h2>
             </div>
-            <button type="button" id="cookie-modal-close" class="cookie-icon-button" aria-label="Zavriet nastavenie cookies">×</button>
+            <button type="button" id="cookie-modal-close" class="cookie-icon-button" aria-label="Zavrieť nastavenie cookies">×</button>
         </div>
 
         <p id="cookie-modal-desc" class="cookie-modal-lead">
-            Vyberte, ktore nepovinne uloziska mozeme aktivovat. Nevyhnutne uloziska zostavaju zapnute stale, ostatne len po suhlase.
+            Vyberte, ktoré nepovinné úložiská môžeme aktivovať. Nevyhnutné úložiská zostávajú zapnuté stále, ostatné len po súhlase.
         </p>
 
         <p id="cookie-modal-disclaimer" class="cookie-disclaimer cookie-disclaimer-modal">
-            Upozornenie: informacie na tomto webe nenahradzaju odbornu zdravotnu starostlivost ani ine profesionalne odporucania.
-            Podrobnosti najdete v
-            <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">disclaimere</a>.
+            Upozornenie: informácie na tomto webe nenahrádzajú odbornú zdravotnú starostlivosť ani iné profesionálne odporúčania.
+            Podrobnosti nájdete v
+            <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">disclaimeri</a>.
         </p>
 
-        <div class="cookie-card-list" role="group" aria-label="Kategorie cookies">
+        <div class="cookie-card-list" role="group" aria-label="Kategórie cookies">
             <div class="cookie-row cookie-row-locked">
                 <div class="cookie-row-copy">
-                    <h3>Nevyhnutne</h3>
-                    <p>Bezpecnost, navigacia, zakladna dostupnost webu a ulozenie vasej volby suhlasu.</p>
-                    <p class="cookie-row-meta">Pravny zaklad: opravneny zaujem.</p>
+                    <h3>Nevyhnutné</h3>
+                    <p>Bezpečnosť, navigácia, základná dostupnosť webu a uloženie vašej voľby súhlasu.</p>
+                    <p class="cookie-row-meta">Právny základ: oprávnený záujem.</p>
                 </div>
                 <label class="cookie-toggle">
                     <input type="checkbox" checked disabled aria-describedby="cookie-necessary-state">
-                    <span id="cookie-necessary-state">Vzdy aktivne</span>
+                    <span id="cookie-necessary-state">Vždy aktívne</span>
                 </label>
             </div>
 
             <div class="cookie-row">
                 <div class="cookie-row-copy">
                     <h3>Preferencie</h3>
-                    <p>Zapamataju lokalne volby rozhrania a znizuju pocet opakovanych vyziev.</p>
-                    <p class="cookie-row-meta">Aktivuju sa iba po suhlase.</p>
+                    <p>Zapamätajú lokálne voľby rozhrania a znižujú počet opakovaných výziev.</p>
+                    <p class="cookie-row-meta">Aktivujú sa iba po súhlase.</p>
                 </div>
                 <label class="cookie-toggle" for="cookie-pref-preferences">
                     <input type="checkbox" id="cookie-pref-preferences" aria-describedby="cookie-pref-preferences-hint">
-                    <span>Povolit</span>
+                    <span>Povoliť</span>
                 </label>
-                <span id="cookie-pref-preferences-hint" class="sr-only">Povolit preferencne cookies.</span>
+                <span id="cookie-pref-preferences-hint" class="sr-only">Povoliť preferenčné cookies.</span>
             </div>
 
             <div class="cookie-row">
                 <div class="cookie-row-copy">
-                    <h3>Analyticke</h3>
-                    <p>Pomahaju nam rozumiet navstevnosti a pouzivaniu obsahu bez priamej identifikacie navstevnika.</p>
-                    <p class="cookie-row-meta">Nastroje: Piwik PRO, Microsoft Clarity, Google Analytics.</p>
+                    <h3>Analytické</h3>
+                    <p>Pomáhajú nám rozumieť návštevnosti a používaniu obsahu bez priamej identifikácie návštevníka.</p>
+                    <p class="cookie-row-meta">Nástroje: Piwik PRO, Microsoft Clarity, Google Analytics.</p>
                 </div>
                 <label class="cookie-toggle" for="cookie-pref-analytics">
                     <input type="checkbox" id="cookie-pref-analytics" aria-describedby="cookie-pref-analytics-hint">
-                    <span>Povolit</span>
+                    <span>Povoliť</span>
                 </label>
-                <span id="cookie-pref-analytics-hint" class="sr-only">Povolit analyticke cookies.</span>
+                <span id="cookie-pref-analytics-hint" class="sr-only">Povoliť analytické cookies.</span>
             </div>
 
             <div class="cookie-row">
                 <div class="cookie-row-copy">
-                    <h3>Marketingove</h3>
-                    <p>Umoznuju meranie kampani a marketingove spracovanie po vasom samostatnom suhlase.</p>
-                    <p class="cookie-row-meta">Nastroj: Fastbase.</p>
+                    <h3>Marketingové</h3>
+                    <p>Umožňujú meranie kampaní a marketingové spracovanie po vašom samostatnom súhlase.</p>
+                    <p class="cookie-row-meta">Nástroj: Fastbase.</p>
                 </div>
                 <label class="cookie-toggle" for="cookie-pref-marketing">
                     <input type="checkbox" id="cookie-pref-marketing" aria-describedby="cookie-pref-marketing-hint">
-                    <span>Povolit</span>
+                    <span>Povoliť</span>
                 </label>
-                <span id="cookie-pref-marketing-hint" class="sr-only">Povolit marketingove cookies.</span>
+                <span id="cookie-pref-marketing-hint" class="sr-only">Povoliť marketingové cookies.</span>
             </div>
         </div>
 
         <div class="cookie-actions cookie-actions-modal">
-            <button type="button" id="cookie-modal-reject" class="cookie-btn cookie-btn-secondary">Len nevyhnutne</button>
-            <button type="button" id="cookie-save-preferences" class="cookie-btn cookie-btn-ghost">Ulozit vyber</button>
-            <button type="button" id="cookie-modal-accept" class="cookie-btn cookie-btn-primary">Prijat vsetko</button>
+            <button type="button" id="cookie-modal-reject" class="cookie-btn cookie-btn-secondary">Len nevyhnutné</button>
+            <button type="button" id="cookie-save-preferences" class="cookie-btn cookie-btn-ghost">Uložiť výber</button>
+            <button type="button" id="cookie-modal-accept" class="cookie-btn cookie-btn-primary">Prijať všetko</button>
         </div>
     </section>
 </div>
 
 <noscript>
     <div class="cookie-noscript">
-        JavaScript je vypnuty. Na tomto webe sa pouzivaju iba nevyhnutne cookies.
-        Detaily su uvedene v <a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">zasadach ochrany
-            sukromia</a> a v <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">disclaimere</a>.
+        JavaScript je vypnutý. Na tomto webe sa používajú iba nevyhnutné cookies.
+        Detaily sú uvedené v <a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">zásadách ochrany
+            súkromia</a> a v <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">disclaimeri</a>.
     </div>
 </noscript>

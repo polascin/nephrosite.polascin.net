@@ -60,7 +60,9 @@
 </p>
 
 <p class="privacy-links">
-	<a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">Zasady ochrany sukromia</a>
+	<a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">Zásady ochrany súkromia</a>
+	&nbsp;|&nbsp;
+	<a href="/files/terms.html" target="_blank" rel="noopener noreferrer">Podmienky používania</a>
 	&nbsp;|&nbsp;
 	<a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">Disclaimer</a>
 	&nbsp;|&nbsp;
