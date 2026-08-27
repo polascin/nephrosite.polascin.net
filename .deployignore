@@ -4,8 +4,7 @@
 .github
 .gitignore
 .deployignore
-DEPLOY.md
-README.md
+*.md
 phpstan.neon.dist
 phpstan-baseline.neon
 tools

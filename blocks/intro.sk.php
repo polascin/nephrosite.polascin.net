@@ -2,7 +2,7 @@
   <div class="intro-left">
     <div>
     	<a href="https://nephrosite.polascin.net/" target="_top" title="NephroSite - Ľubomír Polaščín">
-				<h1 class="title-sc">Ľubomír Polaščín</h1>
+				<h2 class="title-sc">Ľubomír Polaščín</h2>
 	   		<img src="https://polascin.net/pix/elpi.jpg" alt="Ľubomír Polaščín - fotografia" class="intro-portrait">
 			</a>
 		</div>

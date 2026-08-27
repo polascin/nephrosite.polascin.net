@@ -1,3 +1,4 @@
+<h1 class="sr-only">NephroSite – nefrológia, dialýza a interná medicína</h1>
 <div class="nspanel">
 	<a href="https://nephro.site/" target="_top">
 		<img src="./pix/nspanel.png" alt="NephroSite" class="ns-panel-image">

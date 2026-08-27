@@ -264,6 +264,14 @@ hr.promohr {
 
 .title-sc {
 	font-variant: small-caps;
+	/* Demotované z h1 na h2 (jediný h1 na stránke) – vizuál zachovaný. */
+	font-size: 2em;
+	margin: 0.67em 0;
+}
+
+.title-lg {
+	font-size: 2em;
+	margin: 0.67em 0;
 }
 
 .intro-portrait {

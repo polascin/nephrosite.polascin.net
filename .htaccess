@@ -49,6 +49,9 @@ RewriteRule ^ https://nephrosite.polascin.net%{REQUEST_URI} [L,R=301]
 SetEnvIf Request_URI "^/blocks/" noindex_path=1
 SetEnvIf Request_URI "^/segments/" noindex_path=1
 SetEnvIf Request_URI "^/ipvrm\.files/" noindex_path=1
+# Fragmenty vkladané do homepage cez require – dostupné, ale neindexovať
+# (rovnaký obsah je už na hlavnej stránke, samostatne nemajú <title> ani <head>).
+SetEnvIf Request_URI "^/files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html$" noindex_path=1
 
 <IfModule mod_headers.c>
 	Header set X-Robots-Tag "noindex, nofollow, noarchive" env=noindex_path
