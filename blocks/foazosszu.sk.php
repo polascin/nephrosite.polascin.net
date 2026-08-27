@@ -48,6 +48,8 @@
 <div style="text-align: justify; padding: 3em; background-color: white;">
 	<?php require "./files/transplantacia.html"; ?>
 	<?php require "./segments/transplantacia.html"; ?>
+	<p class="topic-permalink"><a href="/transplantacia.php">Transplantácia obličky &ndash; samostatná stránka</a></p>
+	<p class="topic-permalink"><a href="/lipton-tx.php">Bruce H. Lipton o transplantovaných orgánoch</a></p>
 </div>
 
 <div style="display: inline-table; padding: 2em; background-color: white;">

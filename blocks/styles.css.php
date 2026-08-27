@@ -854,4 +854,49 @@ body.cookie-modal-open {
 	}
 }
 
+/* Skip-link – presunuty z inline stylu v index.php, aby ho mali aj tematicke stranky. */
+.skip-link {
+	position: absolute;
+	left: -9999px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.skip-link:focus {
+	left: 1rem;
+	top: 1rem;
+	width: auto;
+	height: auto;
+	padding: 0.6rem 0.8rem;
+	background: #ffffff;
+	border: 1px solid #333333;
+	z-index: 1000;
+}
+
+/* Samostatne tematicke stranky (blocks/topic-page.php). */
+.topic-breadcrumb {
+	margin: 1rem 0;
+	font-size: 0.95rem;
+}
+
+.topic-breadcrumb span {
+	margin: 0 0.35rem;
+}
+
+.topic-article {
+	max-width: 70rem;
+	margin: 0 auto;
+}
+
+.topic-back {
+	margin: 2rem 0 1rem;
+}
+
+.topic-permalink {
+	margin: 1.2rem 0 0;
+	font-weight: 600;
+}
+
 </style>

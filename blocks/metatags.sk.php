@@ -1,10 +1,12 @@
 <?php
 $siteName = "NephroSite";
 $siteUrl = "https://nephrosite.polascin.net/";
-$pageTitle = "NephroSite | Nefrológia, dialýza a interná medicína";
-$pageDescription = "Odborné stránky MUDr. Ľubomíra Polaščína venované nefrológii, dialýze, purifikácii krvi, internej medicíne a edukácii pacientov.";
-$pageKeywords = "nefrológia, dialýza, hemodialýza, peritoneálna dialýza, transplantácia obličky, purifikácia krvi, chronická obličková choroba, glomerulonefritída, interná medicína, edukácia pacientov";
-$ogImage = "https://polascin.net/pix/elpi.jpg";
+$pageTitle ??= "NephroSite | Nefrológia, dialýza a interná medicína";
+$pageDescription ??= "Odborné stránky MUDr. Ľubomíra Polaščína venované nefrológii, dialýze, purifikácii krvi, internej medicíne a edukácii pacientov.";
+$pageKeywords ??= "nefrológia, dialýza, hemodialýza, peritoneálna dialýza, transplantácia obličky, purifikácia krvi, chronická obličková choroba, glomerulonefritída, interná medicína, edukácia pacientov";
+$ogImage ??= "https://polascin.net/pix/elpi.jpg";
+// Kanonicka URL stranky; predvolene homepage.
+$canonicalUrl ??= $siteUrl;
 $publishedDate = "2024-01-01T13:08:53+01:00";
 $modifiedDate = date("c", getlastmod());
 ?>
@@ -25,7 +27,7 @@ $modifiedDate = date("c", getlastmod());
 <meta property="og:locale" content="sk_SK">
 <meta property="og:title" content="<?php echo htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8'); ?>">
 <meta property="og:description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, 'UTF-8'); ?>">
-<meta property="og:url" content="<?php echo htmlspecialchars($siteUrl, ENT_QUOTES, 'UTF-8'); ?>">
+<meta property="og:url" content="<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>">
 <meta property="og:image" content="<?php echo htmlspecialchars($ogImage, ENT_QUOTES, 'UTF-8'); ?>">
 <meta property="og:image:alt" content="MUDr. Ľubomír Polaščín – NephroSite">
 
@@ -49,13 +51,13 @@ $modifiedDate = date("c", getlastmod());
         },
         {
             "@type": "WebPage",
-            "@id": "https://nephrosite.polascin.net/#webpage",
-            "url": "https://nephrosite.polascin.net/",
-            "name": "NephroSite | Nefrológia, dialýza a interná medicína",
+            "@id": "<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>#webpage",
+            "url": "<?php echo htmlspecialchars($canonicalUrl, ENT_QUOTES, 'UTF-8'); ?>",
+            "name": "<?php echo htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8'); ?>",
             "isPartOf": {
                 "@id": "https://nephrosite.polascin.net/#website"
             },
-            "description": "Odborné stránky MUDr. Ľubomíra Polaščína venované nefrológii, dialýze, purifikácii krvi, internej medicíne a edukácii pacientov.",
+            "description": "<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, 'UTF-8'); ?>",
             "inLanguage": "sk",
             "datePublished": "<?php echo $publishedDate; ?>",
             "dateModified": "<?php echo $modifiedDate; ?>",

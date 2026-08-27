@@ -41,6 +41,9 @@ RewriteEngine on
 # priamy prístup cez HTTP nie je nikdy potrebný (obrana do hĺbky).
 RewriteRule ^(?:blocks|segments)/ - [F,L]
 
+# Obsahové fragmenty majú vlastné stránky; staré URL na ne presmeruj.
+RewriteRule ^files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html$ /$1.php [R=301,L]
+
 # Enforce one canonical HTTPS hostname for stronger SEO canonicalization.
 RewriteCond %{HTTP_HOST} !^nephrosite\.polascin\.net$ [NC,OR]
 RewriteCond %{HTTP:X-Forwarded-Proto} !=https
@@ -49,9 +52,6 @@ RewriteRule ^ https://nephrosite.polascin.net%{REQUEST_URI} [L,R=301]
 SetEnvIf Request_URI "^/blocks/" noindex_path=1
 SetEnvIf Request_URI "^/segments/" noindex_path=1
 SetEnvIf Request_URI "^/ipvrm\.files/" noindex_path=1
-# Fragmenty vkladané do homepage cez require – dostupné, ale neindexovať
-# (rovnaký obsah je už na hlavnej stránke, samostatne nemajú <title> ani <head>).
-SetEnvIf Request_URI "^/files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html$" noindex_path=1
 
 <IfModule mod_headers.c>
 	Header set X-Robots-Tag "noindex, nofollow, noarchive" env=noindex_path

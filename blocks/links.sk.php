@@ -1,6 +1,7 @@
-<link rel="canonical" href="https://nephrosite.polascin.net/">
-<link rel="alternate" href="https://nephrosite.polascin.net/" hreflang="sk">
-<link rel="alternate" href="https://nephrosite.polascin.net/" hreflang="x-default">
+<?php $canonicalUrl ??= "https://nephrosite.polascin.net/"; $canonicalEsc = htmlspecialchars($canonicalUrl, ENT_QUOTES, "UTF-8"); ?>
+<link rel="canonical" href="<?php echo $canonicalEsc; ?>">
+<link rel="alternate" href="<?php echo $canonicalEsc; ?>" hreflang="sk">
+<link rel="alternate" href="<?php echo $canonicalEsc; ?>" hreflang="x-default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://polascin.net" crossorigin>

@@ -1,4 +1,7 @@
+<?php $showSiteHeading ??= true; // Na tematickych strankach je h1 nadpisom temy. ?>
+<?php if ($showSiteHeading): ?>
 <h1 class="sr-only">NephroSite – nefrológia, dialýza a interná medicína</h1>
+<?php endif; ?>
 <div class="nspanel">
 	<a href="https://nephro.site/" target="_top">
 		<img src="./pix/nspanel.png" alt="NephroSite" class="ns-panel-image">
