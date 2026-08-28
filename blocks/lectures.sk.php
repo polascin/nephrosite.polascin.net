@@ -5,21 +5,21 @@
 	<thead>
 		<tr>
 			<th>
-				<img src="./pix/kidneyonleft.gif" alt="Kidney on Left" class="kidney-icon">
+				<img src="/pix/kidneyonleft.gif" alt="Kidney on Left" class="kidney-icon">
 				&nbsp;&nbsp;&nbsp;
 				Prednášky, prezentácie, články, texty, materiály, suplementá ...
 				&nbsp;&nbsp;&nbsp;
-				<img src="./pix/kidneyonright.gif" alt="Kidney on Right" class="kidney-icon">
+				<img src="/pix/kidneyonright.gif" alt="Kidney on Right" class="kidney-icon">
 			</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
 			<td>
-				<a href="./docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="./docs/fosdl.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
+				<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
+					<img src="/docs/fosdl.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
 				</a>
-				<a href="./docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
+				<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek</strong></span>
 					<br>
 					<small><em>V rámci kurzu "Sprievodca dialyzačnou liečbou"</em></small>
@@ -55,9 +55,9 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="./docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
-						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
-					</a>
+					<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
+						Funkcie obličiek
+					</a> v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 				</div>
 				<br>
 				<div class="recommended">
@@ -113,10 +113,10 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="./docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="./docs/foazo.gif" alt="Funkcie obličiek. Akútne zlyhanie obličiek. FOaZOŠ SZU Bratislava" class="slide">
+				<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
+					<img src="/docs/foazo.gif" alt="Funkcie obličiek. Akútne zlyhanie obličiek. FOaZOŠ SZU Bratislava" class="slide">
 				</a>
-				<a href="./docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
+				<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek. Akútne zlyhanie obličiek.</strong></span>
 					<br>
 					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta 2/0025"</em></small>
@@ -149,7 +149,7 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="./docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
 				</div>
@@ -217,10 +217,10 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="./docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="./docs/ktx.gif" alt="Transplantácia obličiek. FOaZOŠ SZU Bratislava" class="slide">
+				<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
+					<img src="/docs/ktx.gif" alt="Transplantácia obličiek. FOaZOŠ SZU Bratislava" class="slide">
 				</a>
-				<a href="./docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
+				<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Transplantácie obličiek</strong></span>
 					<br>
 					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta"</em></small>
@@ -253,9 +253,9 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="./docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
-						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
-					</a>
+					<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
+						Transplantácia obličiek
+					</a> v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 				</div>
 				<br>
 				<div class="recommended">
@@ -311,10 +311,10 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="./docs/aem.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="./docs/aem.gif" alt="Akútne eliminačné metódy. FOaZOŠ SZU Bratislava" class="slide">
+				<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
+					<img src="/docs/aem.gif" alt="Akútne eliminačné metódy. FOaZOŠ SZU Bratislava" class="slide">
 				</a>
-				<a href="./docs/aem.pdf" target="_blank" rel="noopener noreferrer">
+				<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Akútne eliminačné metódy. CRRT.</strong></span>
 					<br>
 					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta"</em></small>
@@ -347,9 +347,9 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="./docs/aem.pdf" target="_blank" rel="noopener noreferrer">
-						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
-					</a>
+					<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
+						Akútne eliminačné metódy
+					</a> v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 				</div>
 				<br>
 				<div class="recommended">
@@ -370,10 +370,10 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="./docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="./docs/vmppd.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
+				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
+					<img src="/docs/vmppd.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
 				</a>
-				<a href="./docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
+				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou</strong></span>
 					<br>
 					<small><em>Edukačná prednáška</em></small>
@@ -402,9 +402,9 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="./docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
-						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
-					</a>
+					<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
+						Voľba metodiky a preskripcia peritoneálnej dialýzy
+					</a> v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 				</div>
 				<br>
 				<div class="recommended">
@@ -425,10 +425,10 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="./docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="./docs/nephrogame.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
+				<a href="/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
+					<img src="/docs/nephrogame.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
 				</a>
-				<a href="https://nephrosite.polascin.net/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
+				<a href="/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
 				  <span class="presentation"><strong>Hry a gamifikácia vo výučbe nefrológie a dialýzy</strong></span>
 				</a>
 				<br>
@@ -464,7 +464,7 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="./docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
 				</div>
@@ -473,12 +473,12 @@
 					Odporúčané študijné materiály a literatúra:
 				</div>
 				<div>
-					<a href="./docs/ipvrm.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/ipvrm.pdf" target="_blank" rel="noopener noreferrer">
 						<strong>Inovatívne prístupy vo výučbe renálnej medicíny.</strong>
 						<em>Autor: Ľubomír Polaščín</em>
 					</a>
 					<br><br>
-					<iframe src="https://nephrosite.polascin.net/ipvrm.htm" height="500" class="teal-frame" title="Inovatívne prístupy vo výučbe renálnej medicíny"></iframe>
+					<iframe src="/ipvrm.htm" height="500" class="teal-frame" title="Inovatívne prístupy vo výučbe renálnej medicíny"></iframe>
 				</div>
 			</td>
 		</tr>

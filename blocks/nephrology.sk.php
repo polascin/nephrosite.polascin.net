@@ -3,11 +3,11 @@
 	<thead>
 		<tr>
 			<th>
-				<img src="./pix/kidneyonleft.gif" alt="Kidney on Left" style="vertical-align: middle; height: 3vw; ">
+				<img src="/pix/kidneyonleft.gif" alt="Kidney on Left" style="vertical-align: middle; height: 3vw; ">
 				&nbsp;&nbsp;&nbsp;
 				Prehľadné stručné informácie o základných oblastiach záujmu nefrológie
 				&nbsp;&nbsp;&nbsp;
-				<img src="./pix/kidneyonright.gif" alt="Kidney on Right"  style="vertical-align: middle; height: 3vw; ">
+				<img src="/pix/kidneyonright.gif" alt="Kidney on Right"  style="vertical-align: middle; height: 3vw; ">
 			</th>
 		</tr>
 	</thead>

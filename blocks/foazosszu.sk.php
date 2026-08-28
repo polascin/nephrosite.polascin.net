@@ -15,12 +15,12 @@
 	</p>
 
 	<div>
-		<a href="./docs/KTx2023.pdf" target="_blank" rel="noopener noreferrer" title="Transplantácie obličiek 2023">
-			<img src="./docs/ktx2023.gif" alt="Transplantácie obličiek 2023" class="halfslide">
+		<a href="/docs/KTx2023.pdf" target="_blank" rel="noopener noreferrer" title="Transplantácie obličiek 2023">
+			<img src="/docs/ktx2023.gif" alt="Transplantácie obličiek 2023" class="halfslide">
 		</a>
 		&nbsp;&nbsp;&nbsp;
-		<a href="./docs/CRRT2023.pdf" target="_blank" rel="noopener noreferrer" title="Akútne eliminačné metodiky (CRRT) 2023">
-			<img src="./docs/crrt2023.gif" alt="Akútne eliminačné metodiky (CRRT) 2023" class="halfslide">
+		<a href="/docs/CRRT2023.pdf" target="_blank" rel="noopener noreferrer" title="Akútne eliminačné metodiky (CRRT) 2023">
+			<img src="/docs/crrt2023.gif" alt="Akútne eliminačné metodiky (CRRT) 2023" class="halfslide">
 		</a>
 	</div>
 
@@ -40,9 +40,9 @@
 <br>
 
 <div>
-	<iframe src="https://nephrosite.polascin.net/docs/KTx2023.pdf" title="Transplantácie obličiek (KTx) 2023" class="lectureframe"></iframe>
+	<iframe src="/docs/KTx2023.pdf" title="Transplantácie obličiek (KTx) 2023" class="lectureframe"></iframe>
 	&nbsp;&nbsp;&nbsp;
-	<iframe src="https://nephrosite.polascin.net/docs/CRRT2023.pdf" title="Akútne eliminačné metódy (CRRT) 2023" class="lectureframe"></iframe>
+	<iframe src="/docs/CRRT2023.pdf" title="Akútne eliminačné metódy (CRRT) 2023" class="lectureframe"></iframe>
 </div>
 
 <div style="text-align: justify; padding: 3em; background-color: white;">
