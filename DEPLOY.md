@@ -1,4 +1,4 @@
-# Deploy – nephrosite.polascin.net
+# Deploy - nephrosite.polascin.net
 
 Automatické nasadenie cez GitHub Actions (`.github/workflows/deploy.yml`):
 po každom pushi do `master` (alebo manuálne cez **Actions → Deploy → Run
@@ -19,7 +19,7 @@ Kým secrets nie sú nastavené, deploy job sa iba preskočí s upozornením
 | `DEPLOY_PORT`        | SSH port (WebSupport shell používa `26650`; predvolené `22`)          |
 | `DEPLOY_SSH_KEY`     | Celý obsah privátneho SSH kľúča                                       |
 | `DEPLOY_KNOWN_HOSTS` | Host key servera (`ssh-keyscan -p <port> <host>`), formát `[host]:port` |
-| `DEPLOY_REMOTE_PATH` | Absolútna cesta k web rootu subdomény (pravdepodobne `…/polascin.net/sub/nephrosite` — overte vo WebSupport paneli) |
+| `DEPLOY_REMOTE_PATH` | Absolútna cesta k web rootu subdomény (pravdepodobne `.../polascin.net/sub/nephrosite`, overte vo WebSupport paneli) |
 
-Workflow pred rsyncom overí, že vzdialený adresár existuje — pri zlej ceste
+Workflow pred rsyncom overí, že vzdialený adresár existuje: pri zlej ceste
 bezpečne zlyhá bez zápisu.

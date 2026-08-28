@@ -62,7 +62,7 @@ jobs:
           set -euo pipefail
           HOST="${DEPLOY_HOST:-shell.r1.websupport.sk}"
           if [[ -z "$DEPLOY_USER" || -z "$DEPLOY_SSH_KEY" || -z "$DEPLOY_REMOTE_PATH" ]]; then
-            echo "::notice::Deploy skipped — configure DEPLOY_USER, DEPLOY_SSH_KEY and DEPLOY_REMOTE_PATH secrets (see DEPLOY.md)."
+            echo "::notice::Deploy skipped: configure DEPLOY_USER, DEPLOY_SSH_KEY and DEPLOY_REMOTE_PATH secrets (see DEPLOY.md)."
             echo "configured=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -110,7 +110,7 @@ jobs:
           PORT="${DEPLOY_PORT:-22}"
           ssh -i ~/.ssh/deploy_key -p "$PORT" -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" \
             "test -d '$REMOTE_PATH'" \
-            || { echo "::error::Remote directory $REMOTE_PATH does not exist — create it first."; exit 1; }
+            || { echo "::error::Remote directory $REMOTE_PATH does not exist: create it first."; exit 1; }
 
       - name: Rsync repository to web root
         if: steps.cfg.outputs.configured == 'true'

@@ -1,6 +1,6 @@
 # Lokálne vývojárske nástroje
 
-Kontrola kvality PHP kódu **bez Composera** — nástroje sa sťahujú ako samostatné
+Kontrola kvality PHP kódu **bez Composera** - nástroje sa sťahujú ako samostatné
 PHAR súbory (sú v `.gitignore`, na server sa nedeployujú).
 
 ## Inštalácia (raz)
@@ -23,6 +23,6 @@ Stiahne `phpstan.phar` + `php-cs-fixer.phar` do `tools/` a vygeneruje
 
 | Súbor | Účel |
 |-------|------|
-| `phpstan.neon.dist` | PHPStan — úroveň 4 (postupne zvyšuj k 9) |
+| `phpstan.neon.dist` | PHPStan - úroveň 4 (postupne zvyšuj k 9) |
 | `phpstan-baseline.neon` | zoznam ignorovaných existujúcich nálezov (regeneruje install skript) |
-| `.php-cs-fixer.dist.php` | PHP-CS-Fixer — konzervatívna sada nízkorizikových pravidiel |
+| `.php-cs-fixer.dist.php` | PHP-CS-Fixer - konzervatívna sada nízkorizikových pravidiel |

@@ -57,7 +57,7 @@
 	<img src="https://polascin.net/weblogo/ispd-logo.png" alt="ISPD" class="imgpromo">
 </a>
 
-<a href="http://www.europd.com/" target="_blank" rel="noopener noreferrer" title="EuroPD" lang="en">
+<a href="https://www.europd.com/" target="_blank" rel="noopener noreferrer" title="EuroPD" lang="en">
 	<img src="https://polascin.net/weblogo/europd-logo.gif" alt="EuroPD" class="imgpromo">
 </a>
 

@@ -308,8 +308,6 @@
 
     ensureGoogleTagBridge();
 
-    loadScript("https://nephrosite.containers.piwik.pro/1d43d282-1703-4cb7-9d66-91c82decad1a.sync.js", { async: true });
-
     ["fp2sq6zahr", "fp3d1xd7wp", "fp3f40q535"].forEach(function (clarityId) {
       loadScript("https://www.clarity.ms/tag/" + clarityId, { async: true });
     });

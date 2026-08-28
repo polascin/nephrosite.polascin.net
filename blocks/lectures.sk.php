@@ -26,11 +26,11 @@
 				</a>
 				<small>
 					<br>
-					<a href="https://www.bbraun.sk/sk/spolocnost/kontakt/kontakty-aesculap-akademie.html" target="_blank" rel="noopener noreferrer">
+					<a href="https://czsk.aesculap-academy.com/" target="_blank" rel="noopener noreferrer">
 						Aesculap Akadémia Bratislava,
 					</a>
-					<a href="https://www.bbraun.sk/sk/produkty-a-terapie/sluzby/edukacne-sluzby.html" target="_blank" rel="noopener noreferrer">
-						Flexima.
+					<a href="https://www.bbraun.sk/" target="_blank" rel="noopener noreferrer">
+						B. Braun.
 					</a>
 					<a href="https://czsk.aesculap-academy.com/" target="_blank" rel="noopener noreferrer">
 						Aesculap Academy
@@ -440,7 +440,7 @@
 					<a href="https://www.bbraun.cz/cs/spolecnost/pavilon-b-braun-dialog/vzdelavaci-centrum-aesculap-akademie.html" target="_blank" rel="noopener noreferrer">
 						Aesculap Akademie,
 					</a>
-					<a href="https://www.bbraun.cz/cs/spolecnost/pavilon-b-braun-dialog.html" target="_blank" rel="noopener noreferrer">
+					<a href="https://www.bbraun.cz/" target="_blank" rel="noopener noreferrer">
 						Pavilon B. Braun Dialog.
 					</a>
 					<a href="https://czsk.aesculap-academy.com/" target="_blank" rel="noopener noreferrer">

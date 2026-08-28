@@ -53,10 +53,10 @@
 
 <div class="info bg-honeydew inline-table">
 	<div class="info-title">
-		<a href="./docs/mel.pdf" target="_blank" rel="noopener noreferrer">
+		<a href="https://sk.polascin.net/docs/mel.pdf" target="_blank" rel="noopener noreferrer">
 			Mimotelová eliminačná liečba. &copy; 2009.
 		</a>
 	</div>
 	<br>
-	<iframe src="https://sk.polascin.net/docs/mel.pdf" class="teal-frame frame-mel" title="Mimotelolvá eliminačná liečba. &copy; 2009"></iframe>
+	<iframe src="https://sk.polascin.net/docs/mel.pdf" class="teal-frame frame-mel" title="Mimotelová eliminačná liečba. &copy; 2009"></iframe>
 </div>

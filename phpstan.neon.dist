@@ -11,7 +11,7 @@ parameters:
         - tools/*.phar
         - .php-cs-fixer.dist.php
 
-    # Existujúce nálezy sú v baseline — blokujú len NOVÉ chyby.
+    # Existujúce nálezy sú v baseline - blokujú len NOVÉ chyby.
     # (Súbor naplní tools/install-dev-tools.ps1; placeholder je v repe, aby include nezlyhal.)
 
 includes:

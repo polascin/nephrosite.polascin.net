@@ -2,7 +2,7 @@
 <div class="archive-notice">
 	<h2>Archívny obsah</h2>
 	<p>
-		Obsah tejto stránky je prevažne archívny &mdash; prednášky a materiály pochádzajú z rokov 2019&nbsp;&ndash;&nbsp;2023.
+		Obsah tejto stránky je prevažne archívny, prednášky a materiály pochádzajú z rokov 2019 - 2023.
 		Aktuálne informácie a nové materiály nájdete na
 		<a href="https://nefro.polascin.net/" target="_blank" rel="noopener noreferrer" title="nefro.polascin.net">nefro.polascin.net</a>.
 	</p>

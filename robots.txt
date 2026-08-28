@@ -1,5 +1,5 @@
-# robots.txt — nephrosite.polascin.net
-# Aktualizované: 2026-05-21
+# robots.txt - nephrosite.polascin.net
+# Aktualizované: 2026-08-28
 
 User-agent: *
 Allow: /
