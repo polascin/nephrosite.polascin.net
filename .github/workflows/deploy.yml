@@ -58,9 +58,11 @@ jobs:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           DEPLOY_REMOTE_PATH: ${{ secrets.DEPLOY_REMOTE_PATH }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
         run: |
           set -euo pipefail
           HOST="${DEPLOY_HOST:-shell.r1.websupport.sk}"
+          PORT="${DEPLOY_PORT:-26650}"
           if [[ -z "$DEPLOY_USER" || -z "$DEPLOY_SSH_KEY" || -z "$DEPLOY_REMOTE_PATH" ]]; then
             echo "::notice::Deploy skipped: configure DEPLOY_USER, DEPLOY_SSH_KEY and DEPLOY_REMOTE_PATH secrets (see DEPLOY.md)."
             echo "configured=false" >> "$GITHUB_OUTPUT"
@@ -75,18 +77,19 @@ jobs:
           fi
           echo "configured=true" >> "$GITHUB_OUTPUT"
           echo "host=$HOST" >> "$GITHUB_OUTPUT"
+          echo "port=$PORT" >> "$GITHUB_OUTPUT"
+          echo "user=$DEPLOY_USER" >> "$GITHUB_OUTPUT"
           echo "remote_path=$REMOTE_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Prepare SSH
         if: steps.cfg.outputs.configured == 'true'
         env:
           DEPLOY_HOST: ${{ steps.cfg.outputs.host }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_PORT: ${{ steps.cfg.outputs.port }}
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
           DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
         run: |
           set -euo pipefail
-          PORT="${DEPLOY_PORT:-26650}"
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
@@ -94,40 +97,38 @@ jobs:
           if [[ -n "$DEPLOY_KNOWN_HOSTS" ]]; then
             printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
           else
-            ssh-keyscan -p "$PORT" "$DEPLOY_HOST" > ~/.ssh/known_hosts 2>/dev/null || ssh-keyscan "$DEPLOY_HOST" > ~/.ssh/known_hosts 2>/dev/null
+            ssh-keyscan -p "$DEPLOY_PORT" "$DEPLOY_HOST" > ~/.ssh/known_hosts 2>/dev/null || ssh-keyscan "$DEPLOY_HOST" > ~/.ssh/known_hosts 2>/dev/null
           fi
           chmod 644 ~/.ssh/known_hosts
 
       - name: Verify remote directory exists
         if: steps.cfg.outputs.configured == 'true'
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_HOST: ${{ steps.cfg.outputs.host }}
+          DEPLOY_USER: ${{ steps.cfg.outputs.user }}
+          DEPLOY_PORT: ${{ steps.cfg.outputs.port }}
           REMOTE_PATH: ${{ steps.cfg.outputs.remote_path }}
         run: |
           set -euo pipefail
-          PORT="${DEPLOY_PORT:-22}"
-          ssh -i ~/.ssh/deploy_key -p "$PORT" -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" \
+          ssh -i ~/.ssh/deploy_key -p "$DEPLOY_PORT" -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" \
             "test -d '$REMOTE_PATH'" \
             || { echo "::error::Remote directory $REMOTE_PATH does not exist: create it first."; exit 1; }
 
       - name: Rsync repository to web root
         if: steps.cfg.outputs.configured == 'true'
         env:
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_HOST: ${{ steps.cfg.outputs.host }}
+          DEPLOY_USER: ${{ steps.cfg.outputs.user }}
+          DEPLOY_PORT: ${{ steps.cfg.outputs.port }}
           REMOTE_PATH: ${{ steps.cfg.outputs.remote_path }}
         run: |
           set -euo pipefail
-          PORT="${DEPLOY_PORT:-22}"
           # Bez --delete: serverové súbory mimo repozitára (konfigurácia,
           # nahraný obsah) zostávajú nedotknuté.
           rsync -rlptz --itemize-changes \
             --chmod=D755,F644 \
             --exclude-from=.deployignore \
-            -e "ssh -i ~/.ssh/deploy_key -p $PORT -o BatchMode=yes" \
+            -e "ssh -i ~/.ssh/deploy_key -p $DEPLOY_PORT -o BatchMode=yes" \
             ./ "$DEPLOY_USER@$DEPLOY_HOST:$REMOTE_PATH/"
 
       - name: Smoke test
