@@ -12,13 +12,13 @@ Kým secrets nie sú nastavené, deploy job sa iba preskočí s upozornením
 
 ## GitHub Secrets (Settings → Secrets and variables → Actions)
 
-| Secret               | Popis                                                                |
-| -------------------- | -------------------------------------------------------------------- |
-| `DEPLOY_HOST`        | SSH host, napr. `shell.r1.websupport.sk`                              |
-| `DEPLOY_USER`        | SSH používateľ, napr. `uid58858`                                      |
-| `DEPLOY_PORT`        | SSH port (WebSupport shell používa `26650`; predvolené `22`)          |
-| `DEPLOY_SSH_KEY`     | Celý obsah privátneho SSH kľúča                                       |
-| `DEPLOY_KNOWN_HOSTS` | Host key servera (`ssh-keyscan -p <port> <host>`), formát `[host]:port` |
+| Secret               | Popis                                                                                                                |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `DEPLOY_HOST`        | SSH host, napr. `shell.r1.websupport.sk`                                                                             |
+| `DEPLOY_USER`        | SSH používateľ, napr. `uid58858`                                                                                     |
+| `DEPLOY_PORT`        | SSH port (WebSupport shell používa `26650`; predvolené `22`)                                                         |
+| `DEPLOY_SSH_KEY`     | Celý obsah privátneho SSH kľúča                                                                                      |
+| `DEPLOY_KNOWN_HOSTS` | Host key servera (`ssh-keyscan -p <port> <host>`), formát `[host]:port`                                              |
 | `DEPLOY_REMOTE_PATH` | Absolútna cesta k web rootu subdomény (pravdepodobne `.../polascin.net/sub/nephrosite`, overte vo WebSupport paneli) |
 
 Workflow pred rsyncom overí, že vzdialený adresár existuje: pri zlej ceste

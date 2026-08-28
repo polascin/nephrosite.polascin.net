@@ -21,8 +21,8 @@ Stiahne `phpstan.phar` + `php-cs-fixer.phar` do `tools/` a vygeneruje
 
 ## Konfigurácia
 
-| Súbor | Účel |
-|-------|------|
-| `phpstan.neon.dist` | PHPStan - úroveň 4 (postupne zvyšuj k 9) |
+| Súbor                   | Účel                                                                 |
+| ----------------------- | -------------------------------------------------------------------- |
+| `phpstan.neon.dist`     | PHPStan - úroveň 4 (postupne zvyšuj k 9)                             |
 | `phpstan-baseline.neon` | zoznam ignorovaných existujúcich nálezov (regeneruje install skript) |
-| `.php-cs-fixer.dist.php` | PHP-CS-Fixer - konzervatívna sada nízkorizikových pravidiel |
+| `.php-cs-fixer.dist.php`| PHP-CS-Fixer - konzervatívna sada nízkorizikových pravidiel          |

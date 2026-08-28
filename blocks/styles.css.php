@@ -359,6 +359,28 @@ hr.promohr {
 	max-width: 50%;
 }
 
+.lipton-portrait {
+	float: right;
+	width: 30%;
+	margin-left: 2em;
+	margin-bottom: 1em;
+}
+
+.martinus-link-box {
+	text-align: center;
+	margin: 1.5em 0;
+}
+
+.martinus-link {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.text-sc-bold {
+	font-variant: small-caps;
+	font-weight: bolder;
+}
+
 .info-justify {
 	text-align: justify;
 }
