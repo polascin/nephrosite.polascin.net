@@ -1,7 +1,7 @@
 # Deploy - nephrosite.polascin.net
 
 Automatické nasadenie cez GitHub Actions (`.github/workflows/deploy.yml`):
-po každom pushi do `master` (alebo manuálne cez **Actions → Deploy → Run
+po každom pushi do `main` (alebo manuálne cez **Actions → Deploy → Run
 workflow**) sa repozitár zosynchronizuje rsyncom do web rootu na WebSupport.
 Súbory vylúčené v `.deployignore` sa nenasadzujú; `--delete` sa nepoužíva,
 takže serverové súbory mimo repozitára zostávajú nedotknuté. Push s
