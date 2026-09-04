@@ -8,6 +8,7 @@ body {
 	max-width: 1024px;
 	margin-left: auto;
 	margin-right: auto;
+	overflow-x: hidden;
 }
 
 a, a:link, a:visited {
@@ -21,6 +22,16 @@ a:hover {
 
 a:active {
 	color: maroon;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+	outline: 2px solid #3d6d7a;
+	outline-offset: 2px;
 }
 
 table.lecture {

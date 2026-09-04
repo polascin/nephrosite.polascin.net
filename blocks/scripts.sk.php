@@ -99,11 +99,11 @@
   function writeConsentCookie(rawValue) {
     document.cookie = COOKIE_NAME + "=" + encodeStoredValue(rawValue) +
       "; expires=" + getCookieExpiryDate().toUTCString() +
-      "; path=/; SameSite=Lax";
+      "; path=/; SameSite=Lax; Secure";
   }
 
   function clearConsentCookie() {
-    document.cookie = COOKIE_NAME + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax";
+    document.cookie = COOKIE_NAME + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax; Secure";
   }
 
   function readStoredValue() {

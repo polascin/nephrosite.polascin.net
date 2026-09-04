@@ -20,7 +20,7 @@ if (-not (Test-Path $phpstan) -or -not (Test-Path $fixer)) {
 Push-Location $root
 try {
     Write-Host '=== PHPStan (statická analýza) ===' -ForegroundColor Cyan
-    & php $phpstan analyse --no-progress
+    & php $phpstan analyse --no-progress --memory-limit=512M
     $phpstanCode = $LASTEXITCODE
 
     Write-Host "`n=== PHP-CS-Fixer (formátovanie) ===" -ForegroundColor Cyan

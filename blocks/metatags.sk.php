@@ -75,7 +75,7 @@ $modifiedDate = date("c", getlastmod());
             "name": "MUDr. Ľubomír Polaščín",
             "url": "https://nephrosite.polascin.net/",
             "jobTitle": "Nefrológ",
-            "medicalSpecialty": "Nephrologic",
+            "medicalSpecialty": "Nephrology",
             "sameAs": [
                 "https://www.linkedin.com/in/lubomirpolascin/"
             ]

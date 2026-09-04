@@ -22,8 +22,8 @@
 
 <!-- ClustrMaps Code -->
 <p class="centered">
-	<a href='https://clustrmaps.com/site/1ak7d' target="_blank" rel="noopener noreferrer" title='Visit tracker'>
-		<img src='//clustrmaps.com/map_v2.png?cl=080808&w=300&t=tt&d=6Uv4S4WFV1sb8yPD3S6mHHJAc2s-xvFu85nftKYGceU&co=ffffff&ct=808080' alt="Clustrmaps.com">
+	<a href='https://clustrmaps.com/site/1ak7d' target="_blank" rel="noopener noreferrer" title='Mapa návštev'>
+		<img src='https://clustrmaps.com/map_v2.png?cl=080808&w=300&t=tt&d=6Uv4S4WFV1sb8yPD3S6mHHJAc2s-xvFu85nftKYGceU&co=ffffff&ct=808080' alt="Mapa návštev ClustrMaps">
 	</a>
 </p>
 <!-- The End of the ClustrMaps Code -->
@@ -31,28 +31,18 @@
 <!-- Last modification date in PHP -->
 <div class="meta-muted">
 	<em>
-		This WebPage was last modified on <?php setlocale(LC_ALL, 'en-US');?><?php echo(date("l, ", getlastmod()));?>
-		<strong>
-			<?php echo(date("F j", getlastmod()));?>
-			<sup>
-				<?php echo(date("S", getlastmod()));?>
-			</sup>
-			<?php echo(date(",  Y", getlastmod()));?>
-		</strong>
-		<?php echo(" at ");?>
-		<strong>
-			<?php echo(date("H:i:s", getlastmod()));?>
-		</strong>
-		<?php echo(date(" T e", getlastmod()));?>
-		<?php echo(" GMT(UTC)");?>
-		<?php echo(date("P", getlastmod()));?>
+		Táto stránka bola naposledy upravená
+		<strong><?php echo htmlspecialchars(date("j. n. Y", getlastmod()), ENT_QUOTES, "UTF-8"); ?></strong>
+		o
+		<strong><?php echo htmlspecialchars(date("H:i:s T", getlastmod()), ENT_QUOTES, "UTF-8"); ?></strong>
+		(UTC<?php echo htmlspecialchars(date("P", getlastmod()), ENT_QUOTES, "UTF-8"); ?>).
 	</em>
 </div>
 <!-- The End of the Last modification date in PHP -->
 
 <div class="meta-light">
-	Generated on
-	<?php echo(date("r", time()));?>
+	Vygenerované:
+	<?php echo htmlspecialchars(date("j. n. Y H:i:s T", time()), ENT_QUOTES, "UTF-8"); ?>
 </div>
 
 <p class="privacy-links">
@@ -64,7 +54,7 @@
 	&nbsp;|&nbsp;
 	<a href="/files/terms.html" target="_blank" rel="noopener noreferrer">Podmienky používania</a>
 	&nbsp;|&nbsp;
-	<a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">Disclaimer</a>
+	<a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">Právne upozornenie</a>
 	&nbsp;|&nbsp;
 	<button type="button" id="open-cookie-settings" class="cookie-settings-button">Nastavenie cookies</button>
 </p>
@@ -93,7 +83,7 @@
 <br>
 
 <div class="thanks-box">
-	<div>Last But Not Least: My Thanks are due to the FOSS Community Creators and Contributors and among them also to</div>
+	<div>Vďaka patrí aj tvorcom a prispievateľom FOSS komunity, medzi nimi aj:</div>
 	<a href="https://opensuse.org/" target="_blank" rel="noopener noreferrer" title="openSUSE">
 		<img src="https://polascin.net/weblogo/OIP.jpg" alt="openSUSE" class="imgpromo">
 	</a>
@@ -122,7 +112,7 @@
 	<a href="https://www.distrowatch.com/" target="_blank" rel="noopener noreferrer" title="DistroWatch">
 		<img src="https://polascin.net/weblogo/dwbanner.png" alt="DistroWatch" class="dw-banner">
 	</a>
-	<div>and many others. I apologize for not mentioning them all ;-).</div>
+	<div>a mnohým ďalším. Ospravedlňujem sa, že ich nemôžem spomenúť všetkých.</div>
 </div>
 
 <br><br><br>

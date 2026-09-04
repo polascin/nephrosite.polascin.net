@@ -1,7 +1,7 @@
 <section id="cookie-banner" class="cookie-banner" role="dialog" aria-labelledby="cookie-banner-title"
     aria-describedby="cookie-banner-desc cookie-banner-disclaimer cookie-consent-status" hidden>
     <div class="cookie-banner-shell">
-        <p class="cookie-eyebrow">Privacy center</p>
+        <p class="cookie-eyebrow">Centrum ochrany súkromia</p>
         <div class="cookie-banner-grid">
             <div class="cookie-banner-copy">
                 <h2 id="cookie-banner-title" class="cookie-title">Cookies iba pod vašou kontrolou</h2>
@@ -25,7 +25,7 @@
                 <p id="cookie-banner-disclaimer" class="cookie-disclaimer">
                     Dôležité upozornenie: obsah webu slúži na informačné a edukačné účely a nenahrádza odborné lekárske,
                     právne ani iné profesionálne poradenstvo. Prečítajte si aj
-                    <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">disclaimer</a>
+                    <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">právne upozornenie</a>
                     a
                     <a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">zásady ochrany súkromia</a>.
                 </p>
@@ -48,7 +48,7 @@
         aria-describedby="cookie-modal-desc cookie-modal-disclaimer" tabindex="-1">
         <div class="cookie-modal-header">
             <div>
-                <p class="cookie-eyebrow">Preference center</p>
+                <p class="cookie-eyebrow">Centrum preferencií</p>
                 <h2 id="cookie-modal-title">Podrobné nastavenie cookies</h2>
             </div>
             <button type="button" id="cookie-modal-close" class="cookie-icon-button" aria-label="Zavrieť nastavenie cookies">×</button>
@@ -61,7 +61,7 @@
         <p id="cookie-modal-disclaimer" class="cookie-disclaimer cookie-disclaimer-modal">
             Upozornenie: informácie na tomto webe nenahrádzajú odbornú zdravotnú starostlivosť ani iné profesionálne odporúčania.
             Podrobnosti nájdete v
-            <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">disclaimeri</a>.
+            <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">právnom upozornení</a>.
         </p>
 
         <div class="cookie-card-list" role="group" aria-label="Kategórie cookies">
@@ -94,7 +94,7 @@
                 <div class="cookie-row-copy">
                     <h3>Analytické</h3>
                     <p>Pomáhajú nám rozumieť návštevnosti a používaniu obsahu bez priamej identifikácie návštevníka.</p>
-                    <p class="cookie-row-meta">Nástroje: Piwik PRO, Microsoft Clarity, Google Analytics.</p>
+                    <p class="cookie-row-meta">Nástroje: Microsoft Clarity, Google Analytics.</p>
                 </div>
                 <label class="cookie-toggle" for="cookie-pref-analytics">
                     <input type="checkbox" id="cookie-pref-analytics" aria-describedby="cookie-pref-analytics-hint">
@@ -129,6 +129,6 @@
     <div class="cookie-noscript">
         JavaScript je vypnutý. Na tomto webe sa používajú iba nevyhnutné cookies.
         Detaily sú uvedené v <a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">zásadách ochrany
-            súkromia</a> a v <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">disclaimeri</a>.
+            súkromia</a> a v <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">právnom upozornení</a>.
     </div>
 </noscript>

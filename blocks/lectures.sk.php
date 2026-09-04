@@ -489,7 +489,7 @@
 				<small>
 					<em>
 						&copy;
-						<a href="http://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
+						<a href="https://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
 							MUDr. Ľubomír Polaščín,
 						</a>
 						2003 - <?php echo(date("Y", time()));?>.

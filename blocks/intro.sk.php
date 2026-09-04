@@ -13,13 +13,13 @@
 				$vekCely = floor($vek);
 				$vekDesatinnaCast = strstr((string) round($vek, 3), ".");
 				?>
-				<span class="age-main"><?php echo $vekCely; ?></span>
-				<br>(<?php echo $vekCely; ?><small><?php echo ($vekDesatinnaCast !== false) ? $vekDesatinnaCast : ".0"; ?></small>)<br>
+				<span class="age-main"><?php echo htmlspecialchars((string) $vekCely, ENT_QUOTES, "UTF-8"); ?></span>
+				<br>(<?php echo htmlspecialchars((string) $vekCely, ENT_QUOTES, "UTF-8"); ?><small><?php echo htmlspecialchars(($vekDesatinnaCast !== false) ? $vekDesatinnaCast : ".0", ENT_QUOTES, "UTF-8"); ?></small>)<br>
 			</a>
 		</div>
   </div>
 	<div class="intro-right top-gap">
-  	  	<a href="https://www.linkedin.com/in/lubomirpolascin/" target="_blank" rel="noopener noreferrer" title="Lubomir Polacin's LinkedIn Profile">
+  	  	<a href="https://www.linkedin.com/in/lubomirpolascin/" target="_blank" rel="noopener noreferrer" title="LinkedIn profil Ľubomíra Polaščína">
 		<img src="https://polascin.net/weblogo/LinkedIn-logo.png" alt="LinkedIn Logo" class="linkedin-logo">
   	</a>
 		<br><br><br>
