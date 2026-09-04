@@ -45,6 +45,7 @@ RewriteRule ^(?:blocks|segments)/ - [F,L]
 RewriteRule ^files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html$ /$1.php [R=301,L]
 
 # Enforce one canonical HTTPS hostname for stronger SEO canonicalization.
+# Zrušená doména nephro.site (a akýkoľvek iný Host) → 301 na nephrosite.polascin.net.
 RewriteCond %{HTTP_HOST} !^nephrosite\.polascin\.net$ [NC,OR]
 RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^ https://nephrosite.polascin.net%{REQUEST_URI} [L,R=301]
