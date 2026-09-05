@@ -1,0 +1,21 @@
+---
+description: Po každej zmene commit, push na master a overenie WebSupport deployu
+alwaysApply: true
+---
+
+# Commit → push → WebSupport deploy
+
+Po dokončení akejkoľvek sady zmien v tomto repozitári **vždy** (bez čakania na ďalší pokyn):
+
+1. **Commit** všetkých relevantných zmien s výstižnou správou.
+2. **Push** na default vetvu `master` (`git push origin master`). Toto repo používa `master` (ekvivalent „main“).
+3. **Over deploy na WebSupport:**
+   - GitHub Actions: `Deploy to nephrosite.polascin.net` → `success` (`gh run list` / `gh run watch`)
+   - Produkcia: `curl -sIL https://nephrosite.polascin.net/` → HTTP 200 + bezpečnostné hlavičky
+   - Spot-check aspoň jednej zmenenej stránky/textu naživo
+
+Toto pravidlo má prednosť pred „commituj len na vyžiadanie“.
+
+**Nekomituj:** secrets, `.env`, Git LFS binárne súbory v `docs/` (napr. `nephrogame.gif`), zbytočné `.cursor/` lokálne nastavenia.
+
+**Zakázané:** force push na `master`/`main`, `--no-verify` / preskakovanie hookov (pokiaľ to používateľ výslovne nepovie).
