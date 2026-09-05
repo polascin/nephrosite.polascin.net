@@ -41,6 +41,10 @@ RewriteEngine on
 # priamy prístup cez HTTP nie je nikdy potrebný (obrana do hĺbky).
 RewriteRule ^(?:blocks|segments)/ - [F,L]
 
+# Alias bez prípony: /privacy a /terms → kanonické HTML v /files/
+# (privacy.php/terms.php už samy 301-ujú sem; alias ide priamo, bez reťazenia).
+RewriteRule ^(privacy|terms)/?$ /files/$1.html [R=301,L,NE]
+
 # Obsahové fragmenty majú vlastné stránky; staré URL na ne presmeruj.
 RewriteRule ^files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html$ /$1.php [R=301,L]
 
