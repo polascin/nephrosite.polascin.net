@@ -50,11 +50,11 @@
 </p>
 
 <p class="privacy-links">
-	<a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">Zásady ochrany súkromia</a>
+	<a href="/privacy" target="_blank" rel="noopener noreferrer">Zásady ochrany súkromia</a>
 	&nbsp;|&nbsp;
-	<a href="/files/terms.html" target="_blank" rel="noopener noreferrer">Podmienky používania</a>
+	<a href="/terms" target="_blank" rel="noopener noreferrer">Podmienky používania</a>
 	&nbsp;|&nbsp;
-	<a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">Právne upozornenie</a>
+	<a href="/privacy#legal-disclaimer" target="_blank" rel="noopener noreferrer">Právne upozornenie</a>
 	&nbsp;|&nbsp;
 	<button type="button" id="open-cookie-settings" class="cookie-settings-button">Nastavenie cookies</button>
 </p>

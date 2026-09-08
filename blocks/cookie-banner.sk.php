@@ -25,9 +25,9 @@
                 <p id="cookie-banner-disclaimer" class="cookie-disclaimer">
                     Dôležité upozornenie: obsah webu slúži na informačné a edukačné účely a nenahrádza odborné lekárske,
                     právne ani iné profesionálne poradenstvo. Prečítajte si aj
-                    <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">právne upozornenie</a>
+                    <a href="/privacy#legal-disclaimer" target="_blank" rel="noopener noreferrer">právne upozornenie</a>
                     a
-                    <a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">zásady ochrany súkromia</a>.
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer">zásady ochrany súkromia</a>.
                 </p>
             </aside>
         </div>
@@ -61,7 +61,7 @@
         <p id="cookie-modal-disclaimer" class="cookie-disclaimer cookie-disclaimer-modal">
             Upozornenie: informácie na tomto webe nenahrádzajú odbornú zdravotnú starostlivosť ani iné profesionálne odporúčania.
             Podrobnosti nájdete v
-            <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">právnom upozornení</a>.
+            <a href="/privacy#legal-disclaimer" target="_blank" rel="noopener noreferrer">právnom upozornení</a>.
         </p>
 
         <div class="cookie-card-list" role="group" aria-label="Kategórie cookies">
@@ -128,7 +128,7 @@
 <noscript>
     <div class="cookie-noscript">
         JavaScript je vypnutý. Na tomto webe sa používajú iba nevyhnutné cookies.
-        Detaily sú uvedené v <a href="/files/privacy.html" target="_blank" rel="noopener noreferrer">zásadách ochrany
-            súkromia</a> a v <a href="/files/privacy.html#legal-disclaimer" target="_blank" rel="noopener noreferrer">právnom upozornení</a>.
+        Detaily sú uvedené v <a href="/privacy" target="_blank" rel="noopener noreferrer">zásadách ochrany
+            súkromia</a> a v <a href="/privacy#legal-disclaimer" target="_blank" rel="noopener noreferrer">právnom upozornení</a>.
     </div>
 </noscript>
