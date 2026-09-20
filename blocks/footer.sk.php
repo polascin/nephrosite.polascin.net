@@ -49,15 +49,15 @@
 	<em>Obsah tejto stránky má vzdelávací a informačný charakter a nenahrádza odbornú lekársku starostlivosť ani konzultáciu s lekárom.</em>
 </p>
 
-<p class="privacy-links">
-	<a href="/privacy" target="_blank" rel="noopener noreferrer">Zásady ochrany súkromia</a>
+<nav class="privacy-links" aria-label="Právne informácie">
+	<a href="/privacy" rel="noopener noreferrer">Zásady ochrany súkromia</a>
 	&nbsp;|&nbsp;
-	<a href="/terms" target="_blank" rel="noopener noreferrer">Podmienky používania</a>
+	<a href="/terms" rel="noopener noreferrer">Podmienky používania</a>
 	&nbsp;|&nbsp;
-	<a href="/privacy#legal-disclaimer" target="_blank" rel="noopener noreferrer">Právne upozornenie</a>
+	<a href="/privacy#legal-disclaimer" rel="noopener noreferrer">Právne upozornenie</a>
 	&nbsp;|&nbsp;
 	<button type="button" id="open-cookie-settings" class="cookie-settings-button">Nastavenie cookies</button>
-</p>
+</nav>
 
 <hr class="footer-rule">
 

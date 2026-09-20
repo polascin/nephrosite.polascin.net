@@ -486,6 +486,10 @@ main#content > section:first-child {
 	font-size: 0.95rem;
 }
 
+nav.privacy-links {
+	margin: 1em 0;
+}
+
 .cookie-settings-button {
 	font: inherit;
 	color: maroon;

@@ -1,0 +1,89 @@
+/* Shared styles for static legal pages (privacy.html, terms.html).
+   These pages are served as static HTML and receive a hosting CSP with
+   style-src 'self' (no 'unsafe-inline'), so styles must live in an
+   external file rather than a <style> block. */
+html {
+  color-scheme: light;
+  background: #fff;
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #5a0f0f;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  line-height: 1.6;
+  color: #222;
+  background: #fff;
+}
+
+h1,
+h2 {
+  color: #5a0f0f;
+}
+
+.meta {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+a {
+  color: #7a1f1f;
+}
+
+.panel {
+  border: 1px solid #d8d0c8;
+  background: #faf7f2;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.status {
+  font-weight: 600;
+  color: #4b1f1f;
+}
+
+.btn {
+  font: inherit;
+  border: 1px solid #8b7d7d;
+  background: #fff;
+  color: #4b1f1f;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+}
+
+.btn:focus-visible,
+.btn:hover {
+  outline: 2px solid #3d6d7a;
+  outline-offset: 2px;
+}
+
+.notice {
+  border-left: 4px solid #7a1f1f;
+}
+
+.notice p:first-child {
+  margin-top: 0;
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
