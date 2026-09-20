@@ -8,7 +8,7 @@ alwaysApply: true
 Po dokončení akejkoľvek sady zmien v tomto repozitári **vždy** (bez čakania na ďalší pokyn):
 
 1. **Commit** všetkých relevantných zmien s výstižnou správou.
-2. **Push** na default vetvu `master` (`git push origin master`). Toto repo používa `master` (ekvivalent „main“).
+2. **Push** na default vetvu `master` (`git push origin master`). Toto repo používa `master` (ekvivalent „main“); keď používateľ povie „main“, myslí sa táto vetva.
 3. **Over deploy na WebSupport:**
    - GitHub Actions: `Deploy to nephrosite.polascin.net` → `success` (`gh run list` / `gh run watch`)
    - Produkcia: `curl -sIL https://nephrosite.polascin.net/` → HTTP 200 + bezpečnostné hlavičky
