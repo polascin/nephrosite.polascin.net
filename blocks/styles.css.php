@@ -63,10 +63,16 @@ table.lecture td {
 	background-color: floralwhite;
 }
 
-table.lecture img.slide {
+table.lecture img.slide,
+table.lecture video.slide {
 	border-style: solid;
 	border-width: thin;
 	width: 100%;
+}
+
+table.lecture video.slide {
+	height: auto;
+	background-color: black;
 }
 
 table.lecture caption {

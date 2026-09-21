@@ -50,6 +50,9 @@ jobs:
         uses: actions/checkout@v5
         with:
           persist-credentials: false
+          # Bez toho by checkout nechal docs/nephrogame.gif ako LFS pointer
+          # a rsync by na produkcii prepísal 168 MB súbor 130-bajtovým textom.
+          lfs: true
 
       - name: Check deploy configuration
         id: cfg

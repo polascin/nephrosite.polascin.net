@@ -17,7 +17,7 @@
 		<tr>
 			<td>
 				<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/fosdl.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
+					<img src="/docs/fosdl.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide" loading="lazy">
 				</a>
 				<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek</strong></span>
@@ -114,7 +114,7 @@
 		<tr>
 			<td>
 				<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/foazo.gif" alt="Funkcie obličiek. Akútne zlyhanie obličiek. FOaZOŠ SZU Bratislava" class="slide">
+					<img src="/docs/foazo.gif" alt="Funkcie obličiek. Akútne zlyhanie obličiek. FOaZOŠ SZU Bratislava" class="slide" loading="lazy">
 				</a>
 				<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek. Akútne zlyhanie obličiek.</strong></span>
@@ -218,7 +218,7 @@
 		<tr>
 			<td>
 				<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/ktx.gif" alt="Transplantácia obličiek. FOaZOŠ SZU Bratislava" class="slide">
+					<img src="/docs/ktx.gif" alt="Transplantácia obličiek. FOaZOŠ SZU Bratislava" class="slide" loading="lazy">
 				</a>
 				<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Transplantácie obličiek</strong></span>
@@ -312,7 +312,7 @@
 		<tr>
 			<td>
 				<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/aem.gif" alt="Akútne eliminačné metódy. FOaZOŠ SZU Bratislava" class="slide">
+					<img src="/docs/aem.gif" alt="Akútne eliminačné metódy. FOaZOŠ SZU Bratislava" class="slide" loading="lazy">
 				</a>
 				<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Akútne eliminačné metódy. CRRT.</strong></span>
@@ -371,7 +371,7 @@
 		<tr>
 			<td>
 				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/vmppd.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
+					<img src="/docs/vmppd.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide" loading="lazy">
 				</a>
 				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou</strong></span>
@@ -425,9 +425,12 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/nephrogame.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide">
-				</a>
+				<video class="slide" width="1280" height="720" preload="none"
+				       poster="/docs/nephrogame-poster.webp" controls muted loop playsinline
+				       aria-label="Hry a gamifikácia vo výučbe nefrológie a dialýzy — záznam prezentácie">
+					<source src="/docs/nephrogame.mp4" type="video/mp4">
+					<a href="/docs/nephrogame.gif">Animovaná verzia prezentácie (GIF, 168 MB)</a>
+				</video>
 				<a href="/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
 				  <span class="presentation"><strong>Hry a gamifikácia vo výučbe nefrológie a dialýzy</strong></span>
 				</a>
