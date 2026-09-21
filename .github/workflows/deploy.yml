@@ -6,7 +6,7 @@ name: Deploy to nephrosite.polascin.net
 # and variables → Actions), takže workflow nezostáva červený pred konfiguráciou.
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch: {}
 
 permissions:
