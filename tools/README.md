@@ -26,3 +26,14 @@ Stiahne `phpstan.phar` + `php-cs-fixer.phar` do `tools/` a vygeneruje
 | `phpstan.neon.dist`     | PHPStan - úroveň 4 (postupne zvyšuj k 9)                             |
 | `phpstan-baseline.neon` | zoznam ignorovaných existujúcich nálezov (regeneruje install skript) |
 | `.php-cs-fixer.dist.php`| PHP-CS-Fixer - konzervatívna sada nízkorizikových pravidiel          |
+
+## CSP návrh a regresie
+
+```powershell
+php .\tools\test-csp.php
+```
+
+Bez ďalších závislostí a siete vykreslí verejné PHP stránky, porovná ich zdroje
+s dokumentovaným [Report-Only kandidátom](../docs/CSP-REPORT-ONLY.md) a overí,
+že návrh neaktivuje hlavičku ani meta CSP. Samostatný PR workflow nemá deploy
+job. Test nemení produkčné ani právne súbory.
