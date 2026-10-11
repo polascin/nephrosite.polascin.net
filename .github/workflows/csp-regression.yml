@@ -8,6 +8,7 @@ on:
       - '**.htm'
       - '.htaccess'
       - 'docs/CSP-REPORT-ONLY.md'
+      - 'tools/test-csp.php'
       - '.github/workflows/csp-regression.yml'
   push:
     branches: [main]
@@ -17,6 +18,7 @@ on:
       - '**.htm'
       - '.htaccess'
       - 'docs/CSP-REPORT-ONLY.md'
+      - 'tools/test-csp.php'
       - '.github/workflows/csp-regression.yml'
 
 permissions:

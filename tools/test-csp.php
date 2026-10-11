@@ -55,9 +55,71 @@ function permits(array $directives, string $directive, string $url): bool
         && $host !== false;
 }
 
+function hasMetaCsp(string $html): bool
+{
+    preg_match_all('~<meta\b(?:[^>"\']+|"[^"]*"|\'[^\']*\')*>~i', $html, $metaTags);
+    foreach ($metaTags[0] as $tag) {
+        $attributes = substr($tag, 5, -1);
+        $hasHttpEquiv = false;
+        $httpEquiv = null;
+        while (preg_match(
+            '~^\s*(?<name>[^\s"\'<>/=]+)(?:\s*=\s*(?:"(?<double>[^"]*)"|\'(?<single>[^\']*)\'|(?<unquoted>[^\s"\'`=<>]+)))?~s',
+            $attributes,
+            $match,
+            PREG_UNMATCHED_AS_NULL
+        )) {
+            $attributes = substr($attributes, strlen($match[0]));
+            if (!$hasHttpEquiv && strtolower($match['name']) === 'http-equiv') {
+                $hasHttpEquiv = true;
+                $httpEquiv = $match['double'] ?? $match['single'] ?? $match['unquoted'];
+            }
+        }
+        if (
+            $httpEquiv !== null
+            && strcasecmp(
+                trim(html_entity_decode($httpEquiv, ENT_QUOTES | ENT_HTML5, 'UTF-8')),
+                'Content-Security-Policy'
+            ) === 0
+        ) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function checkWorkflowWatchesTest(string $workflow, string $event): void
+{
+    $paths = [];
+    $inEvent = false;
+    $inPaths = false;
+    foreach (preg_split('/\R/', $workflow) as $line) {
+        if (preg_match('/^  ([A-Za-z_][A-Za-z0-9_-]*):\s*$/', $line, $match)) {
+            $inEvent = $match[1] === $event;
+            $inPaths = false;
+            continue;
+        }
+        if (!$inEvent) {
+            continue;
+        }
+        if (preg_match('/^    paths:\s*$/', $line)) {
+            $inPaths = true;
+            continue;
+        }
+        if (!$inPaths) {
+            continue;
+        }
+        if (!preg_match('/^      -\s*(.*?)\s*$/', $line, $match)) {
+            $inPaths = false;
+            continue;
+        }
+        $paths[] = trim($match[1], "'\"");
+    }
+    check(in_array('tools/test-csp.php', $paths, true), "$event path filter must watch tools/test-csp.php.");
+}
+
 function checkMarkup(array $directives, string $html, string $file): void
 {
-    check(!preg_match('~<meta\b[^>]*http-equiv\s*=\s*["\']Content-Security-Policy~i', $html), "$file: meta CSP.");
+    check(!hasMetaCsp($html), "$file: meta CSP.");
     preg_match_all('~<(script|link|img|iframe|video|audio|source|embed|object)\b([^>]*)>~i', $html, $tags, PREG_SET_ORDER);
     foreach ($tags as $tag) {
         preg_match_all('~([\w-]+)\s*=\s*(["\'])(.*?)\2~s', $tag[2], $matches, PREG_SET_ORDER);
@@ -99,6 +161,9 @@ function checkMarkup(array $directives, string $html, string $file): void
 
 try {
     $document = file_get_contents('docs/CSP-REPORT-ONLY.md');
+    $workflow = file_get_contents('.github/workflows/csp-regression.yml');
+    checkWorkflowWatchesTest($workflow, 'pull_request');
+    checkWorkflowWatchesTest($workflow, 'push');
     check(preg_match_all('/^Content-Security-Policy-Report-Only: (.+)$/m', $document, $headers) === 1, 'Expected exactly one documented candidate.');
     $directives = parsePolicy(trim($headers[1][0]));
     foreach (['default-src', 'base-uri', 'frame-ancestors', 'form-action', 'media-src'] as $name) {
@@ -152,6 +217,9 @@ try {
         fn () => checkMarkup($directives, '<img src="https://unexpected.test/x">', 'negative fixture'),
         fn () => checkMarkup($directives, '<img src="data:image/png;base64,AA==">', 'negative fixture'),
         fn () => checkMarkup($directives, '<meta content="x" http-equiv="Content-Security-Policy">', 'negative fixture'),
+        fn () => checkMarkup($directives, '<META HTTP-EQUIV="cOnTeNt-SeCuRiTy-PoLiCy">', 'negative fixture'),
+        fn () => checkMarkup($directives, '<META content="x" HTTP-EQUIV=Content-Security-Policy>', 'negative fixture'),
+        fn () => checkMarkup($directives, '<meta content="x"  HTTP-EQUIV =  Content-Security-Policy>', 'negative fixture'),
     ];
     foreach ($negativeCases as $test) {
         $rejected = false;
@@ -162,6 +230,7 @@ try {
         }
         check($rejected, 'Negative regression fixture was incorrectly accepted.');
     }
+    checkMarkup($directives, '<meta http-equiv=refresh content="0">', 'non-CSP pragma fixture');
     echo 'PASS: 8 rendered PHP pages, 3 static documents, 3 dynamic loaders, '
         . count($negativeCases) . ' negative fixtures; no CSP activated.' . PHP_EOL;
 } catch (Throwable $error) {
