@@ -35,5 +35,7 @@ php .\tools\test-csp.php
 
 Bez ďalších závislostí a siete vykreslí verejné PHP stránky, porovná ich zdroje
 s dokumentovaným [Report-Only kandidátom](../docs/CSP-REPORT-ONLY.md) a overí,
-že návrh neaktivuje hlavičku ani meta CSP. Samostatný PR workflow nemá deploy
+že návrh neaktivuje hlavičku ani meta CSP vrátane neúvodzovkových a
+zmiešaných zápisov `http-equiv`. Kontroluje aj to, že workflow sleduje tento
+test pri pull requestoch aj pushi do `main`. Samostatný PR workflow nemá deploy
 job. Test nemení produkčné ani právne súbory.
