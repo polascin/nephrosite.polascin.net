@@ -4,7 +4,7 @@ $siteUrl = "https://nephrosite.polascin.net/";
 $pageTitle ??= "NephroSite | Nefrológia, dialýza a interná medicína";
 $pageDescription ??= "Odborné stránky MUDr. Ľubomíra Polaščína venované nefrológii, dialýze, purifikácii krvi, internej medicíne a edukácii pacientov.";
 $pageKeywords ??= "nefrológia, dialýza, hemodialýza, peritoneálna dialýza, transplantácia obličky, purifikácia krvi, chronická obličková choroba, glomerulonefritída, interná medicína, edukácia pacientov";
-$ogImage ??= "https://polascin.net/pix/elpi.jpg";
+$ogImage ??= $siteUrl . "pix/elpi.jpg";
 // Kanonicka URL stranky; predvolene homepage.
 $canonicalUrl ??= $siteUrl;
 $publishedDate = "2024-01-01T13:08:53+01:00";
@@ -63,7 +63,7 @@ $modifiedDate = date("c", getlastmod());
             "dateModified": "<?php echo $modifiedDate; ?>",
             "primaryImageOfPage": {
                 "@type": "ImageObject",
-                "url": "https://polascin.net/pix/elpi.jpg"
+                "url": "https://nephrosite.polascin.net/pix/elpi.jpg"
             },
             "about": {
                 "@id": "https://nephrosite.polascin.net/#person"

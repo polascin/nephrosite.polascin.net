@@ -5,7 +5,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://polascin.net" crossorigin>
-<link rel="preload" as="image" href="https://polascin.net/pix/elpi.jpg">
+<link rel="preload" as="image" href="/pix/elpi.jpg">
 <link href="/apple-touch-icon.png" rel="apple-touch-icon"  sizes="180x180">
 <link href="/favicon-32x32.png" type="image/png" rel="icon"  sizes="32x32">
 <link href="/favicon-16x16.png" type="image/png" rel="icon"  sizes="16x16">
