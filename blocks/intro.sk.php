@@ -20,7 +20,7 @@
   </div>
 	<div class="intro-right top-gap">
   	  	<a href="https://www.linkedin.com/in/lubomirpolascin/" target="_blank" rel="noopener noreferrer" title="LinkedIn profil Ľubomíra Polaščína">
-		<img src="https://polascin.net/weblogo/LinkedIn-logo.png" alt="LinkedIn Logo" class="linkedin-logo">
+		<img src="/weblogo/LinkedIn-logo.png" alt="LinkedIn Logo" class="linkedin-logo">
   	</a>
 		<br><br><br>
     <!--<a href="https://nemocnica-bory.sk/ambulancia/nefrologicka/" target="_blank" rel="noopener noreferrer" title="Nefrologická ambulancia Nemocnice Bory">-->
@@ -45,7 +45,7 @@
 			</a>
 			<br>
 			<a href="https://nemocnica-bory.sk/" target="_blank" rel="noopener noreferrer" title="Nemocnica Bory - Penta Hospitals">
-				<img src="https://polascin.net/weblogo/nngb-logo.svg" height="50" alt="Nemocnica Bory - Penta Hospitals">
+				<img src="/weblogo/nngb-logo.svg" height="50" alt="Nemocnica Bory - Penta Hospitals">
 			</a>
 			<a href="https://nemocnica-bory.sk/pacient/ambulancie/#objednanie" target="_blank" rel="noopener noreferrer" title="Ako sa objednať?">
 				<div style="font-weight: bold;"><hr class="promohr">0950 105 510<hr class="promohr"></div>

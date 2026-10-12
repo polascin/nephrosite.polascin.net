@@ -47,7 +47,7 @@
 					<br>
 				</small>
 				<strong>
-					<a href="https://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
+					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
 						Ľubomír Polaščín
 					</a>,
 					11. 05. 2023
@@ -141,7 +141,7 @@
 					<br>
 				</small>
 				<strong>
-					<a href="https://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
+					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
 						Ľubomír Polaščín
 					</a>,
 					26. 04. 2023
@@ -245,7 +245,7 @@
 					<br>
 				</small>
 				<strong>
-					<a href="https://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
+					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
 						Ľubomír Polaščín
 					</a>,
 					08. 11. 2022
@@ -339,7 +339,7 @@
 					<br>
 				</small>
 				<strong>
-					<a href="https://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
+					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
 						Ľubomír Polaščín
 					</a>,
 					08. 11. 2022
@@ -394,7 +394,7 @@
 					<br>
 				</small>
 				<strong>
-					<a href="https://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
+					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
 						Ľubomír Polaščín
 					</a>,
 					13. 10. 2020
@@ -459,7 +459,7 @@
 					<br>
 				</small>
 				<strong>
-					<a href="https://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
+					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
 						Ľubomír Polaščín
 					</a>,
 					30. 05. 2023
@@ -492,7 +492,7 @@
 				<small>
 					<em>
 						&copy;
-						<a href="https://sk.polascin.net/" target="_blank" rel="noopener noreferrer">
+						<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
 							MUDr. Ľubomír Polaščín,
 						</a>
 						2003 - <?php echo(date("Y", time()));?>.

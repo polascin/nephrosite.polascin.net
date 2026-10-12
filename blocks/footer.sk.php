@@ -67,17 +67,17 @@
 	<small><i>Webstránky vytvárané aj pomocou</i></small>
 	<br>
 	<a href="https://bluefish.openoffice.nl/" target="_blank" rel="noopener noreferrer" title="Bluefish">
-		<img src="https://polascin.net/weblogo/bluefish_gb.png" alt="Bluefish">
+		<img src="/weblogo/bluefish_gb.png" alt="Bluefish">
 	</a>
 </p>
 <div class="inline-table-box">
   <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" title="W3 Schools">
-    <img src="https://polascin.net/weblogo/w3schools-logo.png" alt="W3 Schools" class="w3-logo">
+    <img src="/weblogo/w3schools-logo.png" alt="W3 Schools" class="w3-logo">
   </a>
 </div>
 <p>
   <a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer" title="W3C Markup Validation Service">
-    <img src="https://polascin.net/weblogo/w3c_home_nb.png" alt="W3C Markup Validation Service">
+    <img src="/weblogo/w3c_home_nb.png" alt="W3C Markup Validation Service">
   </a>
 </p>
 <br>
@@ -85,32 +85,32 @@
 <div class="thanks-box">
 	<div>Vďaka patrí aj tvorcom a prispievateľom FOSS komunity, medzi nimi aj:</div>
 	<a href="https://opensuse.org/" target="_blank" rel="noopener noreferrer" title="openSUSE">
-		<img src="https://polascin.net/weblogo/OIP.jpg" alt="openSUSE" class="imgpromo">
+		<img src="/weblogo/OIP.jpg" alt="openSUSE" class="imgpromo">
 	</a>
 	<a href="https://manjaro.org/" target="_blank" rel="noopener noreferrer" title="Manjaro">
-		<img src="https://polascin.net/weblogo/Manjaro-logo.svg" alt="Manjaro" class="imgpromo">
+		<img src="/weblogo/Manjaro-logo.svg" alt="Manjaro" class="imgpromo">
 	</a>
 	<a href="https://mxlinux.org/" target="_blank" rel="noopener noreferrer" title="MX Linux OS">
-		<img src="https://polascin.net/weblogo/mx.svg" alt="MX Linux OS" class="imgpromo">
+		<img src="/weblogo/mx.svg" alt="MX Linux OS" class="imgpromo">
 	</a>
 	<a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer" title="Ubuntu">
-		<img src="https://polascin.net/weblogo/Canonical-Ubuntu.svg" alt="Ubuntu" class="imgpromo">
+		<img src="/weblogo/Canonical-Ubuntu.svg" alt="Ubuntu" class="imgpromo">
 	</a>
 	<a href="https://www.linuxmint.com/" target="_blank" rel="noopener noreferrer" title="Linux Mint">
-		<img src="https://polascin.net/weblogo/linuxmint-logo.png" alt="Linux Mint" class="imgpromo">
+		<img src="/weblogo/linuxmint-logo.png" alt="Linux Mint" class="imgpromo">
 	</a>
 	<a href="https://neon.kde.org/" target="_blank" rel="noopener noreferrer" title="KDE Neon">
-		<img src="https://polascin.net/weblogo/neon-logo.svg" alt="KDE Neon" class="imgpromo">
+		<img src="/weblogo/neon-logo.svg" alt="KDE Neon" class="imgpromo">
 	</a>
 	<a href="https://www.fedoraproject.org/" target="_blank" rel="noopener noreferrer" title="Fedora">
-		<img src="https://polascin.net/weblogo/fedora-logo.png" alt="Fedora" class="imgpromo">
+		<img src="/weblogo/fedora-logo.png" alt="Fedora" class="imgpromo">
 	</a>
 	<a href="https://www.fedoraproject.org/" target="_blank" rel="noopener noreferrer" title="Fedora">
-		<img src="https://polascin.net/weblogo/fedora-blue.png" alt="Fedora" class="imgpromo">
+		<img src="/weblogo/fedora-blue.png" alt="Fedora" class="imgpromo">
 	</a>
 	<br>
 	<a href="https://www.distrowatch.com/" target="_blank" rel="noopener noreferrer" title="DistroWatch">
-		<img src="https://polascin.net/weblogo/dwbanner.png" alt="DistroWatch" class="dw-banner">
+		<img src="/weblogo/dwbanner.png" alt="DistroWatch" class="dw-banner">
 	</a>
 	<div>a mnohým ďalším. Ospravedlňujem sa, že ich nemôžem spomenúť všetkých.</div>
 </div>
