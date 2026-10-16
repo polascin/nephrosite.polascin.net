@@ -1,0 +1,163 @@
+/* NephroSite design tokens.
+   GENERATED FILE - do not edit by hand.
+   Source: project/tokens.json of the NephroSite Design System artifact
+           (https://claude.ai/artifact/D6tcpg8QTPehYS2MrKXMVm),
+           extracted from main@33e117f, synced 2026-10-15.
+   Regenerate with: php tools/build-tokens.php <path-to-tokens.json>  (see DEPLOY.md).
+   Loaded before blocks/styles.css.php and files/legal.css, which reference these as var(--name, fallback). */
+
+:root {
+	/* Colour */
+	--maroon: #800000;
+	--olive: #808000;
+	--white: #ffffff;
+	--black: #000000;
+	--green: #008000;
+	--darkcyan: #008b8b;
+	--indigo: #4b0082;
+	--teal: #008080;
+	--sienna: #a0522d;
+	--darkgoldenrod: #b8860b;
+	--darksalmon: #e9967a;
+	--gray: #808080;
+	--silver: #c0c0c0;
+	--snow: #fffafa;
+	--floralwhite: #fffaf0;
+	--cornsilk: #fff8dc;
+	--ghostwhite: #f8f8ff;
+	--honeydew: #f0fff0;
+	--azure: #f0ffff;
+	--mintcream: #f5fffa;
+	--ivory: #fffff0;
+	--lavenderblush: #fff0f5;
+	--seashell: #fff5ee;
+	--whitesmoke: #f5f5f5;
+	--focus-ring: #3d6d7a;
+	--legal-ink: #222222;
+	--legal-heading: #5a0f0f;
+	--legal-link: #7a1f1f;
+	--legal-status: #4b1f1f;
+	--legal-meta: #666666;
+	--legal-panel-bg: #faf7f2;
+	--legal-panel-border: #d8d0c8;
+	--control-border: #8b7d7d;
+	--control-hover-bg: #fff4f4;
+	--skip-border: #333333;
+	--cookie-banner-bg-1: #fffef8;
+	--cookie-banner-bg-2: #fff6ea;
+	--cookie-banner-bg-3: #f6efe5;
+	--cookie-banner-border: #8f7f6c;
+	--cookie-eyebrow: #7d5122;
+	--cookie-title: #4e1700;
+	--cookie-text: #2d2d2d;
+	--cookie-points: #5d4e3f;
+	--cookie-pill-bg: rgba(123, 89, 46, 0.12);
+	--cookie-pill-border: rgba(123, 89, 46, 0.22);
+	--cookie-pill-text: #69431d;
+	--cookie-disclaimer-bg: rgba(255, 255, 255, 0.78);
+	--cookie-disclaimer-border: rgba(125, 81, 34, 0.18);
+	--cookie-disclaimer-text: #463528;
+	--cookie-status: #4f3f2f;
+	--cookie-saved-pulse: rgba(91, 143, 107, 0.25);
+	--cookie-saved-text: #214a2f;
+	--cookie-divider: #e6dbce;
+	--cookie-btn-border: #7a6d5d;
+	--cookie-primary: #5f1b1b;
+	--cookie-secondary-bg: rgba(255, 255, 255, 0.96);
+	--cookie-ghost-bg: #efe3d3;
+	--cookie-ghost-text: #4b3d31;
+	--cookie-icon-border: #d4c3af;
+	--cookie-icon-text: #4b2b18;
+	--cookie-backdrop: rgba(34, 20, 7, 0.52);
+	--cookie-modal-bg-1: #fffdf9;
+	--cookie-modal-border: #8b7d6d;
+	--cookie-modal-lead: #3c342e;
+	--cookie-row-border: #e2d7cb;
+	--cookie-row-bg: #fffdfb;
+	--cookie-row-text: #444444;
+	--cookie-row-meta: #73563e;
+	--cookie-row-locked-bg: #f8f3ec;
+	--cookie-toggle-text: #3f3f3f;
+	--cookie-toggle-bg: #f8f2e8;
+	--cookie-toggle-border: #e2d0b7;
+	--cookie-noscript-border: #a27f5f;
+	--cookie-noscript-bg: #fff8ef;
+
+	/* Type families */
+	--font-sans: system-ui, sans-serif;
+	--font-serif: serif;
+	--font-blinker: "Blinker", system-ui, sans-serif;
+	--font-blaka: "Blaka", serif;
+	--font-fenix: "Fenix", serif;
+
+	/* Spacing and sizes */
+	--section-gap: 1.5rem;
+	--section-gap-lg: 3rem;
+	--section-gap-xl: 4.5rem;
+	--table-spacing: 2em;
+	--info-spacing: 1em;
+	--cell-pad: 2em;
+	--cell-pad-sm: 1em;
+	--cell-pad-foot: 0.5em;
+	--intro-pad: 2em;
+	--topic-pad: 3em;
+	--notice-pad-y: 1em;
+	--notice-pad-x: 2em;
+	--banner-pad: 1.25rem;
+	--banner-inset: 1rem;
+	--banner-gap: 1rem;
+	--actions-gap: 0.6rem;
+	--pill-gap: 0.45rem;
+	--card-gap: 0.85rem;
+	--row-pad: 1rem;
+	--btn-pad-y: 0.6rem;
+	--btn-pad-x: 0.95rem;
+	--pill-pad-y: 0.35rem;
+	--pill-pad-x: 0.65rem;
+	--toggle-pad-y: 0.7rem;
+	--toggle-pad-x: 0.9rem;
+	--disclaimer-pad-y: 0.85rem;
+	--disclaimer-pad-x: 0.95rem;
+	--legal-pad: 1.5rem;
+	--legal-btn-pad-y: 0.35rem;
+	--legal-btn-pad-x: 0.65rem;
+	--settings-btn-pad-y: 0.25rem;
+	--settings-btn-pad-x: 0.6rem;
+	--skip-pad-y: 0.6rem;
+	--skip-pad-x: 0.8rem;
+	--touch-min: 44px;
+	--icon-button-size: 2.75rem;
+	--checkbox-size: 1.1rem;
+	--page-max: 1024px;
+	--page-width: 96%;
+	--legal-max: 900px;
+	--article-max: 70rem;
+	--banner-max: 76rem;
+	--modal-max: 56rem;
+	--text-max: 52rem;
+	--copyright-rule: 40em;
+	--halfslide-width: 450px;
+	--portrait-width: 500px;
+
+	/* Radius */
+	--radius-none: 0;
+	--radius-sm: 0.85rem;
+	--radius-md: 1rem;
+	--radius-lg: 1.1rem;
+	--radius-pill: 999px;
+
+	/* Shadow */
+	--shadow-banner: 0 22px 55px rgba(55, 34, 12, 0.24);
+	--shadow-modal: 0 28px 60px rgba(35, 20, 3, 0.28);
+	--shadow-primary-btn: 0 10px 24px rgba(95, 27, 27, 0.2);
+	--shadow-icon-btn: 0 8px 20px rgba(77, 53, 28, 0.12);
+
+	/* Border widths */
+	--border-thin: 1px;
+	--border-medium: 3px;
+	--border-thick: 5px;
+	--frame-width: 3px;
+	--notice-rule: 4px;
+	--focus-width: 2px;
+	--focus-offset: 2px;
+}

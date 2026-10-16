@@ -4,15 +4,15 @@
    external file rather than a <style> block. */
 html {
   color-scheme: light;
-  background: #fff;
+  background: var(--white, #fff);
 }
 
 .skip-link {
   position: absolute;
   top: -40px;
   left: 0;
-  background: #000;
-  color: #fff;
+  background: var(--black, #000000);
+  color: var(--white, #ffffff);
   padding: 8px 12px;
   z-index: 10000;
   text-decoration: none;
@@ -22,62 +22,62 @@ html {
 
 .skip-link:focus {
   top: 0;
-  outline: 2px solid #5a0f0f;
+  outline: var(--focus-width, 2px) solid var(--legal-heading, #5a0f0f);
 }
 
 body {
-  font-family: system-ui, sans-serif;
-  max-width: 900px;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  max-width: var(--legal-max, 900px);
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: var(--legal-pad, 1.5rem);
   line-height: 1.6;
-  color: #222;
-  background: #fff;
+  color: var(--legal-ink, #222222);
+  background: var(--white, #ffffff);
 }
 
 h1,
 h2 {
-  color: #5a0f0f;
+  color: var(--legal-heading, #5a0f0f);
 }
 
 .meta {
-  color: #666;
+  color: var(--legal-meta, #666666);
   font-size: 0.95rem;
 }
 
 a {
-  color: #7a1f1f;
+  color: var(--legal-link, #7a1f1f);
 }
 
 .panel {
-  border: 1px solid #d8d0c8;
-  background: #faf7f2;
-  padding: 1rem;
+  border: var(--border-thin, 1px) solid var(--legal-panel-border, #d8d0c8);
+  background: var(--legal-panel-bg, #faf7f2);
+  padding: var(--row-pad, 1rem);
   margin-top: 1rem;
 }
 
 .status {
   font-weight: 600;
-  color: #4b1f1f;
+  color: var(--legal-status, #4b1f1f);
 }
 
 .btn {
   font: inherit;
-  border: 1px solid #8b7d7d;
-  background: #fff;
-  color: #4b1f1f;
-  padding: 0.35rem 0.65rem;
+  border: var(--border-thin, 1px) solid var(--control-border, #8b7d7d);
+  background: var(--white, #ffffff);
+  color: var(--legal-status, #4b1f1f);
+  padding: var(--legal-btn-pad-y, 0.35rem) var(--legal-btn-pad-x, 0.65rem);
   cursor: pointer;
 }
 
 .btn:focus-visible,
 .btn:hover {
-  outline: 2px solid #3d6d7a;
-  outline-offset: 2px;
+  outline: var(--focus-width, 2px) solid var(--focus-ring, #3d6d7a);
+  outline-offset: var(--focus-offset, 2px);
 }
 
 .notice {
-  border-left: 4px solid #7a1f1f;
+  border-left: var(--notice-rule, 4px) solid var(--legal-link, #7a1f1f);
 }
 
 .notice p:first-child {

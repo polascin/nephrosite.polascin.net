@@ -23,3 +23,26 @@ Kým secrets nie sú nastavené, deploy job sa iba preskočí s upozornením
 
 Workflow pred rsyncom overí, že vzdialený adresár existuje: pri zlej ceste
 bezpečne zlyhá bez zápisu.
+
+## Dizajnové tokeny (`css/tokens.css`)
+
+Farby, rozstupy, zaoblenia, tiene, šírky rámov a rodiny písem sú definované
+ako CSS custom properties v `css/tokens.css`; `blocks/styles.css.php` a
+`files/legal.css` sa na ne odkazujú cez `var(--token, pôvodná-hodnota)`.
+Súbor je **generovaný** – zdrojom pravdy je `project/tokens.json` v artefakte
+Design System „NephroSite“ (<https://claude.ai/artifact/D6tcpg8QTPehYS2MrKXMVm>).
+
+Regenerácia po zmene tokenov v artefakte:
+
+1. Stiahnite `project/tokens.json` z artefaktu (napr. do `C:\tmp\tokens.json`).
+2. Spustite z koreňa repozitára:
+
+   ```powershell
+   php tools/build-tokens.php C:\tmp\tokens.json
+   ```
+
+3. Skontrolujte `git diff css/tokens.css` a commitnite. Nový token použite
+   v štýloch ako `var(--názov, záložná-hodnota)`; `css/tokens.css` neupravujte
+   ručne. Súbor sa načíta cez `blocks/links.sk.php` (pred `<style>` blokom)
+   a z `files/privacy.html` a `files/terms.html` (pred `legal.css`), čo vyhovuje
+   CSP `style-src 'self'`.

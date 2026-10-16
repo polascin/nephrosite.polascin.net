@@ -22,3 +22,5 @@
 <link href='https://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Birthstone' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet'>
+<?php /* Dizajnové tokeny (css/tokens.css, generované z tokens.json – pozri DEPLOY.md); musia byť načítané pred blocks/styles.css.php. */ ?>
+<link rel="stylesheet" href="/css/tokens.css">
