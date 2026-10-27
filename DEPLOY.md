@@ -46,3 +46,32 @@ Regenerácia po zmene tokenov v artefakte:
    ručne. Súbor sa načíta cez `blocks/links.sk.php` (pred `<style>` blokom)
    a z `files/privacy.html` a `files/terms.html` (pred `legal.css`), čo vyhovuje
    CSP `style-src 'self'`.
+
+## Lokálna cesta nasadenia (`tools/deploy.ps1`)
+
+Lokálna náhrada workflow `.github/workflows/deploy.yml` a `csp-regression.yml`
+pre Windows bez rsync a bez WSL. Predvolene je to **plán**: nič sa nezapíše na
+server, kým sa nepridá `-Apply`.
+
+```powershell
+.\tools\deploy.ps1            # validácia + zoznam zmien
+.\tools\deploy.ps1 -Apply     # upload, overenie SHA-256, smoke test
+```
+
+Postup: `php -l` na všetkých sledovaných PHP súboroch, `php tools/test-csp.php`,
+zoznam súborov z gitu filtrovaný `.deployignore`, porovnanie SHA-256 s web
+rootom, upload iba zmenených súborov cez tar stream po SSH alias `websupport`,
+opätovné overenie hashov na serveri a smoke test `/` a `/privacy.php`.
+
+Čo lokálna cesta **nerobí** rovnako ako Actions:
+
+- Nepoužíva `rsync`, takže nepočíta s právami súborov počas prenosu; server
+  dostane súbory s právami z tar archívu (644/755 podľa vzniku).
+- Rovnako ako workflow nepoužíva `--delete`, takže súbory na serveri, ktoré v
+  repozitári nie sú, zostávajú nedotknuté.
+- Git LFS: pracovný strom musí mať stiahnuté skutočné súbory (`git lfs pull`),
+  inak by sa nahradil veľký súbor 130-bajtovým pointerom. Workflow to rieši
+  cez `lfs: true` v checkoute.
+
+Kým nie je lokálna cesta overená na produkcii, zostáva záväzná cesta cez
+GitHub Actions podľa `.cursor/rules/commit-push-deploy.mdc`.
