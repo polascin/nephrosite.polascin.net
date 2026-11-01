@@ -308,9 +308,11 @@
 
     ensureGoogleTagBridge();
 
-    ["fp2sq6zahr", "fp3d1xd7wp", "fp3f40q535"].forEach(function (clarityId) {
-      loadScript("https://www.clarity.ms/tag/" + clarityId, { async: true });
-    });
+    // Clarity's tag expects this queue to exist before its asynchronous load.
+    window.clarity = window.clarity || function () {
+      (window.clarity.q = window.clarity.q || []).push(arguments);
+    };
+    loadScript("https://www.clarity.ms/tag/fp2sq6zahr", { async: true });
 
     loadScript("https://www.googletagmanager.com/gtag/js?id=G-QRSPED10HK", { async: true });
     configureGoogleAnalytics();
@@ -340,6 +342,13 @@
 
     if (normalized.analytics) {
       loadAnalyticsScripts();
+    }
+
+    if (typeof window.clarity === "function") {
+      window.clarity("consentv2", {
+        analytics_Storage: normalized.analytics ? "granted" : "denied",
+        ad_Storage: normalized.marketing ? "granted" : "denied"
+      });
     }
 
     if (normalized.marketing) {
@@ -621,7 +630,25 @@
     document.addEventListener("keydown", trapModalFocus);
   }
 
+  function initImageFallbacks() {
+    document.querySelectorAll("img[data-fallback-src]").forEach(function (image) {
+      function useFallback() {
+        var fallback = image.getAttribute("data-fallback-src");
+        if (fallback) {
+          image.removeAttribute("data-fallback-src");
+          image.src = fallback;
+          image.alt = "ClustrMaps: mapa návštev je dočasne nedostupná";
+        }
+      }
+      image.addEventListener("error", useFallback);
+      if (image.complete && image.naturalWidth === 0) {
+        useFallback();
+      }
+    });
+  }
+
   function initConsent() {
+    initImageFallbacks();
     consentRecord = readStoredConsent();
 
     if (!consentRecord) {
@@ -649,6 +676,7 @@
     reset: function () {
       clearStoredValue();
       consentRecord = null;
+      applyConsent(defaultChoices);
       updateUiSummary(defaultChoices, false);
       setBannerVisible(true);
     },

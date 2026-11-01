@@ -1,5 +1,9 @@
 # NephroSite: kandidát CSP Report-Only
 
+Aktualizácia 1. 11. 2026: nasadená je aktívna CSP v `.htaccess`, regresný
+test overuje túto konfiguráciu. Nasledujúci text je historický návrh
+z 11. 10. 2026 a nevyjadruje aktuálny produkčný stav. Postup je v `DEPLOY.md`.
+
 **Iba návrh, bez aktívnej hlavičky, enforcementu a produkčného deployu.**
 Rozsah je `nephrosite.polascin.net`; AlphaGrab rieši samostatný PR.
 
