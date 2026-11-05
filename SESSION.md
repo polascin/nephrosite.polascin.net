@@ -1,42 +1,40 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #34)
+Aktualizované: 2026-11-05 (loop iterácia #35)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `a20ee57`
+HEAD: `380ec5a`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
-  - `files/nefamb.html`: `učí`→`určí`, `seba-obsluhy`→`starostlivosti o seba`,
-    `Za účelom`→`Na posúdenie`, `najoptimálnejšie`→`najlepšie`,
-    `Výučba a edukácia`→`Vzdelávanie`.
-  - `files/usgo.html`: `sestrička`→`sestra`.
-  - `files/transplantacia.html`: `sestričky`→`sestry`,
-    `umožnilo prenos`→`umožnil prenos`.
+  - `files/dialyza.html`: `sestričiek`→`sester`,
+    `pochádzajúcimi s vedeckého`→`z vedeckého`.
+  - `segments/dialyza.html`: `s vedeckého`→`z vedeckého`.
+  - `files/nefrologia.html` + `segments/nefrologia.html`:
+    `detekciu abnormalít`→`odhalenie abnormalít`,
+    `malého vzorku`→`malej vzorky`, `ktorý`→`ktorá` (zhoda so
+    `vzorka`).
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Live blank miss = 0 (po stripnutí komentárov).
-- Segment sync pre tieto stringy netreba (homepage segmenty nemajú
-  zasiahnuté intro pasáže).
+- Segment sync pre dialyza/nefrologia **áno** (homepage include).
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `a20ee57`; post-commit SFTP nahral `files/nefamb.html`,
-  `files/usgo.html`, `files/transplantacia.html`; `deploy.ps1 -Apply`
-  0 upload; smoke direct 200
+- Commit `380ec5a`; post-commit SFTP nahral dialyza/nefrologia
+  files+segments; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
-  `/terms` `/nefrologia` `/nefamb` `/usgo` `/transplantacia` → 200 +
-  HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/nefamb`: `určí`, `starostlivosti o seba`, `Na posúdenie`,
-  `najlepšie`, `Vzdelávanie pacientov` prítomné; staré formy absent
-- Produkcia `/usgo`: `sestra` prítomné; `sestrička` absent
-- Produkcia `/transplantacia`: `sestry`, `umožnil prenos` prítomné;
-  `sestričky` / `umožnilo prenos` absent
-- GHA Deploy `42115452187` success (rsync skip)
+  `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
+  → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
+- Produkcia `/dialyza`: `lekárov a sester`, `z vedeckého skúmania`
+  prítomné; `sestričiek` / `s vedeckého` absent
+- Produkcia `/nefrologia` + homepage: `malej vzorky`,
+  `ktorá sa potom analyzuje`, `odhalenie abnormalít` prítomné;
+  staré formy absent
+- GHA Deploy `42116271613` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -89,10 +87,13 @@ HEAD: `a20ee57`
   v pacientskom texte. `v svojom` → `vo svojom`; `zo` len pred s/z/š/ž +
   spoluhláska (`zo rôznych` je chyba).
 - `Za účelom` je úradnícky kalk → `Na` + substantívum; `najoptimálnejšie`
-  je pleonazmus → `najlepšie`; deminutívum `sestrička` v odbornom texte
-  → `sestra`; zhoda rodu: `umožnil prenos` (nie `umožnilo`).
+  je pleonazmus → `najlepšie`; deminutívum `sestrička`/`sestričiek` v
+  odbornom texte → `sestra`/`sester`; zhoda rodu: `umožnil prenos`
+  (nie `umožnilo`); `vzorka` je ženský rod → `malej vzorky` + `ktorá`;
+  predložka `pochádzajúcimi z` (nie `s`) vedeckého skúmania;
+  `detekciu` → `odhalenie` v pacientskom texte.
 
-## Ďalší fokus (loop #35)
+## Ďalší fokus (loop #36)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -100,12 +101,13 @@ HEAD: `a20ee57`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu; ďalšie wording v `files/`/`segments/`).
+   o obsahu; ďalšie wording v `files/`/`segments/`, napr. `z dôvodu` /
+   `viacero`, CAPD `4-5 krát`).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-224559-loop34-nefamb-usgo-tx-wording.md`
-- Audit: `.audit.md` Beh #45
+- Codex: `.codex/handoffs/2026-11-05-225340-loop35-dialyza-nefrologia-wording.md`
+- Audit: `.audit.md` Beh #46
 
 ## Ďalší príkaz
 
