@@ -75,6 +75,7 @@ $byDisposition = @{}
 $byDocument = @{}
 $smokeMarkers = 0
 $realCandidates = 0
+$consentPathHits = 0
 
 function Get-ReportField {
     param($Report, [string]$Name)
@@ -129,6 +130,11 @@ foreach ($line in $lines) {
     } else {
         $realCandidates++
     }
+
+    # Vendor hosts loaded only after analytics/marketing consent.
+    if ($blocked -match '(?i)clarity\.ms|googletagmanager\.com|google-analytics\.com|googletagservices\.com|fastbase\.com') {
+        $consentPathHits++
+    }
 }
 
 function Write-CountTable {
@@ -149,8 +155,11 @@ Write-CountTable -Map $byDocument -Title 'document-uri'
 Write-Host ""
 Write-Host ("Likely smoke/test markers: {0}" -f $smokeMarkers)
 Write-Host ("Other / real candidates:   {0}" -f $realCandidates)
+Write-Host ("Clarity/GTM/vendor hits:   {0}" -f $consentPathHits)
 if ($realCandidates -eq 0) {
     Write-Host "Verdict: telemetry too fresh or smoke-only. Keep enforced 'unsafe-inline'."
+} elseif ($consentPathHits -eq 0) {
+    Write-Host "Verdict: real candidates present, but no Clarity/GTM/vendor blocks yet. Keep 'unsafe-inline' until consent-path evidence is reviewed."
 } else {
     Write-Host "Verdict: review real candidates (Clarity/GTM consent paths) before tightening enforced script-src."
 }
