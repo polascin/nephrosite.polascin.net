@@ -2,7 +2,7 @@
 
 Aktualizované: 2026-11-05 (loop iterácia #22)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `083167f`
+HEAD: `075085c`
 
 ## Čo je hotové v tejto iterácii
 
