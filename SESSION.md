@@ -1,19 +1,18 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #49)
+Aktualizované: 2026-11-05 (loop iterácia #50)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `0e6a9c5`
+HEAD: `e64f6d0`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo):
-  - `files/nefrologia.html` + `segments/nefrologia.html`:
-    `riadenie chronických ochorení` → `zvládanie chronických ochorení`
-    (manažment-štýl; zhoda s IgAN `zvládanie chronického ochorenia`)
-  - `files/transplantacia.html` + `segments/transplantacia.html`:
-    zvyšný `prijímateľa` → `príjemcu` (doplnenie loop #47)
+  - `segments/igan.html` + `segments/IgAN.sk.html`:
+    `v rámci glomerulov` → `v glomeruloch`
+    (úradnícky kalk; zhoda so zvyškom odseku `v glomeruloch`;
+    homepage include cez `blocks/nephrology.sk.php`)
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
@@ -23,17 +22,14 @@ HEAD: `0e6a9c5`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `0e6a9c5`; post-commit SFTP nahral `files/` + `segments/`
-  `nefrologia.html` + `transplantacia.html`; `deploy.ps1 -Apply` 0 upload;
-  smoke direct 200
+- Commit `e64f6d0`; post-commit SFTP nahral `segments/igan.html` +
+  `segments/IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/nefrologia` aj `/`: `zvládanie chronických ochorení` prítomné;
-  `riadenie chronických` absent
-- Produkcia `/transplantacia` aj `/`: `Imunitný systém príjemcu` prítomné;
-  `prijímateľa` absent
-- GHA Deploy `42125223958` success (rsync skip)
+- Produkcia `/`: `v glomeruloch lokálne reguluje` prítomné;
+  `v rámci glomerulov` absent
+- GHA Deploy `42125735925` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -97,7 +93,7 @@ HEAD: `0e6a9c5`
   podobne redundantné `v dôsledku rôznych príčin` → `pre rôzne príčiny`
   (nie však každá väzba `v dôsledku` + genitív je defect).
 - IgAN je na homepage cez `segments/igan.html`; `IgAN.sk.html` je paralelný
-  variant (opraviť oba pri wording fixoch).
+  variant (opraviť oba pri wording fixoch). IgAN nemá `files/` mirror.
 - Preferovať `nahrádza`/`náhradná liečba` pred `nahradzuje`/`nahradzujúca`
   (zhoda s footer/cookie/terms); blank-hint scan môže dať false positive,
   keď je `<span class="sr-only">` až za PHP blokom vnútri `<a>`.
@@ -114,7 +110,8 @@ HEAD: `0e6a9c5`
 - Pacientsky IgAN: EN *healthcare provider* → `lekár` (nie úradnícky
   `poskytovateľ zdravotnej starostlivosti`; legal stránky ponechať);
   *environmental factors* → `faktorov prostredia`; vetné `Taktiež` →
-  `Musia tiež` / `Tiež`.
+  `Musia tiež` / `Tiež`; `v rámci glomerulov` → `v glomeruloch`
+  (úradnícky kalk; zhoda so zvyškom odseku).
 - Po `pre` je genitív: `pre ľudí s` (nie nominatív `pre ľudia s`);
   EN *balance side effects* → `vyrovnať sa s vedľajšími účinkami` (nie
   `zosúladiť vedľajšie účinky`); `osoby, ktoré majú` nie je to isté ako
@@ -143,7 +140,7 @@ HEAD: `0e6a9c5`
   moralizujúce „byť vďačný darcom“ nie je pacientsky content.
 - Sync `files/nefrologia.html` aj `segments/nefrologia.html`.
 
-## Ďalší fokus (loop #50)
+## Ďalší fokus (loop #51)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -151,14 +148,13 @@ HEAD: `0e6a9c5`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu). Nie Lipton `jedinec`. Kandidát: IgAN `v rámci glomerulov`
-   → `v glomeruloch` (sync `igan.html` + `IgAN.sk.html`); alebo a11y/
-   tooling scan.
+   o obsahu). Nie Lipton `jedinec`. Kandidát: a11y/tooling scan alebo
+   ďalší overený pacientsky wording (nie tip-SHA churn).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #49 zvládanie/príjemcu)
-- Audit: `.audit.md` Beh #60
+- Codex: `.codex/handoffs/` (loop #50 IgAN v glomeruloch)
+- Audit: `.audit.md` Beh #61
 
 ## Ďalší príkaz
 
