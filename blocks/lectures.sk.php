@@ -25,7 +25,7 @@
 				<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek</strong></span>
 					<br>
-					<small><em>V rámci kurzu "Sprievodca dialyzačnou liečbou"</em></small>
+					<small><em>V kurze "Sprievodca dialyzačnou liečbou"</em></small>
 					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
@@ -135,7 +135,7 @@
 				<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek. Akútne zlyhanie obličiek.</strong></span>
 					<br>
-					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta 2/0025"</em></small>
+					<small><em>V kurze "Ošetrovateľská starostlivosť o dialyzovaného pacienta 2/0025"</em></small>
 					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
@@ -254,7 +254,7 @@
 				<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Transplantácie obličiek</strong></span>
 					<br>
-					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta"</em></small>
+					<small><em>V kurze "Ošetrovateľská starostlivosť o dialyzovaného pacienta"</em></small>
 					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
@@ -361,7 +361,7 @@
 				<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Akútne eliminačné metódy. CRRT.</strong></span>
 					<br>
-					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta"</em></small>
+					<small><em>V kurze "Ošetrovateľská starostlivosť o dialyzovaného pacienta"</em></small>
 					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
@@ -490,7 +490,7 @@
 				</a>
 				<br>
 				<a href="https://czsk.aesculap-academy.com/contentpage/285407" target="_blank" rel="noopener noreferrer">
-					<small><em>V rámci zasadnutia Vedeckej rady Aesculap Akademie</em></small><span class="sr-only"> (otvorí sa v novom okne)</span>
+					<small><em>Na zasadnutí Vedeckej rady Aesculap Akademie</em></small><span class="sr-only"> (otvorí sa v novom okne)</span>
 				</a>
 				<small>
 					<br>
