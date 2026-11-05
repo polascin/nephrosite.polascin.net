@@ -6,7 +6,7 @@
 - Updated At: 2026-11-05T21:43:30+01:00
 - Project Root: D:\Dev\nephrosite.polascin.net
 - Git Branch: main
-- Head Commit: 2aad571
+- Head Commit: 690bac9
 
 ## Original Goal
 
@@ -22,7 +22,7 @@ Iterácia #23 hotová. RO telemetria stále smoke-only (2 riadky). Enforced
 `'unsafe-inline'` ponechané. Ship: 4 static sr-only new-window hints na
 footer tooling image blanks (Bluefish, W3 Schools, W3C, DistroWatch) +
 WHO alt Organisation → Organization. Prod hints 140 → 144. Repo na
-`main` @ `2aad571` (product `4f352b3`, docs `9b237fe`, tip `2aad571`).
+`main` @ `690bac9` (product `4f352b3`, docs `9b237fe`).
 
 ## Completed This Session
 
