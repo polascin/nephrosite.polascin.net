@@ -1,40 +1,37 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #9)
+Aktualizované: 2026-11-05 (loop iterácia #10)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `888ab28` (docs/handoff commit môže nasledovať)
+HEAD: `434f939` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
-- RO telemetria cez SSH: **2 riadky**, oba smoke/test
-  (`evil.example`, `inline` bez sample) → **neodstraňovať** enforced
+- RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- `tools/csp-report-summary.ps1` (súkromný SSH súhrn; HTTP 403 na log).
-- Cache-Control: `woff2`/`ofl` 1y immutable; `fonts.css`/`tokens.css`/
-  `legal.css`/`privacy-consent.js`/ClustrMaps SVG 7d.
-- Privacy/terms: dátum 05.11.2026; interné odkazy na `/privacy`/`/terms`.
-- `sitemap.xml` lastmod 2026-11-05.
-- Inventár remote-only 69: `docs/REMOTE-ONLY-INVENTORY.md` (bez mazania).
+- Kanonické čisté URL: `/privacy`, `/terms`, `/nefrologia`, `/dialyza`, …
+  servírujú **200** (interný rewrite); staré `.php` a `/files/*.html` → **301**.
+- Oprava slučky: 301 z `/files/*.html` len cez `THE_REQUEST` (inak interný
+  rewrite spätne 301-oval).
+- Sitemap, canonical, teasery, deploy smoke (`/`, `/privacy`, `/terms`,
+  `/nefrologia`) aktualizované.
 
 ## Overené na produkcii
 
-- Commit `888ab28`; post-commit SFTP; `deploy.ps1 -Apply` → 0 upload;
-  GHA Deploy `42093214113` success; CSP regression success
-- `/` 200; HSTS; Reporting-Endpoints; enforced stále `unsafe-inline`
-- Fonty: `Cache-Control: public, max-age=31536000, immutable` (po cache-bust /
-  nový súbor); CSS/legal 604800
-- `/privacy` → 05.11.2026 + odkaz `/terms`; sitemap lastmod 2026-11-05
-- `php tools/test-csp.php` → PASS; `csp-report-summary.ps1` → smoke-only verdict
+- Commits `53bf64b` → `434f939`; post-commit SFTP; `deploy.ps1 -Apply` smoke OK
+- GHA Deploy `42094343098` success (rsync skip: chýbajú DEPLOY_* secrets)
+- `/privacy` `/terms` `/nefrologia` `/dialyza` `/lipton-tx` → 200 + HSTS + CSP
+- Legacy 301 → clean; canonical a sitemap na čistých URL
+- Homepage odkazy na čisté cesty; `csp-report-summary.ps1` → keep unsafe-inline
 
 ## Poznámky k toolingu
 
 - Commit cez `git -c core.hooksPath=.git/hooks` (globálny GG); ggshield Passed.
-- Remote-only ~69; **nemažeť bez súhlasu** (pozri inventár).
+- Remote-only ~69; **nemažeť bez súhlasu**.
 - WAF 466 pri krátkom UA; smoke s Chrome UA.
-- Edge môže krátko držať staré odpovede bez Cache-Control; overiť `?v=`
-  alebo iný ešte necachovaný asset.
+- Pri rewrite: **vždy** `THE_REQUEST` (alebo `[END]`) pre 301 zo cieľa
+  interného rewrite, inak 301/200 slučka.
 
-## Ďalší fokus (loop #10)
+## Ďalší fokus (loop #11)
 
 1. Zbieraj RO telemetriu (`csp-report-summary.ps1`); drop `'unsafe-inline'`
    len so strong evidence + Clarity/GTM consent paths.
@@ -43,8 +40,8 @@ HEAD: `888ab28` (docs/handoff commit môže nasledovať)
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-202343-loop9-csp-telemetry-font-cache.md`
-- Audit: `.audit.md` Beh #20
+- Codex: `.codex/handoffs/2026-11-05-203018-loop10-clean-canonical-urls.md`
+- Audit: `.audit.md` Beh #21
 
 ## Ďalší príkaz
 
