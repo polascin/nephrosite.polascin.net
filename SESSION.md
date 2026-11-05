@@ -1,47 +1,42 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #57)
+Aktualizované: 2026-11-06 (loop iterácia #58)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `6302a13` (docs tip nasleduje)
+HEAD: `f3a407e` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
-- RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
-  `'unsafe-inline'`.
-- Product ship (overené, non-IgAN/USG/nefamb/lectures/dialyza-transplant-ipvrm):
-  - `files/purifikacia.html` + `segments/purifikacia.html`:
-    `Medzi niektoré z bežných metód` → `Medzi bežné metódy`;
-    `prevedie cez adsorbent` → `vedie cez adsorbent`;
-    `fotosenzitívnej látky` → `fotosenzibilizujúcej látky`;
-    `chronická choroba reakcie štepu voči hostiteľovi` →
-    `chronická reakcia štepu proti hostiteľovi`
-  - `files/nefrologia.html` + `segments/nefrologia.html`:
-    drop filler `Ako sme už predtým spomínali,`;
-    `diagnózou, liečbou` → `diagnostikou, liečbou` (zhoda s úvodom)
+- RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/vendor
+  hits → **neodstraňovať** enforced `'unsafe-inline'`.
+- Product ship (legal/tooling; mimo tip-path topic churn):
+  - `files/privacy.html`:
+    dokumentovaný GPC/DNT predvolený režim len nevyhnutných cookies;
+    Clarity + GA = analytické, Fastbase = marketingové (category-gated);
+    static consent status `nezistený` → `neuložený` (zhoda s JS);
+    dátum aktualizácie `06.11.2026`
+  - `tools/csp-report-summary.ps1`: počítadlo Clarity/GTM/Fastbase
+    `blocked-uri` hits + prísnejší verdict bez vendor evidence
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
-  - `kosáčikovitá anémia`, `mycosis fungoides` (zavedené termíny)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
-  - IgAN/USG/nefamb/lectures + práve-shipnutý dialyza/transplant/ipvrm
-    (žiadny tip churn)
+  - IgAN/USG/nefamb/lectures/dialyza/transplant/ipvrm/purifikacia/
+    nefrologia (žiadny tip churn)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
-- `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `6302a13`; post-commit SFTP nahral purifikacia/nefrologia +
-  segments; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- `csp-report-summary.ps1` → smoke-only + vendor hits 0;
+  `php tools/test-csp.php` → PASS
+- Commit `f3a407e`; post-commit SFTP nahral `files/privacy.html`
+  (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/purifikacia` + `/`: `Medzi bežné metódy`,
-  `fotosenzibilizujúcej`, `vedie cez adsorbent`,
-  `reakcia štepu proti hostiteľovi` prítomné; staré tvary absent
-- Produkcia `/nefrologia` + `/`: `diagnostikou, liečbou` +
-  `Ultrazvuk sa používa` prítomné; `diagnózou, liečbou` /
-  `Ako sme už predtým` absent
-- GHA Deploy `42130583247` success (rsync skip)
+- Produkcia `/privacy`: `06.11.2026`, `Global Privacy Control`,
+  `neuložený`, `analytické cookies`, `marketingové cookies`,
+  `Bez súhlasu s danou kategóriou` prítomné; `nezistený` absent
+- GHA Deploy `42131253146` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -184,24 +179,29 @@ HEAD: `6302a13` (docs tip nasleduje)
   Sync `files/purifikacia.html` aj `segments/purifikacia.html`.
 - Nefrológia: vypustiť filler `Ako sme už predtým spomínali`;
   proces = `diagnostikou` (nie `diagnózou`) vedľa `liečbou a prevenciou`.
+- Privacy legal: cookie banner GPC/DNT claim musí byť aj v zásadách;
+  vendor list uvádzať podľa kategórií súhlasu (analytics vs marketing);
+  static consent status zhodný s `privacy-consent.js` (`neuložený`).
+- `csp-report-summary.ps1` hlási Clarity/GTM/Fastbase vendor hits;
+  drop `'unsafe-inline'` len so strong evidence **a** consent-path
+  vendor signalom.
 
-## Ďalší fokus (loop #58)
+## Ďalší fokus (loop #59)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
-   Clarity/GTM consent paths.
+   Clarity/GTM consent paths (sleduj vendor hit counter).
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
-   non-IgAN/USG/nefamb-lectures/práve-shipnutý
-   dialyza-transplant-ipvrm-purifikacia-nefrologia tip churn; kandidát:
-   legal/tooling alebo ďalší overený patient-copy defect mimo tip path.
+   non-tip-path ship mimo práve-shipnutý privacy; kandidát: legal/tooling
+   alebo ďalší overený patient-copy defect mimo tip path.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #57 purifikacia/nefrologia wording)
-- Audit: `.audit.md` Beh #68
+- Codex: `.codex/handoffs/` (loop #58 privacy GPC/CSP tooling)
+- Audit: `.audit.md` Beh #69
 
 ## Ďalší príkaz
 
