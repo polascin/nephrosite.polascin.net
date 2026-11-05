@@ -1,8 +1,8 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #51)
+Aktualizované: 2026-11-06 (loop iterácia #52)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `04f9693`
+HEAD: `cbfd38c`
 
 ## Čo je hotové v tejto iterácii
 
@@ -10,28 +10,32 @@ HEAD: `04f9693`
   `'unsafe-inline'`.
 - Product ship (overené, non-promo):
   - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `Pravidelné monitorovanie` → `Pravidelné sledovanie`
-    (pacientsky anglicizmus; zhoda s transplant `Monitorovanie` →
-    `Sledovanie`; homepage include cez `blocks/nephrology.sk.php`)
-  - `files/nefamb.html` ABPM názov **Ambulantné monitorovanie krvného
-    tlaku** ponechaný (oficiálny termín).
+    `Propagácia` → `Osveta`;
+    `platformu` → `priestor`;
+    `asymptomatické` → `bez príznakov`
+    (pacientsky register; `asymptomatické` navyše nesprávny rod pri
+    `nefropatia`; zhoda s už použitým „bez príznakov“ na tej istej stránke;
+    homepage include cez `blocks/nephrology.sk.php`)
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
+  - nefamb ABPM názov **Ambulantné monitorovanie krvného tlaku**
+  - `politických zmien` (policy calque) zatiaľ nemenene
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `04f9693`; post-commit SFTP nahral `segments/igan.html` +
+- Commit `cbfd38c`; post-commit SFTP nahral `segments/igan.html` +
   `segments/IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `Pravidelné sledovanie` prítomné;
-  `Pravidelné monitorovanie` absent
-- GHA Deploy `42126356260` success (rsync skip)
+- Produkcia `/`: `Osveta a vzdelávanie`, `priestor na výmenu`,
+  `bez príznakov mnoho` prítomné; `Propagácia a vzdelávanie`,
+  `platformu na výmenu`, `asymptomatické` absent
+- GHA Deploy `42127027608` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -115,7 +119,11 @@ HEAD: `04f9693`
   `Musia tiež` / `Tiež`; `v rámci glomerulov` → `v glomeruloch`
   (úradnícky kalk; zhoda so zvyškom odseku);
   `Pravidelné monitorovanie` → `Pravidelné sledovanie` (anglicizmus;
-  ABPM názov v nefamb ponechať).
+  ABPM názov v nefamb ponechať);
+  `Propagácia` → `Osveta` (marketingový nádych vs zdravotná osveta);
+  `platformu` → `priestor` (anglicizmus);
+  `asymptomatické` → `bez príznakov` (pacientsky register + chybný
+  neutrálny rod pri ženskom `nefropatia`).
 - Po `pre` je genitív: `pre ľudí s` (nie nominatív `pre ľudia s`);
   EN *balance side effects* → `vyrovnať sa s vedľajšími účinkami` (nie
   `zosúladiť vedľajšie účinky`); `osoby, ktoré majú` nie je to isté ako
@@ -144,7 +152,7 @@ HEAD: `04f9693`
   moralizujúce „byť vďačný darcom“ nie je pacientsky content.
 - Sync `files/nefrologia.html` aj `segments/nefrologia.html`.
 
-## Ďalší fokus (loop #52)
+## Ďalší fokus (loop #53)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -153,14 +161,13 @@ HEAD: `04f9693`
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Kandidát: a11y/tooling scan alebo
-   ďalší overený pacientsky wording (nie tip-SHA churn); IgAN
-   `asymptomatické`/`platformu`/`Propagácia` sú možné, ale overiť
-   register pred shipom.
+   overený pacientsky wording (nie tip-SHA churn); IgAN `politických zmien`
+   (EN *policy*) overiť register pred shipom.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #51 IgAN sledovanie)
-- Audit: `.audit.md` Beh #62
+- Codex: `.codex/handoffs/` (loop #52 IgAN osveta/priestor/bez príznakov)
+- Audit: `.audit.md` Beh #63
 
 ## Ďalší príkaz
 
