@@ -1,52 +1,49 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #7)
+Aktualizované: 2026-11-05 (loop iterácia #8)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `5eeacb7` (docs/handoff commit môže nasledovať)
+HEAD: `fa7709d` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
-- First-party CSP reporting: `/csp-report.php` (POST, 8 KiB cap, sanitizovaný
-  JSONL do `private/csp-reports/`; GET → 405; `private/` → 403).
-- `.htaccess`: `Reporting-Endpoints: csp="/csp-report.php"` +
-  `report-uri /csp-report.php; report-to csp` na enforced aj Report-Only CSP.
-- Nonce helper `blocks/csp-nonce.php`; inline skripty v `metatags.sk.php`,
-  `scripts.sk.php`, `current.sk.php` emitú `nonce="…"`.
-- `'unsafe-inline'` v enforced CSP ponechané (statické `.htaccess` nevie
-  request-scoped nonce; Clarity/GTM/consent ostávajú funkčné).
-- Testy/docs: `tools/test-csp.php`, `tools/test-integrations.cjs`,
-  `docs/CSP-REPORT-ONLY.md`.
+- Hybrid CSP: PHP dokumenty cez `blocks/csp-bootstrap.php`; static cez
+  `.htaccess` `FilesMatch`.
+- Enforced: `'unsafe-inline'` ponechané, **bez** `'nonce-…'` v headeri
+  (CSP3 by nonce vypol unsafe-inline).
+- Report-Only na PHP: `script-src 'self' 'nonce-…'` zhodný s markup nonce.
+- Static RO: `script-src 'self'` (bez request nonce).
+- Entry: `index.php`, `blocks/topic-page.php` → `nephrosite_csp_send_headers()`.
+- Testy/docs: `tools/test-csp.php`, `docs/CSP-REPORT-ONLY.md`.
 
 ## Overené na produkcii
 
-- Commit `5eeacb7`; post-commit SFTP; `deploy.ps1 -Apply` → 0 upload;
-  `origin/main` = `5eeacb7`
-- `/`, `/dialyza.php`, `/nefrologia.php` 200; nonces v HTML; cookie banner;
-  Clarity stále len v consent `loadScript` (nie auto-load)
-- Headers: `report-uri`/`report-to`/`Reporting-Endpoints`; HSTS OK;
-  `'unsafe-inline'` + analytics hosty v enforced
-- `POST /csp-report.php` → 204; `GET` → 405; `/private/` → 403;
-  `/blocks/csp-nonce.php` → 403
+- Commit `fa7709d`; post-commit SFTP; `deploy.ps1 -Apply` → 0 upload;
+  `origin/main` = `fa7709d`
+- `/`, `/dialyza.php`, `/nefrologia.php` 200; RO nonce = HTML nonce;
+  cookie banner; HSTS; Reporting-Endpoints
+- `/files/privacy.html` Apache CSP; RO bez nonce
+- `POST /csp-report.php` → 204; `GET` → 405; `/blocks/csp-bootstrap.php` → 403
 - `php tools/test-csp.php` → PASS; `node tools/test-integrations.cjs` → PASS
 
 ## Poznámky k toolingu
 
 - Commit cez `git -c core.hooksPath=.git/hooks` (globálny GG); ggshield Passed.
-- Remote-only junk (~68) ostáva; **nemažeť bez súhlasu**.
-- `/privacy.php` hosting CSP stále spomína Google Fonts (mimo nášho `.htaccess`).
+- Remote-only ~69 (pribudol `private/csp-reports/reports.jsonl`); **nemažeť
+  bez súhlasu**.
+- WAF 466 pri krátkom/neúplnom User-Agent; smoke s Chrome UA.
 
-## Ďalší fokus (loop #8)
+## Ďalší fokus (loop #9)
 
-1. PHP bootstrap: emitovať CSP s `'nonce-…'`, potom zúžiť enforced
-   `script-src` (odstrániť `'unsafe-inline'` až po RO telemetrii).
-2. Schválený cleanup remote-only zvyškov (68).
+1. RO telemetria → rozhodnúť o enforced bez `'unsafe-inline'` (len so strong
+   evidence vrátane Clarity/GTM consent paths).
+2. Schválený cleanup remote-only (~69).
 3. Oficiálne uznať `deploy.ps1` / opraviť GH secrets.
-4. Voliteľne zosúladiť hosting CSP na `/privacy.php`/`/files/*.html`.
+4. Voliteľne zosúladiť hosting CSP na privacy/terms.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop7-csp-report-nonce)
-- Audit: `.audit.md` Beh #18
+- Codex: `.codex/handoffs/2026-11-05-201608-loop8-csp-php-bootstrap.md`
+- Audit: `.audit.md` Beh #19
 
 ## Ďalší príkaz
 
