@@ -1,20 +1,20 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #40)
+Aktualizované: 2026-11-05 (loop iterácia #41)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `4a52309`
+HEAD: `8b9127d`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
-  - `files/purifikacia.html` + `segments/purifikacia.html`:
-    `mykózny fungoides`→`mycosis fungoides` (zavedený názov ochorenia)
-  - `files/nefamb.html`: AKI `v dôsledku rôznych príčin`→`pre rôzne príčiny`
+  - `segments/igan.html` + `segments/IgAN.sk.html`:
+    `jedinci`→`ľudia` (3×); `Liečba a manažment`→`Liečba a zvládanie`;
+    `glomerulárnej nefritídy`→`glomerulonefritídy` (2×)
 - Overené a **nechane**:
-  - `hyponatriémia`, `kosáčikovitá anémia` (MKCH/ICD/SK)
-  - IgAN `v dôsledku zníženej schopnosti` (prirodzená väzba, nie defect)
+  - IgAN `v dôsledku zníženej schopnosti` (prirodzená väzba)
+  - `hyponatriémia`, `kosáčikovitá anémia`
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
@@ -22,16 +22,14 @@ HEAD: `4a52309`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `4a52309`; post-commit SFTP nahral purifikacia (files+segments)
-  + nefamb; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `8b9127d`; post-commit SFTP nahral `segments/igan.html` +
+  `IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/purifikacia` a `/`: `mycosis fungoides` prítomné;
-  `mykózny fungoides` absent
-- Produkcia `/nefamb`: `pre rôzne príčiny` prítomné;
-  `v dôsledku rôznych príčin` absent
-- GHA Deploy `42119769238` success (rsync skip)
+- Produkcia `/`: nové IgAN formulácie prítomné; `jedinci`,
+  `Liečba a manažment`, `glomerulárnej nefritídy` absent
+- GHA Deploy `42120391913` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -103,8 +101,11 @@ HEAD: `4a52309`
   nemeniť bez dôkazu. `dysbalancie` je anglicizmus vedľa `nerovnováhy`.
 - Latinské/medzinárodné názvy chorôb (`mycosis fungoides`) nemenit́ na
   skomolené adjektíva (`mykózny fungoides`).
+- Pacientsky text: `jedinci` (kalk z EN *individuals*) → `ľudia`;
+  nadpis `manažment` → `zvládanie`; `glomerulárnej nefritídy` →
+  `glomerulonefritídy` (zavedený termín).
 
-## Ďalší fokus (loop #41)
+## Ďalší fokus (loop #42)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -112,12 +113,13 @@ HEAD: `4a52309`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu).
+   o obsahu; kandidáti: IgAN `poskytovateľ zdravotnej starostlivosti`,
+   `environmentálnych faktorov`, `Taktiež`).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #40 purifikacia/nefamb wording)
-- Audit: `.audit.md` Beh #51
+- Codex: `.codex/handoffs/` (loop #41 IgAN wording)
+- Audit: `.audit.md` Beh #52
 
 ## Ďalší príkaz
 
