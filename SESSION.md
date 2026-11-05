@@ -1,46 +1,48 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #5)
+Aktualizované: 2026-11-05 (loop iterácia #6)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `af48e4e` (docs/handoff commit môže nasledovať)
+HEAD: `7d79a8c` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
-- Self-host Blinker / Blaka / Fenix (latin + latin-ext WOFF2):
-  - `/css/fonts.css` s `font-display: swap`
-  - `/fonts/*.woff2` + SIL OFL `/fonts/OFL-*.ofl` (`.txt` hosting blokuje 403)
-- `blocks/links.sk.php`: Google Fonts preconnect/stylesheet odstránené
-- Enforced aj Report-Only CSP: `font-src 'self'`, bez
-  `fonts.googleapis.com` / `fonts.gstatic.com`
-- `tools/test-csp.php` + `docs/CSP-REPORT-ONLY.md` aktualizované
+- ClustrMaps: live `map_v2.png` nahradené first-party SVG
+  `/pix/clustrmaps-visitor-map.svg` (vendor connection refused; PNG snapshot
+  nedostupný).
+- Päta: odkaz na `clustrmaps.com/site/1ak7d` ostáva (user-initiated navigácia);
+  žiadne live image/script načítanie, žiadne `data-fallback-src` na mape.
+- Enforced aj Report-Only CSP: `clustrmaps.com` odstránené z `img-src`.
+- Cookie banner nezmenený (ClustrMaps nikdy nebol consent-gated; first-party
+  SVG je lepšie pre súkromie).
+- `tools/test-csp.php` + `tools/test-integrations.cjs` + docs aktualizované.
 
 ## Overené na produkcii
 
-- Commits `883e0e1` + `af48e4e`; post-commit SFTP; `deploy.ps1 -Apply` → 0 upload
-- `/`, `/dialyza.php`, `/nefrologia.php`, `/privacy.php` 200
-- HTML bez googleapis/gstatic; `/css/fonts.css` 200; WOFF2 `font/woff2` 200
-- `/fonts/OFL-Blinker.ofl` 200 `text/plain`; HSTS OK
-- Enforced + RO: `font-src 'self'`, žiadne Google Fonts hosty
-- `php tools/test-csp.php` → PASS
+- Commit `7d79a8c`; post-commit SFTP (`.htaccess`, footer, scripts, SVG);
+  `deploy.ps1 -Apply` → 0 upload; `origin/main` = `7d79a8c`
+- `/`, `/dialyza.php`, `/nefrologia.php` 200; HTML má SVG, site link;
+  bez `clustrmaps.com/map`
+- `/pix/clustrmaps-visitor-map.svg` 200 `image/svg+xml`
+- Enforced + RO: bez `clustrmaps.com`; HSTS OK
+- `php tools/test-csp.php` → PASS; `node tools/test-integrations.cjs` → PASS
 
 ## Poznámky k toolingu
 
 - Commit cez `git -c core.hooksPath=.git/hooks` (globálny GG); ggshield Passed.
 - Remote-only junk (~68) ostáva; **nemažeť bez súhlasu**.
-- `/privacy.php` hosting CSP stále spomína Google Fonts (mimo nášho `.htaccess`);
-  naše Report-Only je čisté.
+- `/privacy.php` hosting CSP stále spomína Google Fonts (mimo nášho `.htaccess`).
 
-## Ďalší fokus (loop #6)
+## Ďalší fokus (loop #7)
 
-1. ClustrMaps: snapshot alebo len SVG → drop `clustrmaps.com` z CSP ak možné.
-2. Schválený cleanup remote-only zvyškov (68).
-3. Oficiálne uznať `deploy.ps1` / opraviť GH secrets.
-4. CSP `report-to` + neskôr nonces pre enforcement bez `'unsafe-inline'`.
+1. Schválený cleanup remote-only zvyškov (68), alebo `report-to` endpoint.
+2. Oficiálne uznať `deploy.ps1` / opraviť GH secrets.
+3. CSP nonces/hashes → cesta k enforcement bez `'unsafe-inline'`.
+4. Voliteľne zosúladiť hosting CSP na `/privacy.php`/`/files/*.html`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-195734-loop5-self-host-fonts-csp.md`
-- Audit: `.audit.md` Beh #16
+- Codex: `.codex/handoffs/2026-11-05-200227-loop6-clustrmaps-svg-csp.md`
+- Audit: `.audit.md` Beh #17
 
 ## Ďalší príkaz
 
