@@ -86,24 +86,31 @@
 	<div>Vďaka patrí aj tvorcom a prispievateľom FOSS komunity, medzi nimi aj:</div>
 	<a href="https://opensuse.org/" target="_blank" rel="noopener noreferrer" title="openSUSE">
 		<img src="/weblogo/OIP.jpg" alt="openSUSE" class="imgpromo">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 	<a href="https://manjaro.org/" target="_blank" rel="noopener noreferrer" title="Manjaro">
 		<img src="/weblogo/Manjaro-logo.svg" alt="Manjaro" class="imgpromo">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 	<a href="https://mxlinux.org/" target="_blank" rel="noopener noreferrer" title="MX Linux OS">
 		<img src="/weblogo/mx.svg" alt="MX Linux OS" class="imgpromo">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 	<a href="https://ubuntu.com/" target="_blank" rel="noopener noreferrer" title="Ubuntu">
 		<img src="/weblogo/Canonical-Ubuntu.svg" alt="Ubuntu" class="imgpromo">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 	<a href="https://www.linuxmint.com/" target="_blank" rel="noopener noreferrer" title="Linux Mint">
 		<img src="/weblogo/linuxmint-logo.png" alt="Linux Mint" class="imgpromo">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 	<a href="https://neon.kde.org/" target="_blank" rel="noopener noreferrer" title="KDE Neon">
 		<img src="/weblogo/neon-logo.svg" alt="KDE Neon" class="imgpromo">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 	<a href="https://www.fedoraproject.org/" target="_blank" rel="noopener noreferrer" title="Fedora">
 		<img src="/weblogo/fedora-logo.png" alt="Fedora" class="imgpromo">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 	<br>
 	<a href="https://www.distrowatch.com/" target="_blank" rel="noopener noreferrer" title="DistroWatch">
