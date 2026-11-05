@@ -76,6 +76,9 @@ $byDocument = @{}
 $smokeMarkers = 0
 $realCandidates = 0
 $consentPathHits = 0
+$clarityHits = 0
+$gtmGaHits = 0
+$fastbaseHits = 0
 
 function Get-ReportField {
     param($Report, [string]$Name)
@@ -132,8 +135,14 @@ foreach ($line in $lines) {
     }
 
     # Vendor hosts loaded only after analytics/marketing consent.
-    if ($blocked -match '(?i)clarity\.ms|googletagmanager\.com|google-analytics\.com|googletagservices\.com|fastbase\.com') {
+    $isClarity = $blocked -match '(?i)clarity\.ms'
+    $isGtmGa = $blocked -match '(?i)googletagmanager\.com|google-analytics\.com|googletagservices\.com'
+    $isFastbase = $blocked -match '(?i)fastbase\.com'
+    if ($isClarity -or $isGtmGa -or $isFastbase) {
         $consentPathHits++
+        if ($isClarity) { $clarityHits++ }
+        if ($isGtmGa) { $gtmGaHits++ }
+        if ($isFastbase) { $fastbaseHits++ }
     }
 }
 
@@ -156,6 +165,9 @@ Write-Host ""
 Write-Host ("Likely smoke/test markers: {0}" -f $smokeMarkers)
 Write-Host ("Other / real candidates:   {0}" -f $realCandidates)
 Write-Host ("Clarity/GTM/vendor hits:   {0}" -f $consentPathHits)
+Write-Host ("  Clarity:                 {0}" -f $clarityHits)
+Write-Host ("  GTM/GA:                  {0}" -f $gtmGaHits)
+Write-Host ("  Fastbase:                {0}" -f $fastbaseHits)
 if ($realCandidates -eq 0) {
     Write-Host "Verdict: telemetry too fresh or smoke-only. Keep enforced 'unsafe-inline'."
 } elseif ($consentPathHits -eq 0) {
