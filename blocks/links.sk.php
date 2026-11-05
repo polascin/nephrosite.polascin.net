@@ -9,7 +9,7 @@
 <link href="/favicon-16x16.png" type="image/png" rel="icon"  sizes="16x16">
 <link href="/site.webmanifest" rel="manifest">
 <?php
-// Self-hosted Blinker, Blaka, Fenix (SIL OFL 1.1). See /fonts/OFL-*.txt and css/fonts.css.
+// Self-hosted Blinker, Blaka, Fenix (SIL OFL 1.1). See /fonts/OFL-*.ofl and css/fonts.css.
 // Google Fonts preconnect/stylesheet removed 2026-11-05 (loop #5).
 ?>
 <link rel="stylesheet" href="/css/fonts.css">

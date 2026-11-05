@@ -5,6 +5,8 @@ AddDefaultCharset UTF-8
 ServerSignature Off
 # Self-hosted WOFF2 (css/fonts.css → /fonts/*.woff2)
 AddType font/woff2 .woff2
+# SIL OFL license texts (hosting blocks .txt; use .ofl)
+AddType text/plain .ofl
 
 # Globálne bezpečnostné HTTP hlavičky
 <IfModule mod_headers.c>

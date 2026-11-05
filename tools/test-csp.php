@@ -245,9 +245,9 @@ try {
         'fonts/blinker-700-latin.woff2',
         'fonts/blaka-400-latin.woff2',
         'fonts/fenix-400-latin.woff2',
-        'fonts/OFL-Blinker.txt',
-        'fonts/OFL-Blaka.txt',
-        'fonts/OFL-Fenix.txt',
+        'fonts/OFL-Blinker.ofl',
+        'fonts/OFL-Blaka.ofl',
+        'fonts/OFL-Fenix.ofl',
     ] as $fontAsset) {
         check(is_file($fontAsset) && filesize($fontAsset) > 0, "Missing self-hosted font asset: $fontAsset");
     }
