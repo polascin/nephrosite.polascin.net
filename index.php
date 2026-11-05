@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/blocks/csp-bootstrap.php';
+nephrosite_csp_send_headers();
+?>
 <!DOCTYPE html>
 
 <html lang="sk">

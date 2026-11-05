@@ -34,6 +34,9 @@ $canonicalUrl = 'https://nephrosite.polascin.net/' . basename((string) $topic['s
 // Hlavným nadpisom dokumentu je názov témy, nie názov webu.
 $showSiteHeading = false;
 
+require_once __DIR__ . '/csp-bootstrap.php';
+nephrosite_csp_send_headers();
+
 ?>
 <!DOCTYPE html>
 

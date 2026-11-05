@@ -5,10 +5,10 @@ declare(strict_types=1);
 /**
  * Per-request CSP nonce helpers.
  *
- * Markup may already carry nonce="…" on inline <script> tags. The CSP header
- * still uses 'unsafe-inline' until PHP emits Content-Security-Policy with
- * 'nonce-…' (static .htaccess cannot inject a request-scoped nonce). Including
- * this helper now keeps all PHP layouts on one generator for that migration.
+ * Markup emits nonce="…" on first-party inline <script> tags. The enforced CSP
+ * header still uses 'unsafe-inline' (CSP3 would drop 'unsafe-inline' if a nonce
+ * were listed there). Report-Only on PHP pages includes the matching 'nonce-…'
+ * via blocks/csp-bootstrap.php for measurement before enforcement.
  */
 
 /**

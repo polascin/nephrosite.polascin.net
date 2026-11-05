@@ -8,6 +8,7 @@ chdir($root);
 
 require_once $root . '/blocks/csp-report-handler.php';
 require_once $root . '/blocks/csp-nonce.php';
+require_once $root . '/blocks/csp-bootstrap.php';
 
 function check(bool $condition, string $message): void
 {
@@ -41,6 +42,7 @@ function parsePolicy(string $policy): array
         foreach ($tokens as $token) {
             check(
                 in_array($token, ["'self'", "'none'", "'unsafe-inline'"], true)
+                || preg_match("~^'nonce-[A-Za-z0-9_-]+'$~D", $token) === 1
                 || preg_match('~^https://(?:\*\.)?[a-z0-9.-]+$~D', $token) === 1,
                 'Unexpected or broad CSP source: ' . $token
             );
@@ -214,6 +216,55 @@ function checkNonceHelpers(): void
     }
 }
 
+function stripNonceSources(array $tokens): array
+{
+    return array_values(array_filter(
+        $tokens,
+        static fn (string $token): bool => preg_match("~^'nonce-~", $token) !== 1
+    ));
+}
+
+function checkPhpBootstrap(string $htaccessEnforced, string $htaccessReportOnly): void
+{
+    check(is_file('blocks/csp-bootstrap.php'), 'Missing CSP bootstrap.');
+    $phpEnforced = nephrosite_csp_enforced_policy();
+    check($phpEnforced === $htaccessEnforced, 'PHP enforced CSP must match static .htaccess CSP.');
+    check(
+        nephrosite_csp_report_only_policy(false) === $htaccessReportOnly,
+        'PHP Report-Only without nonce must match static .htaccess Report-Only.'
+    );
+
+    $enforced = parsePolicy($phpEnforced);
+    check(in_array("'unsafe-inline'", $enforced['script-src'] ?? [], true), 'Enforced script-src must keep unsafe-inline this loop.');
+    foreach ($enforced['script-src'] ?? [] as $token) {
+        check(preg_match("~^'nonce-~", $token) !== 1, 'Enforced CSP must not list a nonce (CSP3 would ignore unsafe-inline).');
+    }
+
+    $reportOnly = parsePolicy(nephrosite_csp_report_only_policy(true));
+    $nonceToken = "'nonce-" . nephrosite_csp_nonce() . "'";
+    check(
+        ($reportOnly['script-src'] ?? []) === ["'self'", $nonceToken],
+        'PHP Report-Only script-src must be self + matching request nonce.'
+    );
+    check(!in_array("'unsafe-inline'", $reportOnly['script-src'] ?? [], true), 'PHP Report-Only must not allow unsafe-inline.');
+    check(stripNonceSources($reportOnly['script-src'] ?? []) === ["'self'"], 'PHP Report-Only without nonce token must stay self-only.');
+
+    foreach (['index.php', 'blocks/topic-page.php'] as $entry) {
+        $source = file_get_contents($entry);
+        check(str_contains($source, 'csp-bootstrap.php'), "$entry must load CSP bootstrap.");
+        check(str_contains($source, 'nephrosite_csp_send_headers()'), "$entry must emit CSP headers.");
+    }
+
+    check(
+        str_contains(file_get_contents('.htaccess'), '<FilesMatch "\\.(html?|'),
+        '.htaccess must scope static CSP to FilesMatch (hybrid with PHP bootstrap).'
+    );
+    check(
+        !preg_match('/^\s*Header always set Content-Security-Policy "/m', preg_replace('/<FilesMatch[\s\S]*?<\/FilesMatch>/', '', file_get_contents('.htaccess'))),
+        'Global (non-FilesMatch) enforced CSP must not remain — PHP owns document CSP.'
+    );
+}
+
 function checkReportHandlerUnit(): void
 {
     $legacy = nephrosite_csp_sanitize_reports([
@@ -269,6 +320,7 @@ try {
     $directives = parsePolicy($enforcedPolicy);
     checkReportingConfigured($configuration, $directives, $reportOnlyDirectives);
     checkNonceHelpers();
+    checkPhpBootstrap($enforcedPolicy, $reportOnlyPolicy);
     checkReportHandlerUnit();
 
     foreach (['default-src', 'base-uri', 'frame-ancestors', 'form-action', 'media-src'] as $name) {
@@ -282,12 +334,17 @@ try {
         check(permits($directives, 'connect-src', $url), 'Observed connection missing: ' . $url);
     }
     check(permits($directives, 'img-src', 'https://www.google.sk/example'), 'Observed Google image source missing.');
+    $cspBootstrapAllowlist = [
+        'csp-report.php',
+        'csp-report-handler.php',
+        'csp-nonce.php',
+        'csp-bootstrap.php',
+    ];
     foreach (array_merge(glob('*.php'), glob('blocks/*.php'), glob('files/*.html')) as $file) {
-        // Public report endpoint is allowed to exist; it must not emit a CSP meta/header itself.
-        if (basename($file) === 'csp-report.php' || str_ends_with($file, 'csp-report-handler.php') || str_ends_with($file, 'csp-nonce.php')) {
+        if (in_array(basename($file), $cspBootstrapAllowlist, true)) {
             continue;
         }
-        check(!str_contains(file_get_contents($file), 'Content-Security-Policy'), "$file: proposal must not activate PHP/meta CSP.");
+        check(!str_contains(file_get_contents($file), 'Content-Security-Policy'), "$file: must not embed CSP meta/header literals outside the bootstrap.");
     }
 
     $pages = ['index.php', 'dialyza.php', 'nefrologia.php', 'purifikacia.php',
@@ -375,7 +432,7 @@ try {
     check(($approved['report-to'] ?? null) === ['csp'], 'Approved report-to must parse.');
 
     echo 'PASS: 8 rendered PHP pages, 3 static documents, 3 dynamic loaders, '
-        . count($negativeCases) . ' negative fixtures; enforced + Report-Only CSP + first-party reporting + nonce helpers validated.' . PHP_EOL;
+        . count($negativeCases) . ' negative fixtures; hybrid PHP/Apache CSP + Report-Only nonce + first-party reporting validated.' . PHP_EOL;
 } catch (Throwable $error) {
     fwrite(STDERR, 'FAIL: ' . $error->getMessage() . PHP_EOL);
     exit(1);
