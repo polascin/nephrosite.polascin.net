@@ -1,48 +1,47 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #56)
+Aktualizované: 2026-11-06 (loop iterácia #57)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `a15c074` (docs tip nasleduje)
+HEAD: `6302a13` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship (overené, non-IgAN/USG/nefamb/lectures):
-  - `files/dialyza.html` + `segments/dialyza.html`:
-    `v prevažnej väčšine dialyzovaných pacientov` →
-    `u prevažnej väčšiny dialyzovaných pacientov`;
-    segments sync `cycler`/`cycleru` → `cykler`/`cykleru`;
-    `8 - 10` → `8-10` (zhoda s files)
-  - `files/transplantacia.html` (+ segments sync):
-    `prispôsobeniu liekov` → `úprave liekov`;
-    `darcu (donora)` → `darcu`
-  - `ipvrm.htm`:
-    `V rámci inovatívneho vzdelávania` → `V inovatívnom vzdelávaní`;
-    `zabezpečujú platformu na zdieľanie` →
-    `poskytujú priestor na výmenu`
+- Product ship (overené, non-IgAN/USG/nefamb/lectures/dialyza-transplant-ipvrm):
+  - `files/purifikacia.html` + `segments/purifikacia.html`:
+    `Medzi niektoré z bežných metód` → `Medzi bežné metódy`;
+    `prevedie cez adsorbent` → `vedie cez adsorbent`;
+    `fotosenzitívnej látky` → `fotosenzibilizujúcej látky`;
+    `chronická choroba reakcie štepu voči hostiteľovi` →
+    `chronická reakcia štepu proti hostiteľovi`
+  - `files/nefrologia.html` + `segments/nefrologia.html`:
+    drop filler `Ako sme už predtým spomínali,`;
+    `diagnózou, liečbou` → `diagnostikou, liečbou` (zhoda s úvodom)
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
+  - `kosáčikovitá anémia`, `mycosis fungoides` (zavedené termíny)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
-  - IgAN/USG/nefamb/lectures tip path (žiadny churn)
+  - IgAN/USG/nefamb/lectures + práve-shipnutý dialyza/transplant/ipvrm
+    (žiadny tip churn)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `a15c074`; post-commit SFTP nahral dialyza/transplant/ipvrm +
+- Commit `6302a13`; post-commit SFTP nahral purifikacia/nefrologia +
   segments; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/dialyza` + `/`: `u prevažnej väčšiny` prítomné;
-  `v prevažnej väčšine` absent; homepage `cykler` (nie `cycler`)
-- Produkcia `/transplantacia` + `/`: `úprave liekov` prítomné;
-  `prispôsobeniu liekov` / `darcu (donora)` absent
-- Produkcia `/ipvrm.htm`: `V inovatívnom vzdelávaní` +
-  `poskytujú priestor na výmenu` prítomné; staré tvary absent
-- GHA Deploy `42129925838` success (rsync skip)
+- Produkcia `/purifikacia` + `/`: `Medzi bežné metódy`,
+  `fotosenzibilizujúcej`, `vedie cez adsorbent`,
+  `reakcia štepu proti hostiteľovi` prítomné; staré tvary absent
+- Produkcia `/nefrologia` + `/`: `diagnostikou, liečbou` +
+  `Ultrazvuk sa používa` prítomné; `diagnózou, liečbou` /
+  `Ako sme už predtým` absent
+- GHA Deploy `42130583247` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -177,8 +176,16 @@ HEAD: `a15c074` (docs tip nasleduje)
   `V inovatívnom vzdelávaní`; `platformu na zdieľanie` →
   `priestor na výmenu`.
   `nefamb` nemá `segments/` mirror; lectures sú len v `blocks/`.
+- Purifikácia: `Medzi niektoré z bežných metód` → `Medzi bežné metódy`;
+  `prevedie cez adsorbent` → `vedie cez adsorbent`; photosensitizing
+  agent = `fotosenzibilizujúcej látky` (nie `fotosenzitívnej`);
+  GvHD = `chronická reakcia štepu proti hostiteľovi` (nie
+  `chronická choroba reakcie štepu voči hostiteľovi`).
+  Sync `files/purifikacia.html` aj `segments/purifikacia.html`.
+- Nefrológia: vypustiť filler `Ako sme už predtým spomínali`;
+  proces = `diagnostikou` (nie `diagnózou`) vedľa `liečbou a prevenciou`.
 
-## Ďalší fokus (loop #57)
+## Ďalší fokus (loop #58)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -187,13 +194,14 @@ HEAD: `a15c074` (docs tip nasleduje)
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
-   non-IgAN/USG/nefamb-lectures/práve-shipnutý dialyza-transplant-ipvrm tip
-   churn; kandidát: purifikacia/legal/tooling/nefrologia.
+   non-IgAN/USG/nefamb-lectures/práve-shipnutý
+   dialyza-transplant-ipvrm-purifikacia-nefrologia tip churn; kandidát:
+   legal/tooling alebo ďalší overený patient-copy defect mimo tip path.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #56 dialyza/transplant/ipvrm wording)
-- Audit: `.audit.md` Beh #67
+- Codex: `.codex/handoffs/` (loop #57 purifikacia/nefrologia wording)
+- Audit: `.audit.md` Beh #68
 
 ## Ďalší príkaz
 
