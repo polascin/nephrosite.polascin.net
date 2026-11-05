@@ -1,27 +1,26 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #44)
+Aktualizované: 2026-11-05 (loop iterácia #45)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `8bab3f9`
+HEAD: `d28f514`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship (overené, non-promo, mimo IgAN):
-  - `files/transplantacia.html` + `segments/transplantacia.html`:
-    `Monitorovanie`→`Sledovanie`;
-    `starostlivosť zo strany lekárov`→`starostlivosť lekárov`;
-    `aby sa zabezpečilo správne fungovanie… a monitorovali sa…`→
-    `aby transplantovaná oblička správne fungovala a aby sa včas
-    zachytili…`;
-    `prispôsobenie životného štýlu, ako napríklad zmena`→
-    `úpravu životného štýlu, napríklad zmenu`;
-    `zabezpečenie hygieny potravín`→`hygiena pri potravinách`.
+- Product ship (overené, non-promo):
+  - `files/dialyza.html` + `segments/dialyza.html`:
+    `kvôli jej lepším výsledkom z hľadiska znižovania chorobnosti
+    (morbidity) a úmrtnosti (mortality) v prevažnej väčšine
+    dialyzovaných pacientov` →
+    `pretože v prevažnej väčšine dialyzovaných pacientov lepšie
+    znižuje chorobnosť (morbidity) a úmrtnosť (mortality)`.
 - Overené a **nechane**:
+  - nefamb `ako aj` (viaceré výskyty; nie všetky sú defect; dialýza
+    calque bol silnejší)
   - IgAN `v dôsledku zníženej schopnosti`; `hyponatriémia`;
     `kosáčikovitá anémia`; legal `poskytovateľ…`
-  - Lipton `jedinec`/`jedincov` (literárny preklad, nie pacientsky kalk)
+  - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
@@ -29,15 +28,14 @@ HEAD: `8bab3f9`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `8bab3f9`; post-commit SFTP nahral oba transplant súbory;
+- Commit `d28f514`; post-commit SFTP nahral oba dialýza súbory;
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/` a `/transplantacia`: nové formulácie prítomné; staré
-  `Monitorovanie a následná`, `zo strany lekárov`,
-  `zabezpečenie hygieny potravín`, `prispôsobenie životného štýlu` absent
-- GHA Deploy `42122220816` success (rsync skip)
+- Produkcia `/` a `/dialyza`: nové formulácie prítomné; staré
+  `z hľadiska znižovania chorobnosti` absent
+- GHA Deploy `42122830597` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -128,8 +126,12 @@ HEAD: `8bab3f9`
   `zabezpečenie hygieny potravín` → `hygiena pri potravinách`.
   Literárny Lipton `jedinec` nemeniť ako pacientsky kalk.
 - Sync `files/transplantacia.html` aj `segments/transplantacia.html`.
+- Pacientsky dialýza/HDF: `z hľadiska znižovania chorobnosti…` je
+  úradnícky kalk → priame `pretože … lepšie znižuje chorobnosť …
+  a úmrtnosť …`; medicínske fakty (HDF vs HD, morbidity/mortality)
+  nemenit́. Sync `files/dialyza.html` aj `segments/dialyza.html`.
 
-## Ďalší fokus (loop #45)
+## Ďalší fokus (loop #46)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -137,13 +139,13 @@ HEAD: `8bab3f9`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu). Kandidáti: nefamb `ako aj` zhustenie; dialýza `z hľadiska
-   znižovania chorobnosti`; nie Lipton `jedinec`.
+   o obsahu). Kandidáti: nefamb `ako aj` zhustenie (overiť konkrétne
+   výskyty; nie všetky sú defect); nie Lipton `jedinec`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #44 transplant sledovanie)
-- Audit: `.audit.md` Beh #55
+- Codex: `.codex/handoffs/` (loop #45 dialýza chorobnosť)
+- Audit: `.audit.md` Beh #56
 
 ## Ďalší príkaz
 
