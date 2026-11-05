@@ -1,39 +1,41 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #59)
+Aktualizované: 2026-11-06 (loop iterácia #60)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `30e8d74` (docs tip nasleduje)
+HEAD: `4c73a54` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (legal/tooling; mimo tip-path a mimo práve-shipnutý privacy):
-  - `files/terms.html`:
-    sekcia 10 zrkadlí privacy GPC/DNT predvolený režim len nevyhnutných
-    cookies (signál + žiadna uložená voľba); dátum `06.11.2026`
-  - `tools/csp-report-summary.ps1`: rozpad Clarity / GTM-GA / Fastbase
-    hits popri súčte vendor hits
+- Product ship (tooling/a11y; mimo tip-path a mimo práve-shipnutý
+  privacy/terms):
+  - `tools/scan-blank-hints.ps1`: strip HTML komentáre; full-anchor
+    `_blank` hint check; download-claim bez `download`; live `<img>`
+    bez `alt` (ignoruje PHP regex false positive v `topic-teaser.php`)
+  - `blocks/cookie-banner.sk.php`: `pätu obsahových stránok` /
+    `stránku súkromia` → `pätičku stránky` / `zásady ochrany súkromia`
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
-  - privacy / IgAN / USG / nefamb / lectures / dialyza / transplant /
-    ipvrm / purifikacia / nefrologia (žiadny tip churn)
+  - privacy / terms / IgAN / USG / nefamb / lectures / dialyza /
+    transplant / ipvrm / purifikacia / nefrologia (žiadny tip churn)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
-  GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS
-- Commit `30e8d74`; post-commit SFTP nahral `files/terms.html`
+  GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
+  `scan-blank-hints.ps1` → 0/0/0
+- Commit `4c73a54`; post-commit SFTP nahral `blocks/cookie-banner.sk.php`
   (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/terms`: `06.11.2026`, `Global Privacy Control`,
-  `Do Not Track`, `nevyhnutné cookies`, `Nastavenie cookies` prítomné
-- GHA Deploy `42131843174` success (rsync skip)
+- Produkcia `/`: `pätičku stránky`, `cez zásady ochrany súkromia`;
+  staré `pätu obsahových` / `cez stránku súkromia` neprítomné
+- GHA Deploy `42132769594` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -64,14 +66,17 @@ HEAD: `30e8d74` (docs tip nasleduje)
   `.py` súbor + `Path.write_text` je spoľahlivejší.
 - Pri scane `_blank` bez hintu **najprv strip HTML komentáre**, inak
   Bory/excluded vendor logos falošne nafúknu miss count. Skip `.kilo/`
-  worktrees pri repo scanoch.
+  worktrees pri repo scanoch. Kontrolovať **celú** `<a>…</a>` kotvu
+  (neskorý `sr-only` v PDF karte, napr. regcitra, nie je miss) —
+  `tools/scan-blank-hints.ps1`.
 - Akronymové suffixy v promo (`(SIN)`, `(WHO)`, `(ERA)`, `(ANNA)`) a short
   brand titles (`EDTNA/ERCA`) držať v súlade s oficiálnym `<title>` cieľa.
 - KDIGO oficiálne používa en dash (`&#8211;` / U+2013), nie ASCII `-`.
 - `/kontakt` a `/o-nas` nie sú v sitemap/odkazoch (404 bez interných
   referencií); nie je to broken-link defect.
 - `topic-teaser.php` extrahuje `<img>` z `files/*.html` (už majú `alt`);
-  false positive „missing alt“ na regex v teaser helperi nie je defect.
+  false positive „missing alt“ na regex v teaser helperi nie je defect
+  (`scan-blank-hints.ps1` ho filtruje).
 - `ipvrm.htm` je standalone Word HTML (iframe + priama URL): nemá
   `blocks/styles.css.php` ani `scripts.sk.php` blank helper → `.sr-only`
   a new-window hint treba vložiť lokálne do dokumentu.
@@ -184,8 +189,11 @@ HEAD: `30e8d74` (docs tip nasleduje)
 - `csp-report-summary.ps1` hlási súčet Clarity/GTM/Fastbase vendor hits
   a rozpad Clarity / GTM-GA / Fastbase; drop `'unsafe-inline'` len so
   strong evidence **a** consent-path vendor signalom.
+- Cookie banner UI: odkazovať na `pätičku stránky` a `zásady ochrany
+  súkromia` (zhoda s footer legal názvami), nie na „pätu obsahových
+  stránok“ / „stránku súkromia“.
 
-## Ďalší fokus (loop #60)
+## Ďalší fokus (loop #61)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -194,17 +202,19 @@ HEAD: `30e8d74` (docs tip nasleduje)
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
-   non-tip-path ship mimo práve-shipnutý privacy/terms; kandidát:
-   tooling/a11y alebo ďalší overený patient-copy defect mimo tip path.
+   non-tip-path ship mimo práve-shipnutý privacy/terms/cookie-banner;
+   kandidát: overený patient-copy defect mimo tip path alebo ďalší tooling.
+   Spustiť aj `scan-blank-hints.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #59 terms GPC/CSP vendor breakdown)
-- Audit: `.audit.md` Beh #70
+- Codex: `.codex/handoffs/` (loop #60 a11y blank hints + cookie footer)
+- Audit: `.audit.md` Beh #71
 
 ## Ďalší príkaz
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\csp-report-summary.ps1
 php tools/test-csp.php
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-blank-hints.ps1
 ```
