@@ -54,5 +54,6 @@ pri PR aj pushi do `main`.
 
 `csp-report-summary.ps1` načíta `private/csp-reports/reports.jsonl` cez SSH
 alias `websupport` (súkromne; HTTP 403). Použi pred rozhodnutím o dropnutí
-enforced `'unsafe-inline'`. Okrem smoke vs real candidates hlási aj počet
-Clarity/GTM/Fastbase `blocked-uri` zásahov (consent-path safety).
+enforced `'unsafe-inline'`. Okrem smoke vs real candidates hlási súčet
+Clarity/GTM/Fastbase `blocked-uri` zásahov a rozpad Clarity / GTM-GA /
+Fastbase (consent-path safety).

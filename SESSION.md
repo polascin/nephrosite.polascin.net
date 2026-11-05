@@ -1,42 +1,39 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #58)
+Aktualizované: 2026-11-06 (loop iterácia #59)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `f3a407e` (docs tip nasleduje)
+HEAD: `30e8d74` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
-- RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/vendor
-  hits → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (legal/tooling; mimo tip-path topic churn):
-  - `files/privacy.html`:
-    dokumentovaný GPC/DNT predvolený režim len nevyhnutných cookies;
-    Clarity + GA = analytické, Fastbase = marketingové (category-gated);
-    static consent status `nezistený` → `neuložený` (zhoda s JS);
-    dátum aktualizácie `06.11.2026`
-  - `tools/csp-report-summary.ps1`: počítadlo Clarity/GTM/Fastbase
-    `blocked-uri` hits + prísnejší verdict bez vendor evidence
+- RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
+  vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
+- Product ship (legal/tooling; mimo tip-path a mimo práve-shipnutý privacy):
+  - `files/terms.html`:
+    sekcia 10 zrkadlí privacy GPC/DNT predvolený režim len nevyhnutných
+    cookies (signál + žiadna uložená voľba); dátum `06.11.2026`
+  - `tools/csp-report-summary.ps1`: rozpad Clarity / GTM-GA / Fastbase
+    hits popri súčte vendor hits
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
-  - IgAN/USG/nefamb/lectures/dialyza/transplant/ipvrm/purifikacia/
-    nefrologia (žiadny tip churn)
+  - privacy / IgAN / USG / nefamb / lectures / dialyza / transplant /
+    ipvrm / purifikacia / nefrologia (žiadny tip churn)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
-- `csp-report-summary.ps1` → smoke-only + vendor hits 0;
-  `php tools/test-csp.php` → PASS
-- Commit `f3a407e`; post-commit SFTP nahral `files/privacy.html`
+- `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
+  GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS
+- Commit `30e8d74`; post-commit SFTP nahral `files/terms.html`
   (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/privacy`: `06.11.2026`, `Global Privacy Control`,
-  `neuložený`, `analytické cookies`, `marketingové cookies`,
-  `Bez súhlasu s danou kategóriou` prítomné; `nezistený` absent
-- GHA Deploy `42131253146` success (rsync skip)
+- Produkcia `/terms`: `06.11.2026`, `Global Privacy Control`,
+  `Do Not Track`, `nevyhnutné cookies`, `Nastavenie cookies` prítomné
+- GHA Deploy `42131843174` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -182,26 +179,28 @@ HEAD: `f3a407e` (docs tip nasleduje)
 - Privacy legal: cookie banner GPC/DNT claim musí byť aj v zásadách;
   vendor list uvádzať podľa kategórií súhlasu (analytics vs marketing);
   static consent status zhodný s `privacy-consent.js` (`neuložený`).
-- `csp-report-summary.ps1` hlási Clarity/GTM/Fastbase vendor hits;
-  drop `'unsafe-inline'` len so strong evidence **a** consent-path
-  vendor signalom.
+- Terms legal: sekcia cookies má zrkadliť rovnaký GPC/DNT predvolený
+  režim (signál + žiadna uložená voľba → len nevyhnutné).
+- `csp-report-summary.ps1` hlási súčet Clarity/GTM/Fastbase vendor hits
+  a rozpad Clarity / GTM-GA / Fastbase; drop `'unsafe-inline'` len so
+  strong evidence **a** consent-path vendor signalom.
 
-## Ďalší fokus (loop #59)
+## Ďalší fokus (loop #60)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
-   Clarity/GTM consent paths (sleduj vendor hit counter).
+   Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
-   non-tip-path ship mimo práve-shipnutý privacy; kandidát: legal/tooling
-   alebo ďalší overený patient-copy defect mimo tip path.
+   non-tip-path ship mimo práve-shipnutý privacy/terms; kandidát:
+   tooling/a11y alebo ďalší overený patient-copy defect mimo tip path.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #58 privacy GPC/CSP tooling)
-- Audit: `.audit.md` Beh #69
+- Codex: `.codex/handoffs/` (loop #59 terms GPC/CSP vendor breakdown)
+- Audit: `.audit.md` Beh #70
 
 ## Ďalší príkaz
 
