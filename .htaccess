@@ -77,18 +77,20 @@ RewriteEngine on
 RewriteRule ^(?:blocks|segments)/ - [F,L]
 
 # Kanonické čisté URL (loop #10): /privacy, /terms a témy bez .php.
-# Externé 301 len pre staré cesty; cieľové URL sa servírujú interným rewriteom
-# (200 bez hopu), aby kotvy (#legal-disclaimer) a crawl ostali stabilné.
+# Externé 301 len podľa THE_REQUEST (pôvodný client request), inak by interný
+# rewrite na /files/*.html znova spustil 301 a klient by ostal na 301.
 
-# .php témy → čistá URL (THE_REQUEST, aby interný rewrite nespustil slučku).
+# .php témy → čistá URL.
 RewriteCond %{THE_REQUEST} \s/+(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.php[\s?] [NC]
 RewriteRule ^(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.php$ /$1 [R=301,L]
 
 # Staré /files/*.html (témy + právne) → čisté URL.
+RewriteCond %{THE_REQUEST} \s/+files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html[\s?] [NC]
 RewriteRule ^files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html$ /$1 [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+files/(privacy|terms)\.html[\s?] [NC]
 RewriteRule ^files/(privacy|terms)\.html$ /$1 [R=301,L,NE]
 
-# Čisté URL → interné ciele (bez R=).
+# Čisté URL → interné ciele (bez R=). THE_REQUEST guard vyššie bráni slučke.
 RewriteRule ^(privacy|terms)/?$ /files/$1.html [L,NE]
 RewriteRule ^(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)/?$ /$1.php [L]
 
