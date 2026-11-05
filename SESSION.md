@@ -1,32 +1,37 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #24)
+Aktualizované: 2026-11-05 (loop iterácia #25)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `e891faf`
+HEAD: `b1da6ae`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship: title/content consistency v `blocks/promo.sk.php`
+- Product ship: ďalšia title/content consistency v `blocks/promo.sk.php`
   (overené oproti oficiálnym `<title>` stránkam):
-  - Bory: `title` BORY → Bory (zhoda s `alt` a nemocnica-bory.sk)
-  - ASN: `Of` → `of` (asn-online.org)
-  - ÖGFN: `Nefrologie` → `Nephrologie` (nephrologie.at)
+  - SIN: drop `La` → `Società Italiana di Nefrologia (SIN)` (sinitaly.org)
+  - Penta: `PentaHospitals` → `Penta Hospitals` (3 logo odkazy;
+    pentahospitals.com / .sk)
+  - SZU: `… Bratislava` → `… v Bratislave` (eszu.sk)
+  - KDIGO: `=` / `~` → `KDIGO - Kidney Disease: Improving Global Outcomes`
+    (kdigo.org)
+  - e-VÚC: `eVÚC` → `e-VÚC` (e-vuc.sk)
+  - Dekoratívne druhé logá ÖGFN/LF UPJŠ: `aria-hidden="true"`
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `28bd919`; post-commit SFTP nahral `promo.sk.php`;
+- Commit `b1da6ae`; post-commit SFTP nahral `promo.sk.php`;
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/transplantacia` → 200 + HSTS + CSP (enforced
   stále s `'unsafe-inline'`)
-- Produkcia `/`: Bory/ASN/ÖGFN title+alt zhodné s oficiálnymi názvami;
-  hints=144; staré BORY / Of / Nefrologie = 0
-- GHA Deploy `42106647063` success (rsync skip)
+- Produkcia `/`: nové title+alt (každý 2× title/alt); staré varianty 0;
+  hints=144
+- GHA Deploy `42107942654` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -53,8 +58,10 @@ HEAD: `e891faf`
   pri a11y scane ich treba brať osobitne.
 - Title/alt brand polish: overovať oficiálny `<title>` cieľovej stránky
   (GET + Chrome UA), nie len vnútornú zhodu title↔alt.
+- Inline Python cez PowerShell láme úvodzovky v title atribútoch; temp
+  `.py` súbor + `Path.write_text` je spoľahlivejší.
 
-## Ďalší fokus (loop #25)
+## Ďalší fokus (loop #26)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -66,8 +73,8 @@ HEAD: `e891faf`
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-214846-loop24-promo-title-consistency.md`
-- Audit: `.audit.md` Beh #35
+- Codex: `.codex/handoffs/2026-11-05-215712-loop25-promo-title-consistency.md`
+- Audit: `.audit.md` Beh #36
 
 ## Ďalší príkaz
 
