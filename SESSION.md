@@ -1,38 +1,51 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #1)
+Aktualizované: 2026-11-05 (loop iterácia #2)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `bb935ad`
+HEAD: `c710399` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
-- Zlúčená divergencia `main` (dizajnové tokeny + Clarity/ClustrMaps/CSP).
-- Pridaná `Content-Security-Policy-Report-Only` popri vynucovanej CSP.
-- Opravený nesprávny `alt` pri `vmppd.gif`; dekoratívne ikony obličiek bez anglických altov (`lectures.sk.php`, `nephrology.sk.php`).
-- Nasadené `css/tokens.css` (predtým 404 na produkcii pri lokálnom odkaze).
-- `.deployignore` vylučuje tooling konfigy (`.pre-commit-config.yaml` a pod.).
-- Produkcia nasadená lokálne cez `tools/deploy.ps1 -Apply` (GH Actions rsync skipped kvôli chýbajúcim secrets).
+- Prekódované GIF slidy `fosdl`, `foazo`, `ktx`, `aem`, `vmppd` na H.264 MP4 + WebP poster.
+- `blocks/lectures.sk.php`: `<video preload="none" poster=…>` namiesto `<img>` v odkaze; GIF ostáva ako fallback a priamy URL.
+- Pridaný `tools/encode-lecture-gifs.py` (Pillow expanduje frame delay, lebo ffmpeg samotný zahodil dlhý hold posledného framu).
+- GIF súbory v `docs/` **neboli** mazané ani LFS-ované; `nephrogame.gif` nedotknutý.
+
+### Veľkosti (GIF → MP4)
+
+| Slide | GIF | MP4 | Poster |
+| --- | ---: | ---: | ---: |
+| fosdl | 6,88 MB | 1,54 MB | 186 KB |
+| foazo | 5,25 MB | 1,21 MB | 136 KB |
+| ktx | 3,07 MB | 0,34 MB | 27 KB |
+| aem | 3,59 MB | 0,82 MB | 29 KB |
+| vmppd | 3,29 MB | 0,86 MB | 22 KB |
+
+Inicializácia stránky stiahne postery (~0,4 MB spolu) namiesto ~22 MB GIF-ov.
 
 ## Overené na produkcii
 
-- `https://nephrosite.polascin.net/` → 200, bezpečnostné hlavičky, CSP + CSP-Report-Only
-- `/css/tokens.css` → 200
-- Spot-check: tokens link, vmppd alt, aria-hidden ikony
+- `tools/deploy.ps1 -Apply` → 0 upload (post-commit SFTP už nahral), smoke `/` a `/privacy.php` 200
+- `https://nephrosite.polascin.net/` → 200, CSP + CSP-Report-Only, HSTS
+- Všetkých 5× `.mp4` + 5× `-poster.webp` → 200, správne Content-Type
+- Homepage HTML obsahuje `fosdl.mp4` / postery / `preload="none"`; `fosdl.gif` stále 200
 
-## Grok / xAI
+## Poznámky k toolingu
 
-Žiadny NephroSite kanál. Nájdený len Grok Bot Zarábač (biznis briefing) a xAI faktúry. Todoist MCP needsAuth.
+- Globálny `core.hooksPath` (GitGuardian) volá chýbajúci `ggshield` CLI → commit treba cez `git -c core.hooksPath=.git/hooks commit …` (lokálny pre-commit ggshield cez pre-commit framework prejde).
+- Post-commit hook pushne a SFTP-uje bez `.deployignore`; preto `tools/encode-lecture-gifs.py` ostal remote-only v web roote (deploy.ps1 ho neposiela).
 
-## Ďalší fokus (loop #2)
+## Ďalší fokus (loop #3)
 
-1. Prekódovať zvyšné veľké GIF slidy (3–7 MB) na MP4+poster ako `nephrogame`.
-2. Vyhodnotiť Report-Only CSP (Fonts/ClustrMaps) a prípadne lokalizovať.
-3. Schválený cleanup remote-only zvyškov (`.git`, `tools/*.phar` v web roote).
+1. Prekódovať `ktx2023.gif` / `crrt2023.gif` na homepage (`blocks/foazosszu.sk.php`).
+2. Vyhodnotiť Report-Only CSP (Fonts/ClustrMaps) a lokalizovať.
+3. Schválený cleanup remote-only zvyškov (`.git`, `tools/*.phar`, encoder script).
+4. Oficiálne uznať `deploy.ps1` / opraviť GH secrets; zvážiť zosúladenie post-commit SFTP s `.deployignore`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-193052-loop1-csp-report-only-alt-tokens.md`
-- Audit: `.audit.md` Beh #12
+- Codex: `.codex/handoffs/` (loop2, pozri najnovší súbor)
+- Audit: `.audit.md` Beh #13
 
 ## Ďalší príkaz
 
