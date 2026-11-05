@@ -1,33 +1,33 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #16)
+Aktualizované: 2026-11-05 (loop iterácia #17)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `eeeedab`
+HEAD: `068d217`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Footer badge browser verify: validator.w3.org a mxlinux.org ukazujú
-  Cloudflare challenge („Verification successful…“); fedoraproject.org a
-  distrowatch.com načítajú plný obsah. Badge odkazy **ponechané** (nie
-  dead links; automation 403 = WAF/bot filtering).
-- Product ship: cookie-banner same-origin `/privacy` odkazy bez
-  `target="_blank"` / `rel`; footer legal odkazy (`/privacy`, `/terms`,
-  `#legal-disclaimer`) bez zbytočného `rel="noopener noreferrer"`.
+- Product ship: same-origin PDF policy. Overené, že PDF idú
+  `application/pdf` bez `Content-Disposition` (inline, nie download).
+  - View odkazy (nadpis prednášky, MEL, KTx/CRRT, regcitra, ipvrm):
+    ponechané `target="_blank"` + `rel="noopener noreferrer"` +
+    `sr-only` "(PDF, otvorí sa v novom okne)".
+  - Odkazy s textom „na stiahnutie“: atribút `download`, bez `_blank`
+    (skutočné sťahovanie namiesto falošného open-in-new-tab).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
+- Commit `068d217`; post-commit SFTP; `deploy.ps1 -Apply` 0 upload;
+  smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/transplantacia` → 200 + HSTS + CSP (enforced
   stále s `'unsafe-inline'`)
-- Commits `57b5bd7` + `f67b9df`; post-commit SFTP; `deploy.ps1 -Apply`
-  0 upload; smoke direct 200
-- Produkcia: `/privacy` a `/terms` anchory bez `target="_blank"` a bez
-  `rel="noopener noreferrer"` v cookie-banneri aj v päte legal nav
-- GHA Deploy `42098848473` + `42099000099` success (rsync skip)
+- Produkcia `/`: `download=` 6, sr-only PDF hint 11, blank-pdf view 11;
+  KTx 2023 (PDF) prítomný
+- GHA Deploy `42099959216` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -43,21 +43,23 @@ HEAD: `eeeedab`
 - PowerShell: `$HOME` je rezervované; na HTML response použiť iný názov.
 - Externý 403 pri curl/Invoke-WebRequest nie je dôkaz dead linku: overiť
   v reálnom prehliadači (Cloudflare challenge vs 404).
+- Same-origin PDF `_blank` nie je defect pre view; defect bol „na stiahnutie“
+  bez `download` (súbory sú inline).
 
-## Ďalší fokus (loop #17)
+## Ďalší fokus (loop #18)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/links/content ship, ak telemetria stále smoke-only (napr.
-   same-origin PDF `target="_blank"` review; remaining external link
-   hygiene; content/segment consistency).
+   remaining external link hygiene; content/segment consistency;
+   GIF fallback size labels).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-205907-loop16-cookie-banner-same-origin.md`
-- Audit: `.audit.md` Beh #27
+- Codex: `.codex/handoffs/2026-11-05-210605-loop17-pdf-open-download.md`
+- Audit: `.audit.md` Beh #28
 
 ## Ďalší príkaz
 
