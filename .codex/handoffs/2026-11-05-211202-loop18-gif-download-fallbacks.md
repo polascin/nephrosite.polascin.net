@@ -6,7 +6,7 @@
 - Updated At: 2026-11-05T21:13:30+01:00
 - Project Root: D:\Dev\nephrosite.polascin.net
 - Git Branch: main
-- Head Commit: ee82d0b
+- Head Commit: ce862ed
 
 ## Original Goal
 
@@ -94,15 +94,15 @@ Iterácia #18 hotová. RO telemetria stále smoke-only (2 riadky). Enforced
 
 ## Recent Commits
 
+- ce862ed Document loop #18 GIF download fallback ship.
 - ee82d0b Mark GIF video fallbacks as real downloads.
 - 88b7658 Point loop #17 handoff HEAD to docs commit.
 - 8c6871a Document loop #17 PDF open/download ship.
 - 068d217 Clarify same-origin PDF open vs download behavior.
-- 87ba2e5 Point loop #16 handoff HEAD to docs commit.
 
 ## Modified Files
 
-- After docs/handoff commit: SESSION.md, .audit.md, this handoff
+- After HEAD retarget commit: SESSION.md, this handoff
 
 ## Context To Load
 
