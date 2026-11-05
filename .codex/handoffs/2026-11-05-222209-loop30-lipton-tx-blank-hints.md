@@ -6,7 +6,7 @@
 - Updated At: 2026-11-05T22:23:30+01:00
 - Project Root: D:\Dev\nephrosite.polascin.net
 - Git Branch: main
-- Head Commit: 0a40236
+- Head Commit: d485beb
 
 ## Original Goal
 
@@ -22,7 +22,7 @@ commit/push/deploy/smoke; SESSION + handoff.
 Iterácia #30 hotová. RO telemetria stále smoke-only (2 riadky). Enforced
 `'unsafe-inline'` ponechané. Ship: `files/lipton-tx.html` Martinus a
 eugenika.sk `_blank` odkazy dostali sr-only „(otvorí sa v novom okne)“.
-Repo na `main` @ `0a40236` (docs tip commit nasleduje).
+Repo na `main` @ `d485beb` (product `0a40236` + docs).
 
 ## Completed This Session
 
