@@ -281,8 +281,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.who.int/" target="_blank" rel="noopener noreferrer" title="World Health Organization" lang="en">
-	<img src="/weblogo/who-logo.png" alt="World Health Organization" class="imgpromo">
+<a href="https://www.who.int/" target="_blank" rel="noopener noreferrer" title="World Health Organization (WHO)" lang="en">
+	<img src="/weblogo/who-logo.png" alt="World Health Organization (WHO)" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
