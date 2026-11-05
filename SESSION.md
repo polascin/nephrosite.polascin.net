@@ -1,20 +1,20 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #38)
+Aktualizované: 2026-11-05 (loop iterácia #39)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `dd2a73d`
+HEAD: `c62b1b6`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
-  - `files/dialyza.html`: `nahradzuje`→`nahrádza`;
-    `je zvyčajne vykonávaná`→`sa zvyčajne vykonáva`
-  - `blocks/regcitra.sk.php` (homepage CRRT title):
-    `nahradzujúcej liečby`→`náhradnej liečby`
-- Segment `segments/dialyza.html` intro pasáž s `nahradzuje` nemá → sync
-  netreba.
+  - `ipvrm.htm`: `viacero výhod`→`viaceré výhody` (zhoda s transplantacia/IgAN)
+  - `files/nefamb.html`: odstránený anglicizmus `(dysbalancie elektrolytov)`
+    pri už existujúcom `Elektrolytové nerovnováhy`
+- Overené a **nechane**:
+  - `hyponatriémia` (MKCH E87.1 / odborná literatúra)
+  - `kosáčikovitá anémia` (ICD/SK medicínsky termín)
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
@@ -22,15 +22,16 @@ HEAD: `dd2a73d`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `dd2a73d`; post-commit SFTP nahral `files/dialyza.html` +
-  `blocks/regcitra.sk.php`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `c62b1b6`; post-commit SFTP nahral `ipvrm.htm` +
+  `files/nefamb.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
-  → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `náhradnej liečby` prítomné; `nahradzujúcej` absent
-- Produkcia `/dialyza`: `nahrádza` + `sa zvyčajne vykonáva` prítomné;
-  `nahradzuje`/`vykonávaná` absent
-- GHA Deploy `42118482430` success (rsync skip)
+  `/ipvrm.htm` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
+- Produkcia `/ipvrm.htm`: `viaceré … výhody` prítomné; `viacero … výhod`
+  absent
+- Produkcia `/nefamb`: `Elektrolytové nerovnováhy:` bez `dysbalancie`;
+  `hyponatriémia` ponechaná
+- GHA Deploy `42119106990` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -96,8 +97,10 @@ HEAD: `dd2a73d`
 - Preferovať `nahrádza`/`náhradná liečba` pred `nahradzuje`/`nahradzujúca`
   (zhoda s footer/cookie/terms); blank-hint scan môže dať false positive,
   keď je `<span class="sr-only">` až za PHP blokom vnútri `<a>`.
+- `hyponatriémia` a `kosáčikovitá anémia` sú zavedené SK/MKCH/ICD tvary;
+  nemenit́ bez dôkazu. `dysbalancie` je anglicizmus vedľa `nerovnováhy`.
 
-## Ďalší fokus (loop #39)
+## Ďalší fokus (loop #40)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -105,14 +108,12 @@ HEAD: `dd2a73d`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu; kandidáti: `ipvrm.htm` `viacero výhod`→`viaceré výhody`;
-   nefamb `dysbalancie`/ortografia `hyponatriémia`; purifikacia
-   `kosáčikovitá` vs zavedený termín).
+   o obsahu).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #38 nahradz wording)
-- Audit: `.audit.md` Beh #49
+- Codex: `.codex/handoffs/` (loop #39 ipvrm/nefamb wording)
+- Audit: `.audit.md` Beh #50
 
 ## Ďalší príkaz
 
