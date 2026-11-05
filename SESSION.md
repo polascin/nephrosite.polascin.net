@@ -1,38 +1,32 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #19)
+Aktualizované: 2026-11-05 (loop iterácia #20)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `e3c2995`
+HEAD: `a437631`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship: a11y pre externé `target="_blank"` odkazy.
-  Overené: na `/` 155× `_blank`, z toho 11 PDF so sr-only hintom a
-  **144 externých bez** „otvorí sa v novom okne“.
-  - `ensureExternalBlankLinksAreSafe()`: dopĺňa
-    `.sr-only.sr-only-new-window` ak hint chýba (noopener ostáva).
-  - Statické hinty: archive-notice, intro (vek/LinkedIn/Amazon),
-    current (beat/čas), `terms.html` (+ `.sr-only` v `files/legal.css`).
-  - Promo logo `alt`: skratky → plné názvy z `title`; druhé logo
-    dekoratívne `alt=""`; ISN „Nephrology“; NKF title.
-- Externé URL spot-check (GET/Chrome UA): Martinus 33 OK; 403/405/999
-  (LinkedIn, time.is HEAD, OUP) = bot/method noise, nie dead link.
+- Product ship: static a11y hinty pre lecture organizer / venue / author
+  `target="_blank"` (bez JS).
+  Overené: 65 externých blank v `lectures.sk.php`, organizer/venue/author
+  mali 0 static hintov → doplnených **32**
+  `.sr-only` „(otvorí sa v novom okne)“.
+  Martinus a OUP recommended lit ostávajú na JS helper z loop #19.
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `e3c2995`; post-commit SFTP; `deploy.ps1 -Apply` 0 upload;
-  smoke direct 200
+- Commit `a437631`; post-commit SFTP (`lectures.sk.php`);
+  `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/transplantacia` → 200 + HSTS + CSP (enforced
   stále s `'unsafe-inline'`)
-- Produkcia `/`: staticHintMentions=18, pdfHints=11,
-  jsHelperMarker=True, promoFullAlt=True, oldSnesAlt=False,
-  linkedinAlt=True; `/terms` hints=2
-- GHA Deploy `42102196491` success (rsync skip)
+- Produkcia `/`: hints=50 (bolo 18; +32), pdfHints=11,
+  organizerAesculap=True, eszu=True, author=True, jsHelperMarker=True
+- GHA Deploy `42102962134` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -53,19 +47,19 @@ HEAD: `e3c2995`
 - Martinus HEAD 404 / soft „nenájden“ v HTML môže byť falošný; overiť
   `<title>` produktovej stránky cez GET.
 
-## Ďalší fokus (loop #20)
+## Ďalší fokus (loop #21)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content ship, ak telemetria stále smoke-only (napr. content
-   consistency; static new-window hinty v lectures bez JS; title polish).
+   consistency; intro Bory static hints; Martinus no-JS; title polish).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-211946-loop19-external-blank-a11y.md`
-- Audit: `.audit.md` Beh #30
+- Codex: `.codex/handoffs/2026-11-05-212434-loop20-lecture-organizer-a11y.md`
+- Audit: `.audit.md` Beh #31
 
 ## Ďalší príkaz
 
