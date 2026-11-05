@@ -1,38 +1,33 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #36)
+Aktualizované: 2026-11-05 (loop iterácia #37)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `41be8c0`
+HEAD: `4f21898`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
-  - `files/dialyza.html` + `segments/dialyza.html`: CAPD
-    `4-5 krát denne`→`4-5-krát denne` (spojovník pred `krát`).
-  - `files/transplantacia.html` + `segments/transplantacia.html`:
-    `viacero výhod`→`viaceré výhody`,
-    `z dôvodu pôvodnej choroby`→`pre pôvodnú chorobu`.
+  - `segments/igan.html` + `segments/IgAN.sk.html`:
+    `Prebieha viacero klinických skúšaní`→`Prebiehajú viaceré klinické skúšania`
+    (zhoda čísla slovesa + nominatív plurálu).
+- Live include: `blocks/nephrology.sk.php` → `segments/igan.html` (homepage).
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Segment sync pre dialyza/transplantacia **áno** (homepage include).
-- IgAN `viacero klinických skúšaní` **nechane** na ďalší tick.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `41be8c0`; post-commit SFTP nahral dialyza/transplantacia
-  files+segments; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `4f21898`; post-commit SFTP nahral `segments/igan.html` +
+  `IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/dialyza` + homepage: `4-5-krát denne` prítomné;
-  `4-5 krát` absent
-- Produkcia `/transplantacia` + homepage: `viaceré výhody`,
-  `pre pôvodnú chorobu` prítomné; `viacero výhod` / `z dôvodu` absent
-- GHA Deploy `42117187527` success (rsync skip)
+- Produkcia `/`: `Prebiehajú viaceré klinické skúšania` prítomné;
+  `Prebieha viacero klinických skúšaní` absent; `viacero` count 0
+- GHA Deploy `42117700083` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -91,10 +86,12 @@ HEAD: `41be8c0`
   predložka `pochádzajúcimi z` (nie `s`) vedeckého skúmania;
   `detekciu` → `odhalenie` v pacientskom texte.
 - Číselná frekvencia: `4-5 krát` → `4-5-krát` (spojovník pred `krát`);
-  `viacero` + genitív → `viaceré` + nominatív plurálu; `z dôvodu` →
-  `pre` + akuzatív v pacientskom texte.
+  `viacero` + genitív → `viaceré` + nominatív plurálu (+ plurál slovesa);
+  `z dôvodu` → `pre` + akuzatív v pacientskom texte.
+- IgAN je na homepage cez `segments/igan.html`; `IgAN.sk.html` je paralelný
+  variant (opraviť oba pri wording fixoch).
 
-## Ďalší fokus (loop #37)
+## Ďalší fokus (loop #38)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -102,12 +99,13 @@ HEAD: `41be8c0`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu; ďalšie wording, napr. IgAN `viacero klinických skúšaní`).
+   o obsahu; ďalší verified wording/a11y mimo už opravených register
+   kandidátov).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #36 dialyza CAPD / transplantacia wording)
-- Audit: `.audit.md` Beh #47
+- Codex: `.codex/handoffs/` (loop #37 IgAN viacero wording)
+- Audit: `.audit.md` Beh #48
 
 ## Ďalší príkaz
 
