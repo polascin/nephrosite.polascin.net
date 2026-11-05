@@ -1,35 +1,32 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #23)
+Aktualizované: 2026-11-05 (loop iterácia #24)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `690bac9`
+HEAD: `28bd919`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship: static a11y hinty pre zvyšné footer image `_blank`
-  (Bluefish, W3 Schools, W3C validator, DistroWatch) + WHO alt polish
-  (`Organisation` → `Organization`, zhodné s `title`).
-- Overené defect: 4 footer tooling/image blanks bez static hintu
-  (nie `imgpromo`; DistroWatch `dw-banner`, W3C/W3 Schools/Bluefish).
-- Live footer tooling image blanks teraz so static hintom; prod hints
-  140 → **144** (+4).
+- Product ship: title/content consistency v `blocks/promo.sk.php`
+  (overené oproti oficiálnym `<title>` stránkam):
+  - Bory: `title` BORY → Bory (zhoda s `alt` a nemocnica-bory.sk)
+  - ASN: `Of` → `of` (asn-online.org)
+  - ÖGFN: `Nefrologie` → `Nephrologie` (nephrologie.at)
+- Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Žiadne `tools/_tmp-*` leftover (temp skript zmazaný pred commitom).
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `4f352b3`; post-commit SFTP nahral `footer.sk.php` + `promo.sk.php`;
+- Commit `28bd919`; post-commit SFTP nahral `promo.sk.php`;
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/transplantacia` → 200 + HSTS + CSP (enforced
   stále s `'unsafe-inline'`)
-- Produkcia `/`: hints=144 (bolo 140; +4), pdfHints=11;
-  DistroWatch/W3C/Bluefish/W3 Schools static hints=true;
-  WHO alt Organization
-- GHA Deploy `42105696759` success (rsync skip)
+- Produkcia `/`: Bory/ASN/ÖGFN title+alt zhodné s oficiálnymi názvami;
+  hints=144; staré BORY / Of / Nefrologie = 0
+- GHA Deploy `42106647063` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -47,28 +44,30 @@ HEAD: `690bac9`
   v reálnom prehliadači (Cloudflare challenge vs 404).
 - Same-origin PDF `_blank` nie je defect pre view; defect bol „na stiahnutie“
   bez `download` (súbory sú inline). To isté platí pre GIF fallbacky.
-- Martinus HEAD 404 / soft „nenájden“ v HTML môže byť falošný; overiť
+- Martinus HEAD 404 / text „nenájden“ v HTML môže byť falošný; overiť
   `<title>` produktovej stránky cez GET.
 - Pri počítaní `imgpromo` blanks odfiltrovať HTML komentáre (excluded
   vendor logos v `promo.sk.php`); PowerShell UTF-8 skripty môžu pokaziť
   diakrítiku (`otvorí` → mojibake) — preferovať Python `Path.write_text`.
 - Footer tooling logos (Bluefish/W3/W3C/DistroWatch) nie sú `imgpromo`;
   pri a11y scane ich treba brať osobitne.
+- Title/alt brand polish: overovať oficiálny `<title>` cieľovej stránky
+  (GET + Chrome UA), nie len vnútornú zhodu title↔alt.
 
-## Ďalší fokus (loop #24)
+## Ďalší fokus (loop #25)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
-4. Bug/a11y/content ship, ak telemetria stále smoke-only (title polish
-  inde; content consistency; uncommented intro Bory až po rozhodnutí
-  o obsahu).
+4. Bug/a11y/content ship, ak telemetria stále smoke-only (ďalší title
+   polish; content consistency; uncommented intro Bory až po rozhodnutí
+   o obsahu).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-214214-loop23-footer-tooling-a11y.md`
-- Audit: `.audit.md` Beh #34
+- Codex: `.codex/handoffs/2026-11-05-214846-loop24-promo-title-consistency.md`
+- Audit: `.audit.md` Beh #35
 
 ## Ďalší príkaz
 
