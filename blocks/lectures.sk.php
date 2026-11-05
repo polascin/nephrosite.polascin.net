@@ -20,7 +20,7 @@
 				       poster="/docs/fosdl-poster.webp" controls muted loop playsinline
 				       aria-label="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou — záznam prezentácie">
 					<source src="/docs/fosdl.mp4" type="video/mp4">
-					<a href="/docs/fosdl.gif">Animovaná verzia prezentácie (GIF, 7 MB)</a>
+					<a href="/docs/fosdl.gif" download>Animovaná verzia prezentácie na stiahnutie (GIF, 7&nbsp;MB)</a>
 				</video>
 				<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek</strong></span>
@@ -121,7 +121,7 @@
 				       poster="/docs/foazo-poster.webp" controls muted loop playsinline
 				       aria-label="Funkcie obličiek. Akútne zlyhanie obličiek. FOaZOŠ SZU Bratislava — záznam prezentácie">
 					<source src="/docs/foazo.mp4" type="video/mp4">
-					<a href="/docs/foazo.gif">Animovaná verzia prezentácie (GIF, 5 MB)</a>
+					<a href="/docs/foazo.gif" download>Animovaná verzia prezentácie na stiahnutie (GIF, 5&nbsp;MB)</a>
 				</video>
 				<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek. Akútne zlyhanie obličiek.</strong></span>
@@ -229,7 +229,7 @@
 				       poster="/docs/ktx-poster.webp" controls muted loop playsinline
 				       aria-label="Transplantácia obličiek. FOaZOŠ SZU Bratislava — záznam prezentácie">
 					<source src="/docs/ktx.mp4" type="video/mp4">
-					<a href="/docs/ktx.gif">Animovaná verzia prezentácie (GIF, 3 MB)</a>
+					<a href="/docs/ktx.gif" download>Animovaná verzia prezentácie na stiahnutie (GIF, 3&nbsp;MB)</a>
 				</video>
 				<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Transplantácie obličiek</strong></span>
@@ -327,7 +327,7 @@
 				       poster="/docs/aem-poster.webp" controls muted loop playsinline
 				       aria-label="Akútne eliminačné metódy. FOaZOŠ SZU Bratislava — záznam prezentácie">
 					<source src="/docs/aem.mp4" type="video/mp4">
-					<a href="/docs/aem.gif">Animovaná verzia prezentácie (GIF, 4 MB)</a>
+					<a href="/docs/aem.gif" download>Animovaná verzia prezentácie na stiahnutie (GIF, 4&nbsp;MB)</a>
 				</video>
 				<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Akútne eliminačné metódy. CRRT.</strong></span>
@@ -390,7 +390,7 @@
 				       poster="/docs/vmppd-poster.webp" controls muted loop playsinline
 				       aria-label="Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou — záznam prezentácie">
 					<source src="/docs/vmppd.mp4" type="video/mp4">
-					<a href="/docs/vmppd.gif">Animovaná verzia prezentácie (GIF, 3 MB)</a>
+					<a href="/docs/vmppd.gif" download>Animovaná verzia prezentácie na stiahnutie (GIF, 3&nbsp;MB)</a>
 				</video>
 				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou</strong></span>
@@ -449,7 +449,7 @@
 				       poster="/docs/nephrogame-poster.webp" controls muted loop playsinline
 				       aria-label="Hry a gamifikácia vo výučbe nefrológie a dialýzy — záznam prezentácie">
 					<source src="/docs/nephrogame.mp4" type="video/mp4">
-					<a href="/docs/nephrogame.gif">Animovaná verzia prezentácie (GIF, 168 MB)</a>
+					<a href="/docs/nephrogame.gif" download>Animovaná verzia prezentácie na stiahnutie (GIF, 168&nbsp;MB)</a>
 				</video>
 				<a href="/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
 				  <span class="presentation"><strong>Hry a gamifikácia vo výučbe nefrológie a dialýzy</strong></span>
