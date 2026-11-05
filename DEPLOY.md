@@ -110,3 +110,23 @@ opätovné overenie hashov na serveri a smoke test `/` a `/privacy.php`.
 
 Kým nie je lokálna cesta overená na produkcii, zostáva záväzná cesta cez
 GitHub Actions podľa `.cursor/rules/commit-push-deploy.mdc`.
+
+## Post-commit SFTP hook
+
+Lokálny `.git/hooks/post-commit` volá `deploy.sh`, ktorý po commite pushne vetvu
+a nahraje zmenené súbory cez SFTP. Skript musí rešpektovať `.deployignore`
+(rovnaký zámer ako `deploy.ps1`), inak uniknú do web rootu `tools/`, `*.md`,
+`.codex/` a pod. Referenčná kópia:
+
+```text
+tools/hooks/post-commit-deploy.sh
+```
+
+Inštalácia / obnova:
+
+```powershell
+Copy-Item -Force tools\hooks\post-commit-deploy.sh .git\hooks\deploy.sh
+```
+
+Hook **nemaže** remote-only zvyšky (`.git`, staré `tools/*.phar`, encoder);
+cleanup vyžaduje výslovný súhlas.

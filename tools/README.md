@@ -27,6 +27,19 @@ Stiahne `phpstan.phar` + `php-cs-fixer.phar` do `tools/` a vygeneruje
 | `phpstan-baseline.neon` | zoznam ignorovaných existujúcich nálezov (regeneruje install skript) |
 | `.php-cs-fixer.dist.php`| PHP-CS-Fixer - konzervatívna sada nízkorizikových pravidiel          |
 
+## Post-commit SFTP hook
+
+Po commite sa (ak je nainštalovaný) spustí SFTP upload cez
+`tools/hooks/post-commit-deploy.sh` → `.git/hooks/deploy.sh`. Skript filtruje
+cesty podľa `.deployignore` a **neuploaduje** `tools/`, dokumentáciu ani
+lokálne tooling. Obnova hooku:
+
+```powershell
+Copy-Item -Force tools\hooks\post-commit-deploy.sh .git\hooks\deploy.sh
+```
+
+Produkčný smoke a hash overenie stále robí `.\tools\deploy.ps1 -Apply`.
+
 ## CSP návrh a regresie
 
 ```powershell
