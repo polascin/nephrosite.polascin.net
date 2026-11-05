@@ -1,27 +1,29 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #11)
+Aktualizované: 2026-11-05 (loop iterácia #12)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `77f109e` (docs/handoff commit môže nasledovať)
+HEAD: `f8409b5` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Oficiálne uznanie lokálneho deployu: `tools/deploy.ps1 -Apply` + post-commit
-  SFTP sú **autoritatívna** produkčná cesta, kým chýbajú `DEPLOY_*` secrets.
-- `DEPLOY.md`, rule `commit-push-deploy.mdc` (vetva `main`), `.doaudit.md`,
-  GHA notice pri skip rsync, banner + direct-200 smoke v `deploy.ps1`.
-- Remote-only (~69) **nemažeť** bez súhlasu.
+- Product ship: `/privacy` reset súhlasu teraz maže **localStorage aj**
+  cookie `nephro_consent_v1`; sekcia `#consent-controls`; texty privacy /
+  terms / cookie banneru zosúladené so skutočnými ovládacími prvkami;
+  a11y (skip-link, 44px, legal-nav).
+- Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
 - Clean URL smoke (MaximumRedirection 0): `/` `/privacy` `/terms`
   `/nefrologia` → 200
-- Commit `77f109e`; post-commit push; `deploy.ps1 -Apply` 0 upload; smoke
+- Commit `f8409b5`; post-commit SFTP; `deploy.ps1 -Apply` 0 upload; smoke
   direct 200
-- GHA Deploy `42095182321` success (rsync skip + nový notice o local deploy)
+- Produkcia: `#consent-controls`, privacy-consent.js maže Secure cookie,
+  terms odkazuje na správu súhlasu; HSTS + CSP (stále s `'unsafe-inline'`)
+- GHA Deploy `42095812695` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -30,19 +32,21 @@ HEAD: `77f109e` (docs/handoff commit môže nasledovať)
 - WAF 466 pri krátkom UA; smoke s Chrome UA.
 - Pri rewrite: **vždy** `THE_REQUEST` (alebo `[END]`) pre 301 zo cieľa
   interného rewrite.
+- Lokálny `tools/deploy.ps1 -Apply` (+ post-commit SFTP) je autoritatívny
+  sync, kým chýbajú `DEPLOY_*` secrets.
 
-## Ďalší fokus (loop #12)
+## Ďalší fokus (loop #13)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
-4. Bug/a11y/topic/cookie ship, ak telemetria stále smoke-only.
+4. Bug/a11y/topic/links ship, ak telemetria stále smoke-only.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-203504-loop11-local-deploy-authority.md`
-- Audit: `.audit.md` Beh #22
+- Codex: `.codex/handoffs/2026-11-05-203923-loop12-consent-reset-fix.md`
+- Audit: `.audit.md` Beh #23
 
 ## Ďalší príkaz
 
