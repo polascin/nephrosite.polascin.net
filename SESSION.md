@@ -1,43 +1,48 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #55)
+Aktualizované: 2026-11-06 (loop iterácia #56)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `dd33d8e`
+HEAD: `a15c074` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship (overené, non-IgAN/USG):
-  - `files/nefamb.html`:
-    `vykonať patria` → `vykonať, patria` (chýbajúca čiarka);
-    `vizualizáciu` → `zobrazenie` (anglicizmus);
-    `adekvátneho odberu` → `správneho odberu` (anglicizmus v pacientskom
-    texte; ABPM názov **Ambulantné monitorovanie…** nechaný)
-  - `blocks/lectures.sk.php`:
-    `V rámci kurzu` → `V kurze` (4×);
-    `V rámci zasadnutia` → `Na zasadnutí`
-- a11y scan `_blank`/sr-only po strip komentárov: **0 misses**
+- Product ship (overené, non-IgAN/USG/nefamb/lectures):
+  - `files/dialyza.html` + `segments/dialyza.html`:
+    `v prevažnej väčšine dialyzovaných pacientov` →
+    `u prevažnej väčšiny dialyzovaných pacientov`;
+    segments sync `cycler`/`cycleru` → `cykler`/`cykleru`;
+    `8 - 10` → `8-10` (zhoda s files)
+  - `files/transplantacia.html` (+ segments sync):
+    `prispôsobeniu liekov` → `úprave liekov`;
+    `darcu (donora)` → `darcu`
+  - `ipvrm.htm`:
+    `V rámci inovatívneho vzdelávania` → `V inovatívnom vzdelávaní`;
+    `zabezpečujú platformu na zdieľanie` →
+    `poskytujú priestor na výmenu`
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
-  - IgAN/USG tip path (žiadny churn)
+  - IgAN/USG/nefamb/lectures tip path (žiadny churn)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `dd33d8e`; post-commit SFTP nahral `files/nefamb.html` +
-  `blocks/lectures.sk.php`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `a15c074`; post-commit SFTP nahral dialyza/transplant/ipvrm +
+  segments; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/nefamb`: `zobrazenie` + `správneho odberu` + `vykonať, patria`
-  prítomné; `vizualizáciu` / `adekvátneho odberu` absent
-- Produkcia `/`: `V kurze` ×4 + `Na zasadnutí` prítomné; `V rámci kurzu` /
-  `V rámci zasadnutia` absent
-- GHA Deploy `42128845409` success (rsync skip)
+- Produkcia `/dialyza` + `/`: `u prevažnej väčšiny` prítomné;
+  `v prevažnej väčšine` absent; homepage `cykler` (nie `cycler`)
+- Produkcia `/transplantacia` + `/`: `úprave liekov` prítomné;
+  `prispôsobeniu liekov` / `darcu (donora)` absent
+- Produkcia `/ipvrm.htm`: `V inovatívnom vzdelávaní` +
+  `poskytujú priestor na výmenu` prítomné; staré tvary absent
+- GHA Deploy `42129925838` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -137,12 +142,16 @@ HEAD: `dd33d8e`
   `zo strany`; `aby sa zabezpečilo správne fungovanie… a monitorovali sa`
   → priame `aby transplantovaná oblička správne fungovala a aby sa včas
   zachytili…`; `prispôsobenie životného štýlu` → `úpravu životného štýlu`;
+  `prispôsobeniu liekov` → `úprave liekov`; `darcu (donora)` → `darcu`
+  (EN gloss zbytočný vedľa SK `darcu`);
   `zabezpečenie hygieny potravín` → `hygiena pri potravinách`.
   Literárny Lipton `jedinec` nemeniť ako pacientsky kalk.
 - Sync `files/transplantacia.html` aj `segments/transplantacia.html`.
 - Pacientsky dialýza/HDF: `z hľadiska znižovania chorobnosti…` je
   úradnícky kalk → priame `pretože … lepšie znižuje chorobnosť …
-  a úmrtnosť …`; medicínske fakty (HDF vs HD, morbidity/mortality)
+  a úmrtnosť …`; predložka pri väčšine pacientov: `u prevažnej väčšiny`
+  (nie `v prevažnej väčšine`); segments sync EN `cycler` → SK `cykler`
+  (zhoda s `files/`). Medicínske fakty (HDF vs HD, morbidity/mortality)
   nemenit́. Sync `files/dialyza.html` aj `segments/dialyza.html`.
 - Pacientsky `ako aj`: overiť každý výskyt. Defecty typicky: (a) redundantné
   po už spojenej vymenovávačke, (b) visiaci genitív po inštrumentáli
@@ -163,10 +172,13 @@ HEAD: `dd33d8e`
 - Pacientsky/UI: EN *visualization* → `zobrazenie` (nie `vizualizáciu`);
   `adekvátneho odberu` → `správneho odberu` (v pacientskom texte;
   odbornú „adekvátnosť dialýzy“ nemenit́ bez dôvodu).
-  Úradnícky `V rámci kurzu/zasadnutia` → `V kurze` / `Na zasadnutí`.
+  Úradnícky `V rámci kurzu/zasadnutia` → `V kurze` / `Na zasadnutí`;
+  rovnako ipvrm `V rámci inovatívneho vzdelávania` →
+  `V inovatívnom vzdelávaní`; `platformu na zdieľanie` →
+  `priestor na výmenu`.
   `nefamb` nemá `segments/` mirror; lectures sú len v `blocks/`.
 
-## Ďalší fokus (loop #56)
+## Ďalší fokus (loop #57)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -175,13 +187,13 @@ HEAD: `dd33d8e`
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
-   non-IgAN/USG/nefamb-lectures tip churn; kandidát: dialyza/transplant/
-   purifikacia/ipvrm/legal/tooling.
+   non-IgAN/USG/nefamb-lectures/práve-shipnutý dialyza-transplant-ipvrm tip
+   churn; kandidát: purifikacia/legal/tooling/nefrologia.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #55 nefamb/lectures wording)
-- Audit: `.audit.md` Beh #66
+- Codex: `.codex/handoffs/` (loop #56 dialyza/transplant/ipvrm wording)
+- Audit: `.audit.md` Beh #67
 
 ## Ďalší príkaz
 
