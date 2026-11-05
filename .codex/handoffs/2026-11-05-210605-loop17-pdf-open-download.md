@@ -6,7 +6,7 @@
 - Updated At: 2026-11-05T21:07:30+01:00
 - Project Root: D:\Dev\nephrosite.polascin.net
 - Git Branch: main
-- Head Commit: 068d217
+- Head Commit: 8c6871a
 
 ## Original Goal
 
@@ -96,6 +96,7 @@ policy (view `_blank` + sr-only; download-labeled → `download`). Repo na
 
 ## Recent Commits
 
+- 8c6871a Document loop #17 PDF open/download ship.
 - 068d217 Clarify same-origin PDF open vs download behavior.
 - 87ba2e5 Point loop #16 handoff HEAD to docs commit.
 - eeeedab Document loop #16 cookie-banner same-origin link ship.
