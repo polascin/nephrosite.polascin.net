@@ -31,28 +31,28 @@
 				<small>
 					<br>
 					<a href="https://czsk.aesculap-academy.com/" target="_blank" rel="noopener noreferrer">
-						Aesculap Akadémia Bratislava,
+						Aesculap Akadémia Bratislava,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<a href="https://www.bbraun.sk/" target="_blank" rel="noopener noreferrer">
-						B. Braun.
+						B. Braun.<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<a href="https://czsk.aesculap-academy.com/" target="_blank" rel="noopener noreferrer">
-						Aesculap Academy
+						Aesculap Academy<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					Poľnohospodárska 8273/20,
 					<a href="https://www.vrakuna.sk/" target="_blank" rel="noopener noreferrer">
-						Mestská časť Vrakuňa,
+						Mestská časť Vrakuňa,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					821 07
 					<a href="https://bratislava.sk/" target="_blank" rel="noopener noreferrer">
-						Bratislava
+						Bratislava<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 				</small>
 				<strong>
 					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
-						Ľubomír Polaščín
+						Ľubomír Polaščín<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>,
 					11. 05. 2023
 				</strong>
@@ -132,25 +132,25 @@
 				<small>
 					<br>
 					<a href="https://eszu.sk/foazos/" target="_blank" rel="noopener noreferrer">
-						Fakulta ošetrovateľstva a zdravotníckych odborných štúdií,
+						Fakulta ošetrovateľstva a zdravotníckych odborných štúdií,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<a href="https://www.eszu.sk/" target="_blank" rel="noopener noreferrer">
-						Slovenská zdravotnícka univerzita
+						Slovenská zdravotnícka univerzita<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					Limbová 12-14,
 					<a href="https://www.banm.sk/" target="_blank" rel="noopener noreferrer">
-						Mestská časť Nové Mesto,
+						Mestská časť Nové Mesto,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					833 03
 					<a href="https://bratislava.sk/" target="_blank" rel="noopener noreferrer">
-						Bratislava
+						Bratislava<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 				</small>
 				<strong>
 					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
-						Ľubomír Polaščín
+						Ľubomír Polaščín<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>,
 					26. 04. 2023
 				</strong>
@@ -240,25 +240,25 @@
 				<small>
 					<br>
 					<a href="https://eszu.sk/foazos/" target="_blank" rel="noopener noreferrer">
-						Fakulta ošetrovateľstva a zdravotníckych odborných štúdií,
+						Fakulta ošetrovateľstva a zdravotníckych odborných štúdií,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<a href="https://www.eszu.sk/" target="_blank" rel="noopener noreferrer">
-						Slovenská zdravotnícka univerzita
+						Slovenská zdravotnícka univerzita<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					Limbová 12-14,
 					<a href="https://www.banm.sk/" target="_blank" rel="noopener noreferrer">
-						Mestská časť Nové Mesto,
+						Mestská časť Nové Mesto,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					833 03
 					<a href="https://bratislava.sk/" target="_blank" rel="noopener noreferrer">
-						Bratislava
+						Bratislava<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 				</small>
 				<strong>
 					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
-						Ľubomír Polaščín
+						Ľubomír Polaščín<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>,
 					08. 11. 2022
 				</strong>
@@ -338,25 +338,25 @@
 				<small>
 					<br>
 					<a href="https://eszu.sk/foazos/" target="_blank" rel="noopener noreferrer">
-						Fakulta ošetrovateľstva a zdravotníckych odborných štúdií,
+						Fakulta ošetrovateľstva a zdravotníckych odborných štúdií,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<a href="https://www.eszu.sk/" target="_blank" rel="noopener noreferrer">
-						Slovenská zdravotnícka univerzita
+						Slovenská zdravotnícka univerzita<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					Limbová 12-14,
 					<a href="https://www.banm.sk/" target="_blank" rel="noopener noreferrer">
-						Mestská časť Nové Mesto,
+						Mestská časť Nové Mesto,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					833 03
 					<a href="https://bratislava.sk/" target="_blank" rel="noopener noreferrer">
-						Bratislava
+						Bratislava<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 				</small>
 				<strong>
 					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
-						Ľubomír Polaščín
+						Ľubomír Polaščín<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>,
 					08. 11. 2022
 				</strong>
@@ -401,21 +401,21 @@
 				<small>
 					<br>
 					<a href="https://www.bbraun.sk/" target="_blank" rel="noopener noreferrer">
-						B. Braun Avitum spol. s.r.o.,
+						B. Braun Avitum spol. s.r.o.,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					Poľnohospodárska 8273/20,
 					<a href="https://www.vrakuna.sk/" target="_blank" rel="noopener noreferrer">
-						Mestská časť Vrakuňa,
+						Mestská časť Vrakuňa,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					821 07
 					<a href="https://bratislava.sk/" target="_blank" rel="noopener noreferrer">
-						Bratislava
+						Bratislava<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 				</small>
 				<strong>
 					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
-						Ľubomír Polaščín
+						Ľubomír Polaščín<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>,
 					13. 10. 2020
 				</strong>
@@ -457,31 +457,31 @@
 				</a>
 				<br>
 				<a href="https://czsk.aesculap-academy.com/contentpage/285407" target="_blank" rel="noopener noreferrer">
-					<small><em>V rámci zasadnutia Vedeckej rady Aesculap Akademie</em></small>
+					<small><em>V rámci zasadnutia Vedeckej rady Aesculap Akademie</em></small><span class="sr-only"> (otvorí sa v novom okne)</span>
 				</a>
 				<small>
 					<br>
 					<a href="https://www.bbraun.cz/cs/spolecnost/pavilon-b-braun-dialog/vzdelavaci-centrum-aesculap-akademie.html" target="_blank" rel="noopener noreferrer">
-						Aesculap Akademie,
+						Aesculap Akademie,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<a href="https://www.bbraun.cz/" target="_blank" rel="noopener noreferrer">
-						Pavilon B. Braun Dialog.
+						Pavilon B. Braun Dialog.<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<a href="https://czsk.aesculap-academy.com/" target="_blank" rel="noopener noreferrer">
-						Aesculap Academy
+						Aesculap Academy<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					Budínova 2464/2b
 					<br>
 					180 00
 					<a href="https://www.praha8.cz/" target="_blank" rel="noopener noreferrer">
-						Praha 8
+						Praha 8<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 				</small>
 				<strong>
 					<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
-						Ľubomír Polaščín
+						Ľubomír Polaščín<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>,
 					30. 05. 2023
 				</strong>
@@ -515,7 +515,7 @@
 					<em>
 						&copy;
 						<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
-							MUDr. Ľubomír Polaščín,
+							MUDr. Ľubomír Polaščín,<span class="sr-only"> (otvorí sa v novom okne)</span>
 						</a>
 						2003 - <?php echo(date("Y", time()));?>.
 					</em>
