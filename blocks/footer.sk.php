@@ -6,7 +6,7 @@
 	Návrh webovej lokality, vývoj, administrácia webového sídla a autorské práva
 	<br>
 	<strong>
-		<a href="mailto:lubomir@polascin.net" target="_blank" rel="noopener noreferrer" title="Pošli e-mail">
+		<a href="mailto:lubomir@polascin.net" title="Pošli e-mail">
 			<span class="copyright-name">
 				Ľubomír Polaščín
 				&copy; <small>1998 - <?php echo(date("Y"));?></small>

@@ -62,7 +62,6 @@
 <div style="text-align: justify; padding: 3em; background-color: white;">
 	<?php $teaser = ["file" => "transplantacia.html", "title" => "Transplantácia obličky", "slug" => "transplantacia"]; ?>
 	<?php include __DIR__ . "/topic-teaser.php"; ?>
-	<?php require "./segments/transplantacia.html"; ?>
 	<p class="topic-permalink"><a href="/lipton-tx">Bruce H. Lipton o transplantovaných orgánoch</a></p>
 </div>
 
