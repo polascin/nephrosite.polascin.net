@@ -1,37 +1,43 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #43)
+Aktualizované: 2026-11-05 (loop iterácia #44)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `4bebd4c`
+HEAD: `8bab3f9`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship (overené, non-promo content):
-  - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `pre osoby s IgA`→`pre ľudí s IgA` (genitív po `pre`);
-    `zosúladiť vedľajšie účinky liekov, zmeny stravy a úpravu…`→
-    `sa vyrovnať s vedľajšími účinkami liekov, so zmenami stravy a s úpravou…`
+- Product ship (overené, non-promo, mimo IgAN):
+  - `files/transplantacia.html` + `segments/transplantacia.html`:
+    `Monitorovanie`→`Sledovanie`;
+    `starostlivosť zo strany lekárov`→`starostlivosť lekárov`;
+    `aby sa zabezpečilo správne fungovanie… a monitorovali sa…`→
+    `aby transplantovaná oblička správne fungovala a aby sa včas
+    zachytili…`;
+    `prispôsobenie životného štýlu, ako napríklad zmena`→
+    `úpravu životného štýlu, napríklad zmenu`;
+    `zabezpečenie hygieny potravín`→`hygiena pri potravinách`.
 - Overené a **nechane**:
-  - legal `poskytovateľ zdravotnej starostlivosti` v `privacy`/`terms`
-  - `osoby, ktoré majú rizikové faktory` (iná väzba, nie `osoby s`)
-  - IgAN `v dôsledku zníženej schopnosti`; `hyponatriémia`; `kosáčikovitá anémia`
-- ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
+  - IgAN `v dôsledku zníženej schopnosti`; `hyponatriémia`;
+    `kosáčikovitá anémia`; legal `poskytovateľ…`
+  - Lipton `jedinec`/`jedincov` (literárny preklad, nie pacientsky kalk)
+  - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `4bebd4c`; post-commit SFTP nahral `segments/igan.html` +
-  `IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `8bab3f9`; post-commit SFTP nahral oba transplant súbory;
+  `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: nové IgAN formulácie prítomné; `pre osoby s IgA`,
-  `zosúladiť vedľajšie účinky` absent
-- GHA Deploy `42121508992` success (rsync skip)
+- Produkcia `/` a `/transplantacia`: nové formulácie prítomné; staré
+  `Monitorovanie a následná`, `zo strany lekárov`,
+  `zabezpečenie hygieny potravín`, `prispôsobenie životného štýlu` absent
+- GHA Deploy `42122220816` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -114,8 +120,16 @@ HEAD: `4bebd4c`
   EN *balance side effects* → `vyrovnať sa s vedľajšími účinkami` (nie
   `zosúladiť vedľajšie účinky`); `osoby, ktoré majú` nie je to isté ako
   `osoby s` a nemusí sa meniť.
+- Pacientsky transplant: `Monitorovanie` → `Sledovanie` (zhoda s
+  `sledovanie` v texte); `zo strany lekárov` je úradnícky kalk → vypustiť
+  `zo strany`; `aby sa zabezpečilo správne fungovanie… a monitorovali sa`
+  → priame `aby transplantovaná oblička správne fungovala a aby sa včas
+  zachytili…`; `prispôsobenie životného štýlu` → `úpravu životného štýlu`;
+  `zabezpečenie hygieny potravín` → `hygiena pri potravinách`.
+  Literárny Lipton `jedinec` nemeniť ako pacientsky kalk.
+- Sync `files/transplantacia.html` aj `segments/transplantacia.html`.
 
-## Ďalší fokus (loop #44)
+## Ďalší fokus (loop #45)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -123,12 +137,13 @@ HEAD: `4bebd4c`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu).
+   o obsahu). Kandidáti: nefamb `ako aj` zhustenie; dialýza `z hľadiska
+   znižovania chorobnosti`; nie Lipton `jedinec`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #43 IgAN ľudia/vyrovnať)
-- Audit: `.audit.md` Beh #54
+- Codex: `.codex/handoffs/` (loop #44 transplant sledovanie)
+- Audit: `.audit.md` Beh #55
 
 ## Ďalší príkaz
 
