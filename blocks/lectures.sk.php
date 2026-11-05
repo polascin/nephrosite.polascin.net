@@ -16,9 +16,12 @@
 	<tbody>
 		<tr>
 			<td>
-				<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/fosdl.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide" loading="lazy">
-				</a>
+				<video class="slide" width="1280" height="720" preload="none"
+				       poster="/docs/fosdl-poster.webp" controls muted loop playsinline
+				       aria-label="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou — záznam prezentácie">
+					<source src="/docs/fosdl.mp4" type="video/mp4">
+					<a href="/docs/fosdl.gif">Animovaná verzia prezentácie (GIF, 7 MB)</a>
+				</video>
 				<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek</strong></span>
 					<br>
@@ -113,9 +116,12 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/foazo.gif" alt="Funkcie obličiek. Akútne zlyhanie obličiek. FOaZOŠ SZU Bratislava" class="slide" loading="lazy">
-				</a>
+				<video class="slide" width="1280" height="720" preload="none"
+				       poster="/docs/foazo-poster.webp" controls muted loop playsinline
+				       aria-label="Funkcie obličiek. Akútne zlyhanie obličiek. FOaZOŠ SZU Bratislava — záznam prezentácie">
+					<source src="/docs/foazo.mp4" type="video/mp4">
+					<a href="/docs/foazo.gif">Animovaná verzia prezentácie (GIF, 5 MB)</a>
+				</video>
 				<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Funkcie obličiek. Akútne zlyhanie obličiek.</strong></span>
 					<br>
@@ -217,9 +223,12 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/ktx.gif" alt="Transplantácia obličiek. FOaZOŠ SZU Bratislava" class="slide" loading="lazy">
-				</a>
+				<video class="slide" width="1280" height="720" preload="none"
+				       poster="/docs/ktx-poster.webp" controls muted loop playsinline
+				       aria-label="Transplantácia obličiek. FOaZOŠ SZU Bratislava — záznam prezentácie">
+					<source src="/docs/ktx.mp4" type="video/mp4">
+					<a href="/docs/ktx.gif">Animovaná verzia prezentácie (GIF, 3 MB)</a>
+				</video>
 				<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Transplantácie obličiek</strong></span>
 					<br>
@@ -311,9 +320,12 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/aem.gif" alt="Akútne eliminačné metódy. FOaZOŠ SZU Bratislava" class="slide" loading="lazy">
-				</a>
+				<video class="slide" width="1280" height="720" preload="none"
+				       poster="/docs/aem-poster.webp" controls muted loop playsinline
+				       aria-label="Akútne eliminačné metódy. FOaZOŠ SZU Bratislava — záznam prezentácie">
+					<source src="/docs/aem.mp4" type="video/mp4">
+					<a href="/docs/aem.gif">Animovaná verzia prezentácie (GIF, 4 MB)</a>
+				</video>
 				<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Akútne eliminačné metódy. CRRT.</strong></span>
 					<br>
@@ -370,9 +382,12 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/vmppd.gif" alt="Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou" class="slide" loading="lazy">
-				</a>
+				<video class="slide" width="1280" height="720" preload="none"
+				       poster="/docs/vmppd-poster.webp" controls muted loop playsinline
+				       aria-label="Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou — záznam prezentácie">
+					<source src="/docs/vmppd.mp4" type="video/mp4">
+					<a href="/docs/vmppd.gif">Animovaná verzia prezentácie (GIF, 3 MB)</a>
+				</video>
 				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou</strong></span>
 					<br>
