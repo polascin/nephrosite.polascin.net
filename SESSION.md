@@ -1,53 +1,54 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #8)
+Aktualizované: 2026-11-05 (loop iterácia #9)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `fa7709d` (docs/handoff commit môže nasledovať)
+HEAD: `888ab28` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
-- Hybrid CSP: PHP dokumenty cez `blocks/csp-bootstrap.php`; static cez
-  `.htaccess` `FilesMatch`.
-- Enforced: `'unsafe-inline'` ponechané, **bez** `'nonce-…'` v headeri
-  (CSP3 by nonce vypol unsafe-inline).
-- Report-Only na PHP: `script-src 'self' 'nonce-…'` zhodný s markup nonce.
-- Static RO: `script-src 'self'` (bez request nonce).
-- Entry: `index.php`, `blocks/topic-page.php` → `nephrosite_csp_send_headers()`.
-- Testy/docs: `tools/test-csp.php`, `docs/CSP-REPORT-ONLY.md`.
+- RO telemetria cez SSH: **2 riadky**, oba smoke/test
+  (`evil.example`, `inline` bez sample) → **neodstraňovať** enforced
+  `'unsafe-inline'`.
+- `tools/csp-report-summary.ps1` (súkromný SSH súhrn; HTTP 403 na log).
+- Cache-Control: `woff2`/`ofl` 1y immutable; `fonts.css`/`tokens.css`/
+  `legal.css`/`privacy-consent.js`/ClustrMaps SVG 7d.
+- Privacy/terms: dátum 05.11.2026; interné odkazy na `/privacy`/`/terms`.
+- `sitemap.xml` lastmod 2026-11-05.
+- Inventár remote-only 69: `docs/REMOTE-ONLY-INVENTORY.md` (bez mazania).
 
 ## Overené na produkcii
 
-- Commit `fa7709d`; post-commit SFTP; `deploy.ps1 -Apply` → 0 upload;
-  `origin/main` = `fa7709d`
-- `/`, `/dialyza.php`, `/nefrologia.php` 200; RO nonce = HTML nonce;
-  cookie banner; HSTS; Reporting-Endpoints
-- `/files/privacy.html` Apache CSP; RO bez nonce
-- `POST /csp-report.php` → 204; `GET` → 405; `/blocks/csp-bootstrap.php` → 403
-- `php tools/test-csp.php` → PASS; `node tools/test-integrations.cjs` → PASS
+- Commit `888ab28`; post-commit SFTP; `deploy.ps1 -Apply` → 0 upload;
+  GHA Deploy `42093214113` success; CSP regression success
+- `/` 200; HSTS; Reporting-Endpoints; enforced stále `unsafe-inline`
+- Fonty: `Cache-Control: public, max-age=31536000, immutable` (po cache-bust /
+  nový súbor); CSS/legal 604800
+- `/privacy` → 05.11.2026 + odkaz `/terms`; sitemap lastmod 2026-11-05
+- `php tools/test-csp.php` → PASS; `csp-report-summary.ps1` → smoke-only verdict
 
 ## Poznámky k toolingu
 
 - Commit cez `git -c core.hooksPath=.git/hooks` (globálny GG); ggshield Passed.
-- Remote-only ~69 (pribudol `private/csp-reports/reports.jsonl`); **nemažeť
-  bez súhlasu**.
-- WAF 466 pri krátkom/neúplnom User-Agent; smoke s Chrome UA.
+- Remote-only ~69; **nemažeť bez súhlasu** (pozri inventár).
+- WAF 466 pri krátkom UA; smoke s Chrome UA.
+- Edge môže krátko držať staré odpovede bez Cache-Control; overiť `?v=`
+  alebo iný ešte necachovaný asset.
 
-## Ďalší fokus (loop #9)
+## Ďalší fokus (loop #10)
 
-1. RO telemetria → rozhodnúť o enforced bez `'unsafe-inline'` (len so strong
-   evidence vrátane Clarity/GTM consent paths).
-2. Schválený cleanup remote-only (~69).
+1. Zbieraj RO telemetriu (`csp-report-summary.ps1`); drop `'unsafe-inline'`
+   len so strong evidence + Clarity/GTM consent paths.
+2. Schválený cleanup remote-only (A–C v inventári; keep `reports.jsonl`).
 3. Oficiálne uznať `deploy.ps1` / opraviť GH secrets.
-4. Voliteľne zosúladiť hosting CSP na privacy/terms.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-201608-loop8-csp-php-bootstrap.md`
-- Audit: `.audit.md` Beh #19
+- Codex: `.codex/handoffs/2026-11-05-202343-loop9-csp-telemetry-font-cache.md`
+- Audit: `.audit.md` Beh #20
 
 ## Ďalší príkaz
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\deploy.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\csp-report-summary.ps1
 php tools/test-csp.php
 ```
