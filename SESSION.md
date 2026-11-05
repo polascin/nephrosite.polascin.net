@@ -1,8 +1,8 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #42)
+Aktualizované: 2026-11-05 (loop iterácia #43)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `2ce776e`
+HEAD: `4bebd4c`
 
 ## Čo je hotové v tejto iterácii
 
@@ -10,11 +10,12 @@ HEAD: `2ce776e`
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
   - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `environmentálnych faktorov`→`faktorov prostredia`;
-    `poskytovateľ(ovi) zdravotnej starostlivosti`→`lekár`/`lekárovi` (2×);
-    `Taktiež musia`→`Musia tiež`
+    `pre osoby s IgA`→`pre ľudí s IgA` (genitív po `pre`);
+    `zosúladiť vedľajšie účinky liekov, zmeny stravy a úpravu…`→
+    `sa vyrovnať s vedľajšími účinkami liekov, so zmenami stravy a s úpravou…`
 - Overené a **nechane**:
   - legal `poskytovateľ zdravotnej starostlivosti` v `privacy`/`terms`
+  - `osoby, ktoré majú rizikové faktory` (iná väzba, nie `osoby s`)
   - IgAN `v dôsledku zníženej schopnosti`; `hyponatriémia`; `kosáčikovitá anémia`
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
@@ -23,15 +24,14 @@ HEAD: `2ce776e`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `2ce776e`; post-commit SFTP nahral `segments/igan.html` +
+- Commit `4bebd4c`; post-commit SFTP nahral `segments/igan.html` +
   `IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: nové IgAN formulácie prítomné; `environmentálnych faktorov`,
-  `poskytovateľ zdravotnej starostlivosti`, `poskytovateľovi…`,
-  `Taktiež musia` absent
-- GHA Deploy `42120965708` success (rsync skip)
+- Produkcia `/`: nové IgAN formulácie prítomné; `pre osoby s IgA`,
+  `zosúladiť vedľajšie účinky` absent
+- GHA Deploy `42121508992` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -110,8 +110,12 @@ HEAD: `2ce776e`
   `poskytovateľ zdravotnej starostlivosti`; legal stránky ponechať);
   *environmental factors* → `faktorov prostredia`; vetné `Taktiež` →
   `Musia tiež` / `Tiež`.
+- Po `pre` je genitív: `pre ľudí s` (nie nominatív `pre ľudia s`);
+  EN *balance side effects* → `vyrovnať sa s vedľajšími účinkami` (nie
+  `zosúladiť vedľajšie účinky`); `osoby, ktoré majú` nie je to isté ako
+  `osoby s` a nemusí sa meniť.
 
-## Ďalší fokus (loop #43)
+## Ďalší fokus (loop #44)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -119,13 +123,12 @@ HEAD: `2ce776e`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu; kandidát: IgAN `zosúladiť vedľajšie účinky` → prirodzenejší tvar;
-   `osoby s IgA` → `ľudia s` pre konzistenciu).
+   o obsahu).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #42 IgAN calques)
-- Audit: `.audit.md` Beh #53
+- Codex: `.codex/handoffs/` (loop #43 IgAN ľudia/vyrovnať)
+- Audit: `.audit.md` Beh #54
 
 ## Ďalší príkaz
 
