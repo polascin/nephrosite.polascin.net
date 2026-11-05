@@ -31,10 +31,12 @@
 		<br>
 		<a href="/docs/KTx2023.pdf" target="_blank" rel="noopener noreferrer" title="Transplantácie obličiek 2023">
 			KTx 2023 (PDF)
+			<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 		</a>
 		&nbsp;&nbsp;&nbsp;
 		<a href="/docs/CRRT2023.pdf" target="_blank" rel="noopener noreferrer" title="Akútne eliminačné metodiky (CRRT) 2023">
 			CRRT 2023 (PDF)
+			<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 		</a>
 	</div>
 

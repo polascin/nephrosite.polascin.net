@@ -5,4 +5,5 @@
 	<img src="/docs/regcitra/regcitra3.jpg" alt="Regionálna antikoagulácia citrátom (Ci-Ca) 3 z 5" style="max-width: 100%;">
 	<img src="/docs/regcitra/regcitra4.jpg" alt="Regionálna antikoagulácia citrátom (Ci-Ca) 4 z 5" style="max-width: 100%;">
 	<img src="/docs/regcitra/regcitra5.jpg" alt="Regionálna antikoagulácia citrátom (Ci-Ca) 5 z 5" style="max-width: 100%;">
+	<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 </a>

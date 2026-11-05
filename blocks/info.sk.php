@@ -55,6 +55,7 @@
 	<div class="info-title">
 		<a href="/docs/mel.pdf" target="_blank" rel="noopener noreferrer">
 			Mimotelová eliminačná liečba. &copy; 2009.
+			<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 		</a>
 	</div>
 	<br>

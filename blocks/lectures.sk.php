@@ -26,6 +26,7 @@
 					<span class="presentation"><strong>Funkcie obličiek</strong></span>
 					<br>
 					<small><em>V rámci kurzu "Sprievodca dialyzačnou liečbou"</em></small>
+					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
 					<br>
@@ -58,7 +59,7 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="/docs/fosdl.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/fosdl.pdf" download>
 						Funkcie obličiek
 					</a> v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 				</div>
@@ -126,6 +127,7 @@
 					<span class="presentation"><strong>Funkcie obličiek. Akútne zlyhanie obličiek.</strong></span>
 					<br>
 					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta 2/0025"</em></small>
+					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
 					<br>
@@ -155,7 +157,7 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="/docs/foazo.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/foazo.pdf" download>
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
 				</div>
@@ -233,6 +235,7 @@
 					<span class="presentation"><strong>Transplantácie obličiek</strong></span>
 					<br>
 					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta"</em></small>
+					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
 					<br>
@@ -262,7 +265,7 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="/docs/ktx.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/ktx.pdf" download>
 						Transplantácia obličiek
 					</a> v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 				</div>
@@ -330,6 +333,7 @@
 					<span class="presentation"><strong>Akútne eliminačné metódy. CRRT.</strong></span>
 					<br>
 					<small><em>V rámci kurzu "Ošetrovateľská starostlivosť o dialyzovaného pacienta"</em></small>
+					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
 					<br>
@@ -359,7 +363,7 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="/docs/aem.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/aem.pdf" download>
 						Akútne eliminačné metódy
 					</a> v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 				</div>
@@ -392,6 +396,7 @@
 					<span class="presentation"><strong>Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou</strong></span>
 					<br>
 					<small><em>Edukačná prednáška</em></small>
+					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<small>
 					<br>
@@ -417,7 +422,7 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/vmppd.pdf" download>
 						Voľba metodiky a preskripcia peritoneálnej dialýzy
 					</a> v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 				</div>
@@ -448,6 +453,7 @@
 				</video>
 				<a href="/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
 				  <span class="presentation"><strong>Hry a gamifikácia vo výučbe nefrológie a dialýzy</strong></span>
+					<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 				</a>
 				<br>
 				<a href="https://czsk.aesculap-academy.com/contentpage/285407" target="_blank" rel="noopener noreferrer">
@@ -482,7 +488,7 @@
 				<br>
 				<hr>
 				<div class="text-right">
-					<a href="/docs/nephrogame.pdf" target="_blank" rel="noopener noreferrer">
+					<a href="/docs/nephrogame.pdf" download>
 						Prezentácia v <strong>PDF</strong> súbore na stiahnutie kliknutím na tento odkaz.
 					</a>
 				</div>
@@ -494,6 +500,7 @@
 					<a href="/docs/ipvrm.pdf" target="_blank" rel="noopener noreferrer">
 						<strong>Inovatívne prístupy vo výučbe renálnej medicíny.</strong>
 						<em>Autor: Ľubomír Polaščín</em>
+						<span class="sr-only"> (PDF, otvorí sa v novom okne)</span>
 					</a>
 					<br><br>
 					<iframe src="/ipvrm.htm" height="500" class="teal-frame" title="Inovatívne prístupy vo výučbe renálnej medicíny"></iframe>
