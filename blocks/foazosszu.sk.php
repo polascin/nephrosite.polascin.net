@@ -15,12 +15,26 @@
 	</p>
 
 	<div>
+		<video class="halfslide" width="1920" height="1080" preload="none"
+		       poster="/docs/ktx2023-poster.webp" controls muted loop playsinline
+		       aria-label="Transplantácie obličiek 2023 — záznam prezentácie">
+			<source src="/docs/ktx2023.mp4" type="video/mp4">
+			<a href="/docs/ktx2023.gif">Animovaná verzia prezentácie (GIF, 7 MB)</a>
+		</video>
+		&nbsp;&nbsp;&nbsp;
+		<video class="halfslide" width="1920" height="1080" preload="none"
+		       poster="/docs/crrt2023-poster.webp" controls muted loop playsinline
+		       aria-label="Akútne eliminačné metodiky (CRRT) 2023 — záznam prezentácie">
+			<source src="/docs/crrt2023.mp4" type="video/mp4">
+			<a href="/docs/crrt2023.gif">Animovaná verzia prezentácie (GIF, 7 MB)</a>
+		</video>
+		<br>
 		<a href="/docs/KTx2023.pdf" target="_blank" rel="noopener noreferrer" title="Transplantácie obličiek 2023">
-			<img src="/docs/ktx2023.gif" alt="Transplantácie obličiek 2023" class="halfslide">
+			KTx 2023 (PDF)
 		</a>
 		&nbsp;&nbsp;&nbsp;
 		<a href="/docs/CRRT2023.pdf" target="_blank" rel="noopener noreferrer" title="Akútne eliminačné metodiky (CRRT) 2023">
-			<img src="/docs/crrt2023.gif" alt="Akútne eliminačné metodiky (CRRT) 2023" class="halfslide">
+			CRRT 2023 (PDF)
 		</a>
 	</div>
 

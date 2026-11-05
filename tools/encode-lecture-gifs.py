@@ -4,11 +4,20 @@ from __future__ import annotations
 import json
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 from PIL import Image
 
-NAMES = ["fosdl", "foazo", "ktx", "aem", "vmppd"]
+DEFAULT_NAMES = [
+    "fosdl",
+    "foazo",
+    "ktx",
+    "aem",
+    "vmppd",
+    "ktx2023",
+    "crrt2023",
+]
 DOCS = Path("docs")
 WORK = Path("docs/_gif_encode_tmp")
 FPS = 25
@@ -30,12 +39,13 @@ def frame_delays(path: Path) -> list[int]:
 
 
 def main() -> None:
+    names = sys.argv[1:] or DEFAULT_NAMES
     if WORK.exists():
         shutil.rmtree(WORK)
     WORK.mkdir()
 
     try:
-        for name in NAMES:
+        for name in names:
             gif = DOCS / f"{name}.gif"
             delays = frame_delays(gif)
             total_ms = sum(delays)

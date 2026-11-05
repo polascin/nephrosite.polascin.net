@@ -166,12 +166,19 @@ img.reference {
   border-width: var(--border-thin, 1px);
 }
 
-img.halfslide {
+img.halfslide,
+video.halfslide {
 	width: var(--halfslide-width, 450px);
 	max-width: 100%;
 	border-style: solid;
 	border-width: var(--border-medium, 3px);
 	border-color: var(--green, #008000);
+}
+
+video.halfslide {
+	height: auto;
+	background-color: var(--black, #000000);
+	vertical-align: middle;
 }
 
 img.imgpromo {
