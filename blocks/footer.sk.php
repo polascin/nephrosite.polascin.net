@@ -20,12 +20,12 @@
 
 <br>
 
-<!-- ClustrMaps: first-party SVG snapshot (no live clustrmaps.com image/script). -->
-<p class="centered">
-	<a href="https://clustrmaps.com/site/1ak7d" target="_blank" rel="noopener noreferrer" title="Otvoriť mapu návštev na ClustrMaps">
-		<img src="/pix/clustrmaps-visitor-map.svg" width="300" height="150" alt="Mapa návštev ClustrMaps (lokálny náhľad)">
-	</a>
-</p>
+<!-- ClustrMaps: first-party SVG only. Vendor host currently resolves to
+     127.0.0.1 / connection refused, so no outbound link until it recovers. -->
+<figure class="centered visitor-map">
+	<img src="/pix/clustrmaps-visitor-map.svg" width="300" height="150" alt="Lokálny náhľad mapy návštev (snapshot ClustrMaps)">
+	<figcaption class="meta-muted">Lokálny náhľad mapy návštev. Externá služba ClustrMaps nie je momentálne dostupná.</figcaption>
+</figure>
 <!-- The End of the ClustrMaps Code -->
 
 <!-- Last modification date in PHP -->
@@ -104,9 +104,6 @@
 	</a>
 	<a href="https://www.fedoraproject.org/" target="_blank" rel="noopener noreferrer" title="Fedora">
 		<img src="/weblogo/fedora-logo.png" alt="Fedora" class="imgpromo">
-	</a>
-	<a href="https://www.fedoraproject.org/" target="_blank" rel="noopener noreferrer" title="Fedora">
-		<img src="/weblogo/fedora-blue.png" alt="Fedora" class="imgpromo">
 	</a>
 	<br>
 	<a href="https://www.distrowatch.com/" target="_blank" rel="noopener noreferrer" title="DistroWatch">

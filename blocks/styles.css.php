@@ -346,6 +346,16 @@ hr.promohr {
 	text-align: center;
 }
 
+.visitor-map {
+	margin: 1em auto;
+	max-width: 300px;
+}
+
+.visitor-map figcaption {
+	margin-top: 0.4em;
+	line-height: 1.35;
+}
+
 .meta-muted {
 	color: var(--gray, #808080);
 	font-size: smaller;
