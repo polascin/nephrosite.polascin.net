@@ -5,6 +5,11 @@
 .gitignore
 .deployignore
 *.md
+.php-cs-fixer.dist.php
+.pre-commit-config.yaml
+.markdownlint.yaml
+.project
+.codex
 phpstan.neon.dist
 phpstan-baseline.neon
 tools
@@ -13,3 +18,4 @@ tools
 .cursor
 .trunk
 *.ps1
+*.neon
