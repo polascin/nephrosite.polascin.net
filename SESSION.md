@@ -1,37 +1,42 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #33)
+Aktualizované: 2026-11-05 (loop iterácia #34)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `ba62522`
+HEAD: `a20ee57`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
-  - `files/nefamb.html`: `zdravotne`→`zdravotnej`, `v svojom`→`vo svojom`,
-    `Zahrňuje`→`Zahŕňa`.
-  - `files/usgo.html` + `segments/usgo.html`: `usiluje si`→`usiluje sa`,
-    `detekovať`→`odhaliť`, `zo rôznych`→`z rôznych`.
+  - `files/nefamb.html`: `učí`→`určí`, `seba-obsluhy`→`starostlivosti o seba`,
+    `Za účelom`→`Na posúdenie`, `najoptimálnejšie`→`najlepšie`,
+    `Výučba a edukácia`→`Vzdelávanie`.
+  - `files/usgo.html`: `sestrička`→`sestra`.
+  - `files/transplantacia.html`: `sestričky`→`sestry`,
+    `umožnilo prenos`→`umožnil prenos`.
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 - Live blank miss = 0 (po stripnutí komentárov).
+- Segment sync pre tieto stringy netreba (homepage segmenty nemajú
+  zasiahnuté intro pasáže).
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `ba62522`; post-commit SFTP nahral `files/nefamb.html`,
-  `files/usgo.html`, `segments/usgo.html`; `deploy.ps1 -Apply` 0 upload;
-  smoke direct 200
+- Commit `a20ee57`; post-commit SFTP nahral `files/nefamb.html`,
+  `files/usgo.html`, `files/transplantacia.html`; `deploy.ps1 -Apply`
+  0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
-  `/terms` `/nefrologia` `/nefamb` `/usgo` → 200 + HSTS + CSP (enforced
-  stále s `'unsafe-inline'`)
-- Produkcia `/nefamb`: `zdravotnej`, `vo svojom`, `Zahŕňa` prítomné;
-  staré formy absent
-- Produkcia `/usgo` + homepage segment: `usiluje sa`, `odhaliť`,
-  `z rôznych` prítomné; `usiluje si` / `detekovať` / `zo rôznych` absent
-- GHA Deploy `42114689918` success (rsync skip)
+  `/terms` `/nefrologia` `/nefamb` `/usgo` `/transplantacia` → 200 +
+  HSTS + CSP (enforced stále s `'unsafe-inline'`)
+- Produkcia `/nefamb`: `určí`, `starostlivosti o seba`, `Na posúdenie`,
+  `najlepšie`, `Vzdelávanie pacientov` prítomné; staré formy absent
+- Produkcia `/usgo`: `sestra` prítomné; `sestrička` absent
+- Produkcia `/transplantacia`: `sestry`, `umožnil prenos` prítomné;
+  `sestričky` / `umožnilo prenos` absent
+- GHA Deploy `42115452187` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -79,12 +84,15 @@ HEAD: `ba62522`
   404-ovať ako asset path, ale nie sú live `<img>` (strip comments).
 - Pri grammar scane synchronizovať `files/*.html` aj zodpovedajúci
   `segments/*.html` (homepage include), inak topic page a homepage
-  divergujú.
+  divergujú; ak segment pasáž neobsahuje, sync netreba.
 - `Zahrňuje`/`detekovať` sú bohemizmy/kalky; preferovať `Zahŕňa`/`odhaliť`
   v pacientskom texte. `v svojom` → `vo svojom`; `zo` len pred s/z/š/ž +
   spoluhláska (`zo rôznych` je chyba).
+- `Za účelom` je úradnícky kalk → `Na` + substantívum; `najoptimálnejšie`
+  je pleonazmus → `najlepšie`; deminutívum `sestrička` v odbornom texte
+  → `sestra`; zhoda rodu: `umožnil prenos` (nie `umožnilo`).
 
-## Ďalší fokus (loop #34)
+## Ďalší fokus (loop #35)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -92,12 +100,12 @@ HEAD: `ba62522`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu; ďalšie grammar v `files/`/`segments/`).
+   o obsahu; ďalšie wording v `files/`/`segments/`).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-224058-loop33-nefamb-usgo-grammar.md`
-- Audit: `.audit.md` Beh #44
+- Codex: `.codex/handoffs/2026-11-05-224559-loop34-nefamb-usgo-tx-wording.md`
+- Audit: `.audit.md` Beh #45
 
 ## Ďalší príkaz
 
