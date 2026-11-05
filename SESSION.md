@@ -1,33 +1,36 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #17)
+Aktualizované: 2026-11-05 (loop iterácia #18)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `8c6871a`
+HEAD: `ee82d0b`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship: same-origin PDF policy. Overené, že PDF idú
-  `application/pdf` bez `Content-Disposition` (inline, nie download).
-  - View odkazy (nadpis prednášky, MEL, KTx/CRRT, regcitra, ipvrm):
-    ponechané `target="_blank"` + `rel="noopener noreferrer"` +
-    `sr-only` "(PDF, otvorí sa v novom okne)".
-  - Odkazy s textom „na stiahnutie“: atribút `download`, bez `_blank`
-    (skutočné sťahovanie namiesto falošného open-in-new-tab).
+- Product ship: GIF video fallback odkazy.
+  Overené: produkčné GIF sú `image/gif` bez `Content-Disposition`
+  (inline open). Veľké súbory (3 až 168 MB) sa tak zobrazovali v
+  prehliadači namiesto sťahovania.
+  - 8 fallback odkazov (`lectures.sk.php` + `foazosszu.sk.php`):
+    atribút `download`, text „na stiahnutie“, overené size labely
+    (7 / 5 / 3 / 4 / 3 / 168 / 7 / 7 MB).
+  - CRRT 2023: zjednotené „Akútne eliminačné metódy“ (aria-label,
+    title PDF, iframe; predtým „metodiky“ vs „metódy“).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `068d217`; post-commit SFTP; `deploy.ps1 -Apply` 0 upload;
+- Commit `ee82d0b`; post-commit SFTP; `deploy.ps1 -Apply` 0 upload;
   smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/transplantacia` → 200 + HSTS + CSP (enforced
   stále s `'unsafe-inline'`)
-- Produkcia `/`: `download=` 6, sr-only PDF hint 11, blank-pdf view 11;
-  KTx 2023 (PDF) prítomný
-- GHA Deploy `42099959216` success (rsync skip)
+- Produkcia `/`: gif-download=8, gif-label=8, old-gif-label=0,
+  pdf-download=6, metody-crrt=3; zostávajúce „metodiky“ = legitímny
+  názov prednášky „Voľba metodiky…“
+- GHA Deploy `42100877653` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -44,22 +47,22 @@ HEAD: `8c6871a`
 - Externý 403 pri curl/Invoke-WebRequest nie je dôkaz dead linku: overiť
   v reálnom prehliadači (Cloudflare challenge vs 404).
 - Same-origin PDF `_blank` nie je defect pre view; defect bol „na stiahnutie“
-  bez `download` (súbory sú inline).
+  bez `download` (súbory sú inline). To isté platí pre GIF fallbacky.
 
-## Ďalší fokus (loop #18)
+## Ďalší fokus (loop #19)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/links/content ship, ak telemetria stále smoke-only (napr.
-   remaining external link hygiene; content/segment consistency;
-   GIF fallback size labels).
+   remaining external link hygiene; sr-only new-window hints na
+   externých odkazoch; content consistency).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-210605-loop17-pdf-open-download.md`
-- Audit: `.audit.md` Beh #28
+- Codex: `.codex/handoffs/2026-11-05-211202-loop18-gif-download-fallbacks.md`
+- Audit: `.audit.md` Beh #29
 
 ## Ďalší príkaz
 
