@@ -190,8 +190,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.medupdate-europe.eu/" target="_blank" rel="noopener noreferrer" title="Medupdate Europe" lang="en">
-	<img src="/weblogo/MUE-logo.png" alt="Medupdate Europe" class="imgpromo">
+<a href="https://www.medupdate-europe.eu/" target="_blank" rel="noopener noreferrer" title="medupdate europe" lang="en">
+	<img src="/weblogo/MUE-logo.png" alt="medupdate europe" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -223,8 +223,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>    
 
-<a href="https://www.union.sk/" target="_blank" rel="noopener noreferrer" title="Union zdravotná poisťovňa" lang="sk">
-	<img src="/weblogo/union-logo.svg" alt="Union zdravotná poisťovňa" class="imgpromo">
+<a href="https://www.union.sk/" target="_blank" rel="noopener noreferrer" title="Union poisťovňa" lang="sk">
+	<img src="/weblogo/union-logo.svg" alt="Union poisťovňa" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>    
 

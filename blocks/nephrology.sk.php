@@ -47,7 +47,7 @@
 					<em>
 						&copy; 
 						<a href="https://polascin.net/" target="_blank" rel="noopener noreferrer">
-							MUDr. Ľubomír Polaščín,
+							MUDr. Ľubomír Polaščín,<span class="sr-only"> (otvorí sa v novom okne)</span>
 						</a>
 						2003 - <?php echo(date("Y", time()));?>.
 					</em>
