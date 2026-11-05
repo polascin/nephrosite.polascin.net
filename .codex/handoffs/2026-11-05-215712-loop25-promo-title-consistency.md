@@ -6,7 +6,7 @@
 - Updated At: 2026-11-05T21:58:00+01:00
 - Project Root: D:\Dev\nephrosite.polascin.net
 - Git Branch: main
-- Head Commit: b1da6ae
+- Head Commit: 5a86011
 
 ## Original Goal
 
@@ -21,7 +21,7 @@ deploy/smoke; SESSION + handoff.
 Iterácia #25 hotová. RO telemetria stále smoke-only (2 riadky). Enforced
 `'unsafe-inline'` ponechané. Ship: 5 overených brand title/alt opráv +
 2 aria-hidden na dekoratívnych druhých logách v `blocks/promo.sk.php`.
-Repo na `main` @ `b1da6ae` (docs tip po SESSION/audit/handoff commit).
+Repo na `main` @ `5a86011` (product `b1da6ae`, docs tip).
 
 ## Completed This Session
 
