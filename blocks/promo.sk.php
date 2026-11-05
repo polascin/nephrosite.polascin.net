@@ -34,8 +34,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.nephrologie.at/" target="_blank" rel="noopener noreferrer" title="Österreichische Gesellschaft für Nefrologie" lang="de">
-	<img src="/weblogo/oegfn-logo.svg" alt="Österreichische Gesellschaft für Nefrologie" class="imgpromo">
+<a href="https://www.nephrologie.at/" target="_blank" rel="noopener noreferrer" title="Österreichische Gesellschaft für Nephrologie" lang="de">
+	<img src="/weblogo/oegfn-logo.svg" alt="Österreichische Gesellschaft für Nephrologie" class="imgpromo">
 	<img src="/weblogo/oegn-logo.svg" alt="" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
@@ -55,8 +55,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.asn-online.org/" target="_blank" rel="noopener noreferrer" title="American Society Of Nephrology" lang="en">
-	<img src="/weblogo/asn-logo.png" alt="American Society Of Nephrology" class="imgpromo">
+<a href="https://www.asn-online.org/" target="_blank" rel="noopener noreferrer" title="American Society of Nephrology" lang="en">
+	<img src="/weblogo/asn-logo.png" alt="American Society of Nephrology" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -108,7 +108,7 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.nemocnica-bory.sk/" target="_blank" rel="noopener noreferrer" title="PentaHospitals Nemocnica BORY" lang="sk">
+<a href="https://www.nemocnica-bory.sk/" target="_blank" rel="noopener noreferrer" title="PentaHospitals Nemocnica Bory" lang="sk">
 	<img src="/weblogo/pentahospitals-bory-logo.svg" alt="PentaHospitals Nemocnica Bory" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
