@@ -1,31 +1,35 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #14)
+Aktualizované: 2026-11-05 (loop iterácia #15)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `ca9387f` (docs/handoff commit môže nasledovať)
+HEAD: `7da9a51` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship: zosúladenie h2/h1 s `$topic['title']` pre `/purifikacia`,
-  `/transplantacia`, `/lipton-tx`; oprava markup typov `R<em>iziká` a
-  `K<strong>omplikácie`; title-aware homepage teaser; odstránenie mŕtveho
-  odkazu na `clustrmaps.com` (DNS → 127.0.0.1); first-party SVG + figcaption;
-  odstránený duplicitný Fedora badge.
+- Product ship: `segments/transplantacia.html` h2 zosúladený s
+  `$topic['title']` („Transplantácia obličky“); odstránený duplicitný
+  `require` segmentu po teaseri v `foazosszu.sk.php`; footer `mailto:` bez
+  `target="_blank"` / `rel="noopener noreferrer"`.
+- Footer 403 triage: validator.w3.org, mxlinux.org, fedoraproject.org,
+  distrowatch.com vracajú 403 aj na GET s Chrome UA (bot filtering /
+  WAF). Badge odkazy **ponechané**; nie je dôkaz user-facing broken link
+  v bežnom prehliadači.
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
 - Clean URL smoke (MaximumRedirection 0): `/` `/privacy` `/terms`
-  `/nefrologia` `/purifikacia` `/transplantacia` `/lipton-tx` `/nefamb`
+  `/nefrologia` `/transplantacia` `/purifikacia` `/lipton-tx` `/nefamb`
   → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Commit `ca9387f`; post-commit SFTP; `deploy.ps1 -Apply` 0 upload; smoke
+- Commit `7da9a51`; post-commit SFTP; `deploy.ps1 -Apply` 0 upload; smoke
   direct 200
-- Produkcia: h1 match titles; homepage `visitor-map` + figcaption; bez
-  `clustrmaps.com/site`; bez `R<em>izik` / `K<strong>omplik`
-- GHA Deploy `42097461973` success (rsync skip)
+- Produkcia: homepage h2 plural „Transplantácie obličiek“ = 0; singular
+  „Transplantácia obličky“ = 3; mailto bez `target=`; medzi teaserom a
+  `/lipton-tx` už nie je druhý h2 zo segmentu
+- GHA Deploy `42098259437` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -38,20 +42,22 @@ HEAD: `ca9387f` (docs/handoff commit môže nasledovať)
   sync, kým chýbajú `DEPLOY_*` secrets.
 - ClustrMaps A záznam aj cez 8.8.8.8 / 1.1.1.1 → `127.0.0.1` (nie len lokálny
   sinkhole); outbound link zostáva vypnutý, kým vendor neodžije.
+- PowerShell: `$HOME` je rezervované; na HTML response použiť iný názov.
 
-## Ďalší fokus (loop #15)
+## Ďalší fokus (loop #16)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
-4. Bug/a11y/links/content ship, ak telemetria stále smoke-only (napr. ďalšie
-   footer linky s 403, segments vs files title drift na transplantáciách).
+4. Bug/a11y/links/content ship, ak telemetria stále smoke-only (napr.
+   browser verify footer badge 403s; ďalšie segments vs files title
+   konzistencie; cookie-banner `target="_blank"` na same-origin privacy).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-205024-loop14-topic-titles-clustrmaps.md`
-- Audit: `.audit.md` Beh #25
+- Codex: `.codex/handoffs/2026-11-05-205519-loop15-transplant-segment-mailto.md`
+- Audit: `.audit.md` Beh #26
 
 ## Ďalší príkaz
 
