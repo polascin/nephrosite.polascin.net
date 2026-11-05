@@ -1,23 +1,26 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #45)
+Aktualizované: 2026-11-05 (loop iterácia #46)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `d28f514`
+HEAD: `3ead092`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo):
-  - `files/dialyza.html` + `segments/dialyza.html`:
-    `kvôli jej lepším výsledkom z hľadiska znižovania chorobnosti
-    (morbidity) a úmrtnosti (mortality) v prevažnej väčšine
-    dialyzovaných pacientov` →
-    `pretože v prevažnej väčšine dialyzovaných pacientov lepšie
-    znižuje chorobnosť (morbidity) a úmrtnosť (mortality)`.
+  - `files/nefamb.html` (bez `segments/nefamb`; homepage include netreba):
+    1. `palpáciu obličiek ako aj ostatné súčasti` →
+       `palpáciu obličiek a ostatné súčasti` (+ čiarka pred palpáciou)
+    2. `liekov … s ich presným dávkovaním ako aj vitamínov, minerálov
+       a potravinových doplnkov` →
+       `liekov, vitamínov, minerálov a potravinových doplnkov … s ich
+       presným dávkovaním` (zosúladený zoznam, nie visiaci genitív)
+    3. `ako aj prítomnosť cýst` → `a prítomnosti cýst` (genitív
+       paralelne k štruktúry/veľkosti)
+    4. `od toho-ktorého pacienta … ako aj podľa špecifík` →
+       `od konkrétneho pacienta, jeho diagnózy a špecifík`
 - Overené a **nechane**:
-  - nefamb `ako aj` (viaceré výskyty; nie všetky sú defect; dialýza
-    calque bol silnejší)
   - IgAN `v dôsledku zníženej schopnosti`; `hyponatriémia`;
     `kosáčikovitá anémia`; legal `poskytovateľ…`
   - Lipton `jedinec`/`jedincov` (literárny preklad)
@@ -28,14 +31,14 @@ HEAD: `d28f514`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `d28f514`; post-commit SFTP nahral oba dialýza súbory;
+- Commit `3ead092`; post-commit SFTP nahral `files/nefamb.html`;
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/` a `/dialyza`: nové formulácie prítomné; staré
-  `z hľadiska znižovania chorobnosti` absent
-- GHA Deploy `42122830597` success (rsync skip)
+- Produkcia `/nefamb`: nové formulácie prítomné; staré `ako aj` a
+  `toho-ktorého` absent
+- GHA Deploy `42123398826` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -130,8 +133,14 @@ HEAD: `d28f514`
   úradnícky kalk → priame `pretože … lepšie znižuje chorobnosť …
   a úmrtnosť …`; medicínske fakty (HDF vs HD, morbidity/mortality)
   nemenit́. Sync `files/dialyza.html` aj `segments/dialyza.html`.
+- Pacientsky `ako aj`: overiť každý výskyt. Defecty typicky: (a) redundantné
+  po už spojenej vymenovávačke, (b) visiaci genitív po inštrumentáli
+  (`dávkovaním ako aj vitamínov`), (c) chýbajúca pádová zhoda
+  (`vizualizáciu A, ako aj prítomnosť` → `… a prítomnosti`), (d) zmiešané
+  predložky (`v závislosti od X ako aj podľa Y`). `nefamb` nemá
+  `segments/` mirror.
 
-## Ďalší fokus (loop #46)
+## Ďalší fokus (loop #47)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -139,13 +148,13 @@ HEAD: `d28f514`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu). Kandidáti: nefamb `ako aj` zhustenie (overiť konkrétne
-   výskyty; nie všetky sú defect); nie Lipton `jedinec`.
+   o obsahu). Kandidáti: ďalší patient-wording scan mimo už opravených
+   stránok; nie Lipton `jedinec`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #45 dialýza chorobnosť)
-- Audit: `.audit.md` Beh #56
+- Codex: `.codex/handoffs/` (loop #46 nefamb ako aj)
+- Audit: `.audit.md` Beh #57
 
 ## Ďalší príkaz
 
