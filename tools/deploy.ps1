@@ -41,7 +41,7 @@ param(
     [string]   $RemotePath = '/data/8/6/868f981d-e598-4e71-b7f5-246f2e180cef/polascin.net/sub/nephrosite',
     [string]   $SshHost = 'websupport',
     [string]   $BaseUrl = 'https://nephrosite.polascin.net',
-    [string[]] $SmokePaths = @('/', '/privacy.php'),
+    [string[]] $SmokePaths = @('/', '/privacy', '/terms', '/nefrologia'),
     [switch]   $Apply,
     [switch]   $SkipValidation,
     [switch]   $SkipSmoke

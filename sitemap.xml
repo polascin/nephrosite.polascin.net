@@ -13,55 +13,55 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/files/privacy.html</loc>
+    <loc>https://nephrosite.polascin.net/privacy</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/files/terms.html</loc>
+    <loc>https://nephrosite.polascin.net/terms</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/nefrologia.php</loc>
+    <loc>https://nephrosite.polascin.net/nefrologia</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/dialyza.php</loc>
+    <loc>https://nephrosite.polascin.net/dialyza</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/purifikacia.php</loc>
+    <loc>https://nephrosite.polascin.net/purifikacia</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/transplantacia.php</loc>
+    <loc>https://nephrosite.polascin.net/transplantacia</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/usgo.php</loc>
+    <loc>https://nephrosite.polascin.net/usgo</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/nefamb.php</loc>
+    <loc>https://nephrosite.polascin.net/nefamb</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nephrosite.polascin.net/lipton-tx.php</loc>
+    <loc>https://nephrosite.polascin.net/lipton-tx</loc>
     <lastmod>2026-11-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

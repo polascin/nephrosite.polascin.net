@@ -1,5 +1,5 @@
 <?php
 
-// Permanent redirect to the canonical privacy policy.
-header('Location: /files/privacy.html', true, 301);
+// Permanent redirect to the canonical privacy policy URL.
+header('Location: /privacy', true, 301);
 exit;

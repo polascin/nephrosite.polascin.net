@@ -10,42 +10,42 @@
 
 ?>
 <div class="info info-justify bg-ivory">
-	<?php $teaser = ["file" => "nefrologia.html", "title" => "Klinická nefrológia", "slug" => "nefrologia.php"]; ?>
+	<?php $teaser = ["file" => "nefrologia.html", "title" => "Klinická nefrológia", "slug" => "nefrologia"]; ?>
 	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify bg-honeydew">
-	<?php $teaser = ["file" => "dialyza.html", "title" => "Dialýza", "slug" => "dialyza.php"]; ?>
+	<?php $teaser = ["file" => "dialyza.html", "title" => "Dialýza", "slug" => "dialyza"]; ?>
 	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify bg-lavenderblush">
-	<?php $teaser = ["file" => "purifikacia.html", "title" => "Purifikácia krvi", "slug" => "purifikacia.php"]; ?>
+	<?php $teaser = ["file" => "purifikacia.html", "title" => "Purifikácia krvi", "slug" => "purifikacia"]; ?>
 	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify bg-seashell">
-	<?php $teaser = ["file" => "transplantacia.html", "title" => "Transplantácia obličky", "slug" => "transplantacia.php"]; ?>
+	<?php $teaser = ["file" => "transplantacia.html", "title" => "Transplantácia obličky", "slug" => "transplantacia"]; ?>
 	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify bg-ghostwhite">
-	<?php $teaser = ["file" => "usgo.html", "title" => "Ultrazvukové vyšetrenie obličiek", "slug" => "usgo.php"]; ?>
+	<?php $teaser = ["file" => "usgo.html", "title" => "Ultrazvukové vyšetrenie obličiek", "slug" => "usgo"]; ?>
 	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 
 <br><br><br>
 
 <div class="info info-justify">
-	<?php $teaser = ["file" => "nefamb.html", "title" => "Nefrologická ambulancia", "slug" => "nefamb.php"]; ?>
+	<?php $teaser = ["file" => "nefamb.html", "title" => "Nefrologická ambulancia", "slug" => "nefamb"]; ?>
 	<?php include __DIR__ . "/topic-teaser.php"; ?>
 </div>
 

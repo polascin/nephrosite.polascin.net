@@ -138,8 +138,13 @@ jobs:
         if: steps.cfg.outputs.configured == 'true'
         run: |
           set -euo pipefail
-          for url in "https://nephrosite.polascin.net/" "https://nephrosite.polascin.net/privacy.php"; do
-            code=$(curl -sL -o /dev/null -w '%{http_code}' "$url")
+          for url in \
+            "https://nephrosite.polascin.net/" \
+            "https://nephrosite.polascin.net/privacy" \
+            "https://nephrosite.polascin.net/terms" \
+            "https://nephrosite.polascin.net/nefrologia"
+          do
+            code=$(curl -sL -o /dev/null -w '%{http_code}' -A "Mozilla/5.0 (compatible; NephroSite-Smoke/1.0)" "$url")
             echo "$url -> $code"
             [[ "$code" == "200" ]] || { echo "::error::Smoke test failed for $url (HTTP $code)."; exit 1; }
           done

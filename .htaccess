@@ -76,12 +76,21 @@ RewriteEngine on
 # priamy prístup cez HTTP nie je nikdy potrebný (obrana do hĺbky).
 RewriteRule ^(?:blocks|segments)/ - [F,L]
 
-# Alias bez prípony: /privacy a /terms → kanonické HTML v /files/
-# (privacy.php/terms.php už samy 301-ujú sem; alias ide priamo, bez reťazenia).
-RewriteRule ^(privacy|terms)/?$ /files/$1.html [R=301,L,NE]
+# Kanonické čisté URL (loop #10): /privacy, /terms a témy bez .php.
+# Externé 301 len pre staré cesty; cieľové URL sa servírujú interným rewriteom
+# (200 bez hopu), aby kotvy (#legal-disclaimer) a crawl ostali stabilné.
 
-# Obsahové fragmenty majú vlastné stránky; staré URL na ne presmeruj.
-RewriteRule ^files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html$ /$1.php [R=301,L]
+# .php témy → čistá URL (THE_REQUEST, aby interný rewrite nespustil slučku).
+RewriteCond %{THE_REQUEST} \s/+(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.php[\s?] [NC]
+RewriteRule ^(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.php$ /$1 [R=301,L]
+
+# Staré /files/*.html (témy + právne) → čisté URL.
+RewriteRule ^files/(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)\.html$ /$1 [R=301,L]
+RewriteRule ^files/(privacy|terms)\.html$ /$1 [R=301,L,NE]
+
+# Čisté URL → interné ciele (bez R=).
+RewriteRule ^(privacy|terms)/?$ /files/$1.html [L,NE]
+RewriteRule ^(dialyza|nefrologia|purifikacia|transplantacia|usgo|nefamb|lipton-tx)/?$ /$1.php [L]
 
 # Enforce one canonical HTTPS hostname for stronger SEO canonicalization.
 # Zrušená doména nephro.site (a akýkoľvek iný Host) → 301 na nephrosite.polascin.net.

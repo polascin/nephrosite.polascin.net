@@ -97,7 +97,7 @@ server, kým sa nepridá `-Apply`.
 Postup: `php -l` na všetkých sledovaných PHP súboroch, `php tools/test-csp.php`,
 zoznam súborov z gitu filtrovaný `.deployignore`, porovnanie SHA-256 s web
 rootom, upload iba zmenených súborov cez tar stream po SSH alias `websupport`,
-opätovné overenie hashov na serveri a smoke test `/` a `/privacy.php`.
+opätovné overenie hashov na serveri a smoke test `/`, `/privacy`, `/terms` a `/nefrologia`.
 
 Čo lokálna cesta **nerobí** rovnako ako Actions:
 

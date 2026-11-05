@@ -60,10 +60,10 @@
 </div>
 
 <div style="text-align: justify; padding: 3em; background-color: white;">
-	<?php $teaser = ["file" => "transplantacia.html", "title" => "Transplantácia obličky", "slug" => "transplantacia.php"]; ?>
+	<?php $teaser = ["file" => "transplantacia.html", "title" => "Transplantácia obličky", "slug" => "transplantacia"]; ?>
 	<?php include __DIR__ . "/topic-teaser.php"; ?>
 	<?php require "./segments/transplantacia.html"; ?>
-	<p class="topic-permalink"><a href="/lipton-tx.php">Bruce H. Lipton o transplantovaných orgánoch</a></p>
+	<p class="topic-permalink"><a href="/lipton-tx">Bruce H. Lipton o transplantovaných orgánoch</a></p>
 </div>
 
 <div style="display: inline-table; padding: 2em; background-color: white;">

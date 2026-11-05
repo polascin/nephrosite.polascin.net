@@ -11,7 +11,7 @@
  * Volajúci blok musí pred vložením nastaviť pole $teaser:
  *   file  – názov fragmentu v adresári files/
  *   title – názov témy (do textu odkazu)
- *   slug  – názov tematickej PHP stránky
+ *   slug  – čistá kanonická cesta bez .php (napr. dialyza)
  */
 if (!isset($teaser) || !is_array($teaser)) {
     return;

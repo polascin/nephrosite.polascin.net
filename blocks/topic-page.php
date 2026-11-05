@@ -12,7 +12,7 @@
  *   file        – názov fragmentu v adresári files/
  *   title       – nadpis témy (bez sufixu „| NephroSite“)
  *   description – meta popis stránky
- *   slug        – názov tejto PHP stránky (kanonická URL)
+ *   slug        – čistá kanonická cesta bez .php (napr. nefrologia)
  */
 if (!isset($topic) || !is_array($topic)) {
     http_response_code(500);
