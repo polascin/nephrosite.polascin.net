@@ -1,8 +1,8 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #50)
+Aktualizované: 2026-11-06 (loop iterácia #51)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `e64f6d0`
+HEAD: `04f9693`
 
 ## Čo je hotové v tejto iterácii
 
@@ -10,9 +10,11 @@ HEAD: `e64f6d0`
   `'unsafe-inline'`.
 - Product ship (overené, non-promo):
   - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `v rámci glomerulov` → `v glomeruloch`
-    (úradnícky kalk; zhoda so zvyškom odseku `v glomeruloch`;
-    homepage include cez `blocks/nephrology.sk.php`)
+    `Pravidelné monitorovanie` → `Pravidelné sledovanie`
+    (pacientsky anglicizmus; zhoda s transplant `Monitorovanie` →
+    `Sledovanie`; homepage include cez `blocks/nephrology.sk.php`)
+  - `files/nefamb.html` ABPM názov **Ambulantné monitorovanie krvného
+    tlaku** ponechaný (oficiálny termín).
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
@@ -22,14 +24,14 @@ HEAD: `e64f6d0`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `e64f6d0`; post-commit SFTP nahral `segments/igan.html` +
+- Commit `04f9693`; post-commit SFTP nahral `segments/igan.html` +
   `segments/IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `v glomeruloch lokálne reguluje` prítomné;
-  `v rámci glomerulov` absent
-- GHA Deploy `42125735925` success (rsync skip)
+- Produkcia `/`: `Pravidelné sledovanie` prítomné;
+  `Pravidelné monitorovanie` absent
+- GHA Deploy `42126356260` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -111,7 +113,9 @@ HEAD: `e64f6d0`
   `poskytovateľ zdravotnej starostlivosti`; legal stránky ponechať);
   *environmental factors* → `faktorov prostredia`; vetné `Taktiež` →
   `Musia tiež` / `Tiež`; `v rámci glomerulov` → `v glomeruloch`
-  (úradnícky kalk; zhoda so zvyškom odseku).
+  (úradnícky kalk; zhoda so zvyškom odseku);
+  `Pravidelné monitorovanie` → `Pravidelné sledovanie` (anglicizmus;
+  ABPM názov v nefamb ponechať).
 - Po `pre` je genitív: `pre ľudí s` (nie nominatív `pre ľudia s`);
   EN *balance side effects* → `vyrovnať sa s vedľajšími účinkami` (nie
   `zosúladiť vedľajšie účinky`); `osoby, ktoré majú` nie je to isté ako
@@ -140,7 +144,7 @@ HEAD: `e64f6d0`
   moralizujúce „byť vďačný darcom“ nie je pacientsky content.
 - Sync `files/nefrologia.html` aj `segments/nefrologia.html`.
 
-## Ďalší fokus (loop #51)
+## Ďalší fokus (loop #52)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -149,12 +153,14 @@ HEAD: `e64f6d0`
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Kandidát: a11y/tooling scan alebo
-   ďalší overený pacientsky wording (nie tip-SHA churn).
+   ďalší overený pacientsky wording (nie tip-SHA churn); IgAN
+   `asymptomatické`/`platformu`/`Propagácia` sú možné, ale overiť
+   register pred shipom.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #50 IgAN v glomeruloch)
-- Audit: `.audit.md` Beh #61
+- Codex: `.codex/handoffs/` (loop #51 IgAN sledovanie)
+- Audit: `.audit.md` Beh #62
 
 ## Ďalší príkaz
 
