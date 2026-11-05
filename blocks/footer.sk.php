@@ -68,16 +68,19 @@
 	<br>
 	<a href="https://bluefish.openoffice.nl/" target="_blank" rel="noopener noreferrer" title="Bluefish">
 		<img src="/weblogo/bluefish_gb.png" alt="Bluefish">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 </p>
 <div class="inline-table-box">
   <a href="https://www.w3schools.com/" target="_blank" rel="noopener noreferrer" title="W3 Schools">
     <img src="/weblogo/w3schools-logo.png" alt="W3 Schools" class="w3-logo">
+    <span class="sr-only"> (otvorí sa v novom okne)</span>
   </a>
 </div>
 <p>
   <a href="https://validator.w3.org/" target="_blank" rel="noopener noreferrer" title="W3C Markup Validation Service">
     <img src="/weblogo/w3c_home_nb.png" alt="W3C Markup Validation Service">
+    <span class="sr-only"> (otvorí sa v novom okne)</span>
   </a>
 </p>
 <br>
@@ -115,6 +118,7 @@
 	<br>
 	<a href="https://www.distrowatch.com/" target="_blank" rel="noopener noreferrer" title="DistroWatch">
 		<img src="/weblogo/dwbanner.png" alt="DistroWatch" class="dw-banner">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
 	</a>
 	<div>a mnohým ďalším. Ospravedlňujem sa, že ich nemôžem spomenúť všetkých.</div>
 </div>
