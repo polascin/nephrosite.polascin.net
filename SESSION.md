@@ -1,17 +1,18 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #32)
+Aktualizované: 2026-11-05 (loop iterácia #33)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `fe4df5c`
+HEAD: `ba62522`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
-  - `files/lipton-tx.html`: oprava prepisových chýb v citáte kapitoly
-    (`má`, `však`, `systémom`, `tento`, `"antény"`, `začalo`; anglické
-    tituly kníh `Heart` namiesto `Hearth`).
+  - `files/nefamb.html`: `zdravotne`→`zdravotnej`, `v svojom`→`vo svojom`,
+    `Zahrňuje`→`Zahŕňa`.
+  - `files/usgo.html` + `segments/usgo.html`: `usiluje si`→`usiluje sa`,
+    `detekovať`→`odhaliť`, `zo rôznych`→`z rôznych`.
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
@@ -20,14 +21,17 @@ HEAD: `fe4df5c`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `fe4df5c`; post-commit SFTP nahral `files/lipton-tx.html`;
-  `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `ba62522`; post-commit SFTP nahral `files/nefamb.html`,
+  `files/usgo.html`, `segments/usgo.html`; `deploy.ps1 -Apply` 0 upload;
+  smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
-  `/terms` `/nefrologia` `/lipton-tx` → 200 + HSTS + CSP (enforced stále s
-  `'unsafe-inline'`)
-- Produkcia `/lipton-tx`: opravené reťazce prítomné; staré chyby (`Hearth`,
-  ` vak `, `lento`, `ma jedinečnú`, `začala`) absent
-- GHA Deploy `42113695661` success (rsync skip)
+  `/terms` `/nefrologia` `/nefamb` `/usgo` → 200 + HSTS + CSP (enforced
+  stále s `'unsafe-inline'`)
+- Produkcia `/nefamb`: `zdravotnej`, `vo svojom`, `Zahŕňa` prítomné;
+  staré formy absent
+- Produkcia `/usgo` + homepage segment: `usiluje sa`, `odhaliť`,
+  `z rôznych` prítomné; `usiluje si` / `detekovať` / `zo rôznych` absent
+- GHA Deploy `42114689918` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -73,8 +77,14 @@ HEAD: `fe4df5c`
   nepridávať akronym spekulatívne.
 - Excluded vendor logos v HTML komentároch (`bbraun`/`baxter`/…) môžu
   404-ovať ako asset path, ale nie sú live `<img>` (strip comments).
+- Pri grammar scane synchronizovať `files/*.html` aj zodpovedajúci
+  `segments/*.html` (homepage include), inak topic page a homepage
+  divergujú.
+- `Zahrňuje`/`detekovať` sú bohemizmy/kalky; preferovať `Zahŕňa`/`odhaliť`
+  v pacientskom texte. `v svojom` → `vo svojom`; `zo` len pred s/z/š/ž +
+  spoluhláska (`zo rôznych` je chyba).
 
-## Ďalší fokus (loop #33)
+## Ďalší fokus (loop #34)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -82,12 +92,12 @@ HEAD: `fe4df5c`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu).
+   o obsahu; ďalšie grammar v `files/`/`segments/`).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-223402-loop32-lipton-tx-typos.md`
-- Audit: `.audit.md` Beh #43
+- Codex: `.codex/handoffs/2026-11-05-224058-loop33-nefamb-usgo-grammar.md`
+- Audit: `.audit.md` Beh #44
 
 ## Ďalší príkaz
 
