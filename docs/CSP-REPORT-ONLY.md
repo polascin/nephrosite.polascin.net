@@ -1,10 +1,14 @@
 # NephroSite: kandidát CSP Report-Only
 
-Aktualizácia 1. 11. 2026: nasadená je aktívna CSP v `.htaccess`, regresný
-test overuje túto konfiguráciu. Nasledujúci text je historický návrh
-z 11. 10. 2026 a nevyjadruje aktuálny produkčný stav. Postup je v `DEPLOY.md`.
+Aktualizácia 5. 11. 2026: v `.htaccess` je zároveň vynucovaná CSP aj
+`Content-Security-Policy-Report-Only` so striktným `script-src 'self'`
+(Google Fonts a ClustrMaps zostávajú v Report-Only, kým ich neodstránime
+alebo nelokalizujeme). Regresný test `tools/test-csp.php` overuje obe
+hlavičky. Text nižšie ostáva historickým návrhom z 11. 10. 2026;
+postup nasadenia je v `DEPLOY.md`.
 
-**Iba návrh, bez aktívnej hlavičky, enforcementu a produkčného deployu.**
+Aktualizácia 1. 11. 2026: nasadená je aktívna (vynucovaná) CSP v `.htaccess`.
+
 Rozsah je `nephrosite.polascin.net`; AlphaGrab rieši samostatný PR.
 
 ## Zdrojové dôkazy

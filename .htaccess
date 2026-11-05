@@ -12,8 +12,11 @@ ServerSignature Off
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
     Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
     Header always set Cross-Origin-Opener-Policy "same-origin"
-    # CSP sources include scripts loaded after consent.
+    # Povolené zdroje zahŕňajú aj analytiku načítavanú až po súhlase.
     Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://fastbase.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https://polascin.net https://clustrmaps.com https://www.google.sk https://www.google.com https://www.google-analytics.com https://*.clarity.ms https://c.bing.com; frame-src 'self' https://sk.polascin.net; media-src 'self'; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.clarity.ms https://fastbase.com https://*.fastbase.com"
+    # Iba Report-Only: nič neblokuje. Google Fonts a clustrmaps sú zámerne uvedené,
+    # aby sa zachytili aktuálne závislosti pred ich odstránením/lokalizáciou.
+    Header always set Content-Security-Policy-Report-Only "default-src 'self'; img-src 'self' data: https://polascin.net https://clustrmaps.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"
     Header always set X-Permitted-Cross-Domain-Policies "none"
     Header always unset X-Powered-By
     Header unset X-Powered-By

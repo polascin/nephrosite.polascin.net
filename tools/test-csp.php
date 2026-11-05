@@ -172,6 +172,10 @@ try {
     checkWorkflowWatchesTest($workflow, 'pull_request');
     checkWorkflowWatchesTest($workflow, 'push');
     check(preg_match_all('/^\s*Header always set Content-Security-Policy "([^"]+)"\s*$/m', $configuration, $headers) === 1, 'Expected exactly one enforced CSP header.');
+    check(preg_match_all('/^\s*Header always set Content-Security-Policy-Report-Only "([^"]+)"\s*$/m', $configuration, $reportOnly) === 1, 'Expected exactly one Report-Only CSP header.');
+    check(str_contains($reportOnly[1][0], "script-src 'self'"), 'Report-Only CSP must keep script-src self-only for tightening.');
+    check(str_contains($reportOnly[1][0], 'https://fonts.googleapis.com'), 'Report-Only CSP must list Google Fonts while they remain live.');
+    check(str_contains($reportOnly[1][0], 'https://clustrmaps.com'), 'Report-Only CSP must list ClustrMaps while the visitor map remains live.');
     $directives = parsePolicy(trim($headers[1][0]));
     foreach (['default-src', 'base-uri', 'frame-ancestors', 'form-action', 'media-src'] as $name) {
         check(($directives[$name] ?? []) === ["'self'"], "Expected $name 'self'.");
@@ -238,7 +242,7 @@ try {
     }
     checkMarkup($directives, '<meta http-equiv=refresh content="0">', 'non-CSP pragma fixture');
     echo 'PASS: 8 rendered PHP pages, 3 static documents, 3 dynamic loaders, '
-        . count($negativeCases) . ' negative fixtures; enforced CSP configuration validated.' . PHP_EOL;
+        . count($negativeCases) . ' negative fixtures; enforced + Report-Only CSP validated.' . PHP_EOL;
 } catch (Throwable $error) {
     fwrite(STDERR, 'FAIL: ' . $error->getMessage() . PHP_EOL);
     exit(1);

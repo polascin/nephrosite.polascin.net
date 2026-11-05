@@ -5,11 +5,11 @@
 	<thead>
 		<tr>
 			<th>
-				<img src="/pix/kidneyonleft.gif" alt="Kidney on Left" class="kidney-icon">
+				<img src="/pix/kidneyonleft.gif" alt="" class="kidney-icon" aria-hidden="true">
 				&nbsp;&nbsp;&nbsp;
 				Prednášky, prezentácie, články, texty, materiály, suplementá ...
 				&nbsp;&nbsp;&nbsp;
-				<img src="/pix/kidneyonright.gif" alt="Kidney on Right" class="kidney-icon">
+				<img src="/pix/kidneyonright.gif" alt="" class="kidney-icon" aria-hidden="true">
 			</th>
 		</tr>
 	</thead>
@@ -371,7 +371,7 @@
 		<tr>
 			<td>
 				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
-					<img src="/docs/vmppd.gif" alt="Funkcie obličiek. Kurz: Sprievodca dialyzačnou liečbou" class="slide" loading="lazy">
+					<img src="/docs/vmppd.gif" alt="Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou" class="slide" loading="lazy">
 				</a>
 				<a href="/docs/vmppd.pdf" target="_blank" rel="noopener noreferrer">
 					<span class="presentation"><strong>Vyšetrovacie metódy zamerané na pacientov liečených peritoneálnou dialýzou</strong></span>
