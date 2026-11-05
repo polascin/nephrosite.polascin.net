@@ -1,8 +1,8 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #41)
+Aktualizované: 2026-11-05 (loop iterácia #42)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `8b9127d`
+HEAD: `2ce776e`
 
 ## Čo je hotové v tejto iterácii
 
@@ -10,11 +10,12 @@ HEAD: `8b9127d`
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
   - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `jedinci`→`ľudia` (3×); `Liečba a manažment`→`Liečba a zvládanie`;
-    `glomerulárnej nefritídy`→`glomerulonefritídy` (2×)
+    `environmentálnych faktorov`→`faktorov prostredia`;
+    `poskytovateľ(ovi) zdravotnej starostlivosti`→`lekár`/`lekárovi` (2×);
+    `Taktiež musia`→`Musia tiež`
 - Overené a **nechane**:
-  - IgAN `v dôsledku zníženej schopnosti` (prirodzená väzba)
-  - `hyponatriémia`, `kosáčikovitá anémia`
+  - legal `poskytovateľ zdravotnej starostlivosti` v `privacy`/`terms`
+  - IgAN `v dôsledku zníženej schopnosti`; `hyponatriémia`; `kosáčikovitá anémia`
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
@@ -22,14 +23,15 @@ HEAD: `8b9127d`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `8b9127d`; post-commit SFTP nahral `segments/igan.html` +
+- Commit `2ce776e`; post-commit SFTP nahral `segments/igan.html` +
   `IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: nové IgAN formulácie prítomné; `jedinci`,
-  `Liečba a manažment`, `glomerulárnej nefritídy` absent
-- GHA Deploy `42120391913` success (rsync skip)
+- Produkcia `/`: nové IgAN formulácie prítomné; `environmentálnych faktorov`,
+  `poskytovateľ zdravotnej starostlivosti`, `poskytovateľovi…`,
+  `Taktiež musia` absent
+- GHA Deploy `42120965708` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -104,8 +106,12 @@ HEAD: `8b9127d`
 - Pacientsky text: `jedinci` (kalk z EN *individuals*) → `ľudia`;
   nadpis `manažment` → `zvládanie`; `glomerulárnej nefritídy` →
   `glomerulonefritídy` (zavedený termín).
+- Pacientsky IgAN: EN *healthcare provider* → `lekár` (nie úradnícky
+  `poskytovateľ zdravotnej starostlivosti`; legal stránky ponechať);
+  *environmental factors* → `faktorov prostredia`; vetné `Taktiež` →
+  `Musia tiež` / `Tiež`.
 
-## Ďalší fokus (loop #42)
+## Ďalší fokus (loop #43)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -113,13 +119,13 @@ HEAD: `8b9127d`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu; kandidáti: IgAN `poskytovateľ zdravotnej starostlivosti`,
-   `environmentálnych faktorov`, `Taktiež`).
+   o obsahu; kandidát: IgAN `zosúladiť vedľajšie účinky` → prirodzenejší tvar;
+   `osoby s IgA` → `ľudia s` pre konzistenciu).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #41 IgAN wording)
-- Audit: `.audit.md` Beh #52
+- Codex: `.codex/handoffs/` (loop #42 IgAN calques)
+- Audit: `.audit.md` Beh #53
 
 ## Ďalší príkaz
 
