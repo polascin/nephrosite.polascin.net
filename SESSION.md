@@ -1,18 +1,20 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #37)
+Aktualizované: 2026-11-05 (loop iterácia #38)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `4f21898`
+HEAD: `dd2a73d`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
-  - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `Prebieha viacero klinických skúšaní`→`Prebiehajú viaceré klinické skúšania`
-    (zhoda čísla slovesa + nominatív plurálu).
-- Live include: `blocks/nephrology.sk.php` → `segments/igan.html` (homepage).
+  - `files/dialyza.html`: `nahradzuje`→`nahrádza`;
+    `je zvyčajne vykonávaná`→`sa zvyčajne vykonáva`
+  - `blocks/regcitra.sk.php` (homepage CRRT title):
+    `nahradzujúcej liečby`→`náhradnej liečby`
+- Segment `segments/dialyza.html` intro pasáž s `nahradzuje` nemá → sync
+  netreba.
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
@@ -20,14 +22,15 @@ HEAD: `4f21898`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `4f21898`; post-commit SFTP nahral `segments/igan.html` +
-  `IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `dd2a73d`; post-commit SFTP nahral `files/dialyza.html` +
+  `blocks/regcitra.sk.php`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `Prebiehajú viaceré klinické skúšania` prítomné;
-  `Prebieha viacero klinických skúšaní` absent; `viacero` count 0
-- GHA Deploy `42117700083` success (rsync skip)
+- Produkcia `/`: `náhradnej liečby` prítomné; `nahradzujúcej` absent
+- Produkcia `/dialyza`: `nahrádza` + `sa zvyčajne vykonáva` prítomné;
+  `nahradzuje`/`vykonávaná` absent
+- GHA Deploy `42118482430` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -90,8 +93,11 @@ HEAD: `4f21898`
   `z dôvodu` → `pre` + akuzatív v pacientskom texte.
 - IgAN je na homepage cez `segments/igan.html`; `IgAN.sk.html` je paralelný
   variant (opraviť oba pri wording fixoch).
+- Preferovať `nahrádza`/`náhradná liečba` pred `nahradzuje`/`nahradzujúca`
+  (zhoda s footer/cookie/terms); blank-hint scan môže dať false positive,
+  keď je `<span class="sr-only">` až za PHP blokom vnútri `<a>`.
 
-## Ďalší fokus (loop #38)
+## Ďalší fokus (loop #39)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -99,13 +105,14 @@ HEAD: `4f21898`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu; ďalší verified wording/a11y mimo už opravených register
-   kandidátov).
+   o obsahu; kandidáti: `ipvrm.htm` `viacero výhod`→`viaceré výhody`;
+   nefamb `dysbalancie`/ortografia `hyponatriémia`; purifikacia
+   `kosáčikovitá` vs zavedený termín).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #37 IgAN viacero wording)
-- Audit: `.audit.md` Beh #48
+- Codex: `.codex/handoffs/` (loop #38 nahradz wording)
+- Audit: `.audit.md` Beh #49
 
 ## Ďalší príkaz
 
