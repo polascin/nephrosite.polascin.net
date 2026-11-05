@@ -25,7 +25,7 @@ function parsePolicy(string $policy): array
         foreach ($tokens as $token) {
             check(
                 in_array($token, ["'self'", "'none'", "'unsafe-inline'"], true)
-                || preg_match('~^https://[a-z0-9.-]+$~D', $token) === 1,
+                || preg_match('~^https://(?:\*\.)?[a-z0-9.-]+$~D', $token) === 1,
                 'Unexpected or broad CSP source: ' . $token
             );
         }
@@ -51,8 +51,15 @@ function permits(array $directives, string $directive, string $url): bool
     if ($host === 'nephrosite.polascin.net') {
         return in_array("'self'", $sources, true);
     }
-    return in_array('https://' . $host, $sources, true)
-        && $host !== false;
+    foreach ($sources as $source) {
+        if (str_starts_with($source, 'https://*.')) {
+            $suffix = substr($source, strlen('https://*'));
+            if (is_string($host) && str_ends_with($host, $suffix)) {
+                return true;
+            }
+        }
+    }
+    return in_array('https://' . $host, $sources, true) && $host !== false;
 }
 
 function hasMetaCsp(string $html): bool
@@ -160,11 +167,11 @@ function checkMarkup(array $directives, string $html, string $file): void
 }
 
 try {
-    $document = file_get_contents('docs/CSP-REPORT-ONLY.md');
+    $configuration = file_get_contents('.htaccess');
     $workflow = file_get_contents('.github/workflows/csp-regression.yml');
     checkWorkflowWatchesTest($workflow, 'pull_request');
     checkWorkflowWatchesTest($workflow, 'push');
-    check(preg_match_all('/^Content-Security-Policy-Report-Only: (.+)$/m', $document, $headers) === 1, 'Expected exactly one documented candidate.');
+    check(preg_match_all('/^\s*Header always set Content-Security-Policy "([^"]+)"\s*$/m', $configuration, $headers) === 1, 'Expected exactly one enforced CSP header.');
     $directives = parsePolicy(trim($headers[1][0]));
     foreach (['default-src', 'base-uri', 'frame-ancestors', 'form-action', 'media-src'] as $name) {
         check(($directives[$name] ?? []) === ["'self'"], "Expected $name 'self'.");
@@ -175,7 +182,6 @@ try {
         check(permits($directives, 'connect-src', $url), 'Observed connection missing: ' . $url);
     }
     check(permits($directives, 'img-src', 'https://www.google.sk/example'), 'Observed Google image source missing.');
-    check(!preg_match('/^\s*Header\b[^\r\n]*Content-Security-Policy/im', file_get_contents('.htaccess')), 'Proposal must not activate a CSP header.');
     foreach (array_merge(glob('*.php'), glob('blocks/*.php'), glob('files/*.html')) as $file) {
         check(!str_contains(file_get_contents($file), 'Content-Security-Policy'), "$file: proposal must not activate PHP/meta CSP.");
     }
@@ -232,7 +238,7 @@ try {
     }
     checkMarkup($directives, '<meta http-equiv=refresh content="0">', 'non-CSP pragma fixture');
     echo 'PASS: 8 rendered PHP pages, 3 static documents, 3 dynamic loaders, '
-        . count($negativeCases) . ' negative fixtures; no CSP activated.' . PHP_EOL;
+        . count($negativeCases) . ' negative fixtures; enforced CSP configuration validated.' . PHP_EOL;
 } catch (Throwable $error) {
     fwrite(STDERR, 'FAIL: ' . $error->getMessage() . PHP_EOL);
     exit(1);
