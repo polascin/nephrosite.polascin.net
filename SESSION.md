@@ -2,7 +2,7 @@
 
 Aktualizované: 2026-11-05 (loop iterácia #11)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: (po commite tejto iterácie)
+HEAD: `77f109e` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
@@ -19,7 +19,9 @@ HEAD: (po commite tejto iterácie)
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
 - Clean URL smoke (MaximumRedirection 0): `/` `/privacy` `/terms`
   `/nefrologia` → 200
-- Po pushi: `deploy.ps1 -Apply` + GHA (rsync skip očakávaný)
+- Commit `77f109e`; post-commit push; `deploy.ps1 -Apply` 0 upload; smoke
+  direct 200
+- GHA Deploy `42095182321` success (rsync skip + nový notice o local deploy)
 
 ## Poznámky k toolingu
 
@@ -39,7 +41,7 @@ HEAD: (po commite tejto iterácie)
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop11 handoff po dokončení)
+- Codex: `.codex/handoffs/2026-11-05-203504-loop11-local-deploy-authority.md`
 - Audit: `.audit.md` Beh #22
 
 ## Ďalší príkaz
