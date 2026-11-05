@@ -1,44 +1,44 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #46)
+Aktualizované: 2026-11-05 (loop iterácia #47)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `3ead092`
+HEAD: `5fc04c1`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo):
-  - `files/nefamb.html` (bez `segments/nefamb`; homepage include netreba):
-    1. `palpáciu obličiek ako aj ostatné súčasti` →
-       `palpáciu obličiek a ostatné súčasti` (+ čiarka pred palpáciou)
-    2. `liekov … s ich presným dávkovaním ako aj vitamínov, minerálov
-       a potravinových doplnkov` →
-       `liekov, vitamínov, minerálov a potravinových doplnkov … s ich
-       presným dávkovaním` (zosúladený zoznam, nie visiaci genitív)
-    3. `ako aj prítomnosť cýst` → `a prítomnosti cýst` (genitív
-       paralelne k štruktúry/veľkosti)
-    4. `od toho-ktorého pacienta … ako aj podľa špecifík` →
-       `od konkrétneho pacienta, jeho diagnózy a špecifík`
+  - `files/transplantacia.html` + `segments/transplantacia.html`:
+    1. `ako aj alternatívne možnosti` → `a alternatívne možnosti`;
+       odstránená moralizujúca veta `byť vďačný darcom…`
+       (len v `files/`, intro odsek)
+    2. `mŕtveho` darcu → `zosnulého` (zhoda s intro `zosnulý` a
+       meta description v `transplantacia.php`)
+    3. segments: `prenáša do pacienta` → `prenáša na pacienta`
+    4. `príjemcu (akceptora)` → `príjemcu`; `cievy prijímateľa` →
+       `cievy príjemcu` (jednotný termín)
 - Overené a **nechane**:
   - IgAN `v dôsledku zníženej schopnosti`; `hyponatriémia`;
     `kosáčikovitá anémia`; legal `poskytovateľ…`
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
+  - `(donora)` po `darcu` ponechané ako zavedený dvojjazyčný gloss
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `3ead092`; post-commit SFTP nahral `files/nefamb.html`;
-  `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `5fc04c1`; post-commit SFTP nahral `files/` + `segments/`
+  `transplantacia.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/nefamb`: nové formulácie prítomné; staré `ako aj` a
-  `toho-ktorého` absent
-- GHA Deploy `42123398826` success (rsync skip)
+- Produkcia `/transplantacia`: `zosnulého`, `cievy príjemcu`,
+  `výhody … a alternatívne` prítomné; `mŕtveho`, `ako aj`, `vďačný`,
+  `akceptor` absent
+- GHA Deploy `42124122112` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -139,8 +139,12 @@ HEAD: `3ead092`
   (`vizualizáciu A, ako aj prítomnosť` → `… a prítomnosti`), (d) zmiešané
   predložky (`v závislosti od X ako aj podľa Y`). `nefamb` nemá
   `segments/` mirror.
+- Transplantácia: preferovať `zosnulý`/`zosnulého darcu` pred `mŕtvy`/
+  `mŕtveho` (zhoda s meta description); `prenáša na pacienta` nie `do`;
+  `príjemca` jednotne (nie `akceptor` / striedanie s `prijímateľ`);
+  moralizujúce „byť vďačný darcom“ nie je pacientsky content.
 
-## Ďalší fokus (loop #47)
+## Ďalší fokus (loop #48)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -148,13 +152,13 @@ HEAD: `3ead092`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu). Kandidáti: ďalší patient-wording scan mimo už opravených
-   stránok; nie Lipton `jedinec`.
+   o obsahu). Kandidáti: `nefrologia` (`jednotlivca` / `vylepšiť
+   pochopenie`); nie Lipton `jedinec`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #46 nefamb ako aj)
-- Audit: `.audit.md` Beh #57
+- Codex: `.codex/handoffs/` (loop #47 transplant zosnulý)
+- Audit: `.audit.md` Beh #58
 
 ## Ďalší príkaz
 
