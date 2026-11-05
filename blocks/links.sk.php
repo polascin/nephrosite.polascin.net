@@ -10,17 +10,10 @@
 <link href="/favicon-32x32.png" type="image/png" rel="icon"  sizes="32x32">
 <link href="/favicon-16x16.png" type="image/png" rel="icon"  sizes="16x16">
 <link href="/site.webmanifest" rel="manifest">
-<link href='https://fonts.googleapis.com/css?family=Archivo' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Babylonica' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Lancelot' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Fenix' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Literata' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Blinker' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Imprima' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Blaka' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Akronim' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Arizonia' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Birthstone' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet'>
+<?php
+// Only families referenced by css/tokens.css + blocks/styles.css.php.
+// Nine unused Google Font stylesheet links removed 2026-11-05 after CSS audit.
+?>
+<link href="https://fonts.googleapis.com/css?family=Blinker|Blaka|Fenix&display=swap" rel="stylesheet">
 <?php /* Dizajnové tokeny (css/tokens.css, generované z tokens.json – pozri DEPLOY.md); musia byť načítané pred blocks/styles.css.php. */ ?>
 <link rel="stylesheet" href="/css/tokens.css">

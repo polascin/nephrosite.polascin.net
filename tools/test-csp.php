@@ -173,10 +173,18 @@ try {
     checkWorkflowWatchesTest($workflow, 'push');
     check(preg_match_all('/^\s*Header always set Content-Security-Policy "([^"]+)"\s*$/m', $configuration, $headers) === 1, 'Expected exactly one enforced CSP header.');
     check(preg_match_all('/^\s*Header always set Content-Security-Policy-Report-Only "([^"]+)"\s*$/m', $configuration, $reportOnly) === 1, 'Expected exactly one Report-Only CSP header.');
-    check(str_contains($reportOnly[1][0], "script-src 'self'"), 'Report-Only CSP must keep script-src self-only for tightening.');
-    check(str_contains($reportOnly[1][0], 'https://fonts.googleapis.com'), 'Report-Only CSP must list Google Fonts while they remain live.');
-    check(str_contains($reportOnly[1][0], 'https://clustrmaps.com'), 'Report-Only CSP must list ClustrMaps while the visitor map remains live.');
+    $reportOnlyPolicy = trim($reportOnly[1][0]);
+    $reportOnlyDirectives = parsePolicy($reportOnlyPolicy);
+    check(($reportOnlyDirectives['script-src'] ?? []) === ["'self'"], 'Report-Only CSP must keep script-src self-only for tightening.');
+    check(!in_array("'unsafe-inline'", $reportOnlyDirectives['script-src'] ?? [], true), 'Report-Only script-src must not allow unsafe-inline.');
+    check(permits($reportOnlyDirectives, 'style-src', 'https://fonts.googleapis.com/css'), 'Report-Only CSP must list Google Fonts while they remain live.');
+    check(permits($reportOnlyDirectives, 'img-src', 'https://clustrmaps.com/map.png'), 'Report-Only CSP must list ClustrMaps while the visitor map remains live.');
+    check(($reportOnlyDirectives['media-src'] ?? []) === ["'self'"], "Report-Only media-src must be 'self' (homepage videos are same-origin).");
+    check(($reportOnlyDirectives['frame-src'] ?? []) === ["'self'"], "Report-Only frame-src must be 'self' (current iframes are same-origin).");
+    check(!in_array('data:', $reportOnlyDirectives['img-src'] ?? [], true), 'Report-Only img-src must not allow data: (no data: images in markup).');
+    check(!str_contains($reportOnlyPolicy, 'googletagmanager') && !str_contains($reportOnlyPolicy, 'clarity.ms') && !str_contains($reportOnlyPolicy, 'fastbase.com'), 'Report-Only must keep analytics hosts out of allowlists so consent loads are measurable.');
     $directives = parsePolicy(trim($headers[1][0]));
+
     foreach (['default-src', 'base-uri', 'frame-ancestors', 'form-action', 'media-src'] as $name) {
         check(($directives[$name] ?? []) === ["'self'"], "Expected $name 'self'.");
     }
@@ -214,6 +222,18 @@ try {
     check(count($scripts[1]) === 3, 'Review changed dynamic script loaders.');
     foreach ($scripts[1] as $url) {
         check(permits($directives, 'script-src', $url), 'Dynamic script not covered: ' . $url);
+    }
+
+    $fontLinks = file_get_contents('blocks/links.sk.php');
+    check(
+        preg_match_all("~fonts\\.googleapis\\.com/css\\?family=~", $fontLinks) === 1,
+        'Expected a single Google Fonts stylesheet after unused-family cleanup.'
+    );
+    foreach (['Blinker', 'Blaka', 'Fenix'] as $family) {
+        check(str_contains($fontLinks, $family), "Missing required live font family: $family");
+    }
+    foreach (['Archivo', 'Babylonica', 'Lancelot', 'Literata', 'Imprima', 'Akronim', 'Arizonia', 'Birthstone', 'Cabin'] as $unused) {
+        check(!str_contains($fontLinks, $unused), "Unused Google Font still linked: $unused");
     }
 
     $negativeCases = [
