@@ -16,6 +16,8 @@ Desktop.ini
 *.log
 error_log
 php_errors.log
+private/csp-reports/*.jsonl
+private/csp-reports/*.rotated
 
 # Claude Code — celý adresár je lokálny
 .claude/

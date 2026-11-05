@@ -1,4 +1,5 @@
-<script>
+<?php require_once __DIR__ . '/csp-nonce.php'; ?>
+<script <?php echo nephrosite_csp_nonce_attr(); ?>>
 (function () {
   var STORAGE_KEY = "nephro_consent_v1";
   var COOKIE_NAME = "nephro_consent_v1";

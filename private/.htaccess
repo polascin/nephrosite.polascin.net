@@ -1,0 +1,3 @@
+# Runtime data (CSP report logs). Never serve over HTTP.
+Require all denied
+Options -Indexes

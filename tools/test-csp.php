@@ -6,6 +6,9 @@ declare(strict_types=1);
 $root = dirname(__DIR__);
 chdir($root);
 
+require_once $root . '/blocks/csp-report-handler.php';
+require_once $root . '/blocks/csp-nonce.php';
+
 function check(bool $condition, string $message): void
 {
     if (!$condition) {
@@ -20,7 +23,20 @@ function parsePolicy(string $policy): array
         $tokens = preg_split('/\s+/', trim($directive));
         $name = array_shift($tokens);
         check($name !== '' && !isset($directives[$name]), 'Empty or duplicate CSP directive.');
-        check(!in_array($name, ['report-uri', 'report-to'], true), 'No approved reporting endpoint.');
+        if ($name === 'report-uri') {
+            check(
+                $tokens === ['/csp-report.php']
+                || $tokens === ['https://nephrosite.polascin.net/csp-report.php'],
+                'Only the approved first-party report-uri is allowed.'
+            );
+            $directives[$name] = $tokens;
+            continue;
+        }
+        if ($name === 'report-to') {
+            check($tokens === [NEPHROSITE_CSP_REPORT_GROUP], 'Only the approved report-to group "csp" is allowed.');
+            $directives[$name] = $tokens;
+            continue;
+        }
         check(count($tokens) > 0, 'Empty CSP source list: ' . $name);
         foreach ($tokens as $token) {
             check(
@@ -166,6 +182,70 @@ function checkMarkup(array $directives, string $html, string $file): void
     }
 }
 
+function checkReportingConfigured(string $configuration, array $enforced, array $reportOnly): void
+{
+    check(
+        preg_match(
+            '/^\s*Header always set Reporting-Endpoints "csp=\\\\"\/csp-report\.php\\\\""\s*$/m',
+            $configuration
+        ) === 1,
+        'Expected Reporting-Endpoints for group csp → /csp-report.php.'
+    );
+    check(($enforced['report-uri'] ?? null) === ['/csp-report.php'], 'Enforced CSP must report to /csp-report.php.');
+    check(($enforced['report-to'] ?? null) === ['csp'], 'Enforced CSP must use report-to csp.');
+    check(($reportOnly['report-uri'] ?? null) === ['/csp-report.php'], 'Report-Only CSP must report to /csp-report.php.');
+    check(($reportOnly['report-to'] ?? null) === ['csp'], 'Report-Only CSP must use report-to csp.');
+    check(is_file('csp-report.php'), 'Missing public csp-report.php endpoint.');
+    check(is_file('blocks/csp-report-handler.php'), 'Missing CSP report handler.');
+    check(is_file('private/.htaccess') && str_contains(file_get_contents('private/.htaccess'), 'Require all denied'), 'private/ must deny HTTP access.');
+    check(is_file('private/csp-reports/.htaccess'), 'CSP report log directory must deny HTTP access.');
+}
+
+function checkNonceHelpers(): void
+{
+    check(is_file('blocks/csp-nonce.php'), 'Missing CSP nonce helper.');
+    $a = nephrosite_csp_nonce();
+    $b = nephrosite_csp_nonce();
+    check($a === $b && strlen($a) >= 16, 'Nonce must be stable per request and non-trivial.');
+    check(str_contains(nephrosite_csp_nonce_attr(), $a), 'Nonce attribute helper must embed the nonce.');
+    foreach (['blocks/scripts.sk.php', 'blocks/metatags.sk.php', 'blocks/current.sk.php'] as $file) {
+        $source = file_get_contents($file);
+        check(str_contains($source, 'nephrosite_csp_nonce_attr()'), "$file must emit a CSP nonce attribute.");
+    }
+}
+
+function checkReportHandlerUnit(): void
+{
+    $legacy = nephrosite_csp_sanitize_reports([
+        'csp-report' => [
+            'document-uri' => 'https://nephrosite.polascin.net/',
+            'violated-directive' => 'script-src',
+            'blocked-uri' => 'https://evil.example/x.js',
+            'original-policy' => str_repeat('a', 600),
+            'script-sample' => str_repeat('b', 80),
+            'password' => 'should-drop',
+        ],
+    ]);
+    check(count($legacy) === 1, 'Legacy csp-report envelope must yield one report.');
+    check(!isset($legacy[0]['password']), 'Unknown fields must be dropped.');
+    check(strlen($legacy[0]['original-policy']) === 512, 'original-policy must be truncated.');
+    check(strlen($legacy[0]['script-sample']) === 40, 'script-sample must be truncated.');
+
+    $reportingApi = nephrosite_csp_sanitize_reports([
+        [
+            'type' => 'csp-violation',
+            'body' => [
+                'effective-directive' => 'script-src',
+                'blocked-uri' => 'inline',
+                'disposition' => 'report',
+            ],
+        ],
+        ['type' => 'other', 'body' => ['blocked-uri' => 'ignore']],
+    ]);
+    check(count($reportingApi) === 1, 'Reporting API payload must keep only csp-violation bodies.');
+    check(($reportingApi[0]['disposition'] ?? '') === 'report', 'Reporting API body fields must be preserved.');
+}
+
 try {
     $configuration = file_get_contents('.htaccess');
     $workflow = file_get_contents('.github/workflows/csp-regression.yml');
@@ -187,6 +267,9 @@ try {
     check(!str_contains($reportOnlyPolicy, 'googletagmanager') && !str_contains($reportOnlyPolicy, 'clarity.ms') && !str_contains($reportOnlyPolicy, 'fastbase.com'), 'Report-Only must keep analytics hosts out of allowlists so consent loads are measurable.');
     $enforcedPolicy = trim($headers[1][0]);
     $directives = parsePolicy($enforcedPolicy);
+    checkReportingConfigured($configuration, $directives, $reportOnlyDirectives);
+    checkNonceHelpers();
+    checkReportHandlerUnit();
 
     foreach (['default-src', 'base-uri', 'frame-ancestors', 'form-action', 'media-src'] as $name) {
         check(($directives[$name] ?? []) === ["'self'"], "Expected $name 'self'.");
@@ -200,6 +283,10 @@ try {
     }
     check(permits($directives, 'img-src', 'https://www.google.sk/example'), 'Observed Google image source missing.');
     foreach (array_merge(glob('*.php'), glob('blocks/*.php'), glob('files/*.html')) as $file) {
+        // Public report endpoint is allowed to exist; it must not emit a CSP meta/header itself.
+        if (basename($file) === 'csp-report.php' || str_ends_with($file, 'csp-report-handler.php') || str_ends_with($file, 'csp-nonce.php')) {
+            continue;
+        }
         check(!str_contains(file_get_contents($file), 'Content-Security-Policy'), "$file: proposal must not activate PHP/meta CSP.");
     }
 
@@ -219,6 +306,8 @@ try {
         check($exitCode === 0 && $errors === '', "$page render failed: $errors");
         check(str_contains($html, '<main id="content">'), "$page did not render its content.");
         checkMarkup($directives, $html, $page);
+        check(preg_match('/<script\b[^>]*\bnonce="[A-Za-z0-9_-]+"/', $html) === 1
+            || substr_count($html, 'nonce="') >= 2, "$page: expected nonce attributes on inline scripts.");
     }
     foreach (['files/privacy.html', 'files/terms.html', 'ipvrm.htm'] as $file) {
         checkMarkup($directives, file_get_contents($file), $file);
@@ -261,6 +350,7 @@ try {
         fn () => parsePolicy("default-src *"),
         fn () => parsePolicy("default-src 'self'; report-uri https://example.test"),
         fn () => parsePolicy("default-src 'self'; report-to invented"),
+        fn () => parsePolicy("default-src 'self'; report-uri /other-report.php"),
         fn () => checkMarkup($directives, '<img src="https://unexpected.test/x">', 'negative fixture'),
         fn () => checkMarkup($directives, '<img src="data:image/png;base64,AA==">', 'negative fixture'),
         fn () => checkMarkup($directives, '<meta content="x" http-equiv="Content-Security-Policy">', 'negative fixture'),
@@ -278,8 +368,14 @@ try {
         check($rejected, 'Negative regression fixture was incorrectly accepted.');
     }
     checkMarkup($directives, '<meta http-equiv=refresh content="0">', 'non-CSP pragma fixture');
+
+    // Approved reporting tokens must parse.
+    $approved = parsePolicy("default-src 'self'; report-uri /csp-report.php; report-to csp");
+    check(($approved['report-uri'] ?? null) === ['/csp-report.php'], 'Approved report-uri must parse.');
+    check(($approved['report-to'] ?? null) === ['csp'], 'Approved report-to must parse.');
+
     echo 'PASS: 8 rendered PHP pages, 3 static documents, 3 dynamic loaders, '
-        . count($negativeCases) . ' negative fixtures; enforced + Report-Only CSP validated.' . PHP_EOL;
+        . count($negativeCases) . ' negative fixtures; enforced + Report-Only CSP + first-party reporting + nonce helpers validated.' . PHP_EOL;
 } catch (Throwable $error) {
     fwrite(STDERR, 'FAIL: ' . $error->getMessage() . PHP_EOL);
     exit(1);

@@ -5,7 +5,12 @@ const path = require('node:path');
 const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
 let source = fs.readFileSync(path.join(root, 'blocks/scripts.sk.php'), 'utf8');
-source = source.replace(/^<script>\s*/, '').replace(/<\/script>\s*$/, '');
+// Strip PHP (nonce helper) and the opening/closing <script> tags.
+source = source
+  .replace(/<\?php[\s\S]*?\?>/gu, '')
+  .replace(/^\s*<script\b[^>]*>\s*/u, '')
+  .replace(/<\/script>\s*$/u, '');
+assert.match(source, /^\(function \(\) \{/, 'Expected consent IIFE after stripping PHP/script wrappers');
 const boot = source.lastIndexOf('  if (document.readyState === "loading")');
 assert.ok(boot > 0, 'Expected consent boot entry point');
 source = source.slice(0, boot) +

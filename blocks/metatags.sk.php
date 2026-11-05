@@ -36,7 +36,8 @@ $modifiedDate = date("c", getlastmod());
 <meta name="twitter:description" content="<?php echo htmlspecialchars($pageDescription, ENT_QUOTES, 'UTF-8'); ?>">
 <meta name="twitter:image" content="<?php echo htmlspecialchars($ogImage, ENT_QUOTES, 'UTF-8'); ?>">
 
-<script type="application/ld+json">
+<?php require_once __DIR__ . '/csp-nonce.php'; ?>
+<script type="application/ld+json" <?php echo nephrosite_csp_nonce_attr(); ?>>
 {
     "@context": "https://schema.org",
     "@graph": [{

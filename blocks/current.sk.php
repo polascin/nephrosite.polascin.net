@@ -13,7 +13,8 @@
 	</a>
 </div>
 
-<script>
+<?php require_once __DIR__ . '/csp-nonce.php'; ?>
+<script <?php echo nephrosite_csp_nonce_attr(); ?>>
 	function getDayOfYear(date) {
 		const start = new Date(date.getFullYear(), 0, 0);
 		const diff = date - start;
