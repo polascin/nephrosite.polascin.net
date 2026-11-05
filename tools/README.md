@@ -44,11 +44,14 @@ Produkčný smoke a hash overenie stále robí `.\tools\deploy.ps1 -Apply`.
 
 ```powershell
 php .\tools\test-csp.php
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\csp-report-summary.ps1
 ```
 
-Bez ďalších závislostí a siete vykreslí verejné PHP stránky, porovná ich zdroje
-s dokumentovaným [Report-Only kandidátom](../docs/CSP-REPORT-ONLY.md) a overí,
-že návrh neaktivuje hlavičku ani meta CSP vrátane neúvodzovkových a
-zmiešaných zápisov `http-equiv`. Kontroluje aj to, že workflow sleduje tento
-test pri pull requestoch aj pushi do `main`. Samostatný PR workflow nemá deploy
-job. Test nemení produkčné ani právne súbory.
+`test-csp.php` bez siete vykreslí verejné PHP stránky, porovná zdroje s
+[Report-Only kandidátom](../docs/CSP-REPORT-ONLY.md) a overí hybrid PHP/Apache
+CSP, nonces a Cache-Control pre self-host fonty. Workflow sleduje tento test
+pri PR aj pushi do `main`.
+
+`csp-report-summary.ps1` načíta `private/csp-reports/reports.jsonl` cez SSH
+alias `websupport` (súkromne; HTTP 403). Použi pred rozhodnutím o dropnutí
+enforced `'unsafe-inline'`.

@@ -263,6 +263,22 @@ function checkPhpBootstrap(string $htaccessEnforced, string $htaccessReportOnly)
         !preg_match('/^\s*Header always set Content-Security-Policy "/m', preg_replace('/<FilesMatch[\s\S]*?<\/FilesMatch>/', '', file_get_contents('.htaccess'))),
         'Global (non-FilesMatch) enforced CSP must not remain — PHP owns document CSP.'
     );
+
+    $htaccess = file_get_contents('.htaccess');
+    check(
+        str_contains($htaccess, 'Cache-Control "public, max-age=31536000, immutable"')
+            && str_contains($htaccess, '\\.(woff2|ofl)$'),
+        '.htaccess must long-cache self-hosted fonts (woff2/ofl).'
+    );
+    check(
+        str_contains($htaccess, 'Cache-Control "public, max-age=604800"')
+            && str_contains($htaccess, 'fonts\\.css'),
+        '.htaccess must cache fonts.css / legal assets for a week.'
+    );
+    check(
+        is_file('tools/csp-report-summary.ps1'),
+        'CSP report summary tool must exist for private SSH telemetry review.'
+    );
 }
 
 function checkReportHandlerUnit(): void

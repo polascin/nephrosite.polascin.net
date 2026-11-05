@@ -1,10 +1,10 @@
 # NephroSite: CSP Report-Only
 
-Aktualizácia 5. 11. 2026 (loop #8): hybrid PHP/Apache CSP. PHP HTML
-entrypoints emitujú CSP cez `blocks/csp-bootstrap.php` (Report-Only s
-`'nonce-…'`). Statické HTML/assetty ostávajú na `.htaccess` `FilesMatch`.
-Loop #7: first-party reporting + nonce na markup. Loop #6: ClustrMaps SVG.
-Loop #5: Google Fonts self-hosted.
+Aktualizácia 5. 11. 2026 (loop #9): RO telemetria cez SSH je príliš čerstvá
+(2 riadky, oba smoke/test; žiadne reálne Clarity/GTM vzorky). Enforced
+`'unsafe-inline'` ostáva. Pridaný `tools/csp-report-summary.ps1`.
+Loop #8: hybrid PHP/Apache CSP + Report-Only nonce. Loop #7: reporting
+endpoint. Loop #6: ClustrMaps SVG. Loop #5: self-host fontov.
 
 ## Aktívny stav
 
@@ -53,10 +53,23 @@ RO telemetrie: zlomilo by to analytiku po súhlase (a CSP3 + nonce by vypol
 | report-uri / report-to | `/csp-report.php` + group `csp` | First-party sink |
 | PHP nonce RO | `csp-bootstrap.php` | Meranie first-party inline |
 
+## Telemetria 5. 11. 2026 (loop #9)
+
+Čítané cez SSH z `private/csp-reports/reports.jsonl` (HTTP 403 zámerne).
+Súhrn: `powershell -File .\tools\csp-report-summary.ps1`.
+
+| ts (UTC) | blocked-uri | disposition | poznámka |
+| --- | --- | --- | --- |
+| 19:09:00 | `https://evil.example/x.js` | report | smoke POST z loop #7/#8 |
+| 19:16:05 | `inline` | (prázdne) | bez `script-sample` / `source-file`; smoke marker |
+
+**Záver:** žiadne reálne prehliadačové RO porušenia. **Neodstraňovať**
+enforced `'unsafe-inline'` v tomto cykle. Consent Clarity/GTM cesty ostávajú
+mimo RO allowlistu a ešte neboli overené živou telemetriou.
+
 ## Ďalšie kroky
 
-1. RO telemetria (`private/csp-reports/`) → rozhodnúť o odstránení
-   `'unsafe-inline'` z enforced (až so strong evidence).
-2. Po schválení: cleanup remote-only zvyškov (~68).
+1. Zbieraj RO telemetriu (`csp-report-summary.ps1`) → drop `'unsafe-inline'`
+   len so strong evidence vrátane Clarity/GTM po súhlase.
+2. Po schválení: cleanup remote-only (pozri `docs/REMOTE-ONLY-INVENTORY.md`).
 3. Oficiálne uznať `deploy.ps1` / opraviť GH secrets.
-4. Voliteľne zosúladiť hosting CSP na `/privacy.php`/`/files/*.html`.

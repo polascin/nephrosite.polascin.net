@@ -41,6 +41,15 @@ AddType text/plain .ofl
         # NEPREENÁŠAŤ do vynucovanej CSP bez samostatného schválenia.
         Header always set Content-Security-Policy-Report-Only "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' https://polascin.net; frame-src 'self'; media-src 'self'; connect-src 'self'; report-uri /csp-report.php; report-to csp"
     </FilesMatch>
+
+    # Long-lived cache for content-hashed / rarely changing first-party assets
+    # (self-hosted fonts after loop #5). Filenames are stable; bump path on change.
+    <FilesMatch "\.(woff2|ofl)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    <FilesMatch "^(fonts\.css|tokens\.css|legal\.css|privacy-consent\.js|clustrmaps-visitor-map\.svg)$">
+        Header set Cache-Control "public, max-age=604800"
+    </FilesMatch>
 </IfModule>
 
 # Blokovanie .git a citlivých súborov
