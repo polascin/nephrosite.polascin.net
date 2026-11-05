@@ -1,51 +1,50 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #2)
+Aktualizované: 2026-11-05 (loop iterácia #3)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `c710399` (docs/handoff commit môže nasledovať)
+HEAD: `1a2f1c2` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
-- Prekódované GIF slidy `fosdl`, `foazo`, `ktx`, `aem`, `vmppd` na H.264 MP4 + WebP poster.
-- `blocks/lectures.sk.php`: `<video preload="none" poster=…>` namiesto `<img>` v odkaze; GIF ostáva ako fallback a priamy URL.
-- Pridaný `tools/encode-lecture-gifs.py` (Pillow expanduje frame delay, lebo ffmpeg samotný zahodil dlhý hold posledného framu).
-- GIF súbory v `docs/` **neboli** mazané ani LFS-ované; `nephrogame.gif` nedotknutý.
+- Prekódované GIF slidy `ktx2023`, `crrt2023` na H.264 MP4 + WebP poster.
+- `blocks/foazosszu.sk.php`: `<video class="halfslide" preload="none" poster=…>`; GIF fallback; PDF odkazy pod videami.
+- `blocks/styles.css.php`: štýly pre `video.halfslide`.
+- Encoder `tools/encode-lecture-gifs.py` prijíma argv (`DEFAULT_NAMES` obsahuje aj 2023).
+- Post-commit SFTP rešpektuje `.deployignore` (`tools/hooks/post-commit-deploy.sh` → `.git/hooks/deploy.sh`).
 
 ### Veľkosti (GIF → MP4)
 
 | Slide | GIF | MP4 | Poster |
 | --- | ---: | ---: | ---: |
-| fosdl | 6,88 MB | 1,54 MB | 186 KB |
-| foazo | 5,25 MB | 1,21 MB | 136 KB |
-| ktx | 3,07 MB | 0,34 MB | 27 KB |
-| aem | 3,59 MB | 0,82 MB | 29 KB |
-| vmppd | 3,29 MB | 0,86 MB | 22 KB |
+| ktx2023 | 7,20 MB | 1,24 MB | 64 KB |
+| crrt2023 | 6,62 MB | 1,08 MB | 58 KB |
 
-Inicializácia stránky stiahne postery (~0,4 MB spolu) namiesto ~22 MB GIF-ov.
+Inicializácia foazosszu stiahne postery (~0,12 MB) namiesto ~14 MB GIF-ov.
 
 ## Overené na produkcii
 
-- `tools/deploy.ps1 -Apply` → 0 upload (post-commit SFTP už nahral), smoke `/` a `/privacy.php` 200
-- `https://nephrosite.polascin.net/` → 200, CSP + CSP-Report-Only, HSTS
-- Všetkých 5× `.mp4` + 5× `-poster.webp` → 200, správne Content-Type
-- Homepage HTML obsahuje `fosdl.mp4` / postery / `preload="none"`; `fosdl.gif` stále 200
+- `tools/deploy.ps1 -Apply` → 0 upload (post-commit SFTP už nahral media), smoke `/` a `/privacy.php` 200
+- Media URL 200 + správny Content-Type; sizes match local
+- Homepage HTML: `ktx2023.mp4` / `crrt2023.mp4` / postery / `preload="none"`; GIF fallback URL 200
+- Commit hooku `1a2f1c2`: log `skip (deployignore):` pre DEPLOY.md a `tools/*` (žiadny SFTP put tooling)
 
 ## Poznámky k toolingu
 
-- Globálny `core.hooksPath` (GitGuardian) volá chýbajúci `ggshield` CLI → commit treba cez `git -c core.hooksPath=.git/hooks commit …` (lokálny pre-commit ggshield cez pre-commit framework prejde).
-- Post-commit hook pushne a SFTP-uje bez `.deployignore`; preto `tools/encode-lecture-gifs.py` ostal remote-only v web roote (deploy.ps1 ho neposiela).
+- Commit stále cez `git -c core.hooksPath=.git/hooks` (globálny GG bez `ggshield` CLI).
+- Remote-only junk (~68 súborov: `.git`, `tools/*.phar`, encoder, SESSION.md, …) ostáva; **nemažeť bez súhlasu**.
+- Obnova hooku: `Copy-Item -Force tools\hooks\post-commit-deploy.sh .git\hooks\deploy.sh`
 
-## Ďalší fokus (loop #3)
+## Ďalší fokus (loop #4)
 
-1. Prekódovať `ktx2023.gif` / `crrt2023.gif` na homepage (`blocks/foazosszu.sk.php`).
-2. Vyhodnotiť Report-Only CSP (Fonts/ClustrMaps) a lokalizovať.
-3. Schválený cleanup remote-only zvyškov (`.git`, `tools/*.phar`, encoder script).
-4. Oficiálne uznať `deploy.ps1` / opraviť GH secrets; zvážiť zosúladenie post-commit SFTP s `.deployignore`.
+1. Vyhodnotiť Report-Only CSP (Fonts/ClustrMaps) a lokalizovať bez blind enforce.
+2. Schválený cleanup remote-only zvyškov.
+3. Oficiálne uznať `deploy.ps1` / opraviť GH secrets.
+4. Globálny GitGuardian hooksPath / `ggshield` CLI.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop2, pozri najnovší súbor)
-- Audit: `.audit.md` Beh #13
+- Codex: `.codex/handoffs/2026-11-05-194453-loop3-foazosszu-mp4-deployignore.md`
+- Audit: `.audit.md` Beh #14
 
 ## Ďalší príkaz
 
