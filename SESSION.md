@@ -1,44 +1,35 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #47)
+Aktualizované: 2026-11-05 (loop iterácia #48)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `5fc04c1`
+HEAD: `80f1659`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo):
-  - `files/transplantacia.html` + `segments/transplantacia.html`:
-    1. `ako aj alternatívne možnosti` → `a alternatívne možnosti`;
-       odstránená moralizujúca veta `byť vďačný darcom…`
-       (len v `files/`, intro odsek)
-    2. `mŕtveho` darcu → `zosnulého` (zhoda s intro `zosnulý` a
-       meta description v `transplantacia.php`)
-    3. segments: `prenáša do pacienta` → `prenáša na pacienta`
-    4. `príjemcu (akceptora)` → `príjemcu`; `cievy prijímateľa` →
-       `cievy príjemcu` (jednotný termín)
+  - `files/nefrologia.html` + `segments/nefrologia.html`:
+    1. `vylepšiť pochopenie` → `zlepšiť pochopenie` (bohemizmus;
+       zhoda s neskorším `zlepšovať pochopenie` v tom istom texte)
+    2. `pohodu jednotlivca` → `pohodu človeka` (kalk EN *individual*)
 - Overené a **nechane**:
-  - IgAN `v dôsledku zníženej schopnosti`; `hyponatriémia`;
-    `kosáčikovitá anémia`; legal `poskytovateľ…`
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
-  - `(donora)` po `darcu` ponechané ako zavedený dvojjazyčný gloss
-- Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
+  - Intro Bory zostáva zakomentovaný
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `5fc04c1`; post-commit SFTP nahral `files/` + `segments/`
-  `transplantacia.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `80f1659`; post-commit SFTP nahral `files/` + `segments/`
+  `nefrologia.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/transplantacia`: `zosnulého`, `cievy príjemcu`,
-  `výhody … a alternatívne` prítomné; `mŕtveho`, `ako aj`, `vďačný`,
-  `akceptor` absent
-- GHA Deploy `42124122112` success (rsync skip)
+- Produkcia `/nefrologia` aj `/`: `zlepšiť pochopenie`, `pohodu človeka`
+  prítomné; `vylepšiť pochopenie`, `jednotlivca` absent
+- GHA Deploy `42124709480` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -111,8 +102,9 @@ HEAD: `5fc04c1`
 - Latinské/medzinárodné názvy chorôb (`mycosis fungoides`) nemenit́ na
   skomolené adjektíva (`mykózny fungoides`).
 - Pacientsky text: `jedinci` (kalk z EN *individuals*) → `ľudia`;
-  nadpis `manažment` → `zvládanie`; `glomerulárnej nefritídy` →
-  `glomerulonefritídy` (zavedený termín).
+  `jednotlivec`/`jednotlivca` → `človek`/`človeka`; nadpis `manažment` →
+  `zvládanie`; `glomerulárnej nefritídy` → `glomerulonefritídy`
+  (zavedený termín). `vylepšiť` je bohemizmus → `zlepšiť`/`zlepšovať`.
 - Pacientsky IgAN: EN *healthcare provider* → `lekár` (nie úradnícky
   `poskytovateľ zdravotnej starostlivosti`; legal stránky ponechať);
   *environmental factors* → `faktorov prostredia`; vetné `Taktiež` →
@@ -143,8 +135,9 @@ HEAD: `5fc04c1`
   `mŕtveho` (zhoda s meta description); `prenáša na pacienta` nie `do`;
   `príjemca` jednotne (nie `akceptor` / striedanie s `prijímateľ`);
   moralizujúce „byť vďačný darcom“ nie je pacientsky content.
+- Sync `files/nefrologia.html` aj `segments/nefrologia.html`.
 
-## Ďalší fokus (loop #48)
+## Ďalší fokus (loop #49)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -152,13 +145,12 @@ HEAD: `5fc04c1`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu). Kandidáti: `nefrologia` (`jednotlivca` / `vylepšiť
-   pochopenie`); nie Lipton `jedinec`.
+   o obsahu). Nie Lipton `jedinec`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #47 transplant zosnulý)
-- Audit: `.audit.md` Beh #58
+- Codex: `.codex/handoffs/` (loop #48 nefrologia zlepšiť/človeka)
+- Audit: `.audit.md` Beh #59
 
 ## Ďalší príkaz
 
