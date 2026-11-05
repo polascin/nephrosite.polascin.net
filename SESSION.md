@@ -1,20 +1,20 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #39)
+Aktualizované: 2026-11-05 (loop iterácia #40)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `c62b1b6`
+HEAD: `4a52309`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo content):
-  - `ipvrm.htm`: `viacero výhod`→`viaceré výhody` (zhoda s transplantacia/IgAN)
-  - `files/nefamb.html`: odstránený anglicizmus `(dysbalancie elektrolytov)`
-    pri už existujúcom `Elektrolytové nerovnováhy`
+  - `files/purifikacia.html` + `segments/purifikacia.html`:
+    `mykózny fungoides`→`mycosis fungoides` (zavedený názov ochorenia)
+  - `files/nefamb.html`: AKI `v dôsledku rôznych príčin`→`pre rôzne príčiny`
 - Overené a **nechane**:
-  - `hyponatriémia` (MKCH E87.1 / odborná literatúra)
-  - `kosáčikovitá anémia` (ICD/SK medicínsky termín)
+  - `hyponatriémia`, `kosáčikovitá anémia` (MKCH/ICD/SK)
+  - IgAN `v dôsledku zníženej schopnosti` (prirodzená väzba, nie defect)
 - ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
@@ -22,16 +22,16 @@ HEAD: `c62b1b6`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `c62b1b6`; post-commit SFTP nahral `ipvrm.htm` +
-  `files/nefamb.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `4a52309`; post-commit SFTP nahral purifikacia (files+segments)
+  + nefamb; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
-  `/ipvrm.htm` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/ipvrm.htm`: `viaceré … výhody` prítomné; `viacero … výhod`
-  absent
-- Produkcia `/nefamb`: `Elektrolytové nerovnováhy:` bez `dysbalancie`;
-  `hyponatriémia` ponechaná
-- GHA Deploy `42119106990` success (rsync skip)
+  `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
+- Produkcia `/purifikacia` a `/`: `mycosis fungoides` prítomné;
+  `mykózny fungoides` absent
+- Produkcia `/nefamb`: `pre rôzne príčiny` prítomné;
+  `v dôsledku rôznych príčin` absent
+- GHA Deploy `42119769238` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -91,16 +91,20 @@ HEAD: `c62b1b6`
   `detekciu` → `odhalenie` v pacientskom texte.
 - Číselná frekvencia: `4-5 krát` → `4-5-krát` (spojovník pred `krát`);
   `viacero` + genitív → `viaceré` + nominatív plurálu (+ plurál slovesa);
-  `z dôvodu` → `pre` + akuzatív v pacientskom texte.
+  `z dôvodu` → `pre` + akuzatív v pacientskom texte;
+  podobne redundantné `v dôsledku rôznych príčin` → `pre rôzne príčiny`
+  (nie však každá väzba `v dôsledku` + genitív je defect).
 - IgAN je na homepage cez `segments/igan.html`; `IgAN.sk.html` je paralelný
   variant (opraviť oba pri wording fixoch).
 - Preferovať `nahrádza`/`náhradná liečba` pred `nahradzuje`/`nahradzujúca`
   (zhoda s footer/cookie/terms); blank-hint scan môže dať false positive,
   keď je `<span class="sr-only">` až za PHP blokom vnútri `<a>`.
 - `hyponatriémia` a `kosáčikovitá anémia` sú zavedené SK/MKCH/ICD tvary;
-  nemenit́ bez dôkazu. `dysbalancie` je anglicizmus vedľa `nerovnováhy`.
+  nemeniť bez dôkazu. `dysbalancie` je anglicizmus vedľa `nerovnováhy`.
+- Latinské/medzinárodné názvy chorôb (`mycosis fungoides`) nemenit́ na
+  skomolené adjektíva (`mykózny fungoides`).
 
-## Ďalší fokus (loop #40)
+## Ďalší fokus (loop #41)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -112,8 +116,8 @@ HEAD: `c62b1b6`
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #39 ipvrm/nefamb wording)
-- Audit: `.audit.md` Beh #50
+- Codex: `.codex/handoffs/` (loop #40 purifikacia/nefamb wording)
+- Audit: `.audit.md` Beh #51
 
 ## Ďalší príkaz
 
