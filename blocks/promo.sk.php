@@ -36,7 +36,7 @@
 
 <a href="https://www.nephrologie.at/" target="_blank" rel="noopener noreferrer" title="Österreichische Gesellschaft für Nephrologie" lang="de">
 	<img src="/weblogo/oegfn-logo.svg" alt="Österreichische Gesellschaft für Nephrologie" class="imgpromo">
-	<img src="/weblogo/oegn-logo.svg" alt="" class="imgpromo">
+	<img src="/weblogo/oegn-logo.svg" alt="" class="imgpromo" aria-hidden="true">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -45,8 +45,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.sinitaly.org/" target="_blank" rel="noopener noreferrer" title="La Società Italiana di Nefrologia (SIN)" lang="it">
-	<img src="/weblogo/logo-sin.png" alt="La Società Italiana di Nefrologia (SIN)" class="imgpromo">
+<a href="https://www.sinitaly.org/" target="_blank" rel="noopener noreferrer" title="Società Italiana di Nefrologia (SIN)" lang="it">
+	<img src="/weblogo/logo-sin.png" alt="Società Italiana di Nefrologia (SIN)" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -103,18 +103,18 @@
 
 <div class="promosection">Zdravotnícke zariadenia a vzdelávacie inštitúcie</div>
 
-<a href="https://www.pentahospitals.com/" target="_blank" rel="noopener noreferrer" title="PentaHospitals International" lang="en">
-	<img src="/weblogo/phi-logo-new.png" alt="PentaHospitals International" class="imgpromo">
+<a href="https://www.pentahospitals.com/" target="_blank" rel="noopener noreferrer" title="Penta Hospitals International" lang="en">
+	<img src="/weblogo/phi-logo-new.png" alt="Penta Hospitals International" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.nemocnica-bory.sk/" target="_blank" rel="noopener noreferrer" title="PentaHospitals Nemocnica Bory" lang="sk">
-	<img src="/weblogo/pentahospitals-bory-logo.svg" alt="PentaHospitals Nemocnica Bory" class="imgpromo">
+<a href="https://www.nemocnica-bory.sk/" target="_blank" rel="noopener noreferrer" title="Penta Hospitals Nemocnica Bory" lang="sk">
+	<img src="/weblogo/pentahospitals-bory-logo.svg" alt="Penta Hospitals Nemocnica Bory" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://pentahospitals.sk/" target="_blank" rel="noopener noreferrer" title="PentaHospitals Slovensko" lang="sk">
-	<img src="/weblogo/pentahospitals-slovensko.svg" alt="PentaHospitals Slovensko" class="imgpromo">
+<a href="https://pentahospitals.sk/" target="_blank" rel="noopener noreferrer" title="Penta Hospitals Slovensko" lang="sk">
+	<img src="/weblogo/pentahospitals-slovensko.svg" alt="Penta Hospitals Slovensko" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -130,14 +130,14 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://eszu.sk/" target="_blank" rel="noopener noreferrer" title="Slovenská zdravotnícka univerzita Bratislava" lang="sk">
- <img src="/weblogo/szu-logo.svg" alt="Slovenská zdravotnícka univerzita Bratislava" class="imgpromo">
+<a href="https://eszu.sk/" target="_blank" rel="noopener noreferrer" title="Slovenská zdravotnícka univerzita v Bratislave" lang="sk">
+ <img src="/weblogo/szu-logo.svg" alt="Slovenská zdravotnícka univerzita v Bratislave" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
 <a href="https://www.upjs.sk/lekarska-fakulta/" target="_blank" rel="noopener noreferrer" title="Lekárska fakulta UPJŠ v Košiciach" lang="sk">
 	<img src="/weblogo/lfupjs-logo.png" alt="Lekárska fakulta UPJŠ v Košiciach" class="imgpromo">
-	<img src="/weblogo/logo-lekarska-fakulta.png" alt="" class="imgpromo">
+	<img src="/weblogo/logo-lekarska-fakulta.png" alt="" class="imgpromo" aria-hidden="true">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -185,8 +185,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://kdigo.org/" target="_blank" rel="noopener noreferrer" title="KDIGO = Kidney Disease ~ Improving Global Outcomes" lang="en">
-	<img src="/weblogo/kdigo-logo.svg" alt="KDIGO = Kidney Disease ~ Improving Global Outcomes" class="imgpromo">
+<a href="https://kdigo.org/" target="_blank" rel="noopener noreferrer" title="KDIGO - Kidney Disease: Improving Global Outcomes" lang="en">
+	<img src="/weblogo/kdigo-logo.svg" alt="KDIGO - Kidney Disease: Improving Global Outcomes" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -257,8 +257,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>    
 
-<a href="https://www.e-vuc.sk/" target="_blank" rel="noopener noreferrer" title="eVÚC" lang="sk">
-	<img src="/weblogo/evuc-logo.png" alt="eVÚC" class="imgpromo">
+<a href="https://www.e-vuc.sk/" target="_blank" rel="noopener noreferrer" title="e-VÚC" lang="sk">
+	<img src="/weblogo/evuc-logo.png" alt="e-VÚC" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
