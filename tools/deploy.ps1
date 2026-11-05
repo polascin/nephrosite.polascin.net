@@ -35,6 +35,8 @@
 
 .NOTES
     Windows PowerShell 5.1 and PowerShell 7. No rsync, no lftp, no WSL.
+    Authoritative production path while GitHub DEPLOY_* secrets are unset;
+    GHA Deploy may succeed with rsync skipped. See DEPLOY.md.
 #>
 [CmdletBinding()]
 param(
@@ -149,13 +151,14 @@ function Invoke-Validation {
 }
 
 function Invoke-Smoke {
-    Write-Host 'Smoke test'
+    # Clean canonical paths must answer 200 at the public URL without a hop.
+    Write-Host 'Smoke test (direct 200, no redirect)'
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $failed = @()
     foreach ($p in $SmokePaths) {
         $url = $BaseUrl.TrimEnd('/') + $p
         try {
-            $r = Invoke-WebRequest -Uri $url -UseBasicParsing -UserAgent $userAgent -MaximumRedirection 5 -TimeoutSec 30
+            $r = Invoke-WebRequest -Uri $url -UseBasicParsing -UserAgent $userAgent -MaximumRedirection 0 -TimeoutSec 30
             $code = [int]$r.StatusCode
         }
         catch {
@@ -165,12 +168,16 @@ function Invoke-Smoke {
         Write-Host ("  {0,-24} {1}" -f $p, $code)
         if ($code -ne 200) { $failed += $p }
     }
-    if ($failed.Count -gt 0) { throw ("Smoke test failed: " + ($failed -join ', ')) }
+    if ($failed.Count -gt 0) { throw ("Smoke test failed (need direct 200): " + ($failed -join ', ')) }
 }
 
 if (-not (Test-Path -LiteralPath (Join-Path $root '.git'))) {
     throw "Not a git working tree: $root"
 }
+
+Write-Host 'NephroSite local deploy (authoritative while GHA DEPLOY_* secrets are unset)'
+Write-Host ("  mode: {0}" -f $(if ($Apply) { 'APPLY' } else { 'PLAN' }))
+Write-Host ("  host: {0}" -f $SshHost)
 
 if (-not $SkipValidation) { Invoke-Validation }
 
@@ -194,7 +201,7 @@ foreach ($k in $remote.Keys) {
 Write-Host ("  unchanged {0}, to upload {1}, remote-only {2}" -f $same, $changed.Count, $remoteOnly.Count)
 foreach ($f in $changed) { Write-Host ("    upload {0}" -f $f) }
 if ($remoteOnly.Count -gt 0) {
-    Write-Host '    remote-only files are left in place (the workflow uses rsync without --delete):'
+    Write-Host '    remote-only files are left in place (no --delete; needs explicit approval to remove):'
     foreach ($f in $remoteOnly) { Write-Host ("      keep {0}" -f $f) }
 }
 

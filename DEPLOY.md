@@ -17,13 +17,15 @@ súbor a atómovo ho premenuje. Overí SHA-256 a HTTP 200; pri zlyhaní následn
 kontroly obnoví zálohu. Výsledok a cesta zálohy sú v štandardnom výstupe.
 Spúšťanie je ručné, pri schválenom nasadení, bez plánovanej úlohy.
 
-Existujúce Actions reagujú na push do main alebo workflow_dispatch, validujú
-PHP a cez rsync/SSH nahrávajú obsah filtrovaný `.deployignore` bez mazania.
-Vstupy tvoria checkout, LFS a DEPLOY_* secrets, výstupom je zmenený web root
-a smoke test. `deploy-file.py` je overená lokálna cesta pre jeden súbor, nie
-náhrada synchronizácie celého webu ani všetkých CI kontrol. Existujúce
-workflow zostávajú zachované. GitHub zostáva aj úložiskom a miestom review.
-Pri lokálnej práci sa nasadzuje miestnymi nástrojmi.
+**Autoritatívna produkčná cesta (stav 5. 11. 2026):** lokálny
+`tools/deploy.ps1 -Apply` a post-commit SFTP hook cez SSH alias `websupport`.
+GitHub Actions workflow `Deploy to nephrosite.polascin.net` stále beží po
+pushi do `main` (PHP lint + voliteľný rsync), ale **rsync sa bez nastavených
+`DEPLOY_*` secrets iba preskočí** s upozornením. GHA success preto neznamená,
+že sa web root aktualizoval; živé súbory idú cez lokálny deploy. Secrets
+do repozitára nevkladaj; keď budú v GitHub Settings, GHA môže znova
+paralelne synchronizovať. `deploy-file.py` ostáva cestou pre jeden súbor.
+GitHub zostáva úložiskom a miestom review.
 
 Opravy integrácií kontroluje aj `node tools/test-integrations.cjs`.
 Test overuje inicializáciu jediného projektu Clarity `fp2sq6zahr`, načítanie
@@ -36,15 +38,13 @@ načítania `clustrmaps.com`). Dva duplicitné projekty Clarity sa už nenačít
 súbor sa použije `missing` namiesto hash hodnoty. Nástroj neprenáša celý
 pracovný strom.
 
-Automatické nasadenie cez GitHub Actions (`.github/workflows/deploy.yml`):
-po každom pushi do `main` (alebo manuálne cez **Actions → Deploy → Run
-workflow**) sa repozitár zosynchronizuje rsyncom do web rootu na WebSupport.
-Súbory vylúčené v `.deployignore` sa nenasadzujú; `--delete` sa nepoužíva,
-takže serverové súbory mimo repozitára zostávajú nedotknuté. Push s
-`[skip deploy]` v commit message deploy preskočí.
-
-Kým secrets nie sú nastavené, deploy job sa iba preskočí s upozornením
-(workflow nezlyhá).
+GitHub Actions (`.github/workflows/deploy.yml`): po pushi do `main` (alebo
+**Actions → Deploy → Run workflow**) job `validate` vždy linta PHP. Job
+`deploy` bez `DEPLOY_*` secrets **nepíše na server** (notice + `configured=false`);
+so secrets by rsync filtrovaný `.deployignore` synchronizoval web root bez
+`--delete`. Push s `[skip deploy]` v commit message celý deploy job
+preskočí. Kým secrets chýbajú, ber GHA len ako CI lint, nie ako dôkaz
+produkčného syncu.
 
 ## GitHub Secrets (Settings → Secrets and variables → Actions)
 
@@ -83,11 +83,12 @@ Regenerácia po zmene tokenov v artefakte:
    a z `files/privacy.html` a `files/terms.html` (pred `legal.css`), čo vyhovuje
    CSP `style-src 'self'`.
 
-## Lokálna cesta nasadenia (`tools/deploy.ps1`)
+## Autoritatívna lokálna cesta (`tools/deploy.ps1`)
 
-Lokálna náhrada workflow `.github/workflows/deploy.yml` a `csp-regression.yml`
-pre Windows bez rsync a bez WSL. Predvolene je to **plán**: nič sa nezapíše na
-server, kým sa nepridá `-Apply`.
+Toto je **produkčný deploy** pre NephroSite, kým (a pokiaľ) GitHub
+`DEPLOY_*` secrets nie sú nastavené a overené. Skript nahrádza rsync časť
+workflow `.github/workflows/deploy.yml` a CSP regresiu na Windows bez WSL.
+Predvolene je to **plán**: nič sa nezapíše na server bez `-Apply`.
 
 ```powershell
 .\tools\deploy.ps1            # validácia + zoznam zmien
@@ -97,20 +98,20 @@ server, kým sa nepridá `-Apply`.
 Postup: `php -l` na všetkých sledovaných PHP súboroch, `php tools/test-csp.php`,
 zoznam súborov z gitu filtrovaný `.deployignore`, porovnanie SHA-256 s web
 rootom, upload iba zmenených súborov cez tar stream po SSH alias `websupport`,
-opätovné overenie hashov na serveri a smoke test `/`, `/privacy`, `/terms` a `/nefrologia`.
+opätovné overenie hashov na serveri a smoke test kanonických ciest `/`,
+`/privacy`, `/terms`, `/nefrologia` (priamy HTTP 200, bez redirect hopu).
 
-Čo lokálna cesta **nerobí** rovnako ako Actions:
+Rozdiely voči Actions rsync:
 
-- Nepoužíva `rsync`, takže nepočíta s právami súborov počas prenosu; server
-  dostane súbory s právami z tar archívu (644/755 podľa vzniku).
-- Rovnako ako workflow nepoužíva `--delete`, takže súbory na serveri, ktoré v
-  repozitári nie sú, zostávajú nedotknuté.
-- Git LFS: pracovný strom musí mať stiahnuté skutočné súbory (`git lfs pull`),
-  inak by sa nahradil veľký súbor 130-bajtovým pointerom. Workflow to rieši
-  cez `lfs: true` v checkoute.
+- Nepoužíva `rsync`; práva súborov idú z tar archívu (typicky 644/755).
+- Rovnako ako workflow **nepoužíva `--delete`**: remote-only súbory ostávajú
+  (mazanie len po výslovnom súhlase, pozri `docs/REMOTE-ONLY-INVENTORY.md`).
+- Git LFS: pred uploadom musí byť `git lfs pull`, inak by pointer prepísal
+  veľký binárny súbor. Workflow to rieši `lfs: true` v checkoute.
 
-Kým nie je lokálna cesta overená na produkcii, zostáva záväzná cesta cez
-GitHub Actions podľa `.cursor/rules/commit-push-deploy.mdc`.
+Po commite na `main` over: (1) `deploy.ps1 -Apply` alebo post-commit SFTP,
+(2) produkčný smoke, (3) GHA validate success (rsync skip je očakávaný, kým
+chýbajú secrets).
 
 ## Post-commit SFTP hook
 

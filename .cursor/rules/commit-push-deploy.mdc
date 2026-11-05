@@ -1,5 +1,5 @@
 ---
-description: Po každej zmene commit, push na master a overenie WebSupport deployu
+description: Po každej zmene commit, push na main a overenie WebSupport deployu
 alwaysApply: true
 ---
 
@@ -8,11 +8,17 @@ alwaysApply: true
 Po dokončení akejkoľvek sady zmien v tomto repozitári **vždy** (bez čakania na ďalší pokyn):
 
 1. **Commit** všetkých relevantných zmien s výstižnou správou.
-2. **Push** na default vetvu `master` (`git push origin master`). Toto repo používa `master` (ekvivalent „main“); keď používateľ povie „main“, myslí sa táto vetva.
-3. **Over deploy na WebSupport:**
-   - GitHub Actions: `Deploy to nephrosite.polascin.net` → `success` (`gh run list` / `gh run watch`)
-   - Produkcia: `curl -sIL https://nephrosite.polascin.net/` → HTTP 200 + bezpečnostné hlavičky
-   - Spot-check aspoň jednej zmenenej stránky/textu naživo
+2. **Push** na default vetvu `main` (`git push origin main`). Repo používa `main`
+   (premenované z `master` 21. 9. 2026); keď staršie texty hovoria „master“,
+   myslí sa táto vetva.
+3. **Over produkčný deploy** (poradie podľa `DEPLOY.md`):
+   - **Autoritatívne:** `powershell -File .\tools\deploy.ps1 -Apply` (alebo
+     over, že post-commit SFTP už nahral zmeny) + smoke čistých URL
+   - GHA `Deploy to nephrosite.polascin.net` → `success` (`gh run list` /
+     `gh run watch`). Bez `DEPLOY_*` secrets rsync **preskočí**; success
+     znamená najmä PHP lint, nie sync web rootu.
+   - Produkcia: Chrome UA, `https://nephrosite.polascin.net/` → HTTP 200 +
+     bezpečnostné hlavičky; spot-check aspoň jednej zmenenej stránky
 
 Toto pravidlo má prednosť pred „commituj len na vyžiadanie“.
 

@@ -67,7 +67,7 @@ jobs:
           HOST="${DEPLOY_HOST:-shell.r1.websupport.sk}"
           PORT="${DEPLOY_PORT:-26650}"
           if [[ -z "$DEPLOY_USER" || -z "$DEPLOY_SSH_KEY" || -z "$DEPLOY_REMOTE_PATH" ]]; then
-            echo "::notice::Deploy skipped: configure DEPLOY_USER, DEPLOY_SSH_KEY and DEPLOY_REMOTE_PATH secrets (see DEPLOY.md)."
+            echo "::notice::GHA rsync skipped: DEPLOY_USER / DEPLOY_SSH_KEY / DEPLOY_REMOTE_PATH not set. Production sync remains local tools/deploy.ps1 -Apply (and post-commit SFTP) over SSH alias websupport. See DEPLOY.md. Do not paste secrets into the repo."
             echo "configured=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
