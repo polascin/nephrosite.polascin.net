@@ -185,8 +185,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://kdigo.org/" target="_blank" rel="noopener noreferrer" title="KDIGO - Kidney Disease: Improving Global Outcomes" lang="en">
-	<img src="/weblogo/kdigo-logo.svg" alt="KDIGO - Kidney Disease: Improving Global Outcomes" class="imgpromo">
+<a href="https://kdigo.org/" target="_blank" rel="noopener noreferrer" title="KDIGO – Kidney Disease: Improving Global Outcomes" lang="en">
+	<img src="/weblogo/kdigo-logo.svg" alt="KDIGO – Kidney Disease: Improving Global Outcomes" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -204,8 +204,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.annanurse.org/" target="_blank" rel="noopener noreferrer" title="American Nephrology Nurses Association" lang="en">
-	<img src="/weblogo/anna-logo.jpg" alt="American Nephrology Nurses Association" class="imgpromo">
+<a href="https://www.annanurse.org/" target="_blank" rel="noopener noreferrer" title="American Nephrology Nurses Association (ANNA)" lang="en">
+	<img src="/weblogo/anna-logo.jpg" alt="American Nephrology Nurses Association (ANNA)" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
