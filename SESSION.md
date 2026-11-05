@@ -2,7 +2,7 @@
 
 Aktualizované: 2026-11-05 (loop iterácia #16)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `f67b9df` (docs/handoff commit môže nasledovať)
+HEAD: `eeeedab`
 
 ## Čo je hotové v tejto iterácii
 

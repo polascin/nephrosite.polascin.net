@@ -6,7 +6,7 @@
 - Updated At: 2026-11-05T21:00:30+01:00
 - Project Root: D:\Dev\nephrosite.polascin.net
 - Git Branch: main
-- Head Commit: f67b9df (docs/handoff commit môže nasledovať)
+- Head Commit: eeeedab
 
 ## Original Goal
 
