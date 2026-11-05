@@ -50,8 +50,8 @@
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
-<a href="https://www.era-online.org/" target="_blank" rel="noopener noreferrer" title="European Renal Association" lang="en">
-	<img src="/weblogo/LogoEra.png" alt="European Renal Association" class="imgpromo">
+<a href="https://www.era-online.org/" target="_blank" rel="noopener noreferrer" title="European Renal Association (ERA)" lang="en">
+	<img src="/weblogo/LogoEra.png" alt="European Renal Association (ERA)" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
@@ -199,8 +199,8 @@
 
 <div class="promosection">Nefrologické spoločnosti a asociácie zdravotných sestier</div>
 
-<a href="https://www.edtnaerca.org/" target="_blank" rel="noopener noreferrer" title="European Dialysis and Transplant Nurses Association/European Renal Care Association" lang="en">
-	<img src="/weblogo/edtna-erca-logo.png" alt="European Dialysis and Transplant Nurses Association/European Renal Care Association" class="imgpromo">
+<a href="https://www.edtnaerca.org/" target="_blank" rel="noopener noreferrer" title="EDTNA/ERCA" lang="en">
+	<img src="/weblogo/edtna-erca-logo.png" alt="EDTNA/ERCA" class="imgpromo">
 	<span class="sr-only"> (otvorí sa v novom okne)</span>
 </a>
 
