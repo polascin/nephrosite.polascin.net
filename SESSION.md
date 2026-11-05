@@ -1,37 +1,38 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #25)
+Aktualizované: 2026-11-05 (loop iterácia #26)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `c7d4643`
+HEAD: `9a153dd`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship: ďalšia title/content consistency v `blocks/promo.sk.php`
-  (overené oproti oficiálnym `<title>` stránkam):
-  - SIN: drop `La` → `Società Italiana di Nefrologia (SIN)` (sinitaly.org)
-  - Penta: `PentaHospitals` → `Penta Hospitals` (3 logo odkazy;
-    pentahospitals.com / .sk)
-  - SZU: `… Bratislava` → `… v Bratislave` (eszu.sk)
-  - KDIGO: `=` / `~` → `KDIGO - Kidney Disease: Improving Global Outcomes`
-    (kdigo.org)
-  - e-VÚC: `eVÚC` → `e-VÚC` (e-vuc.sk)
-  - Dekoratívne druhé logá ÖGFN/LF UPJŠ: `aria-hidden="true"`
+- Product ship (overené defecty):
+  - `blocks/nephrology.sk.php`: copyright `polascin.net` `_blank` bez
+    static `.sr-only` hintu (jediný live miss po odfiltrovaní HTML
+    komentárov; zhodné s `lectures.sk.php`).
+  - `blocks/promo.sk.php` brand title/alt vs oficiálne `<title>` /
+    `og:site_name`:
+    - Union: `Union zdravotná poisťovňa` → `Union poisťovňa`
+      (union.sk)
+    - Medupdate: `Medupdate Europe` → `medupdate europe`
+      (medupdate-europe.eu)
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
+- Commented NephroCare v excluded blocke nechávame (žiadny prod efekt).
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `b1da6ae`; post-commit SFTP nahral `promo.sk.php`;
-  `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `9a153dd`; post-commit SFTP nahral `nephrology.sk.php` +
+  `promo.sk.php`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/transplantacia` → 200 + HSTS + CSP (enforced
   stále s `'unsafe-inline'`)
-- Produkcia `/`: nové title+alt (každý 2× title/alt); staré varianty 0;
-  hints=144
-- GHA Deploy `42107942654` success (rsync skip)
+- Produkcia `/`: Union/medupdate nové title OK (staré 0); nephrology
+  copyright hint OK; live blank miss hints = 0
+- GHA Deploy `42109361935` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -60,21 +61,23 @@ HEAD: `c7d4643`
   (GET + Chrome UA), nie len vnútornú zhodu title↔alt.
 - Inline Python cez PowerShell láme úvodzovky v title atribútoch; temp
   `.py` súbor + `Path.write_text` je spoľahlivejší.
+- Pri scane `_blank` bez hintu **najprv strip HTML komentáre**, inak
+  Bory/excluded vendor logos falošne nafúknu miss count.
 
-## Ďalší fokus (loop #26)
+## Ďalší fokus (loop #27)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content ship, ak telemetria stále smoke-only (ďalší title
-   polish; content consistency; uncommented intro Bory až po rozhodnutí
-   o obsahu).
+   polish napr. WHO `(WHO)`; content consistency; uncommented intro Bory
+   až po rozhodnutí o obsahu).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-215712-loop25-promo-title-consistency.md`
-- Audit: `.audit.md` Beh #36
+- Codex: `.codex/handoffs/2026-11-05-220557-loop26-union-medupdate-nephrology-a11y.md`
+- Audit: `.audit.md` Beh #37
 
 ## Ďalší príkaz
 
