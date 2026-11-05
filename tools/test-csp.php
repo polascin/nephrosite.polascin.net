@@ -177,19 +177,23 @@ try {
     $reportOnlyDirectives = parsePolicy($reportOnlyPolicy);
     check(($reportOnlyDirectives['script-src'] ?? []) === ["'self'"], 'Report-Only CSP must keep script-src self-only for tightening.');
     check(!in_array("'unsafe-inline'", $reportOnlyDirectives['script-src'] ?? [], true), 'Report-Only script-src must not allow unsafe-inline.');
-    check(permits($reportOnlyDirectives, 'style-src', 'https://fonts.googleapis.com/css'), 'Report-Only CSP must list Google Fonts while they remain live.');
+    check(($reportOnlyDirectives['style-src'] ?? []) === ["'self'", "'unsafe-inline'"], 'Report-Only style-src must be self + unsafe-inline after Google Fonts self-host.');
+    check(($reportOnlyDirectives['font-src'] ?? []) === ["'self'"], "Report-Only font-src must be 'self' after Google Fonts self-host.");
+    check(!str_contains($reportOnlyPolicy, 'fonts.googleapis.com') && !str_contains($reportOnlyPolicy, 'fonts.gstatic.com'), 'Report-Only must not list Google Fonts hosts after self-host.');
     check(permits($reportOnlyDirectives, 'img-src', 'https://clustrmaps.com/map.png'), 'Report-Only CSP must list ClustrMaps while the visitor map remains live.');
     check(($reportOnlyDirectives['media-src'] ?? []) === ["'self'"], "Report-Only media-src must be 'self' (homepage videos are same-origin).");
     check(($reportOnlyDirectives['frame-src'] ?? []) === ["'self'"], "Report-Only frame-src must be 'self' (current iframes are same-origin).");
     check(!in_array('data:', $reportOnlyDirectives['img-src'] ?? [], true), 'Report-Only img-src must not allow data: (no data: images in markup).');
     check(!str_contains($reportOnlyPolicy, 'googletagmanager') && !str_contains($reportOnlyPolicy, 'clarity.ms') && !str_contains($reportOnlyPolicy, 'fastbase.com'), 'Report-Only must keep analytics hosts out of allowlists so consent loads are measurable.');
-    $directives = parsePolicy(trim($headers[1][0]));
+    $enforcedPolicy = trim($headers[1][0]);
+    $directives = parsePolicy($enforcedPolicy);
 
     foreach (['default-src', 'base-uri', 'frame-ancestors', 'form-action', 'media-src'] as $name) {
         check(($directives[$name] ?? []) === ["'self'"], "Expected $name 'self'.");
     }
     check(($directives['object-src'] ?? []) === ["'none'"], "Expected object-src 'none'.");
-    check(permits($directives, 'font-src', 'https://fonts.gstatic.com/example.woff2'), 'Google Fonts font source missing.');
+    check(($directives['font-src'] ?? []) === ["'self'"], "Enforced font-src must be 'self' after Google Fonts self-host.");
+    check(!str_contains($enforcedPolicy, 'fonts.googleapis.com') && !str_contains($enforcedPolicy, 'fonts.gstatic.com'), 'Enforced CSP must not list Google Fonts hosts after self-host.');
     foreach (['https://region1.analytics.google.com', 'https://stats.g.doubleclick.net'] as $url) {
         check(permits($directives, 'connect-src', $url), 'Observed connection missing: ' . $url);
     }
@@ -225,15 +229,27 @@ try {
     }
 
     $fontLinks = file_get_contents('blocks/links.sk.php');
-    check(
-        preg_match_all("~fonts\\.googleapis\\.com/css\\?family=~", $fontLinks) === 1,
-        'Expected a single Google Fonts stylesheet after unused-family cleanup.'
-    );
+    check(!str_contains($fontLinks, 'fonts.googleapis.com') && !str_contains($fontLinks, 'fonts.gstatic.com'), 'Google Fonts hosts must be removed from links.sk.php after self-host.');
+    check(str_contains($fontLinks, '/css/fonts.css'), 'Expected local /css/fonts.css stylesheet link.');
+    $fontCss = file_get_contents('css/fonts.css');
     foreach (['Blinker', 'Blaka', 'Fenix'] as $family) {
-        check(str_contains($fontLinks, $family), "Missing required live font family: $family");
+        check(str_contains($fontCss, "font-family: '$family'"), "Missing @font-face for $family in css/fonts.css");
+        check(str_contains($fontCss, 'font-display: swap'), "font-display: swap missing for self-hosted fonts");
     }
     foreach (['Archivo', 'Babylonica', 'Lancelot', 'Literata', 'Imprima', 'Akronim', 'Arizonia', 'Birthstone', 'Cabin'] as $unused) {
-        check(!str_contains($fontLinks, $unused), "Unused Google Font still linked: $unused");
+        check(!str_contains($fontLinks, $unused) && !str_contains($fontCss, $unused), "Unused Google Font still referenced: $unused");
+    }
+    foreach ([
+        'fonts/blinker-400-latin.woff2',
+        'fonts/blinker-600-latin.woff2',
+        'fonts/blinker-700-latin.woff2',
+        'fonts/blaka-400-latin.woff2',
+        'fonts/fenix-400-latin.woff2',
+        'fonts/OFL-Blinker.txt',
+        'fonts/OFL-Blaka.txt',
+        'fonts/OFL-Fenix.txt',
+    ] as $fontAsset) {
+        check(is_file($fontAsset) && filesize($fontAsset) > 0, "Missing self-hosted font asset: $fontAsset");
     }
 
     $negativeCases = [
