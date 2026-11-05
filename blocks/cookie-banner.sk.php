@@ -12,7 +12,7 @@
                 <ul class="cookie-points" aria-label="Základné pravidlá súhlasu">
                     <li>rovnako jednoduché prijatie aj odmietnutie</li>
                     <li>možnosť vybrať jednotlivé kategórie</li>
-                    <li>zmena súhlasu kedykoľvek cez pätu obsahových stránok alebo cez stránku súkromia</li>
+                    <li>zmena súhlasu kedykoľvek cez pätičku stránky alebo cez zásady ochrany súkromia</li>
                 </ul>
             </div>
 

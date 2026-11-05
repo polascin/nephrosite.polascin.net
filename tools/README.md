@@ -57,3 +57,16 @@ alias `websupport` (súkromne; HTTP 403). Použi pred rozhodnutím o dropnutí
 enforced `'unsafe-inline'`. Okrem smoke vs real candidates hlási súčet
 Clarity/GTM/Fastbase `blocked-uri` zásahov a rozpad Clarity / GTM-GA /
 Fastbase (consent-path safety).
+
+## A11y blank / download / alt scan
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-blank-hints.ps1
+```
+
+`scan-blank-hints.ps1` najprv odstrihne HTML komentáre (excluded vendor
+logá, zakomentovaný intro Bory), potom kontroluje celé `<a target="_blank">…</a>`
+kotvy na `sr-only` / „otvorí sa v novom okne“ / `aria-label` (neskoro vložený
+hint v PDF karte nie je falošný miss). Ďalej hlási odkazy s textom
+„na stiahnutie“/„stiahnuť“ bez `download` a live `<img>` bez `alt` (PHP
+regex vzory ako v `topic-teaser.php` ignoruje). Exit code 1 pri náleze.
