@@ -1,35 +1,33 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #15)
+Aktualizované: 2026-11-05 (loop iterácia #16)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `7da9a51` (docs/handoff commit môže nasledovať)
+HEAD: `f67b9df` (docs/handoff commit môže nasledovať)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship: `segments/transplantacia.html` h2 zosúladený s
-  `$topic['title']` („Transplantácia obličky“); odstránený duplicitný
-  `require` segmentu po teaseri v `foazosszu.sk.php`; footer `mailto:` bez
-  `target="_blank"` / `rel="noopener noreferrer"`.
-- Footer 403 triage: validator.w3.org, mxlinux.org, fedoraproject.org,
-  distrowatch.com vracajú 403 aj na GET s Chrome UA (bot filtering /
-  WAF). Badge odkazy **ponechané**; nie je dôkaz user-facing broken link
-  v bežnom prehliadači.
+- Footer badge browser verify: validator.w3.org a mxlinux.org ukazujú
+  Cloudflare challenge („Verification successful…“); fedoraproject.org a
+  distrowatch.com načítajú plný obsah. Badge odkazy **ponechané** (nie
+  dead links; automation 403 = WAF/bot filtering).
+- Product ship: cookie-banner same-origin `/privacy` odkazy bez
+  `target="_blank"` / `rel`; footer legal odkazy (`/privacy`, `/terms`,
+  `#legal-disclaimer`) bez zbytočného `rel="noopener noreferrer"`.
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Clean URL smoke (MaximumRedirection 0): `/` `/privacy` `/terms`
-  `/nefrologia` `/transplantacia` `/purifikacia` `/lipton-tx` `/nefamb`
-  → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Commit `7da9a51`; post-commit SFTP; `deploy.ps1 -Apply` 0 upload; smoke
-  direct 200
-- Produkcia: homepage h2 plural „Transplantácie obličiek“ = 0; singular
-  „Transplantácia obličky“ = 3; mailto bez `target=`; medzi teaserom a
-  `/lipton-tx` už nie je druhý h2 zo segmentu
-- GHA Deploy `42098259437` success (rsync skip)
+- Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
+  `/terms` `/nefrologia` `/transplantacia` → 200 + HSTS + CSP (enforced
+  stále s `'unsafe-inline'`)
+- Commits `57b5bd7` + `f67b9df`; post-commit SFTP; `deploy.ps1 -Apply`
+  0 upload; smoke direct 200
+- Produkcia: `/privacy` a `/terms` anchory bez `target="_blank"` a bez
+  `rel="noopener noreferrer"` v cookie-banneri aj v päte legal nav
+- GHA Deploy `42098848473` + `42099000099` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -43,21 +41,23 @@ HEAD: `7da9a51` (docs/handoff commit môže nasledovať)
 - ClustrMaps A záznam aj cez 8.8.8.8 / 1.1.1.1 → `127.0.0.1` (nie len lokálny
   sinkhole); outbound link zostáva vypnutý, kým vendor neodžije.
 - PowerShell: `$HOME` je rezervované; na HTML response použiť iný názov.
+- Externý 403 pri curl/Invoke-WebRequest nie je dôkaz dead linku: overiť
+  v reálnom prehliadači (Cloudflare challenge vs 404).
 
-## Ďalší fokus (loop #16)
+## Ďalší fokus (loop #17)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/links/content ship, ak telemetria stále smoke-only (napr.
-   browser verify footer badge 403s; ďalšie segments vs files title
-   konzistencie; cookie-banner `target="_blank"` na same-origin privacy).
+   same-origin PDF `target="_blank"` review; remaining external link
+   hygiene; content/segment consistency).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-205519-loop15-transplant-segment-mailto.md`
-- Audit: `.audit.md` Beh #26
+- Codex: `.codex/handoffs/2026-11-05-205907-loop16-cookie-banner-same-origin.md`
+- Audit: `.audit.md` Beh #27
 
 ## Ďalší príkaz
 
