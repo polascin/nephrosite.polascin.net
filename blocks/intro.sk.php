@@ -15,12 +15,14 @@
 				?>
 				<span class="age-main"><?php echo htmlspecialchars((string) $vekCely, ENT_QUOTES, "UTF-8"); ?></span>
 				<br>(<?php echo htmlspecialchars((string) $vekCely, ENT_QUOTES, "UTF-8"); ?><small><?php echo htmlspecialchars(($vekDesatinnaCast !== false) ? $vekDesatinnaCast : ".0", ENT_QUOTES, "UTF-8"); ?></small>)<br>
+				<span class="sr-only"> (otvorí sa v novom okne)</span>
 			</a>
 		</div>
   </div>
 	<div class="intro-right top-gap">
   	  	<a href="https://www.linkedin.com/in/lubomirpolascin/" target="_blank" rel="noopener noreferrer" title="LinkedIn profil Ľubomíra Polaščína">
-		<img src="/weblogo/LinkedIn-logo.png" alt="LinkedIn Logo" class="linkedin-logo">
+		<img src="/weblogo/LinkedIn-logo.png" alt="LinkedIn profil Ľubomíra Polaščína" class="linkedin-logo">
+		<span class="sr-only"> (otvorí sa v novom okne)</span>
   	</a>
 		<br><br><br>
     <!--<a href="https://nemocnica-bory.sk/ambulancia/nefrologicka/" target="_blank" rel="noopener noreferrer" title="Nefrologická ambulancia Nemocnice Bory">-->
@@ -37,6 +39,7 @@
 			<h3 class="amazon-box">
 				Moje knihy na Amazon-e
 			</h3>
+			<span class="sr-only"> (otvorí sa v novom okne)</span>
 		</a>
 		<br>
 		<!--<div style="border-style: solid; border-width: thin; border-color: gray; padding: 0.3em;">

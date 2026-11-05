@@ -5,56 +5,56 @@
 <div class="promosection">Nefrologické spoločnosti, organizácie a asociácie</div>
 
 <a href="https://www.nefro.sk/" target="_blank" rel="noopener noreferrer" title="Slovenská nefrologická spoločnosť" lang="sk">
-	<img src="/weblogo/snes-logo.gif" alt="SNeS" class="imgpromo">
+	<img src="/weblogo/snes-logo.gif" alt="Slovenská nefrologická spoločnosť" class="imgpromo">
 </a>
 
 <a href="https://www.nto.sk/" target="_blank" rel="noopener noreferrer" title="Národná transplantačná organizácia" lang="sk">
-	<img src="/weblogo/NTO-logo.png" alt="NTO" class="imgpromo">
+	<img src="/weblogo/NTO-logo.png" alt="Národná transplantačná organizácia" class="imgpromo">
 </a>
 
 <a href="https://www.transplant.sk/" target="_blank" rel="noopener noreferrer" title="Slovenská transplantologická spoločnosť" lang="sk">
-	<img src="/weblogo/sts-logo.png" alt="STS" class="imgpromo">
+	<img src="/weblogo/sts-logo.png" alt="Slovenská transplantologická spoločnosť" class="imgpromo">
 </a>
 
 <a href="https://www.nefrol.cz/" target="_blank" rel="noopener noreferrer" title="Česká nefrologická společnost" lang="cs">
-	<img src="/weblogo/cns-logo.png" alt="ČNS" class="imgpromo">
+	<img src="/weblogo/cns-logo.png" alt="Česká nefrologická společnost" class="imgpromo">
 </a>
 
 <a href="https://www.transplant.cz/" target="_blank" rel="noopener noreferrer" title="Česká transplantační společnost" lang="cs">
-	<img src="/weblogo/cts-logo.png" alt="ČTS" class="imgpromo">
+	<img src="/weblogo/cts-logo.png" alt="Česká transplantační společnost" class="imgpromo">
 </a>
 
 <a href="https://ptnefro.com.pl/" target="_blank" rel="noopener noreferrer" title="Polskie Towarzystwo Nefrologiczne" lang="pl">
-	<img src="/weblogo/ptnefro-logo.png" alt="PTN" class="imgpromo">
+	<img src="/weblogo/ptnefro-logo.png" alt="Polskie Towarzystwo Nefrologiczne" class="imgpromo">
 </a>
 
 <a href="https://www.nephrologie.at/" target="_blank" rel="noopener noreferrer" title="Österreichische Gesellschaft für Nefrologie" lang="de">
-	<img src="/weblogo/oegfn-logo.svg" alt="OEGfN" class="imgpromo">
-	<img src="/weblogo/oegn-logo.svg" alt="OEGfN" class="imgpromo">
+	<img src="/weblogo/oegfn-logo.svg" alt="Österreichische Gesellschaft für Nefrologie" class="imgpromo">
+	<img src="/weblogo/oegn-logo.svg" alt="" class="imgpromo">
 </a>
 
 <a href="https://www.dgfn.eu/" target="_blank" rel="noopener noreferrer" title="Deutsche Gesellschaft für Nephrologie" lang="de">
-	<img src="/weblogo/dgfn-logo.svg" alt="DGfN" class="imgpromo">
+	<img src="/weblogo/dgfn-logo.svg" alt="Deutsche Gesellschaft für Nephrologie" class="imgpromo">
 </a>
 
 <a href="https://www.sinitaly.org/" target="_blank" rel="noopener noreferrer" title="La Società Italiana di Nefrologia (SIN)" lang="it">
-	<img src="/weblogo/logo-sin.png" alt="SIN" class="imgpromo">
+	<img src="/weblogo/logo-sin.png" alt="La Società Italiana di Nefrologia (SIN)" class="imgpromo">
 </a>
 
 <a href="https://www.era-online.org/" target="_blank" rel="noopener noreferrer" title="European Renal Association" lang="en">
-	<img src="/weblogo/LogoEra.png" alt="ERA" class="imgpromo">
+	<img src="/weblogo/LogoEra.png" alt="European Renal Association" class="imgpromo">
 </a>
 
 <a href="https://www.asn-online.org/" target="_blank" rel="noopener noreferrer" title="American Society Of Nephrology" lang="en">
-	<img src="/weblogo/asn-logo.png" alt="ASN" class="imgpromo">
+	<img src="/weblogo/asn-logo.png" alt="American Society Of Nephrology" class="imgpromo">
 </a>
 
-<a href="https://www.theisn.org/" target="_blank" rel="noopener noreferrer" title="International Society Of Nefrology" lang="en">
-	<img src="/weblogo/isn-logo.png" alt="ISN" class="imgpromo">
+<a href="https://www.theisn.org/" target="_blank" rel="noopener noreferrer" title="International Society of Nephrology" lang="en">
+	<img src="/weblogo/isn-logo.png" alt="International Society of Nephrology" class="imgpromo">
 </a>
 
 <a href="https://www.ispd.org/" target="_blank" rel="noopener noreferrer" title="International Society for Peritoneal Dialysis" lang="en">
-	<img src="/weblogo/ispd-logo.png" alt="ISPD" class="imgpromo">
+	<img src="/weblogo/ispd-logo.png" alt="International Society for Peritoneal Dialysis" class="imgpromo">
 </a>
 
 <a href="https://www.europd.com/" target="_blank" rel="noopener noreferrer" title="EuroPD" lang="en">
@@ -62,11 +62,11 @@
 </a>
 
 <a href="https://www.csnscn.ca/" target="_blank" rel="noopener noreferrer" title="Canadian Society of Nephrology Société canadienne de néphrologie" lang="en">
-	<img src="/weblogo/cans-logo.png" alt="CANS" class="imgpromo">
+	<img src="/weblogo/cans-logo.png" alt="Canadian Society of Nephrology Société canadienne de néphrologie" class="imgpromo">
 </a>
 
 <a href="https://www.worldkidneyday.org/" target="_blank" rel="noopener noreferrer" title="World Kidney Day" lang="en">
-	<img src="/weblogo/wkd-logo.png" alt="WKD" class="imgpromo">
+	<img src="/weblogo/wkd-logo.png" alt="World Kidney Day" class="imgpromo">
 </a>
 
 <hr class="promohr">
@@ -74,10 +74,10 @@
 <div class="promosection">Združenia a organizácie pacientov s ochorením obličiek</div>
 
 <a href="https://www.sdat.sk/" target="_blank" rel="noopener noreferrer" title="Spoločnosť dialyzovaných a transplantovaných" lang="sk">
-	<img src="/weblogo/sdat-logo.png" alt="SDAT" class="imgpromo">
+	<img src="/weblogo/sdat-logo.png" alt="Spoločnosť dialyzovaných a transplantovaných" class="imgpromo">
 </a>
 
-<a href="https://www.kidney.org.uk/" target="_blank" rel="noopener noreferrer" title="NKF" lang="en">
+<a href="https://www.kidney.org.uk/" target="_blank" rel="noopener noreferrer" title="National Kidney Federation" lang="en">
 	<img src="/weblogo/NKFederation.png" alt="National Kidney Federation" class="imgpromo">
 </a>
 
@@ -100,28 +100,28 @@
 <br>
 
 <a href="https://www.fmed.uniba.sk/" target="_blank" rel="noopener noreferrer" title="Lekárska fakulta Univerzity Komenského v Bratislave" lang="sk">
-	<img src="/weblogo/lfuk-logo.png" alt="LF UK Bratislava" class="imgpromo">
+	<img src="/weblogo/lfuk-logo.png" alt="Lekárska fakulta Univerzity Komenského v Bratislave" class="imgpromo">
 </a>
 
 <a href="https://uniba.sk/" target="_blank" rel="noopener noreferrer" title="Univerzita Komenského v Bratislave" lang="sk">
-	<img src="/weblogo/uk-logo.png" alt="UK Bratislava" class="imgpromo">
+	<img src="/weblogo/uk-logo.png" alt="Univerzita Komenského v Bratislave" class="imgpromo">
 </a>
 
 <a href="https://eszu.sk/" target="_blank" rel="noopener noreferrer" title="Slovenská zdravotnícka univerzita Bratislava" lang="sk">
- <img src="/weblogo/szu-logo.svg" alt="SZU" class="imgpromo">
+ <img src="/weblogo/szu-logo.svg" alt="Slovenská zdravotnícka univerzita Bratislava" class="imgpromo">
 </a>
 
 <a href="https://www.upjs.sk/lekarska-fakulta/" target="_blank" rel="noopener noreferrer" title="Lekárska fakulta UPJŠ v Košiciach" lang="sk">
-	<img src="/weblogo/lfupjs-logo.png" alt="LF UPJŠ Košice" class="imgpromo">
-	<img src="/weblogo/logo-lekarska-fakulta.png" alt="LF UPJŠ Košice" class="imgpromo">
+	<img src="/weblogo/lfupjs-logo.png" alt="Lekárska fakulta UPJŠ v Košiciach" class="imgpromo">
+	<img src="/weblogo/logo-lekarska-fakulta.png" alt="" class="imgpromo">
 </a>
 
 <a href="https://www.upjs.sk/" target="_blank" rel="noopener noreferrer" title="Univerzita Pavla Jozefa Šafárika v Košiciach" lang="sk">
-	<img src="/weblogo/upjs-logo.png" alt="UPJŠ Košice" class="imgpromo">
+	<img src="/weblogo/upjs-logo.png" alt="Univerzita Pavla Jozefa Šafárika v Košiciach" class="imgpromo">
 </a>
 
 <a href="https://www.unb.sk/" target="_blank" rel="noopener noreferrer" title="Univerzitná nemocnica Bratislava" lang="sk">
-	<img src="/weblogo/logo-unb.svg" alt="UN Bratislava" class="imgpromo">
+	<img src="/weblogo/logo-unb.svg" alt="Univerzitná nemocnica Bratislava" class="imgpromo">
 </a>
 
 <a href="https://www.milosrdni.eu/" target="_blank" rel="noopener noreferrer" title="Milosrdní bratia" lang="sk">
@@ -145,7 +145,7 @@
 </a>
 
 <a href="https://www.ukidney.com/" target="_blank" rel="noopener noreferrer" title="UKidney" lang="en">
-	<img src="/weblogo/ukidney-logo.png" alt="UKIDNEY" class="imgpromo">
+	<img src="/weblogo/ukidney-logo.png" alt="UKidney" class="imgpromo">
 </a>
 
 <a href="https://www.kidney.org/" target="_blank" rel="noopener noreferrer" title="National Kidney Foundation" lang="en">
@@ -153,11 +153,11 @@
 </a>
 
 <a href="https://kdigo.org/" target="_blank" rel="noopener noreferrer" title="KDIGO = Kidney Disease ~ Improving Global Outcomes" lang="en">
-	<img src="/weblogo/kdigo-logo.svg" alt="KDIGO" class="imgpromo">
+	<img src="/weblogo/kdigo-logo.svg" alt="KDIGO = Kidney Disease ~ Improving Global Outcomes" class="imgpromo">
 </a>
 
 <a href="https://www.medupdate-europe.eu/" target="_blank" rel="noopener noreferrer" title="Medupdate Europe" lang="en">
-	<img src="/weblogo/MUE-logo.png" alt="Medupdate EU" class="imgpromo">
+	<img src="/weblogo/MUE-logo.png" alt="Medupdate Europe" class="imgpromo">
 </a>
 
 <hr class="promohr">
@@ -165,11 +165,11 @@
 <div class="promosection">Nefrologické spoločnosti a asociácie zdravotných sestier</div>
 
 <a href="https://www.edtnaerca.org/" target="_blank" rel="noopener noreferrer" title="European Dialysis and Transplant Nurses Association/European Renal Care Association" lang="en">
-	<img src="/weblogo/edtna-erca-logo.png" alt="EDTNA/ERCA" class="imgpromo">
+	<img src="/weblogo/edtna-erca-logo.png" alt="European Dialysis and Transplant Nurses Association/European Renal Care Association" class="imgpromo">
 </a>
 
 <a href="https://www.annanurse.org/" target="_blank" rel="noopener noreferrer" title="American Nephrology Nurses Association" lang="en">
-	<img src="/weblogo/anna-logo.jpg" alt="ANNA" class="imgpromo">
+	<img src="/weblogo/anna-logo.jpg" alt="American Nephrology Nurses Association" class="imgpromo">
 </a>
 
 <hr class="promohr">
@@ -193,23 +193,23 @@
 <div class="promosection">Slovensko - štátne a samosprávne inštitúcie a orgány</div>
 
 <a href="https://www.slovensko.sk/" target="_blank" rel="noopener noreferrer" title="Ústredný portál verejnej správy" lang="sk">
-	<img src="/weblogo/svk-logo.png" alt="SLOVENSKO.sk" class="imgpromo">
+	<img src="/weblogo/svk-logo.png" alt="Ústredný portál verejnej správy" class="imgpromo">
 </a>    
 
 <a href="https://www.nczisk.sk/" target="_blank" rel="noopener noreferrer" title="Národné centrum zdravotníckych informácií" lang="sk">
-	<img src="/weblogo/nczi-logo.png" alt="NCZI" class="imgpromo">
+	<img src="/weblogo/nczi-logo.png" alt="Národné centrum zdravotníckych informácií" class="imgpromo">
 </a>	    
 
 <a href="https://www.health.gov.sk/" target="_blank" rel="noopener noreferrer" title="Ministerstvo zdravotníctva Slovenskej republiky" lang="sk">
-	<img src="/weblogo/logo-mzsr.gif" alt="MZSR" class="imgpromo">
+	<img src="/weblogo/logo-mzsr.gif" alt="Ministerstvo zdravotníctva Slovenskej republiky" class="imgpromo">
 </a>    
 
 <a href="https://www.udzs-sk.sk/" target="_blank" rel="noopener noreferrer" title="Úrad pre dohľad nad zdravotnou starostlivosťou" lang="sk">
-	<img src="/weblogo/udzs-logo.png" alt="ÚDZS" class="imgpromo">
+	<img src="/weblogo/udzs-logo.png" alt="Úrad pre dohľad nad zdravotnou starostlivosťou" class="imgpromo">
 </a>		    
 
 <a href="https://www.uvzsr.sk/" target="_blank" rel="noopener noreferrer" title="Úrad verejného zdravotníctva Slovenskej republiky" lang="sk">
-	<img src="/weblogo/uvzsr-logo.png" alt="ÚVZSR" class="imgpromo">
+	<img src="/weblogo/uvzsr-logo.png" alt="Úrad verejného zdravotníctva Slovenskej republiky" class="imgpromo">
 </a>    
 
 <a href="https://www.e-vuc.sk/" target="_blank" rel="noopener noreferrer" title="eVÚC" lang="sk">
@@ -221,15 +221,15 @@
 <div class="promosection">Dôležité európske a svetové inštitúcie</div>
 
 <a href="https://www.un.org/" target="_blank" rel="noopener noreferrer" title="United Nations" lang="en">
-	<img src="/weblogo/un-logo.png" alt="UN" class="imgpromo">
+	<img src="/weblogo/un-logo.png" alt="United Nations" class="imgpromo">
 </a>    
 
 <a href="https://europa.eu/" target="_blank" rel="noopener noreferrer" title="European Union" lang="en">
-	<img src="/weblogo/logo-eu.svg" alt="EU" class="imgpromo">
+	<img src="/weblogo/logo-eu.svg" alt="European Union" class="imgpromo">
 </a>    
 
 <a href="https://www.europarl.europa.eu/" target="_blank" rel="noopener noreferrer" title="European Parliament" lang="en">
-	<img src="/weblogo/ep-logo.png" alt="EP" class="imgpromo">
+	<img src="/weblogo/ep-logo.png" alt="European Parliament" class="imgpromo">
 </a>
 
 <a href="https://www.who.int/" target="_blank" rel="noopener noreferrer" title="World Health Organization" lang="en">

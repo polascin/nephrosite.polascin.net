@@ -209,11 +209,24 @@
 
   function ensureExternalBlankLinksAreSafe() {
     var links = document.querySelectorAll('a[target="_blank"]');
+    var hintNeedle = "otvorí sa v novom okne";
     links.forEach(function (link) {
       var rel = (link.getAttribute("rel") || "").toLowerCase();
       if (rel.indexOf("noopener") === -1 || rel.indexOf("noreferrer") === -1) {
         link.setAttribute("rel", "noopener noreferrer");
       }
+
+      // WCAG: warn assistive tech when a link opens a new browsing context.
+      if ((link.textContent || "").indexOf(hintNeedle) !== -1) {
+        return;
+      }
+      if (link.querySelector(".sr-only-new-window")) {
+        return;
+      }
+      var hint = document.createElement("span");
+      hint.className = "sr-only sr-only-new-window";
+      hint.textContent = " (" + hintNeedle + ")";
+      link.appendChild(hint);
     });
   }
 

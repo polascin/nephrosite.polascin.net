@@ -4,7 +4,7 @@
 	<p>
 		Obsah tejto stránky je prevažne archívny, prednášky a materiály pochádzajú z rokov 2019 - 2023.
 		Aktuálne informácie a nové materiály nájdete na
-		<a href="https://nefro.polascin.net/" target="_blank" rel="noopener noreferrer" title="nefro.polascin.net">nefro.polascin.net</a>.
+		<a href="https://nefro.polascin.net/" target="_blank" rel="noopener noreferrer" title="nefro.polascin.net">nefro.polascin.net<span class="sr-only"> (otvorí sa v novom okne)</span></a>.
 	</p>
 	<p>
 		Doména <strong>nephro.site</strong> je zrušená. Jediná platná adresa tohto webu je
