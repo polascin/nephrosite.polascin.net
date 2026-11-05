@@ -1,32 +1,33 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #31)
+Aktualizované: 2026-11-05 (loop iterácia #32)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `450901b`
+HEAD: `fe4df5c`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship (overené, non-promo a11y):
-  - `ipvrm.htm`: privacy notice `_blank` → kanonický `/privacy` + lokálne
-    `.sr-only` CSS + sr-only `(otvorí sa v novom okne)` (site-wide live
-    blank miss pred opravou = 1; po oprave = 0).
+- Product ship (overené, non-promo content):
+  - `files/lipton-tx.html`: oprava prepisových chýb v citáte kapitoly
+    (`má`, `však`, `systémom`, `tento`, `"antény"`, `začalo`; anglické
+    tituly kníh `Heart` namiesto `Hearth`).
+- ASN/ISN oficiálne `<title>` **bez** akronymu → polish **neshipnutý**.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- ASN/ISN akronym polish **neshipnutý** (silnejší overený defect existoval).
+- Live blank miss = 0 (po stripnutí komentárov).
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `450901b`; post-commit SFTP nahral `ipvrm.htm`;
+- Commit `fe4df5c`; post-commit SFTP nahral `files/lipton-tx.html`;
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
-  `/terms` `/nefrologia` `/ipvrm.htm` → 200 + HSTS + CSP (enforced stále s
+  `/terms` `/nefrologia` `/lipton-tx` → 200 + HSTS + CSP (enforced stále s
   `'unsafe-inline'`)
-- Produkcia `/ipvrm.htm`: `/privacy` + sr-only hint + `.sr-only` CSS OK;
-  `/files/privacy.html` absent; page blank miss = 0
-- GHA Deploy `42112671817` success (rsync skip)
+- Produkcia `/lipton-tx`: opravené reťazce prítomné; staré chyby (`Hearth`,
+  ` vak `, `lento`, `ma jedinečnú`, `začala`) absent
+- GHA Deploy `42113695661` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -68,8 +69,12 @@ HEAD: `450901b`
 - `ipvrm.htm` je standalone Word HTML (iframe + priama URL): nemá
   `blocks/styles.css.php` ani `scripts.sk.php` blank helper → `.sr-only`
   a new-window hint treba vložiť lokálne do dokumentu.
+- ASN/ISN oficiálne `<title>` = plný názov **bez** `(ASN)`/`(ISN)` →
+  nepridávať akronym spekulatívne.
+- Excluded vendor logos v HTML komentároch (`bbraun`/`baxter`/…) môžu
+  404-ovať ako asset path, ale nie sú live `<img>` (strip comments).
 
-## Ďalší fokus (loop #32)
+## Ďalší fokus (loop #33)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -81,8 +86,8 @@ HEAD: `450901b`
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-222725-loop31-ipvrm-privacy-blank-hint.md`
-- Audit: `.audit.md` Beh #42
+- Codex: `.codex/handoffs/2026-11-05-223402-loop32-lipton-tx-typos.md`
+- Audit: `.audit.md` Beh #43
 
 ## Ďalší príkaz
 
