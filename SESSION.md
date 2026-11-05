@@ -1,37 +1,40 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #53)
+Aktualizované: 2026-11-06 (loop iterácia #54)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `08338a1`
+HEAD: `8d8e2be`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship (overené, non-promo):
-  - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `politických zmien` → `zmien v zdravotnej politike`
-    (EN *policy changes* kalik; SK `politických` číta sa ako stranícka
-    politika, nie zdravotná politika; homepage include cez
-    `blocks/nephrology.sk.php`)
+- Product ship (overené, non-IgAN):
+  - `files/usgo.html` + `segments/usgo.html`:
+    `zodpovedá na` → `odpovedá na` (chybný slovesný význam);
+    `zdieľajú s ošetrujúcim lekárom` → `odovzdajú ošetrujúcemu lekárovi`
+    (anglicizmus EN *share* + kaliková predložka)
+- a11y scan `_blank`/sr-only po strip komentárov: **0 misses** (žiadny a11y
+  ship v tomto ticku)
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - nefamb ABPM názov **Ambulantné monitorovanie krvného tlaku**
+  - IgAN tip path (žiadny micro-polish)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `08338a1`; post-commit SFTP nahral `segments/igan.html` +
-  `segments/IgAN.sk.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `8d8e2be`; post-commit SFTP nahral `files/usgo.html` +
+  `segments/usgo.html`; `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `zmien v zdravotnej politike` prítomné;
-  `politických zmien` absent
-- GHA Deploy `42127561520` success (rsync skip)
+- Produkcia `/usgo`: `odpovedá na` + `odovzdajú ošetrujúcemu lekárovi`
+  prítomné; `zodpovedá na` / `zdieľajú s ošetrujúcim` absent
+- Produkcia `/`: segment `odovzdajú ošetrujúcemu lekárovi` prítomné
+- GHA Deploy `42128196242` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -149,8 +152,13 @@ HEAD: `08338a1`
   `príjemca` jednotne (nie `akceptor` / striedanie s `prijímateľ`);
   moralizujúce „byť vďačný darcom“ nie je pacientsky content.
 - Sync `files/nefrologia.html` aj `segments/nefrologia.html`.
+- Pacientsky USG: `zodpovedá na` (zodpovednosť) ≠ `odpovedá na` (odpoveď
+  na otázku); EN *share* → `odovzdajú`/`pošlú` + datív
+  (`ošetrujúcemu lekárovi`), nie `zdieľajú s` + inštrumentál.
+  Sync `files/usgo.html` aj `segments/usgo.html` (úvodný odsek
+  `odpovedá` je len vo `files/`).
 
-## Ďalší fokus (loop #54)
+## Ďalší fokus (loop #55)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -158,14 +166,14 @@ HEAD: `08338a1`
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
-   o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo ship
-   (nie tip-SHA churn); kandidát: a11y scan `_blank`/sr-only po strip
-   komentárov, alebo ďalší overený pacientsky wording mimo IgAN tip churn.
+   o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
+   non-IgAN ship (nie tip-SHA churn); kandidát: ďalší pacientsky wording
+   mimo IgAN/USG, alebo tooling.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #53 IgAN zdravotnej politike)
-- Audit: `.audit.md` Beh #64
+- Codex: `.codex/handoffs/` (loop #54 USG odpovedá/odovzdajú)
+- Audit: `.audit.md` Beh #65
 
 ## Ďalší príkaz
 
