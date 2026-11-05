@@ -180,7 +180,7 @@ try {
     check(($reportOnlyDirectives['style-src'] ?? []) === ["'self'", "'unsafe-inline'"], 'Report-Only style-src must be self + unsafe-inline after Google Fonts self-host.');
     check(($reportOnlyDirectives['font-src'] ?? []) === ["'self'"], "Report-Only font-src must be 'self' after Google Fonts self-host.");
     check(!str_contains($reportOnlyPolicy, 'fonts.googleapis.com') && !str_contains($reportOnlyPolicy, 'fonts.gstatic.com'), 'Report-Only must not list Google Fonts hosts after self-host.');
-    check(permits($reportOnlyDirectives, 'img-src', 'https://clustrmaps.com/map.png'), 'Report-Only CSP must list ClustrMaps while the visitor map remains live.');
+    check(!str_contains($reportOnlyPolicy, 'clustrmaps.com'), 'Report-Only must not list clustrmaps.com after first-party visitor map SVG.');
     check(($reportOnlyDirectives['media-src'] ?? []) === ["'self'"], "Report-Only media-src must be 'self' (homepage videos are same-origin).");
     check(($reportOnlyDirectives['frame-src'] ?? []) === ["'self'"], "Report-Only frame-src must be 'self' (current iframes are same-origin).");
     check(!in_array('data:', $reportOnlyDirectives['img-src'] ?? [], true), 'Report-Only img-src must not allow data: (no data: images in markup).');
@@ -194,6 +194,7 @@ try {
     check(($directives['object-src'] ?? []) === ["'none'"], "Expected object-src 'none'.");
     check(($directives['font-src'] ?? []) === ["'self'"], "Enforced font-src must be 'self' after Google Fonts self-host.");
     check(!str_contains($enforcedPolicy, 'fonts.googleapis.com') && !str_contains($enforcedPolicy, 'fonts.gstatic.com'), 'Enforced CSP must not list Google Fonts hosts after self-host.');
+    check(!str_contains($enforcedPolicy, 'clustrmaps.com'), 'Enforced CSP must not list clustrmaps.com after first-party visitor map SVG.');
     foreach (['https://region1.analytics.google.com', 'https://stats.g.doubleclick.net'] as $url) {
         check(permits($directives, 'connect-src', $url), 'Observed connection missing: ' . $url);
     }

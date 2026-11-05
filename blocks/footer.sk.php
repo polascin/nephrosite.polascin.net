@@ -20,10 +20,10 @@
 
 <br>
 
-<!-- ClustrMaps Code -->
+<!-- ClustrMaps: first-party SVG snapshot (no live clustrmaps.com image/script). -->
 <p class="centered">
-	<a href='https://clustrmaps.com/site/1ak7d' target="_blank" rel="noopener noreferrer" title='Mapa návštev'>
-		<img src='https://clustrmaps.com/map_v2.png?cl=080808&w=300&t=tt&d=6Uv4S4WFV1sb8yPD3S6mHHJAc2s-xvFu85nftKYGceU&co=ffffff&ct=808080' data-fallback-src="/pix/clustrmaps-unavailable.svg" width="300" height="150" alt="Mapa návštev ClustrMaps">
+	<a href="https://clustrmaps.com/site/1ak7d" target="_blank" rel="noopener noreferrer" title="Otvoriť mapu návštev na ClustrMaps">
+		<img src="/pix/clustrmaps-visitor-map.svg" width="300" height="150" alt="Mapa návštev ClustrMaps (lokálny náhľad)">
 	</a>
 </p>
 <!-- The End of the ClustrMaps Code -->

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="150" viewBox="0 0 300 150" role="img" aria-labelledby="title description">
-  <title id="title">ClustrMaps</title>
-  <desc id="description">Mapa návštev je dočasne nedostupná. Odkaz na ClustrMaps zostáva zachovaný.</desc>
+  <title id="title">Náhradný obrázok</title>
+  <desc id="description">Pôvodný obrázok nie je dostupný. Používa sa lokálny náhradný náhľad.</desc>
   <rect x="1" y="1" width="298" height="148" rx="8" fill="#ffffff" stroke="#cbd5d1"/>
   <g fill="none" stroke="#3b6655" stroke-width="2">
     <circle cx="150" cy="44" r="22"/>
@@ -8,7 +8,7 @@
     <path d="M128 44h44M132 32h36M132 56h36"/>
   </g>
   <g font-family="Arial, sans-serif" text-anchor="middle">
-    <text x="150" y="94" font-size="18" fill="#244638">ClustrMaps</text>
-    <text x="150" y="119" font-size="13" fill="#4b5550">Mapa je dočasne nedostupná</text>
+    <text x="150" y="94" font-size="18" fill="#244638">Obrázok nedostupný</text>
+    <text x="150" y="119" font-size="13" fill="#4b5550">Zobrazuje sa náhradný náhľad</text>
   </g>
 </svg>

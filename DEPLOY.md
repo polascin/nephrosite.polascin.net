@@ -25,15 +25,16 @@ náhrada synchronizácie celého webu ani všetkých CI kontrol. Existujúce
 workflow zostávajú zachované. GitHub zostáva aj úložiskom a miestom review.
 Pri lokálnej práci sa nasadzuje miestnymi nástrojmi.
 
-Opravy integrácií z 1. 11. 2026 kontroluje aj `node tools/test-integrations.cjs`.
+Opravy integrácií kontroluje aj `node tools/test-integrations.cjs`.
 Test overuje inicializáciu jediného projektu Clarity `fp2sq6zahr`, načítanie
-až po súhlase, odovzdanie odvolaného súhlasu a náhradný obrázok pri výpadku
-ClustrMaps. Dva duplicitné projekty Clarity sa už nenačítavajú.
+až po súhlase, odovzdanie odvolaného súhlasu, generický image fallback helper
+a first-party visitor map SVG (`/pix/clustrmaps-visitor-map.svg`; bez live
+načítania `clustrmaps.com`). Dva duplicitné projekty Clarity sa už nenačítavajú.
 `deploy-file.py --file CESTA --expected-sha256 HASH --apply` podporuje
-`blocks/scripts.sk.php`, `blocks/footer.sk.php` a
-`pix/clustrmaps-unavailable.svg`. Pre nový súbor sa použije `missing`
-namiesto hash hodnoty. Najprv sa nahrá obrázok, potom skripty a päta.
-Nástroj neprenáša celý pracovný strom.
+`blocks/scripts.sk.php`, `blocks/footer.sk.php`,
+`pix/clustrmaps-visitor-map.svg` a `pix/clustrmaps-unavailable.svg`. Pre nový
+súbor sa použije `missing` namiesto hash hodnoty. Nástroj neprenáša celý
+pracovný strom.
 
 Automatické nasadenie cez GitHub Actions (`.github/workflows/deploy.yml`):
 po každom pushi do `main` (alebo manuálne cez **Actions → Deploy → Run

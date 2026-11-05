@@ -20,7 +20,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', type=Path)
     parser.add_argument('--file', choices=['.htaccess', 'blocks/scripts.sk.php',
-                        'blocks/footer.sk.php', 'pix/clustrmaps-unavailable.svg'])
+                        'blocks/footer.sk.php', 'pix/clustrmaps-visitor-map.svg',
+                        'pix/clustrmaps-unavailable.svg'])
     parser.add_argument('--expected-sha256', required=True)
     parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()

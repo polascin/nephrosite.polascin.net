@@ -637,7 +637,7 @@
         if (fallback) {
           image.removeAttribute("data-fallback-src");
           image.src = fallback;
-          image.alt = "ClustrMaps: mapa návštev je dočasne nedostupná";
+          image.alt = "Náhradný obrázok (pôvodný zdroj nie je dostupný)";
         }
       }
       image.addEventListener("error", useFallback);
