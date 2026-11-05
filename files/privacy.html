@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/files/legal.css" />
   </head>
   <body>
-    <a class="skip-link" href="#content">Preskočiť na obsah</a>
+    <a class="skip-link" href="#content">Preskočiť na hlavný obsah</a>
     <main id="content">
     <h1>Zásady ochrany súkromia</h1>
     <p class="meta">Posledná aktualizácia: 05.11.2026</p>
@@ -65,8 +65,11 @@
     <h2>5. Vaša kontrola</h2>
     <p>
       Súhlas môžete kedykoľvek zmeniť cez tlačidlo &bdquo;Nastavenie
-      cookies&ldquo; v päte webu. Môžete tiež vymazať cookies vo vašom
-      prehliadači.
+      cookies&ldquo; v päte obsahových stránok (úvodná stránka a tematické
+      stránky). Na tejto stránke môžete uložený súhlas vymazať v
+      <a href="#consent-controls">sekcii správy súhlasu</a>; po návrate na
+      obsahovú stránku sa zobrazí nová výzva. Môžete tiež vymazať cookies vo
+      vašom prehliadači.
     </p>
 
     <h2>6. Vaše práva</h2>
@@ -84,8 +87,9 @@
 
     <h2>8. Uchovávanie súhlasu</h2>
     <p>
-      Voľby súhlasu uchovávame lokálne vo vašom prehliadači v trvaní 180 dní,
-      potom vyzveme na novú voľbu.
+      Voľby súhlasu uchovávame lokálne vo vašom prehliadači (localStorage
+      a nevyhnutný súhlasový cookie) v trvaní 180 dní, potom vyzveme na novú
+      voľbu.
     </p>
 
     <h2>9. Sprostredkovatelia po udelení súhlasu</h2>
@@ -145,26 +149,25 @@
       právnym upozornením oboznámili, rozumiete mu a beriete na vedomie jeho obsah.
     </p>
 
-    <div class="panel" aria-live="polite">
-      <p class="status" id="consent-summary">
+    <div class="panel" id="consent-controls" aria-labelledby="consent-controls-title">
+      <h2 id="consent-controls-title">Správa súhlasu na tomto zariadení</h2>
+      <p class="status" id="consent-summary" role="status" aria-live="polite">
         Aktuálny stav súhlasu: nezistený.
       </p>
       <button type="button" class="btn" id="reset-consent">
         Vymazať uložený súhlas na tomto zariadení
       </button>
       <p>
-        Po vymazaní sa pri najbližšej návšteve hlavnej stránky zobrazí nová
-        výzva na voľbu cookies.
+        Vymazanie odstráni lokálne uloženú voľbu aj súvisiaci súhlasový
+        cookie. Pri najbližšej návšteve obsahovej stránky sa zobrazí nová
+        výzva na voľbu cookies. Podrobné kategórie znova nastavíte cez
+        &bdquo;Nastavenie cookies&ldquo; v päte obsahovej stránky.
       </p>
-      <p>
-        <a href="/">Prejsť na hlavnú stránku</a>
-      </p>
-      <p>
-        <a href="#legal-disclaimer">Prejsť na právne upozornenie</a>
-      </p>
-      <p>
+      <nav class="legal-nav" aria-label="Ďalšie právne stránky">
+        <a href="/">Hlavná stránka</a>
+        <a href="#legal-disclaimer">Právne upozornenie</a>
         <a href="/terms">Podmienky používania</a>
-      </p>
+      </nav>
     </div>
     </main>
 
