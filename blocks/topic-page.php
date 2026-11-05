@@ -72,15 +72,71 @@ nephrosite_csp_send_headers();
 
     <article class="topic-article">
       <?php
-      // Fragment sa vykreslí do vyrovnávacej pamäte, aby sa jeho prvý nadpis
-      // dal povýšiť na <h1> – na samostatnej stránke je hlavným nadpisom.
+      // Fragment sa vykreslí do vyrovnávacej pamäte, aby sa jeho nadpis
+      // zodpovedajúci $topic['title'] (inak prvý <h2>) povýšil na <h1>.
       ob_start();
       require $fragmentPath;
       $fragment = (string) ob_get_clean();
-      $fragment = preg_replace('#<h2\b([^>]*)>(.*?)</h2>#s', '<h1$1>$2</h1>', $fragment, 1);
+      $topicTitlePlain = trim((string) $topic['title']);
+      $h1Promoted = false;
+      $fragment = (string) preg_replace_callback(
+          '#<h2\b([^>]*)>(.*?)</h2>#s',
+          static function (array $match) use ($topicTitlePlain, &$h1Promoted): string {
+              if ($h1Promoted) {
+                  return $match[0];
+              }
+              $plain = trim(html_entity_decode(strip_tags($match[2]), ENT_QUOTES | ENT_HTML5, 'UTF-8'));
+              if (strcasecmp($plain, $topicTitlePlain) !== 0) {
+                  return $match[0];
+              }
+              $h1Promoted = true;
+
+              return '<h1' . $match[1] . '>' . $match[2] . '</h1>';
+          },
+          $fragment
+      );
+      if (!$h1Promoted) {
+          $fragment = (string) preg_replace(
+              '#<h2\b([^>]*)>(.*?)</h2>#s',
+              '<h1$1>$2</h1>',
+              $fragment,
+              1
+          );
+      }
       echo $fragment;
       ?>
     </article>
+
+    <?php
+    $relatedTopics = [
+        ['slug' => 'nefrologia', 'title' => 'Klinická nefrológia'],
+        ['slug' => 'dialyza', 'title' => 'Dialýza'],
+        ['slug' => 'purifikacia', 'title' => 'Purifikácia krvi'],
+        ['slug' => 'transplantacia', 'title' => 'Transplantácia obličky'],
+        ['slug' => 'usgo', 'title' => 'Ultrazvukové vyšetrenie obličiek'],
+        ['slug' => 'nefamb', 'title' => 'Nefrologická ambulancia'],
+        ['slug' => 'lipton-tx', 'title' => 'Bruce H. Lipton o transplantovaných orgánoch'],
+    ];
+    $currentSlug = basename((string) $topic['slug']);
+    $relatedTopics = array_values(array_filter(
+        $relatedTopics,
+        static fn (array $item): bool => $item['slug'] !== $currentSlug
+    ));
+    ?>
+    <?php if ($relatedTopics !== []) { ?>
+    <nav class="topic-related" aria-label="Ďalšie témy">
+      <h2 class="topic-related-title">Ďalšie témy</h2>
+      <ul class="topic-related-list">
+        <?php foreach ($relatedTopics as $related) { ?>
+        <li>
+          <a href="/<?php echo htmlspecialchars($related['slug'], ENT_QUOTES, 'UTF-8'); ?>">
+            <?php echo htmlspecialchars($related['title'], ENT_QUOTES, 'UTF-8'); ?>
+          </a>
+        </li>
+        <?php } ?>
+      </ul>
+    </nav>
+    <?php } ?>
 
     <p class="topic-back">
       <a href="/">&larr; Späť na hlavnú stránku</a>

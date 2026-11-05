@@ -944,6 +944,37 @@ body.cookie-modal-open {
 	margin: 2rem 0 1rem;
 }
 
+.topic-related {
+	margin: 2.5rem 0 0;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--rule, #d0d7de);
+	max-width: var(--article-max, 70rem);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.topic-related-title {
+	margin: 0 0 0.75rem;
+	font-size: 1.15rem;
+	font-weight: 600;
+}
+
+.topic-related-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.55rem 1.25rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.topic-related-list a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding: 0.25rem 0;
+}
+
 .topic-permalink {
 	margin: 1.2rem 0 0;
 	font-weight: 600;
