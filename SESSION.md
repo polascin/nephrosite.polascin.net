@@ -1,31 +1,33 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #27)
+Aktualizované: 2026-11-05 (loop iterácia #28)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `8f96f4f`
+HEAD: `27bcd26`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené):
-  - `blocks/promo.sk.php`: WHO title/alt
-    `World Health Organization` → `World Health Organization (WHO)`
-    podľa oficiálneho `<title>` na who.int (rovnaký vzor ako SIN `(SIN)`).
+  - `blocks/promo.sk.php`: ERA title/alt
+    `European Renal Association` → `European Renal Association (ERA)`
+    (oficiálny `<title>` obsahuje `| ERA`; vzor ako SIN/WHO).
+  - EDTNA title/alt dlhý deskriptívny label → `EDTNA/ERCA`
+    podľa oficiálneho `<title>` na edtnaerca.org.
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `8f96f4f`; post-commit SFTP nahral `promo.sk.php`;
+- Commit `27bcd26`; post-commit SFTP nahral `promo.sk.php`;
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
-  `/terms` `/nefrologia` `/transplantacia` → 200 + HSTS + CSP (enforced
-  stále s `'unsafe-inline'`)
-- Produkcia `/`: WHO `(WHO)` title+alt OK (2); bez-suffix live attrs 0;
-  live blank miss hints = 0
-- GHA Deploy `42109953338` success (rsync skip)
+  `/terms` `/nefrologia` → 200 + HSTS + CSP (enforced stále s
+  `'unsafe-inline'`)
+- Produkcia `/`: ERA `(ERA)` title+alt OK (2); EDTNA/ERCA title+alt OK
+  (2); staré labely 0; live blank miss hints = 0
+- GHA Deploy `42110567136` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -56,23 +58,25 @@ HEAD: `8f96f4f`
   `.py` súbor + `Path.write_text` je spoľahlivejší.
 - Pri scane `_blank` bez hintu **najprv strip HTML komentáre**, inak
   Bory/excluded vendor logos falošne nafúknu miss count.
-- Akronymové suffixy v promo (`(SIN)`, `(WHO)`) držať v súlade
-  s oficiálnym `<title>` cieľa.
+- Akronymové suffixy v promo (`(SIN)`, `(WHO)`, `(ERA)`) a short brand
+  titles (`EDTNA/ERCA`) držať v súlade s oficiálnym `<title>` cieľa.
+- `/kontakt` a `/o-nas` nie sú v sitemap/odkazoch (404 bez interných
+  referencií); nie je to broken-link defect.
 
-## Ďalší fokus (loop #28)
+## Ďalší fokus (loop #29)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
 4. Bug/a11y/content ship, ak telemetria stále smoke-only (ďalší title
-   polish napr. EDTNA/ERA; content consistency; uncommented intro Bory
-   až po rozhodnutí o obsahu).
+   polish napr. ANNA `(ANNA)` / KDIGO title encoding; content consistency;
+   uncommented intro Bory až po rozhodnutí o obsahu).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-220940-loop27-who-title-polish.md`
-- Audit: `.audit.md` Beh #38
+- Codex: `.codex/handoffs/2026-11-05-221345-loop28-era-edtna-titles.md`
+- Audit: `.audit.md` Beh #39
 
 ## Ďalší príkaz
 
