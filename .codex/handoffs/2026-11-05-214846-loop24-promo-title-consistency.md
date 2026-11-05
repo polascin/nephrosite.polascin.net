@@ -6,7 +6,7 @@
 - Updated At: 2026-11-05T21:49:30+01:00
 - Project Root: D:\Dev\nephrosite.polascin.net
 - Git Branch: main
-- Head Commit: f3f02bf
+- Head Commit: e891faf
 
 ## Original Goal
 
@@ -20,7 +20,7 @@ deploy/smoke; SESSION + handoff.
 
 Iterácia #24 hotová. RO telemetria stále smoke-only (2 riadky). Enforced
 `'unsafe-inline'` ponechané. Ship: 3 overené brand title/alt opravy v
-`blocks/promo.sk.php` (Bory, ASN, ÖGFN). Repo na `main` @ `f3f02bf`
+`blocks/promo.sk.php` (Bory, ASN, ÖGFN). Repo na `main` @ `e891faf`
 (product `28bd919`, docs tip).
 
 ## Completed This Session
