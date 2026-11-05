@@ -1,17 +1,17 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #30)
+Aktualizované: 2026-11-05 (loop iterácia #31)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `d485beb`
+HEAD: `450901b`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
 - Product ship (overené, non-promo a11y):
-  - `files/lipton-tx.html`: Martinus a eugenika.sk `_blank` odkazy →
-    sr-only `(otvorí sa v novom okne)` (site-wide live blank miss pred
-    opravou = 2; po oprave = 0).
+  - `ipvrm.htm`: privacy notice `_blank` → kanonický `/privacy` + lokálne
+    `.sr-only` CSS + sr-only `(otvorí sa v novom okne)` (site-wide live
+    blank miss pred opravou = 1; po oprave = 0).
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 - ASN/ISN akronym polish **neshipnutý** (silnejší overený defect existoval).
@@ -19,13 +19,14 @@ HEAD: `d485beb`
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `0a40236`; post-commit SFTP nahral `lipton-tx.html`;
+- Commit `450901b`; post-commit SFTP nahral `ipvrm.htm`;
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
-  `/terms` `/nefrologia` `/lipton-tx` → 200 + HSTS + CSP (enforced stále s
+  `/terms` `/nefrologia` `/ipvrm.htm` → 200 + HSTS + CSP (enforced stále s
   `'unsafe-inline'`)
-- Produkcia `/lipton-tx`: Martinus + eugenika sr-only OK; page blank miss = 0
-- GHA Deploy `42111877183` success (rsync skip)
+- Produkcia `/ipvrm.htm`: `/privacy` + sr-only hint + `.sr-only` CSS OK;
+  `/files/privacy.html` absent; page blank miss = 0
+- GHA Deploy `42112671817` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -64,8 +65,11 @@ HEAD: `d485beb`
   referencií); nie je to broken-link defect.
 - `topic-teaser.php` extrahuje `<img>` z `files/*.html` (už majú `alt`);
   false positive „missing alt“ na regex v teaser helperi nie je defect.
+- `ipvrm.htm` je standalone Word HTML (iframe + priama URL): nemá
+  `blocks/styles.css.php` ani `scripts.sk.php` blank helper → `.sr-only`
+  a new-window hint treba vložiť lokálne do dokumentu.
 
-## Ďalší fokus (loop #31)
+## Ďalší fokus (loop #32)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
@@ -77,8 +81,8 @@ HEAD: `d485beb`
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-222209-loop30-lipton-tx-blank-hints.md`
-- Audit: `.audit.md` Beh #41
+- Codex: `.codex/handoffs/2026-11-05-222725-loop31-ipvrm-privacy-blank-hint.md`
+- Audit: `.audit.md` Beh #42
 
 ## Ďalší príkaz
 
