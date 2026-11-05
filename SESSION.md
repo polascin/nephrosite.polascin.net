@@ -1,35 +1,31 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-05 (loop iterácia #29)
+Aktualizované: 2026-11-05 (loop iterácia #30)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `a0534dc`
+HEAD: `0a40236`
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky → **neodstraňovať** enforced
   `'unsafe-inline'`.
-- Product ship (overené):
-  - `blocks/promo.sk.php`: ANNA title/alt
-    `American Nephrology Nurses Association` →
-    `American Nephrology Nurses Association (ANNA)`
-    (oficiálny `<title>` obsahuje `| ANNA`; vzor ako SIN/WHO/ERA).
-  - KDIGO title/alt ASCII hyphen-minus → UTF-8 en dash (U+2013)
-    podľa oficiálneho `<title>` s `&#8211;`:
-    `KDIGO – Kidney Disease: Improving Global Outcomes`.
+- Product ship (overené, non-promo a11y):
+  - `files/lipton-tx.html`: Martinus a eugenika.sk `_blank` odkazy →
+    sr-only `(otvorí sa v novom okne)` (site-wide live blank miss pred
+    opravou = 2; po oprave = 0).
 - Intro Bory zostáva zakomentovaný (žiadne spekulatívne re-enable).
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
+- ASN/ISN akronym polish **neshipnutý** (silnejší overený defect existoval).
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only; `php tools/test-csp.php` → PASS
-- Commit `a0534dc`; post-commit SFTP nahral `promo.sk.php`;
+- Commit `0a40236`; post-commit SFTP nahral `lipton-tx.html`;
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
-  `/terms` `/nefrologia` → 200 + HSTS + CSP (enforced stále s
+  `/terms` `/nefrologia` `/lipton-tx` → 200 + HSTS + CSP (enforced stále s
   `'unsafe-inline'`)
-- Produkcia `/`: ANNA `(ANNA)` title+alt OK (2); KDIGO en-dash OK (2);
-  ASCII hyphen KDIGO 0; live blank miss hints = 0
-- GHA Deploy `42111216752` success (rsync skip)
+- Produkcia `/lipton-tx`: Martinus + eugenika sr-only OK; page blank miss = 0
+- GHA Deploy `42111877183` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -59,27 +55,30 @@ HEAD: `a0534dc`
 - Inline Python cez PowerShell láme úvodzovky v title atribútoch; temp
   `.py` súbor + `Path.write_text` je spoľahlivejší.
 - Pri scane `_blank` bez hintu **najprv strip HTML komentáre**, inak
-  Bory/excluded vendor logos falošne nafúknu miss count.
+  Bory/excluded vendor logos falošne nafúknu miss count. Skip `.kilo/`
+  worktrees pri repo scanoch.
 - Akronymové suffixy v promo (`(SIN)`, `(WHO)`, `(ERA)`, `(ANNA)`) a short
   brand titles (`EDTNA/ERCA`) držať v súlade s oficiálnym `<title>` cieľa.
 - KDIGO oficiálne používa en dash (`&#8211;` / U+2013), nie ASCII `-`.
 - `/kontakt` a `/o-nas` nie sú v sitemap/odkazoch (404 bez interných
   referencií); nie je to broken-link defect.
+- `topic-teaser.php` extrahuje `<img>` z `files/*.html` (už majú `alt`);
+  false positive „missing alt“ na regex v teaser helperi nie je defect.
 
-## Ďalší fokus (loop #30)
+## Ďalší fokus (loop #31)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths.
 2. Schválený cleanup remote-only (A–C; keep `reports.jsonl`).
 3. Voliteľne GH `DEPLOY_*` secrets (mimo repo) alebo ponechať len lokálny deploy.
-4. Bug/a11y/content ship, ak telemetria stále smoke-only (ďalší title
-   polish napr. ASN/ISN ak oficiálny `<title>` pridá akronym; content
-   consistency; uncommented intro Bory až po rozhodnutí o obsahu).
+4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
+   len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
+   o obsahu).
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/2026-11-05-221822-loop29-anna-kdigo-titles.md`
-- Audit: `.audit.md` Beh #40
+- Codex: `.codex/handoffs/2026-11-05-222209-loop30-lipton-tx-blank-hints.md`
+- Audit: `.audit.md` Beh #41
 
 ## Ďalší príkaz
 
