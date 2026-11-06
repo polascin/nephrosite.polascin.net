@@ -68,8 +68,17 @@ $rules = @(
     @{ Pattern = 'V rámci zasadnutia'; Label = 'V rámci zasadnutia (→ Na zasadnutí)' }
     @{ Pattern = 'V rámci inovatívneho'; Label = 'V rámci inovatívneho (→ V inovatívnom)' }
     @{ Pattern = 'Amazon-e'; Label = 'Amazon-e (→ Amazone)' }
+    @{ Pattern = 'Lipton-a'; Label = 'Lipton-a (→ Liptona)' }
     @{ Pattern = 'pätu obsahových'; Label = 'pätu obsahových (→ pätičku stránky)' }
     @{ Pattern = 'stránku súkromia'; Label = 'stránku súkromia (→ zásady ochrany súkromia)' }
+    @{ Pattern = 'mŕtveho darcu'; Label = 'mŕtveho darcu (→ zosnulého darcu)' }
+    @{ Pattern = 'prenáša do pacienta'; Label = 'prenáša do pacienta (→ prenáša na)' }
+    @{ Pattern = 'darcu \(donor'; Label = 'darcu (donor*) (→ darcu)' }
+    @{ Pattern = 'zo strany lekárov'; Label = 'zo strany lekárov (úradnícky kalk)' }
+    @{ Pattern = '\bcycler\b'; Label = 'cycler (→ cykler)' }
+    @{ Pattern = 'zdieľajú s'; Label = 'zdieľajú s (→ odovzdajú/pošlú)' }
+    @{ Pattern = 'v dôsledku rôznych príčin'; Label = 'v dôsledku rôznych príčin (→ pre rôzne príčiny)' }
+    @{ Pattern = '\bakceptor\b'; Label = 'akceptor (→ príjemca)' }
 )
 
 function Get-ScanFiles {
