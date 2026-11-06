@@ -100,7 +100,8 @@ lecture `suplementá` (→ `suplementy`),
 IgAN `genetických a biomarkerov` (→ `genetiky a biomarkerov`),
 `mať prospech z` (→ `prospieť` / `mať úžitok z`),
 `smernice KDIGO` (→ `usmernenia KDIGO`),
-`v reálnom čase` (→ `okamžite`), …).
+`v reálnom čase` (→ `okamžite`),
+dialýza `takzvanej online hemodiafiltr*` (→ `online hemodiafiltrácia`), …).
 Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,

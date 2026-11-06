@@ -42,6 +42,7 @@ $rules = @(
     @{ Pattern = 'mať prospech z'; Label = 'mať prospech z (→ prospieť / mať úžitok z)' }
     @{ Pattern = 'smernice KDIGO'; Label = 'smernice KDIGO (→ usmernenia KDIGO)' }
     @{ Pattern = 'v reálnom čase'; Label = 'v reálnom čase (→ okamžite)' }
+    @{ Pattern = 'takzvanej online hemodiafiltr'; Label = 'takzvanej online HDF (→ online hemodiafiltrácia)' }
     @{ Pattern = 'najoptimálnejš'; Label = 'najoptimálnejšie (→ najlepšie)' }
     @{ Pattern = 'sestričk'; Label = 'sestrička (→ sestra)' }
     @{ Pattern = 'nahradzuj'; Label = 'nahradzuj* (→ nahrádza/náhradná)' }
