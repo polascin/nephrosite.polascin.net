@@ -95,6 +95,10 @@ $rules = @(
     @{ Pattern = 'orgánu \(rejekcia\)'; Label = 'orgánu (rejekcia) (→ odmietnutie orgánu)' }
     @{ Pattern = 'graft-versus-host disease'; Label = 'graft-versus-host disease EN gloss (→ GvHD after SK term)' }
     @{ Pattern = 'dwell time'; Label = 'dwell time EN gloss (→ čas pôsobenia)' }
+    @{ Pattern = 'Hypertenzia \(vysoký krvný tlak\) \(HT\)'; Label = 'Hypertenzia … (HT) synonym pile (→ drop HT)' }
+    @{ Pattern = 'Diabetická nefropatia \(Diabetická obličková choroba\) \(DKD\)'; Label = 'Diabetická nefropatia … (DKD) pile (→ drop DKD)' }
+    @{ Pattern = 'glomerulárnej \(glomerulovej\)'; Label = 'glomerulárnej (glomerulovej) (→ glomerulovej)' }
+    @{ Pattern = 'lupus erythematodes, erythematosus'; Label = 'lupus erythematodes, erythematosus (→ erythematosus)' }
 )
 
 function Get-ScanFiles {
