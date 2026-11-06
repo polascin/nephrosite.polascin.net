@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #92)
+Aktualizované: 2026-11-06 (loop iterácia #93)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `7eff572` (docs tip nasleduje)
+HEAD: `5f2b369` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (nefamb synonym piles; mimo tip-SHA privacy/terms/cookie/
+- Product ship (nefrologia residual; mimo tip-SHA privacy/terms/cookie/
   intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -26,16 +26,20 @@ HEAD: `7eff572` (docs tip nasleduje)
   transplant dobu dožitia→dlhšie prežívanie #88 /
   transplant preferovanou→uprednostňovanou #89 /
   IgAN špecifickej populácii #90 /
-  nefamb obličkových/cievny #91):
-  - `files/nefamb.html`:
-    `močovým systémom (uropoetickým aparátom)` → `močovým systémom`;
-    `vo vnútornom lekárstve (internej medicíne)` →
-    `vo vnútornom lekárstve`;
-    `brušnú (peritoneálnu) membránu` → `brušnú membránu`
-  - Dôvod: synonym dual gloss v pacientskom texte; preferovať jasný SK
-    tvar; distinct od #68/#91 piles
-  - Žiadny `segments/` mirror (`nefamb.php` → `files/nefamb.html`)
-  - `tools/scan-patient-copy.ps1`: 3 pravidlá; README
+  nefamb obličkových/cievny #91 /
+  nefamb brušnú/močovým/vnútornom #92):
+  - `files/nefrologia.html` + `segments/nefrologia.html`:
+    `starajú sa o dlhodobú starostlivosť o transplantačný orgán` →
+    `zabezpečujú dlhodobú starostlivosť o transplantovaný orgán`;
+    `systémovým lupusom erythematosus (SLE)` →
+    `systémovým lupus erythematosus (SLE)`;
+    `celkové zdravie a pohodu človeka` → `celkové zdravie človeka`
+  - Dôvod: redundantné „starajú sa o … starostlivosť“; nesprávny
+    adjektív `transplantačný` (má byť `transplantovaný`); zmiešaný
+    skloňovaný lupus + latinské erythematosus; EN well-being kalk
+    `pohodu`
+  - Sync files + segments (homepage include)
+  - `tools/scan-patient-copy.ps1`: 4 pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -43,48 +47,39 @@ HEAD: `7eff572` (docs tip nasleduje)
   - Homepage dative `všeobecnej medicíne`
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
-  - privacy / terms / cookie / intro Amazon / nefrologia /
-    dialyza synonym piles (#65–#91) /
+  - privacy / terms / cookie / intro Amazon / dialyza synonym piles /
+    nefamb synonym piles (#65–#92) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
-    IgAN glomerular hypertenzia (#84) /
-    IgAN európsky pôvod (#85) /
-    IgAN súčasnom modeli liečby (#86) /
-    IgAN ET-1 zvýšená tvorba (#87) /
+    IgAN piles (#84–#90) /
     transplant `dlhšie prežívanie` (#88) /
     transplant `uprednostňovanou` (#89) /
-    IgAN `špecifickej populácii` (#90) /
-    nefamb `obličkových`/`cievny` (#91)
+    nefrologia CKD/AKI `resp.` piles (#72; distinct od tohto residual)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
-  - nefamb `ultrasonografia` (substantívum) nie je synonym pile
-  - nefamb `glomerulovej filtračnej rýchlosti (GFR)` je zámerná forma
-    (loop #68 rozhodnutie; nie `glomerulárnej`)
   - nefamb `Katetrizácia (zavedenie dialyzačného katétra)` ponechané
-    (vysvetlenie výkonu, nie synonym dual)
   - Meta/homepage standalone `internej medicíne` ponechané
-    (`blocks/metatags.sk.php`; `blocks/ns.sk.php` dual
-    `internej medicíne (vnútornému lekárstvu)` = homepage churn-avoid)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: wording synonym piles len; bez zmeny klinického
-  významu výkonov/diagnóz.
+- Medicínsky obsah: wording residual len; bez zmeny klinického významu.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `7eff572`; post-commit SFTP nahral `files/nefamb.html`
-  (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `5f2b369`; post-commit SFTP nahral `files/nefrologia.html` +
+  `segments/nefrologia.html` (tools v deployignore); `deploy.ps1 -Apply`
+  0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/nefamb`: `brušnú membránu` ×1; residual
-  `brušnú (peritoneálnu) membránu` 0; `močovým systémom` ×2; residual
-  `uropoetickým aparátom` 0; `vnútornom lekárstve` ×1; dual-gloss
-  residual `vnútornom lekárstve (internej medicíne)` 0
-- GHA Deploy `42151037242` success (rsync skip)
+- Produkcia `/nefrologia`: `zabezpečujú dlhodobú starostlivosť o
+  transplantovaný orgán` ×1; residual `starajú sa o dlhodobú
+  starostlivosť` 0; residual `transplantačný orgán` 0;
+  `systémovým lupus erythematosus` ×1; residual `lupusom erythematosus` 0;
+  `celkové zdravie človeka` ×1; residual `zdravie a pohodu` 0
+- GHA Deploy `42151698978` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -185,6 +180,13 @@ HEAD: `7eff572` (docs tip nasleduje)
   `vnútornom lekárstve (internej medicíne)` → `vnútornom lekárstve`;
   `brušnú (peritoneálnu) membránu` → `brušnú membránu`. Sync len
   `files/nefamb.html`.
+- Pacientsky nefrologia residual (loop #93):
+  `starajú sa o dlhodobú starostlivosť o transplantačný orgán` →
+  `zabezpečujú dlhodobú starostlivosť o transplantovaný orgán`;
+  `lupusom erythematosus` → `lupus erythematosus` (Latin undeclined);
+  `zdravie a pohodu` → `zdravie` (EN well-being calque). Sync
+  `files/nefrologia.html` + `segments/nefrologia.html`. Distinct od
+  #72 CKD/AKI `resp.` piles.
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -214,7 +216,7 @@ HEAD: `7eff572` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #93)
+## Ďalší fokus (loop #94)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -248,15 +250,17 @@ HEAD: `7eff572` (docs tip nasleduje)
    transplant `preferovanou`→`uprednostňovanou` (#89)/
    IgAN garbled NP (#90)/
    nefamb `obličkových`/`cievny` (#91)/
-   práve-shipnutý nefamb `brušnú membránu` / `močovým systémom` /
-   `vnútornom lekárstve` (#92);
+   nefamb `brušnú membránu` / `močovým systémom` /
+   `vnútornom lekárstve` (#92)/
+   práve-shipnutý nefrologia residual transplant/SLE/pohodu (#93);
    soft kandidáti: iný verified patient-copy/a11y/tooling mimo churn
-   listu.
+   listu (dialyza beyond prior piles, lectures, homepage blocks,
+   purifikácia, blank-hints, tooling).
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #92 nefamb brušnú/uropoetickým/internej)
+- Codex: `.codex/handoffs/` (loop #93 nefrologia residual)
 - Audit: `.audit.md` Beh #100
 
 ## Ďalší príkaz
