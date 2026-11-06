@@ -90,6 +90,9 @@ $rules = @(
     @{ Pattern = 'v rámci glomerul'; Label = 'v rámci glomerul* (→ v glomeruloch)' }
     @{ Pattern = 'pre ľudia\b'; Label = 'pre ľudia (→ pre ľudí)' }
     @{ Pattern = 'umožnilo prenos'; Label = 'umožnilo prenos (→ umožnil)' }
+    @{ Pattern = '\(morbidity\)'; Label = '(morbidity) EN gloss (→ chorobnosť alone)' }
+    @{ Pattern = '\(mortality\)'; Label = '(mortality) EN gloss (→ úmrtnosť alone)' }
+    @{ Pattern = 'orgánu \(rejekcia\)'; Label = 'orgánu (rejekcia) (→ odmietnutie orgánu)' }
 )
 
 function Get-ScanFiles {
