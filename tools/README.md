@@ -113,6 +113,9 @@ IgAN `v tejto populácii špecifickej populácie` (→ `v tejto špecifickej pop
 garbled NP),
 nefamb `renálnych (obličkových)` (→ `obličkových`),
 `cievny (vaskulárny)` (→ `cievny`),
+nefamb `močovým systémom (uropoetickým aparátom)` (→ `močovým systémom`),
+`vnútornom lekárstve (internej medicíne)` (→ `vnútornom lekárstve`),
+`brušnú (peritoneálnu) membránu` (→ `brušnú membránu`),
 …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje

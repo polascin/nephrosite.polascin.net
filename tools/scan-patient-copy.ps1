@@ -140,6 +140,9 @@ $rules = @(
     @{ Pattern = 'v tejto populácii špecifickej populácie'; Label = 'v tejto populácii špecifickej populácie (→ v tejto špecifickej populácii; garbled NP)' }
     @{ Pattern = 'renálnych \(obličkových\)'; Label = 'renálnych (obličkových) synonym pile (→ obličkových)' }
     @{ Pattern = 'cievny \(vaskulárny\)'; Label = 'cievny (vaskulárny) synonym pile (→ cievny)' }
+    @{ Pattern = 'močovým systémom \(uropoetickým aparátom\)'; Label = 'močovým systémom (uropoetickým aparátom) synonym pile (→ močovým systémom)' }
+    @{ Pattern = 'vnútornom lekárstve \(internej medicíne\)'; Label = 'vnútornom lekárstve (internej medicíne) synonym pile (→ vnútornom lekárstve)' }
+    @{ Pattern = 'brušnú \(peritoneálnu\) membránu'; Label = 'brušnú (peritoneálnu) membránu synonym pile (→ brušnú membránu)' }
 )
 
 function Get-ScanFiles {
