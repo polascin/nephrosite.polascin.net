@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #79)
+Aktualizované: 2026-11-06 (loop iterácia #80)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `28aa80c` (docs tip nasleduje)
+HEAD: `f6c13e2` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (IgAN research veta: neúplné NP + kalk `mať prospech z`;
+- Product ship (IgAN KDIGO terminológia: `smernice` → `usmernenia`;
   mimo tip-SHA privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -16,13 +16,12 @@ HEAD: `28aa80c` (docs tip nasleduje)
   purifikácia očisťovanie/membrane #71 / nefrologia CKD/AKI #72 /
   USG ultrasonografické #73 / nefamb ESKD dual acronym #74 /
   IgAN residual ESRD→ESKD #75 / USG gel aplikácia→nanášanie #76 /
-  lecture suplementá→suplementy #77 / nefamb/IgAN s cieľom→aby #78):
+  lecture suplementá→suplementy #77 / nefamb/IgAN s cieľom→aby #78 /
+  IgAN genetiky/prospieť #79):
   - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `genetických a biomarkerov` → `genetiky a biomarkerov`;
-    `mať prospech z včasného a agresívneho zásahu` →
-    `im mohol prospieť včasný a agresívny zásah`
-  - `tools/scan-patient-copy.ps1`: pravidlá `genetických a biomarkerov`
-    a `mať prospech z`; README
+    `smernice KDIGO` → `usmernenia KDIGO` (zhoda s `Usmernenia KDIGO`
+    v tom istom odseku podpornej liečby)
+  - `tools/scan-patient-copy.ps1`: pravidlo `smernice KDIGO`; README
   - IgAN sync oboch segmentov (žiadny `files/` mirror)
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
@@ -38,32 +37,32 @@ HEAD: `28aa80c` (docs tip nasleduje)
     purifikácia očisťovanie/membrane piles / nefrologia CKD/AKI piles /
     USG ultrasonografické piles / nefamb ESKD dual (#74) /
     IgAN residual ESRD→ESKD (#75) / USG gel nanášanie (#76) /
-    lecture suplementá→suplementy (#77) / nefamb/IgAN s cieľom (#78)
-  - IgAN `smernice KDIGO` vs `Usmernenia KDIGO` (kandidát #80)
-  - USG `v reálnom čase` (kandidát #80)
+    lecture suplementá→suplementy (#77) / nefamb/IgAN s cieľom (#78) /
+    IgAN genetiky/prospieť (#79)
+  - USG `v reálnom čase` (kandidát #81)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; opravená len gramatika NP a kalk
-  v IgAN research vete.
+- Medicínsky obsah **nezmenený**; zjednotená len KDIGO terminológia
+  v IgAN odseku podpornej liečby.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `28aa80c`; post-commit SFTP nahral `segments/igan.html` +
+- Commit `f6c13e2`; post-commit SFTP nahral `segments/igan.html` +
   `segments/IgAN.sk.html` (tools v deployignore);
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/usgo` `/nefamb` `/nefrologia`
   `/dialyza` `/transplantacia` `/privacy` `/terms` `/purifikacia` → 200 +
   HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `genetiky a biomarkerov` OK; `im mohol prospieť` OK;
-  `genetických a biomarkerov` a `mať prospech z` neprítomné
-- GHA Deploy `42144491819` success (rsync skip)
+- Produkcia `/`: `Usmernenia KDIGO` + `usmernenia KDIGO` OK;
+  `smernice KDIGO` neprítomné
+- GHA Deploy `42145015003` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -118,170 +117,31 @@ HEAD: `28aa80c` (docs tip nasleduje)
 - `Zahrňuje`/`detekovať` sú bohemizmy/kalky; preferovať `Zahŕňa`/`odhaliť`
   v pacientskom texte. `v svojom` → `vo svojom`; `zo` len pred s/z/š/ž +
   spoluhláska (`zo rôznych` je chyba).
-- `Za účelom` je úradnícky kalk → `Na` + substantívum; `s cieľom` je
-  rovnaká trieda → priame `aby …`; `najoptimálnejšie`
-  je pleonazmus → `najlepšie`; deminutívum `sestrička`/`sestričiek` v
-  odbornom texte → `sestra`/`sester`; zhoda rodu: `umožnil prenos`
-  (nie `umožnilo`); `vzorka` je ženský rod → `malej vzorky` + `ktorá`;
-  predložka `pochádzajúcimi z` (nie `s`) vedeckého skúmania;
-  `detekciu` → `odhalenie` v pacientskom texte.
-- Číselná frekvencia: `4-5 krát` → `4-5-krát` (spojovník pred `krát`);
-  `viacero` + genitív → `viaceré` + nominatív plurálu (+ plurál slovesa);
-  `z dôvodu` → `pre` + akuzatív v pacientskom texte;
-  podobne redundantné `v dôsledku rôznych príčin` → `pre rôzne príčiny`
-  (nie však každá väzba `v dôsledku` + genitív je defect).
-- IgAN je na homepage cez `segments/igan.html`; `IgAN.sk.html` je paralelný
-  variant (opraviť oba pri wording fixoch). IgAN nemá `files/` mirror.
-  Standalone `/igan` neexistuje (404); spot-check wording na `/`.
-- Preferovať `nahrádza`/`náhradná liečba` pred `nahradzuje`/`nahradzujúca`
-  (zhoda s footer/cookie/terms); blank-hint scan môže dať false positive,
-  keď je `<span class="sr-only">` až za PHP blokom vnútri `<a>`.
-- `hyponatriémia` a `kosáčikovitá anémia` sú zavedené SK/MKCH/ICD tvary;
-  nemeniť bez dôkazu. `dysbalancie` je anglicizmus vedľa `nerovnováhy`.
-- Latinské/medzinárodné názvy chorôb (`mycosis fungoides`) nemenit́ na
-  skomolené adjektíva (`mykózny fungoides`).
-- Pacientsky text: `jedinci` (kalk z EN *individuals*) → `ľudia`;
-  `jednotlivec`/`jednotlivca` → `človek`/`človeka`; nadpis `manažment` →
-  `zvládanie`; `glomerulárnej nefritídy` → `glomerulonefritídy`
-  (zavedený termín). `vylepšiť` je bohemizmus → `zlepšiť`/`zlepšovať`.
-  Rovnaký rad: `riadenie chronických ochorení` → `zvládanie chronických
-  ochorení` (zhoda s IgAN).
-- Pacientsky IgAN: EN *healthcare provider* → `lekár` (nie úradnícky
-  `poskytovateľ zdravotnej starostlivosti`; legal stránky ponechať);
-  *environmental factors* → `faktorov prostredia`; vetné `Taktiež` →
-  `Musia tiež` / `Tiež`; `v rámci glomerulov` → `v glomeruloch`
-  (úradnícky kalk; zhoda so zvyškom odseku);
-  `Pravidelné monitorovanie` → `Pravidelné sledovanie` (anglicizmus;
-  ABPM názov v nefamb ponechať);
-  `Propagácia` → `Osveta` (marketingový nádych vs zdravotná osveta);
-  `platformu` → `priestor` (anglicizmus);
-  `asymptomatické` → `bez príznakov` (pacientsky register + chybný
-  neutrálny rod pri ženskom `nefropatia`);
-  EN *policy changes* → `zmien v zdravotnej politike` (nie `politických
-  zmien`, čo v SK znamená stranícku politiku);
-  neúplné NP `genetických a biomarkerov` → `genetiky a biomarkerov`
-  (adjektívum bez substantíva); EN/CZ kalk `mať prospech z` →
-  priame `prospieť` + nominatív (`im mohol prospieť včasný … zásah`);
-  v tom istom odseku KDIGO: držať `usmernenia` (nie striedať so
-  `smernice`; kandidát #80).
-- Po `pre` je genitív: `pre ľudí s` (nie nominatív `pre ľudia s`);
-  EN *balance side effects* → `vyrovnať sa s vedľajšími účinkami` (nie
-  `zosúladiť vedľajšie účinky`); `osoby, ktoré majú` nie je to isté ako
-  `osoby s` a nemusí sa meniť.
-- Pacientsky transplant: `Monitorovanie` → `Sledovanie` (zhoda s
-  `sledovanie` v texte); `zo strany lekárov` je úradnícky kalk → vypustiť
-  `zo strany`; `aby sa zabezpečilo správne fungovanie… a monitorovali sa`
-  → priame `aby transplantovaná oblička správne fungovala a aby sa včas
-  zachytili…`; `prispôsobenie životného štýlu` → `úpravu životného štýlu`;
-  `prispôsobeniu liekov` → `úprave liekov`; `darcu (donora)` → `darcu`
-  (EN gloss zbytočný vedľa SK `darcu`);
-  `zabezpečenie hygieny potravín` → `hygiena pri potravinách`.
-  Literárny Lipton `jedinec` nemeniť ako pacientsky kalk.
-- Sync `files/transplantacia.html` aj `segments/transplantacia.html`.
-- Pacientsky dialýza/HDF: `z hľadiska znižovania chorobnosti…` je
-  úradnícky kalk → priame `pretože … lepšie znižuje chorobnosť …
-  a úmrtnosť …`; predložka pri väčšine pacientov: `u prevažnej väčšiny`
-  (nie `v prevažnej väčšine`); segments sync EN `cycler` → SK `cykler`
-  (zhoda s `files/`). Medicínske fakty (HDF vs HD, morbidity/mortality)
-  nemenit́. Sync `files/dialyza.html` aj `segments/dialyza.html`.
-- Pacientsky `ako aj`: overiť každý výskyt. Defecty typicky: (a) redundantné
-  po už spojenej vymenovávačke, (b) visiaci genitív po inštrumentáli
-  (`dávkovaním ako aj vitamínov`), (c) chýbajúca pádová zhoda
-  (`vizualizáciu A, ako aj prítomnosť` → `… a prítomnosti`), (d) zmiešané
-  predložky (`v závislosti od X ako aj podľa Y`). `nefamb` nemá
-  `segments/` mirror.
-- Transplantácia: preferovať `zosnulý`/`zosnulého darcu` pred `mŕtvy`/
-  `mŕtveho` (zhoda s meta description); `prenáša na pacienta` nie `do`;
-  `príjemca` jednotne (nie `akceptor` / striedanie s `prijímateľ`);
-  moralizujúce „byť vďačný darcom“ nie je pacientsky content.
-- Sync `files/nefrologia.html` aj `segments/nefrologia.html`.
-- Pacientsky USG: `zodpovedá na` (zodpovednosť) ≠ `odpovedá na` (odpoveď
-  na otázku); EN *share* → `odovzdajú`/`pošlú` + datív
-  (`ošetrujúcemu lekárovi`), nie `zdieľajú s` + inštrumentál.
-  Synonym piles: `Ultrazvukové (ultrasonografické)` → `Ultrazvukové`;
-  `Ultrazvukové, teda ultrasonografické (USG)` → `Ultrazvukové (USG)`
-  (akronym USG ponechať; nefamb `ultrasonografia` ako substantívum nie
-  je ten istý pile).   Pacientsky Latinizmus pri géli:
-  `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél` →
-  `Nanášanie gélu` / `nanášanie gélu` / `sa nanáša` (zhoda s úvodným
-  `nanáša na brucho gél`; nie synonym pile ultrasonografické).
-  EN *in real time* → kandidát `okamžite` / bez kalu `v reálnom čase`
-  (#80). Sync `files/usgo.html` aj `segments/usgo.html`
-  (úvodný odsek `odpovedá` / `vyšetrovanie` je len vo `files/`;
-  gel step je v oboch).
-  Lecture UI: Czech/Latin plurál `suplementá` → SK `suplementy`
-  (`blocks/lectures.sk.php` caption + `blocks/foazosszu.sk.php`
-  „Suplementy dodávam…“; lectures len v `blocks/`).
-- Pacientsky/UI: EN *visualization* → `zobrazenie` (nie `vizualizáciu`);
-  `adekvátneho odberu` → `správneho odberu` (v pacientskom texte;
-  odbornú „adekvátnosť dialýzy" nemenit́ bez dôvodu).
-  Úradnícky `V rámci kurzu/zasadnutia` → `V kurze` / `Na zasadnutí`;
-  rovnako ipvrm `V rámci inovatívneho vzdelávania` →
-  `V inovatívnom vzdelávaní`; `platformu na zdieľanie` →
-  `priestor na výmenu`.
-  `nefamb` nemá `segments/` mirror; lectures sú len v `blocks/`.
-- Purifikácia: `Medzi niektoré z bežných metód` → `Medzi bežné metódy`;
-  `prevedie cez adsorbent` → `vedie cez adsorbent`; photosensitizing
-  agent = `fotosenzibilizujúcej látky` (nie `fotosenzitívnej`);
-  GvHD = `chronická reakcia štepu proti hostiteľovi` (nie
-  `chronická choroba reakcie štepu voči hostiteľovi`);
-  po SK termíne stačí `(GvHD)`, nie EN full name
-  `graft-versus-host disease`.
-  Sync `files/purifikacia.html` + `segments/purifikacia.html`.
-- Nefrológia: vypustiť filler `Ako sme už predtým spomínali`;
-  proces = `diagnostikou` (nie `diagnózou`) vedľa `liečbou a prevenciou`.
-  Synonym piles `resp.`:
-  `Chronické zlyhanie obličiek, resp. chronická obličková choroba` →
-  `Chronická obličková choroba`;
-  `Akútne zlyhanie obličiek, resp. akútne obličkové poškodenie` →
-  `Akútne obličkové poškodenie` (preferované moderné SK termíny).
-  Sync `files/nefrologia.html` aj `segments/nefrologia.html`.
-- Privacy legal: cookie banner GPC/DNT claim musí byť aj v zásadách;
-  vendor list uvádzať podľa kategórií súhlasu (analytics vs marketing);
-  static consent status zhodný s `privacy-consent.js` (`neuložený`).
-- Terms legal: sekcia cookies má zrkadliť rovnaký GPC/DNT predvolený
-  režim (signál + žiadna uložená voľba → len nevyhnutné).
-- `csp-report-summary.ps1` hlási súčet Clarity/GTM/Fastbase vendor hits
-  a rozpad Clarity / GTM-GA / Fastbase; drop `'unsafe-inline'` len so
-  strong evidence **a** consent-path vendor signalom.
-- Cookie banner UI: odkazovať na `pätičku stránky` a `zásady ochrany
-  súkromia` (zhoda s footer legal názvami), nie na „pätu obsahových
-  stránok" / „stránku súkromia".
-- Intro Amazon: lokatív `Amazone` (nie hyphenované `Amazon-e`).
-- Lipton UI: genitív `Liptona` (nie hyphenované `Lipton-a`); literárny
-  `jedinec` nemeniť; literárny wording: `vziať do úvahy` (nie `zobrať`),
-  `takisto` (nie `tak isto`), `na to` (nie jednoslovné `nato` pred `na`).
-- Homepage UI (`blocks/ns.sk.php`): datívna zhoda `všeobecnej medicíne`
-  (nie príslovka `všeobecne medicíne`; paralelné s `internej medicíne`).
-- Pacientsky EN gloss: zbytočné `(morbidity)` / `(mortality)` vedľa
-  `chorobnosť` / `úmrtnosť` a `(rejekcia)` vedľa `odmietnutie orgánu`
-  (rovnaká trieda ako `darcu (donora)` → `darcu`); aj
-  `graft-versus-host disease` vedľa už SK `chronická reakcia štepu proti
-  hostiteľovi` (+ akronym GvHD); aj CAPD `"dwell time"` teda
-  `čas pôsobenia` → len `čas pôsobenia`. Medicínsky obsah nezmeniť.
-- Nefamb synonym piles: nepoužívať `(HT)` za už glossovanú hypertenziu;
-  `(DKD)` za SK `diabetická obličková choroba`; dual
-  `glomerulárnej (glomerulovej) … čiže … (GF)` → jedna forma
-  `glomerulovej filtračnej rýchlosti (GFR)`; dual Latin
-  `lupus erythematodes, erythematosus` → `lupus erythematosus`.
-  Dual akronym `konečného štádia obličkovej choroby (ESKD, ESRD)` →
-  `(ESKD)` (moderný preferovaný termín; ESRD je starší „renal“ tvar).
-  `nefamb` nemá `segments/` mirror. IgAN residual `(ESRD)` → `(ESKD)`
-  (zhoda s nefamb; sync `segments/igan.html` + `segments/IgAN.sk.html`).
-- Pacientsky synonym piles: `obličiek (ľadvín)` / `obličky (ľadviny)` →
-  len `obličiek` / `obličky` (ľadvina je bohemizmus/literárny synonym
-  vedľa štandardného SK termínu); trojitý akronym
-  `Transplantácia obličky (KTx, RTx, NTx)` → bez pile (KTx branding
-  prednášky v `foazosszu` nie je pacientsky text). Sync
-  `files/transplantacia.html` + `segments/transplantacia.html` +
-  `transplantacia.php` meta; dialyza ľadvín je len vo `files/`
-  (segment už bez glossu).
-- Pacientsky dialýza synonym piles: `dialyzačnom centre (stredisku,
-  stacionári)` → `dialyzačnom centre`; `peritoneálna membrána -
-  peritoneum` (brušná membrána, pobrušnica) → `peritoneálna membrána`
-  (pobrušnica); `cykler` (…, "cyklovač") → `cykler` (APD odsek už
-  popisuje automatizáciu). Sync `files/dialyza.html` +
-  `segments/dialyza.html`. Intro `pobrušnicu, ktorá sa nazýva
+- `Za účelom` → `Na` + N; `s cieľom` → `aby` + veta (úradnícky kalk).
+- KDIGO guidelines v pacientskom SK: držať `usmernenia` (nie striedať so
+  `smernice` v tom istom odseku).
+- USG `v reálnom čase` = EN *in real time* → kandidát `okamžite` /
+  bez kalu `v reálnom čase` (loop #81).
+- IgAN research: neúplné NP `genetických a biomarkerov` → `genetiky a
+  biomarkerov`; kalk `mať prospech z` → `prospieť` + nominatív.
+- Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
+  koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
+  `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
+  (GFR)` ponechať akronym kde je diagnostický.
+- Pacientsky purifikácia GvHD: `ochorenie štepu verzus hostiteľ (GvHD)`
+  → `ochorenie štepu proti hostiteľovi (GvHD)` (štandardný SK).
+- Pacientsky dialýza dwell time: `čas zotrvania (dwell time)` →
+  `čas zotrvania` (EN gloss zbytočný v SK pacientskom texte).
+- Pacientsky nefamb synonym piles: `chronické ochorenie obličiek (CKD,
+  chronická renálna insuficiencia)` → `chronické ochorenie obličiek
+  (CKD)`; podobne AKI/ESKD dual-acronym piles.
+- Pacientsky ľadvina+KTx piles: `ľadvina` synonym pile; `KTx` dual.
+- Pacientsky dialýza centre/membrane/cykler: `dialyzačnom stredisku
+  (dialyzačnom centre, dialyzačnom stacionári)` → `dialyzačnom centre`;
+  `peritoneálna membrána - peritoneum` (brušná membrána, pobrušnica) →
+  `peritoneálna membrána` (pobrušnica); `cykler` (…, "cyklovač") →
+  `cykler` (APD odsek už popisuje automatizáciu). Sync `files/dialyza.html`
+  + `segments/dialyza.html`. Intro `pobrušnicu, ktorá sa nazýva
   peritoneum` nie je ten istý pile.
 - Pacientsky purifikácia synonym piles: `Purifikácia (očisťovanie,
   čistenie) krvi, teda …` → `Purifikácia krvi, teda …` (vysvetlenie už
@@ -292,7 +152,7 @@ HEAD: `28aa80c` (docs tip nasleduje)
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #80)
+## Ďalší fokus (loop #81)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -313,16 +173,16 @@ HEAD: `28aa80c` (docs tip nasleduje)
    USG gel aplikácia→nanášanie (#76)/
    lecture `suplementá`→`suplementy` (#77)/
    nefamb/IgAN `s cieľom`→`aby …` (#78)/
-   práve-shipnutý IgAN genetiky/prospieť (#79); ďalší verified
+   IgAN genetiky/prospieť (#79)/
+   práve-shipnutý IgAN `smernice`→`usmernenia` (#80); ďalší verified
    patient-copy/a11y/tooling mimo churn listu.
-   Kandidáti: IgAN `smernice KDIGO` → `usmernenia KDIGO`;
-   USG `v reálnom čase` → `okamžite`.
+   Kandidát: USG `v reálnom čase` → `okamžite`.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #79 IgAN genetiky/prospieť)
-- Audit: `.audit.md` Beh #90
+- Codex: `.codex/handoffs/` (loop #80 IgAN usmernenia KDIGO)
+- Audit: `.audit.md` Beh #91
 
 ## Ďalší príkaz
 
