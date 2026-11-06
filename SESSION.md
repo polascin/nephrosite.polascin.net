@@ -1,25 +1,29 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #77)
+Aktualizované: 2026-11-06 (loop iterácia #78)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `86c100a` (docs tip nasleduje)
+HEAD: `e93d190` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (lecture Czech/Latin `suplementá` → SK `suplementy`;
+- Product ship (úradnícky kalk `s cieľom` → priame `aby …`;
   mimo tip-SHA privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
   ľadvina+KTx piles #69 / dialyza centre/membrane/cykler #70 /
   purifikácia očisťovanie/membrane #71 / nefrologia CKD/AKI #72 /
   USG ultrasonografické #73 / nefamb ESKD dual acronym #74 /
-  IgAN residual ESRD→ESKD #75 / USG gel aplikácia→nanášanie #76):
-  - `blocks/lectures.sk.php`: caption `suplementá` → `suplementy`
-  - `blocks/foazosszu.sk.php`: `Suplementá dodávam` → `Suplementy dodávam`
-  - `tools/scan-patient-copy.ps1`: pravidlo `suplementá`; README
-  - Lectures sú len v `blocks/` (žiadny files/segments mirror)
+  IgAN residual ESRD→ESKD #75 / USG gel aplikácia→nanášanie #76 /
+  lecture suplementá→suplementy #77):
+  - `files/nefamb.html`: `s cieľom získať` → `, aby získal`
+  - `segments/igan.html` + `segments/IgAN.sk.html`:
+    `s cieľom zlepšiť` → `, aby zlepšili`
+  - `tools/scan-patient-copy.ps1`: pravidlo `s cieľom`; README
+  - `nefamb` nemá `segments/` mirror; IgAN sync oboch segmentov
+    (žiadny `files/` mirror)
+  - IgAN `Cieľom súčasnej liečby je` ponechané (nie kalk `s cieľom`)
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -33,32 +37,31 @@ HEAD: `86c100a` (docs tip nasleduje)
     ľadvina+KTx piles / dialyza centre/membrane/cykler piles /
     purifikácia očisťovanie/membrane piles / nefrologia CKD/AKI piles /
     USG ultrasonografické piles / nefamb ESKD dual (#74) /
-    IgAN residual ESRD→ESKD (#75) / USG gel nanášanie (#76)
+    IgAN residual ESRD→ESKD (#75) / USG gel nanášanie (#76) /
+    lecture suplementá→suplementy (#77)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
-  - nefamb `s cieľom` (a IgAN `s cieľom`) ponechané v tomto loope
-    (jeden coherent ship; kandidát #78)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; odstránený len Czech/Latin plurál
-  `suplementá` v prospech SK `suplementy`.
+- Medicínsky obsah **nezmenený**; odstránený len úradnícky kalk
+  `s cieľom` v prospech priameho `aby …`.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `86c100a`; post-commit SFTP nahral `blocks/lectures.sk.php` +
-  `blocks/foazosszu.sk.php` (tools v deployignore); `deploy.ps1 -Apply`
-  0 upload; smoke direct 200
+- Commit `e93d190`; post-commit SFTP nahral `files/nefamb.html` +
+  `segments/igan.html` + `segments/IgAN.sk.html` (tools v deployignore);
+  `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/usgo` `/nefamb` `/nefrologia`
   `/dialyza` `/transplantacia` `/privacy` `/terms` `/purifikacia` → 200 +
   HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `suplementy` + `Suplementy dodávam` OK; staré
-  `suplementá`/`Suplementá` neprítomné
-- GHA Deploy `42143414610` success (rsync skip)
+- Produkcia `/nefamb`: `aby získal` OK; `s cieľom` neprítomné
+- Produkcia `/`: `aby zlepšili starostlivosť` OK; `s cieľom` neprítomné
+- GHA Deploy `42143925520` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -113,7 +116,8 @@ HEAD: `86c100a` (docs tip nasleduje)
 - `Zahrňuje`/`detekovať` sú bohemizmy/kalky; preferovať `Zahŕňa`/`odhaliť`
   v pacientskom texte. `v svojom` → `vo svojom`; `zo` len pred s/z/š/ž +
   spoluhláska (`zo rôznych` je chyba).
-- `Za účelom` je úradnícky kalk → `Na` + substantívum; `najoptimálnejšie`
+- `Za účelom` je úradnícky kalk → `Na` + substantívum; `s cieľom` je
+  rovnaká trieda → priame `aby …`; `najoptimálnejšie`
   je pleonazmus → `najlepšie`; deminutívum `sestrička`/`sestričiek` v
   odbornom texte → `sestra`/`sester`; zhoda rodu: `umožnil prenos`
   (nie `umožnilo`); `vzorka` je ženský rod → `malej vzorky` + `ktorá`;
@@ -280,7 +284,7 @@ HEAD: `86c100a` (docs tip nasleduje)
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #78)
+## Ďalší fokus (loop #79)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -299,15 +303,15 @@ HEAD: `86c100a` (docs tip nasleduje)
    nefamb ESKD dual acronym (#74)/
    IgAN residual ESRD→ESKD (#75)/
    USG gel aplikácia→nanášanie (#76)/
-   práve-shipnutý lecture `suplementá`→`suplementy` (#77); ďalší verified
-   patient-copy/a11y/tooling (kandidát: nefamb `s cieľom` → priame
-   `aby …` / non-pile kalky mimo #68; IgAN `s cieľom` rovnaký rad).
+   lecture `suplementá`→`suplementy` (#77)/
+   práve-shipnutý nefamb/IgAN `s cieľom`→`aby …` (#78); ďalší verified
+   patient-copy/a11y/tooling mimo churn listu.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #77 lecture suplementy)
-- Audit: `.audit.md` Beh #88
+- Codex: `.codex/handoffs/` (loop #78 nefamb/IgAN s cieľom → aby)
+- Audit: `.audit.md` Beh #89
 
 ## Ďalší príkaz
 
