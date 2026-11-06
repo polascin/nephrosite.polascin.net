@@ -1,23 +1,23 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #69)
+Aktualizované: 2026-11-06 (loop iterácia #70)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `c757872` (docs tip nasleduje)
+HEAD: `e2b7d37` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (ľadvina + KTx acronym piles; mimo tip-SHA
+- Product ship (dialysis synonym piles; mimo tip-SHA
   privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
-  dialyza dwell-time #67 / nefamb synonym piles #68):
-  - `files/dialyza.html`: `obličiek (ľadvín)` → `obličiek` (2×)
-  - `files/transplantacia.html`: `obličky (ľadviny)` /
-    `transplantácie obličky (ľadviny)` → bez ľadviny;
-    `(KTx, RTx, NTx)` → vypustené
-  - `segments/transplantacia.html`: sync bez `(KTx, RTx, NTx)`
-  - `transplantacia.php` meta description: bez `(ľadviny)`
+  dialyza dwell-time #67 / nefamb synonym piles #68 /
+  ľadvina+KTx piles #69):
+  - `files/dialyza.html` + `segments/dialyza.html`:
+    `centre (stredisku, stacionári)` → `centre`;
+    `peritoneálna membrána - peritoneum` (brušná membrána, pobrušnica)
+    → `peritoneálna membrána` (pobrušnica);
+    `cykler` (…, "cyklovač") → `cykler` (APD text už vysvetľuje funkciu)
   - `tools/scan-patient-copy.ps1`: štyri pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
@@ -28,30 +28,32 @@ HEAD: `c757872` (docs tip nasleduje)
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / IgAN / USG /
     lectures / ipvrm / nefrologia / nefamb synonym piles /
-    purifikacia GvHD / dialyza dwell time / dialyza-transplant EN gloss
+    purifikacia GvHD / dialyza dwell time / dialyza-transplant EN gloss /
+    ľadvina+KTx piles
+  - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
+    peritoneum` ponechané (edukačný gloss, nie trojitý pile)
+  - Purifikácia `(očisťovanie, čistenie)` a membrane pile ponechané
+    (ďalší kandidát mimo dialýzy; nie GvHD churn)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
-    (nie pacientsky text)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; odstránené len redundantné
-  ľadvina glosses a nepoužívaný trojitý akronymový pile.
+- Medicínsky obsah **nezmenený**; odstránené len redundantné synonym
+  piles okolo dialyzačného centra, peritoneálnej membrány a cyklera.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `c757872`; post-commit SFTP nahral `files/dialyza.html`,
-  `files/transplantacia.html`, `segments/transplantacia.html`,
-  `transplantacia.php` (tools v deployignore); `deploy.ps1 -Apply`
+- Commit `e2b7d37`; post-commit SFTP nahral `files/dialyza.html`,
+  `segments/dialyza.html` (tools v deployignore); `deploy.ps1 -Apply`
   0 upload; smoke direct 200
-- Clean URL smoke (Chrome UA): `/` `/transplantacia` `/dialyza`
-  `/privacy` `/terms` `/nefrologia` → 200 + HSTS + CSP (enforced
-  stále s `'unsafe-inline'`)
-- Produkcia `/transplantacia`: `ľadviny` / `KTx, RTx, NTx` neprítomné;
-  wording `Transplantácia obličky je chirurgický` OK
-- Produkcia `/dialyza`: `ľadvín` neprítomné; wording
-  `zlyhaním obličiek. Dialýza nahrádza` OK
-- GHA Deploy `42138999950` success (rsync skip)
+- Clean URL smoke (Chrome UA): `/` `/dialyza` `/transplantacia`
+  `/privacy` `/terms` `/nefrologia` `/purifikacia` → 200 + HSTS + CSP
+  (enforced stále s `'unsafe-inline'`)
+- Produkcia `/dialyza`: `stredisku, stacionári` / `peritoneálna membrána
+  - peritoneum` / `cyklovač` neprítomné; wording
+  `v dialyzačnom centre` + `peritoneálna membrána` (pobrušnica) OK
+- GHA Deploy `42139556740` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -236,10 +238,17 @@ HEAD: `c757872` (docs tip nasleduje)
   `files/transplantacia.html` + `segments/transplantacia.html` +
   `transplantacia.php` meta; dialyza ľadvín je len vo `files/`
   (segment už bez glossu).
+- Pacientsky dialýza synonym piles: `dialyzačnom centre (stredisku,
+  stacionári)` → `dialyzačnom centre`; `peritoneálna membrána -
+  peritoneum` (brušná membrána, pobrušnica) → `peritoneálna membrána`
+  (pobrušnica); `cykler` (…, "cyklovač") → `cykler` (APD odsek už
+  popisuje automatizáciu). Sync `files/dialyza.html` +
+  `segments/dialyza.html`. Intro `pobrušnicu, ktorá sa nazýva
+  peritoneum` nie je ten istý pile.
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #70)
+## Ďalší fokus (loop #71)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -250,14 +259,15 @@ HEAD: `c757872` (docs tip nasleduje)
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
    non-tip-path ship mimo tip-SHA privacy/terms/cookie/intro-Amazon/
    Lipton/homepage-dative/EN-gloss dialyza-transplant/purifikacia-GvHD/
-   dialyza dwell-time/nefamb synonym piles/práve-shipnutý ľadvina+KTx
-   piles; ďalší verified patient-copy/a11y/tooling. Spustiť
-   `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
+   dialyza dwell-time/nefamb synonym piles/ľadvina+KTx piles/
+   práve-shipnutý dialyza centre/membrane/cykler piles; ďalší verified
+   patient-copy/a11y/tooling (kandidát: purifikácia očisťovanie/membrane
+   pile). Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #69 ľadvina + KTx piles)
-- Audit: `.audit.md` Beh #80
+- Codex: `.codex/handoffs/` (loop #70 dialyza synonym piles)
+- Audit: `.audit.md` Beh #81
 
 ## Ďalší príkaz
 
