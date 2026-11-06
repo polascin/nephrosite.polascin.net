@@ -109,6 +109,8 @@ IgAN `regulácia endotelínu-1` (→ `zvýšená tvorba`; EN upregulation),
 transplantácia `dobu dožitia` / `doba dožitia` (→ `dlhšie prežívanie`;
 demografia vs survival),
 transplantácia `preferovanou možnosťou` (→ `uprednostňovanou`; EN preferred),
+IgAN `v tejto populácii špecifickej populácie` (→ `v tejto špecifickej populácii`;
+garbled NP),
 …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje

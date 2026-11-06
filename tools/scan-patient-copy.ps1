@@ -137,6 +137,7 @@ $rules = @(
     @{ Pattern = 'dobu dožitia'; Label = 'dobu dožitia (→ dlhšie prežívanie; demography vs survival)' }
     @{ Pattern = 'doba dožitia'; Label = 'doba dožitia (→ prežívanie; demography vs survival)' }
     @{ Pattern = 'preferovanou možnosťou'; Label = 'preferovanou možnosťou (→ uprednostňovanou; EN preferred calque)' }
+    @{ Pattern = 'v tejto populácii špecifickej populácie'; Label = 'v tejto populácii špecifickej populácie (→ v tejto špecifickej populácii; garbled NP)' }
 )
 
 function Get-ScanFiles {
