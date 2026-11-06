@@ -154,6 +154,9 @@ $rules = @(
     @{ Pattern = 'purifikácie \(očisťovania\)'; Label = 'purifikácie (očisťovania) synonym pile (→ purifikácie)' }
     @{ Pattern = 'internej medicíne \(vnútornému lekárstvu\)'; Label = 'internej medicíne (vnútornému lekárstvu) synonym pile (→ internej medicíne)' }
     @{ Pattern = 'HorkýTran'; Label = 'HorkýTran (→ Horký; glued surname + missing author commas)' }
+    @{ Pattern = 'biele krvinky</em> \(leukocyty\)'; Label = 'biele krvinky (leukocyty) cell-gloss pile (→ biele krvinky)' }
+    @{ Pattern = 'trombocyty</em> \(krvné doštičky\)'; Label = 'trombocyty (krvné doštičky) cell-gloss pile (→ trombocyty)' }
+    @{ Pattern = 'červených krviniek</em> \(erytrocytov\)'; Label = 'červených krviniek (erytrocytov) cell-gloss pile (→ červených krviniek)' }
 )
 
 function Get-ScanFiles {

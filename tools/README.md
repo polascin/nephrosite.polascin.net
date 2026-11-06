@@ -127,6 +127,9 @@ lecture `spol. s.r.o.` (→ `spol. s r.o.`; Slovak company form),
 homepage `purifikácie (očisťovania)` (→ `purifikácie`),
 `internej medicíne (vnútornému lekárstvu)` (→ `internej medicíne`),
 lecture `HorkýTran` (→ `Horký`; glued surname + author-list commas),
+purifikácia `biele krvinky (leukocyty)` / `trombocyty (krvné doštičky)` /
+`červených krviniek (erytrocytov)` cell-gloss piles (→ common term alone;
+polyglobúlia definitional gloss kept),
 …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje
