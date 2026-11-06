@@ -127,6 +127,8 @@ $rules = @(
     @{ Pattern = 'aplikáciu gélu'; Label = 'aplikáciu gélu (→ nanášanie gélu)' }
     @{ Pattern = 'sa aplikuje špeciálny gél'; Label = 'sa aplikuje špeciálny gél (→ sa nanáša)' }
     @{ Pattern = 'suplementá'; Label = 'suplementá (→ suplementy; Czech/Latin plural)' }
+    @{ Pattern = 'glomerulárnu hypotenziu'; Label = 'glomerulárnu hypotenziu (→ hypertenziu; ET-1/Ang II)' }
+    @{ Pattern = 'glomerulárnej hypotenzie'; Label = 'glomerulárnej hypotenzie (→ hypertenzie; ET-1/Ang II)' }
 )
 
 function Get-ScanFiles {
