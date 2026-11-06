@@ -1,23 +1,24 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #68)
+Aktualizované: 2026-11-06 (loop iterácia #69)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `ae3863f` (docs tip nasleduje)
+HEAD: `c757872` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (nefamb synonym piles; mimo tip-SHA
+- Product ship (ľadvina + KTx acronym piles; mimo tip-SHA
   privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
-  dialyza dwell-time #67):
-  - `files/nefamb.html`: `Hypertenzia … (HT)` → bez `(HT)`;
-    `Diabetická nefropatia … (DKD)` → bez `(DKD)`;
-    `glomerulárnej (glomerulovej) … čiže … (GF)` →
-    `glomerulovej filtračnej rýchlosti (GFR)`;
-    `lupus erythematodes, erythematosus` → `lupus erythematosus`
-  - `tools/scan-patient-copy.ps1`: štyri pravidlá na tieto piles; README
+  dialyza dwell-time #67 / nefamb synonym piles #68):
+  - `files/dialyza.html`: `obličiek (ľadvín)` → `obličiek` (2×)
+  - `files/transplantacia.html`: `obličky (ľadviny)` /
+    `transplantácie obličky (ľadviny)` → bez ľadviny;
+    `(KTx, RTx, NTx)` → vypustené
+  - `segments/transplantacia.html`: sync bez `(KTx, RTx, NTx)`
+  - `transplantacia.php` meta description: bez `(ľadviny)`
+  - `tools/scan-patient-copy.ps1`: štyri pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -26,24 +27,31 @@ HEAD: `ae3863f` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / IgAN / USG /
-    lectures / ipvrm / transplantacia / nefrologia / dialyza /
-    purifikacia GvHD / dialyza dwell time
+    lectures / ipvrm / nefrologia / nefamb synonym piles /
+    purifikacia GvHD / dialyza dwell time / dialyza-transplant EN gloss
+  - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
+    (nie pacientsky text)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah (diagnózy, GFR význam) **nezmenený**; odstránené
-  len redundantné synonym/akronym piles.
+- Medicínsky obsah **nezmenený**; odstránené len redundantné
+  ľadvina glosses a nepoužívaný trojitý akronymový pile.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `ae3863f`; post-commit SFTP nahral `files/nefamb.html`
-  (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
-- Clean URL smoke (Chrome UA): `/` `/nefamb` `/privacy` `/terms`
-  `/nefrologia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/nefamb`: nové wording OK; `(HT):` / `(DKD)` /
-  `glomerulárnej (glomerulovej)` / `erythematodes` neprítomné
-- GHA Deploy `42138325192` success (rsync skip)
+- Commit `c757872`; post-commit SFTP nahral `files/dialyza.html`,
+  `files/transplantacia.html`, `segments/transplantacia.html`,
+  `transplantacia.php` (tools v deployignore); `deploy.ps1 -Apply`
+  0 upload; smoke direct 200
+- Clean URL smoke (Chrome UA): `/` `/transplantacia` `/dialyza`
+  `/privacy` `/terms` `/nefrologia` → 200 + HSTS + CSP (enforced
+  stále s `'unsafe-inline'`)
+- Produkcia `/transplantacia`: `ľadviny` / `KTx, RTx, NTx` neprítomné;
+  wording `Transplantácia obličky je chirurgický` OK
+- Produkcia `/dialyza`: `ľadvín` neprítomné; wording
+  `zlyhaním obličiek. Dialýza nahrádza` OK
+- GHA Deploy `42138999950` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -220,10 +228,18 @@ HEAD: `ae3863f` (docs tip nasleduje)
   `glomerulovej filtračnej rýchlosti (GFR)`; dual Latin
   `lupus erythematodes, erythematosus` → `lupus erythematosus`.
   `nefamb` nemá `segments/` mirror.
+- Pacientsky synonym piles: `obličiek (ľadvín)` / `obličky (ľadviny)` →
+  len `obličiek` / `obličky` (ľadvina je bohemizmus/literárny synonym
+  vedľa štandardného SK termínu); trojitý akronym
+  `Transplantácia obličky (KTx, RTx, NTx)` → bez pile (KTx branding
+  prednášky v `foazosszu` nie je pacientsky text). Sync
+  `files/transplantacia.html` + `segments/transplantacia.html` +
+  `transplantacia.php` meta; dialyza ľadvín je len vo `files/`
+  (segment už bez glossu).
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #69)
+## Ďalší fokus (loop #70)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -234,14 +250,14 @@ HEAD: `ae3863f` (docs tip nasleduje)
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
    non-tip-path ship mimo tip-SHA privacy/terms/cookie/intro-Amazon/
    Lipton/homepage-dative/EN-gloss dialyza-transplant/purifikacia-GvHD/
-   dialyza dwell-time/práve-shipnutý nefamb synonym piles; ďalší verified
-   patient-copy/a11y/tooling. Spustiť `scan-blank-hints.ps1` aj
-   `scan-patient-copy.ps1`.
+   dialyza dwell-time/nefamb synonym piles/práve-shipnutý ľadvina+KTx
+   piles; ďalší verified patient-copy/a11y/tooling. Spustiť
+   `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #68 nefamb synonym piles)
-- Audit: `.audit.md` Beh #79
+- Codex: `.codex/handoffs/` (loop #69 ľadvina + KTx piles)
+- Audit: `.audit.md` Beh #80
 
 ## Ďalší príkaz
 
