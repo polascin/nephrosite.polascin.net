@@ -99,6 +99,10 @@ $rules = @(
     @{ Pattern = 'Diabetická nefropatia \(Diabetická obličková choroba\) \(DKD\)'; Label = 'Diabetická nefropatia … (DKD) pile (→ drop DKD)' }
     @{ Pattern = 'glomerulárnej \(glomerulovej\)'; Label = 'glomerulárnej (glomerulovej) (→ glomerulovej)' }
     @{ Pattern = 'lupus erythematodes, erythematosus'; Label = 'lupus erythematodes, erythematosus (→ erythematosus)' }
+    @{ Pattern = 'obličiek \(ľadvín\)'; Label = 'obličiek (ľadvín) synonym pile (→ obličiek)' }
+    @{ Pattern = 'obličky \(ľadviny\)'; Label = 'obličky (ľadviny) synonym pile (→ obličky)' }
+    @{ Pattern = 'transplantácie obličky \(ľadviny\)'; Label = 'transplantácie obličky (ľadviny) (→ bez ľadviny)' }
+    @{ Pattern = 'KTx, RTx, NTx'; Label = 'KTx, RTx, NTx acronym pile (→ drop)' }
 )
 
 function Get-ScanFiles {
