@@ -1,22 +1,23 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #62)
+Aktualizované: 2026-11-06 (loop iterácia #63)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `3f96767` (docs tip nasleduje)
+HEAD: `0b31d04` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (UI wording + tooling; mimo tip-path a mimo práve-shipnutý
-  privacy/terms/cookie/intro-Amazon):
-  - `files/lipton-tx.html`: `Lipton-a` → `Liptona` (alt + body; SK genitív)
-  - `tools/scan-patient-copy.ps1`: `Lipton-a` + tip-lesson regresie
-    (`mŕtveho darcu`, `prenáša do pacienta`, `darcu (donor`,
-    `zo strany lekárov`, `cycler`, `zdieľajú s`,
-    `v dôsledku rôznych príčin`, `akceptor`); README poznámka
+- Product ship (literárny wording + tooling; mimo tip-path a mimo
+  práve-shipnutý privacy/terms/cookie/intro-Amazon/Lipton-genitive):
+  - `files/lipton-tx.html`: `zobrať do úvahy` → `vziať do úvahy`;
+    `tak isto` → `takisto`; `nato na` → `na to na` (literárny `jedinec`
+    a genitív `Liptona` nechané)
+  - `tools/scan-patient-copy.ps1`: pravidlá `zobrať do úvahy`,
+    `tak isto`, `nato na`; README poznámka
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
+  - Lipton genitív `Liptona` (už z #62)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / IgAN / USG / nefamb /
@@ -29,15 +30,15 @@ HEAD: `3f96767` (docs tip nasleduje)
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `3f96767`; post-commit SFTP nahral `files/lipton-tx.html`
+- Commit `0b31d04`; post-commit SFTP nahral `files/lipton-tx.html`
   (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/lipton-tx`
   `/privacy` `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo`
   `/transplantacia` `/purifikacia` → 200 + HSTS + CSP (enforced stále s
   `'unsafe-inline'`)
-- Produkcia `/lipton-tx`: `Liptona` prítomné; `Lipton-a` neprítomné;
-  literárny `jedinec` ostáva
-- GHA Deploy `42134342916` success (rsync skip)
+- Produkcia `/lipton-tx`: `vziať do úvahy` / `takisto` / `na to na` OK;
+  staré tvary neprítomné; literárny `jedinec` a `Liptona` ostávajú
+- GHA Deploy `42135045197` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -169,7 +170,7 @@ HEAD: `3f96767` (docs tip nasleduje)
   `odpovedá` je len vo `files/`).
 - Pacientsky/UI: EN *visualization* → `zobrazenie` (nie `vizualizáciu`);
   `adekvátneho odberu` → `správneho odberu` (v pacientskom texte;
-  odbornú „adekvátnosť dialýzy“ nemenit́ bez dôvodu).
+  odbornú „adekvátnosť dialýzy" nemenit́ bez dôvodu).
   Úradnícky `V rámci kurzu/zasadnutia` → `V kurze` / `Na zasadnutí`;
   rovnako ipvrm `V rámci inovatívneho vzdelávania` →
   `V inovatívnom vzdelávaní`; `platformu na zdieľanie` →
@@ -193,14 +194,15 @@ HEAD: `3f96767` (docs tip nasleduje)
   strong evidence **a** consent-path vendor signalom.
 - Cookie banner UI: odkazovať na `pätičku stránky` a `zásady ochrany
   súkromia` (zhoda s footer legal názvami), nie na „pätu obsahových
-  stránok“ / „stránku súkromia“.
+  stránok" / „stránku súkromia".
 - Intro Amazon: lokatív `Amazone` (nie hyphenované `Amazon-e`).
 - Lipton UI: genitív `Liptona` (nie hyphenované `Lipton-a`); literárny
-  `jedinec` nemeniť.
+  `jedinec` nemeniť; literárny wording: `vziať do úvahy` (nie `zobrať`),
+  `takisto` (nie `tak isto`), `na to` (nie jednoslovné `nato` pred `na`).
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #63)
+## Ďalší fokus (loop #64)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -210,14 +212,14 @@ HEAD: `3f96767` (docs tip nasleduje)
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
    non-tip-path ship mimo práve-shipnutý privacy/terms/cookie/intro-Amazon/
-   Lipton-genitive; kandidát: overený patient-copy defect mimo tip path
-   alebo ďalší tooling. Spustiť `scan-blank-hints.ps1` aj
-   `scan-patient-copy.ps1`.
+   Lipton-genitive/Lipton-literary-wording; kandidát: overený patient-copy
+   defect mimo tip path alebo ďalší tooling. Spustiť `scan-blank-hints.ps1`
+   aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #62 Lipton genitív + patient-copy scan)
-- Audit: `.audit.md` Beh #73
+- Codex: `.codex/handoffs/` (loop #63 Lipton literary wording + patient-copy scan)
+- Audit: `.audit.md` Beh #74
 
 ## Ďalší príkaz
 
