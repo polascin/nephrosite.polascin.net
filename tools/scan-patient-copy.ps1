@@ -136,6 +136,7 @@ $rules = @(
     @{ Pattern = 'lokálne reguluje aj .{0,80}endotelín'; Label = 'lokálne reguluje aj ET-1 (→ lokálne zvyšuje aj tvorba; EN upregulation)' }
     @{ Pattern = 'dobu dožitia'; Label = 'dobu dožitia (→ dlhšie prežívanie; demography vs survival)' }
     @{ Pattern = 'doba dožitia'; Label = 'doba dožitia (→ prežívanie; demography vs survival)' }
+    @{ Pattern = 'preferovanou možnosťou'; Label = 'preferovanou možnosťou (→ uprednostňovanou; EN preferred calque)' }
 )
 
 function Get-ScanFiles {

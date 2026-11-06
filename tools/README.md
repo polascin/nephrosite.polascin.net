@@ -107,7 +107,9 @@ IgAN `kaukazský pôvod` (→ `európsky pôvod`; EN Caucasian),
 IgAN `súčasnej paradigme` (→ `súčasnom modeli`; EN paradigm calque),
 IgAN `regulácia endotelínu-1` (→ `zvýšená tvorba`; EN upregulation),
 transplantácia `dobu dožitia` / `doba dožitia` (→ `dlhšie prežívanie`;
-demografia vs survival), …).
+demografia vs survival),
+transplantácia `preferovanou možnosťou` (→ `uprednostňovanou`; EN preferred),
+…).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje
 privacy/terms/cookie-banner a
