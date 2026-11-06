@@ -110,6 +110,8 @@ $rules = @(
     @{ Pattern = 'pobrušnicu, peritoneum'; Label = 'pobrušnicu, peritoneum pile (→ pobrušnicu)' }
     @{ Pattern = '"cyklovač"'; Label = 'cykler "cyklovač" synonym (→ cykler alone)' }
     @{ Pattern = 'očisťovanie, čistenie'; Label = 'očisťovanie, čistenie synonym pile (→ Purifikácia alone + teda gloss)' }
+    @{ Pattern = 'Chronické zlyhanie obličiek, resp\. chronická'; Label = 'CKD resp. synonym pile (→ Chronická obličková choroba)' }
+    @{ Pattern = 'Akútne zlyhanie obličiek, resp\. akútne'; Label = 'AKI resp. synonym pile (→ Akútne obličkové poškodenie)' }
 )
 
 function Get-ScanFiles {

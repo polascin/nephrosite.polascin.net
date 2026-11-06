@@ -88,7 +88,9 @@ nefamb synonym piles `Hypertenzia … (HT)` / `Diabetická nefropatia … (DKD)`
 `obličiek (ľadvín)` / `obličky (ľadviny)` / `KTx, RTx, NTx` /
 `centre (stredisku, stacionári)` / peritoneum membrane piles /
 `cykler "cyklovač"` / purifikácia `očisťovanie, čistenie` /
-`brušnú membránu, pobrušnicu, peritoneum`, …). Preskakuje
+`brušnú membránu, pobrušnicu, peritoneum` / nefrológia
+`Chronické zlyhanie …, resp. chronická` /
+`Akútne zlyhanie …, resp. akútne`, …). Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
 Lipton `vizualizácie`. Exit code 1 pri náleze.
