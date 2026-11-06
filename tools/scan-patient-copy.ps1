@@ -106,7 +106,10 @@ $rules = @(
     @{ Pattern = 'stredisku, stacionári'; Label = 'centre (stredisku, stacionári) synonym pile (→ centre alone)' }
     @{ Pattern = 'peritoneálna membrána - peritoneum'; Label = 'peritoneum membrane pile (→ peritoneálna membrána (pobrušnica))' }
     @{ Pattern = 'brušná membrána, pobrušnica'; Label = 'brušná membrána, pobrušnica pile (→ pobrušnica)' }
+    @{ Pattern = 'brušnú membránu, pobrušnicu'; Label = 'brušnú membránu, pobrušnicu pile (→ pobrušnicu)' }
+    @{ Pattern = 'pobrušnicu, peritoneum'; Label = 'pobrušnicu, peritoneum pile (→ pobrušnicu)' }
     @{ Pattern = '"cyklovač"'; Label = 'cykler "cyklovač" synonym (→ cykler alone)' }
+    @{ Pattern = 'očisťovanie, čistenie'; Label = 'očisťovanie, čistenie synonym pile (→ Purifikácia alone + teda gloss)' }
 )
 
 function Get-ScanFiles {
