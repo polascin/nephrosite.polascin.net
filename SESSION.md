@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #90)
+Aktualizované: 2026-11-06 (loop iterácia #91)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `640684a` (docs tip nasleduje)
+HEAD: `21d6901` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (IgAN treatment garbled NP; mimo tip-SHA privacy/terms/cookie/
+- Product ship (nefamb synonym piles; mimo tip-SHA privacy/terms/cookie/
   intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -24,15 +24,15 @@ HEAD: `640684a` (docs tip nasleduje)
   IgAN paradigme→modeli liečby #86 /
   IgAN ET-1 regulácia→zvýšená tvorba #87 /
   transplant dobu dožitia→dlhšie prežívanie #88 /
-  transplant preferovanou→uprednostňovanou #89):
-  - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `v tejto populácii špecifickej populácie IgA nefropatie alebo
-    populácie glomerulonefritídy` →
-    `v tejto špecifickej populácii IgA nefropatie alebo
-    glomerulonefritídy`
-  - Dôvod: garbled doubled NP (populácii/populácie); natural SK;
-    žiadny `files/` mirror (live include `igan.html` na homepage)
-  - `tools/scan-patient-copy.ps1`: 1 pravidlo; README
+  transplant preferovanou→uprednostňovanou #89 /
+  IgAN špecifickej populácii #90):
+  - `files/nefamb.html`:
+    `renálnych (obličkových)` → `obličkových`;
+    `cievny (vaskulárny)` → `cievny`
+  - Dôvod: synonym dual gloss v pacientskom texte; preferovať jasný SK
+    tvar; distinct od #68 CKD dual-acronym piles
+  - Žiadny `segments/` mirror (`nefamb.php` → `files/nefamb.html`)
+  - `tools/scan-patient-copy.ps1`: 2 pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -41,16 +41,15 @@ HEAD: `640684a` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / nefrologia /
-    dialyza synonym piles (#65–#89) /
+    dialyza synonym piles (#65–#90) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
     IgAN glomerular hypertenzia (#84) /
     IgAN európsky pôvod (#85) /
     IgAN súčasnom modeli liečby (#86) /
     IgAN ET-1 zvýšená tvorba (#87) /
     transplant `dlhšie prežívanie` (#88) /
-    transplant `uprednostňovanou` (#89)
-  - nefamb `renálnych (obličkových)` / `cievny (vaskulárny)` ponechané
-    (soft #91; distinct od #68 CKD dual)
+    transplant `uprednostňovanou` (#89) /
+    IgAN `špecifickej populácii` (#90)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
@@ -58,27 +57,26 @@ HEAD: `640684a` (docs tip nasleduje)
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
   - nefamb `glomerulovej filtračnej rýchlosti (GFR)` je zámerná forma
     (loop #68 rozhodnutie; nie `glomerulárnej`)
+  - nefamb `Katetrizácia (zavedenie dialyzačného katétra)` ponechané
+    (vysvetlenie výkonu, nie synonym dual)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: wording liečebného odseku len; bez zmeny
-  liečebných odporúčaní.
+- Medicínsky obsah: wording synonym piles len; bez zmeny klinického
+  významu výkonov/diagnóz.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `640684a`; post-commit SFTP nahral `segments/igan.html` +
-  `segments/IgAN.sk.html` (tools v deployignore); `deploy.ps1 -Apply`
-  0 upload; smoke direct 200
+- Commit `21d6901`; post-commit SFTP nahral `files/nefamb.html`
+  (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
-  `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`);
-  `/igan` 404 (žiadna standalone route; očakávané)
-- Produkcia `/`: `v tejto špecifickej populácii` ×1; residual
-  `v tejto populácii špecifickej populácie` 0;
-  `alebo glomerulonefritídy mali tieto lieky` ×1;
-  `/segments/igan.html` 403
-- GHA Deploy `42150180087` success (rsync skip)
+  `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
+- Produkcia `/nefamb`: `obličkových testov` ×1; residual
+  `renálnych (obličkových)` 0; `cievny prístup` ×1; residual
+  `cievny (vaskulárny)` 0
+- GHA Deploy `42150629413` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -171,6 +169,9 @@ HEAD: `640684a` (docs tip nasleduje)
   glomerulonefritídy` (loop #90; garbled doubled NP). Sync
   `segments/igan.html` + `segments/IgAN.sk.html` (žiadny `files/`
   mirror; `/igan` 404).
+- Pacientsky nefamb synonym piles (loop #91): `renálnych (obličkových)` →
+  `obličkových`; `cievny (vaskulárny)` → `cievny`. Sync len
+  `files/nefamb.html` (žiadny segments mirror). Distinct od #68 CKD dual.
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -200,7 +201,7 @@ HEAD: `640684a` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #91)
+## Ďalší fokus (loop #92)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -232,15 +233,18 @@ HEAD: `640684a` (docs tip nasleduje)
    IgAN ET-1 `regulácia`→`zvýšená tvorba` (#87)/
    transplant `dobu dožitia`→`dlhšie prežívanie` (#88)/
    transplant `preferovanou`→`uprednostňovanou` (#89)/
-   práve-shipnutý IgAN garbled NP (#90);
-   soft kandidáti: nefamb `renálnych (obličkových)` / `cievny (vaskulárny)`
-   piles (distinct od #68 CKD dual); iný verified
+   IgAN garbled NP (#90)/
+   práve-shipnutý nefamb `obličkových`/`cievny` (#91);
+   soft kandidáti: nefamb `brušnú (peritoneálnu) membránu` /
+   `močovým systémom (uropoetickým aparátom)` /
+   `vnútornom lekárstve (internej medicíne)` (edukačné dual glosses;
+   overiť či treba tighten); iný verified
    patient-copy/a11y/tooling mimo churn listu.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #90 IgAN špecifickej populácii)
+- Codex: `.codex/handoffs/` (loop #91 nefamb obličkových/cievny)
 - Audit: `.audit.md` Beh #100
 
 ## Ďalší príkaz
