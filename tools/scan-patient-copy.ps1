@@ -40,6 +40,7 @@ $rules = @(
     @{ Pattern = 's cieľom'; Label = 's cieľom (→ aby …)' }
     @{ Pattern = 'genetických a biomarkerov'; Label = 'genetických a biomarkerov (→ genetiky a biomarkerov)' }
     @{ Pattern = 'mať prospech z'; Label = 'mať prospech z (→ prospieť / mať úžitok z)' }
+    @{ Pattern = 'smernice KDIGO'; Label = 'smernice KDIGO (→ usmernenia KDIGO)' }
     @{ Pattern = 'najoptimálnejš'; Label = 'najoptimálnejšie (→ najlepšie)' }
     @{ Pattern = 'sestričk'; Label = 'sestrička (→ sestra)' }
     @{ Pattern = 'nahradzuj'; Label = 'nahradzuj* (→ nahrádza/náhradná)' }

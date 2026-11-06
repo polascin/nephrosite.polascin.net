@@ -98,7 +98,8 @@ USG `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél` /
 lecture `suplementá` (→ `suplementy`),
 `s cieľom` (→ `aby …`),
 IgAN `genetických a biomarkerov` (→ `genetiky a biomarkerov`),
-`mať prospech z` (→ `prospieť` / `mať úžitok z`), …).
+`mať prospech z` (→ `prospieť` / `mať úžitok z`),
+`smernice KDIGO` (→ `usmernenia KDIGO`), …).
 Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
