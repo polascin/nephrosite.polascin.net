@@ -93,6 +93,7 @@ $rules = @(
     @{ Pattern = '\(morbidity\)'; Label = '(morbidity) EN gloss (→ chorobnosť alone)' }
     @{ Pattern = '\(mortality\)'; Label = '(mortality) EN gloss (→ úmrtnosť alone)' }
     @{ Pattern = 'orgánu \(rejekcia\)'; Label = 'orgánu (rejekcia) (→ odmietnutie orgánu)' }
+    @{ Pattern = 'graft-versus-host disease'; Label = 'graft-versus-host disease EN gloss (→ GvHD after SK term)' }
 )
 
 function Get-ScanFiles {
