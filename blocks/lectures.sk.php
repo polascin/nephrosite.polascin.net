@@ -432,7 +432,7 @@
 				<small>
 					<br>
 					<a href="https://www.bbraun.sk/" target="_blank" rel="noopener noreferrer">
-						B. Braun Avitum spol. s.r.o.,<span class="sr-only"> (otvorí sa v novom okne)</span>
+						B. Braun Avitum spol. s r.o.,<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					Poľnohospodárska 8273/20,
 					<a href="https://www.vrakuna.sk/" target="_blank" rel="noopener noreferrer">

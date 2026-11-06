@@ -150,6 +150,7 @@ $rules = @(
     @{ Pattern = 'vedeckého skúmania'; Label = 'vedeckého skúmania (→ vedeckých štúdií; awkward research calque)' }
     @{ Pattern = 'v pohodlí domova'; Label = 'v pohodlí domova (→ doma; EN comfort-of-home calque)' }
     @{ Pattern = 'roztok, ktorý absorbuje odpadové'; Label = 'roztok, ktorý absorbuje (→ do ktorého prechádzajú; PD diffusion)' }
+    @{ Pattern = 'spol\. s\.r\.o\.'; Label = 'spol. s.r.o. (→ spol. s r.o.; Slovak company form)' }
 )
 
 function Get-ScanFiles {
