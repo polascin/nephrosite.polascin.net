@@ -1,25 +1,24 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #60)
+Aktualizované: 2026-11-06 (loop iterácia #61)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `4c73a54` (docs tip nasleduje)
+HEAD: `d25ea19` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (tooling/a11y; mimo tip-path a mimo práve-shipnutý
-  privacy/terms):
-  - `tools/scan-blank-hints.ps1`: strip HTML komentáre; full-anchor
-    `_blank` hint check; download-claim bez `download`; live `<img>`
-    bez `alt` (ignoruje PHP regex false positive v `topic-teaser.php`)
-  - `blocks/cookie-banner.sk.php`: `pätu obsahových stránok` /
-    `stránku súkromia` → `pätičku stránky` / `zásady ochrany súkromia`
+- Product ship (UI wording + tooling; mimo tip-path a mimo práve-shipnutý
+  privacy/terms/cookie):
+  - `blocks/intro.sk.php`: `Amazon-e` → `Amazone` (title + heading)
+  - `tools/scan-patient-copy.ps1`: high-confidence SESSION wording
+    regresie; skip privacy/terms/cookie; allowlist Lipton `jedinec` /
+    `vizualizácie` + ABPM; README poznámka
 - Overené a **nechane**:
   - Lipton `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
-  - privacy / terms / IgAN / USG / nefamb / lectures / dialyza /
+  - privacy / terms / cookie / IgAN / USG / nefamb / lectures / dialyza /
     transplant / ipvrm / purifikacia / nefrologia (žiadny tip churn)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
@@ -27,15 +26,14 @@ HEAD: `4c73a54` (docs tip nasleduje)
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
-  `scan-blank-hints.ps1` → 0/0/0
-- Commit `4c73a54`; post-commit SFTP nahral `blocks/cookie-banner.sk.php`
+  `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
+- Commit `d25ea19`; post-commit SFTP nahral `blocks/intro.sk.php`
   (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
   `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `pätičku stránky`, `cez zásady ochrany súkromia`;
-  staré `pätu obsahových` / `cez stránku súkromia` neprítomné
-- GHA Deploy `42132769594` success (rsync skip)
+- Produkcia `/`: `Moje knihy na Amazone`; `Amazon-e` neprítomné
+- GHA Deploy `42133584145` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -192,8 +190,11 @@ HEAD: `4c73a54` (docs tip nasleduje)
 - Cookie banner UI: odkazovať na `pätičku stránky` a `zásady ochrany
   súkromia` (zhoda s footer legal názvami), nie na „pätu obsahových
   stránok“ / „stránku súkromia“.
+- Intro Amazon: lokatív `Amazone` (nie hyphenované `Amazon-e`).
+- Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
+  SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #61)
+## Ďalší fokus (loop #62)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -202,14 +203,14 @@ HEAD: `4c73a54` (docs tip nasleduje)
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
-   non-tip-path ship mimo práve-shipnutý privacy/terms/cookie-banner;
+   non-tip-path ship mimo práve-shipnutý privacy/terms/cookie/intro-Amazon;
    kandidát: overený patient-copy defect mimo tip path alebo ďalší tooling.
-   Spustiť aj `scan-blank-hints.ps1`.
+   Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #60 a11y blank hints + cookie footer)
-- Audit: `.audit.md` Beh #71
+- Codex: `.codex/handoffs/` (loop #61 Amazon + patient-copy scan)
+- Audit: `.audit.md` Beh #72
 
 ## Ďalší príkaz
 
@@ -217,4 +218,5 @@ HEAD: `4c73a54` (docs tip nasleduje)
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\csp-report-summary.ps1
 php tools/test-csp.php
 powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-blank-hints.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-patient-copy.ps1
 ```
