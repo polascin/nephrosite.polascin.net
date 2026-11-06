@@ -99,7 +99,8 @@ lecture `suplementá` (→ `suplementy`),
 `s cieľom` (→ `aby …`),
 IgAN `genetických a biomarkerov` (→ `genetiky a biomarkerov`),
 `mať prospech z` (→ `prospieť` / `mať úžitok z`),
-`smernice KDIGO` (→ `usmernenia KDIGO`), …).
+`smernice KDIGO` (→ `usmernenia KDIGO`),
+`v reálnom čase` (→ `okamžite`), …).
 Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
