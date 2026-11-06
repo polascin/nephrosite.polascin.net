@@ -1,16 +1,16 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #82)
+Aktualizované: 2026-11-06 (loop iterácia #83)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `ccbd11b` (docs tip nasleduje)
+HEAD: `b6ecdbb` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (dialýza HDF: `vo forme takzvanej online hemodiafiltrácie`
-  → `online hemodiafiltrácia`; mimo tip-SHA privacy/terms/cookie/
-  intro-Amazon/Lipton/homepage-dative/
+- Product ship (ipvrm výučba: vedomé rozšírenie scopy mimo patient USG
+  Roots; `v reálnom čase` → `priebežne` pre sledovanie pokroku; mimo tip-SHA
+  privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
   ľadvina+KTx piles #69 / dialyza centre/membrane/cykler #70 /
@@ -19,13 +19,16 @@ HEAD: `ccbd11b` (docs tip nasleduje)
   IgAN residual ESRD→ESKD #75 / USG gel aplikácia→nanášanie #76 /
   lecture suplementá→suplementy #77 / nefamb/IgAN s cieľom→aby #78 /
   IgAN genetiky/prospieť #79 / IgAN smernice→usmernenia #80 /
-  USG v reálnom čase→okamžite #81):
-  - `files/dialyza.html` + `segments/dialyza.html`:
-    `hemodiafiltrácia (HDF) vo forme takzvanej online hemodiafiltrácie`
-    → `online hemodiafiltrácia (HDF)`
-  - `tools/scan-patient-copy.ps1`: pravidlo `takzvanej online hemodiafiltr`;
-    README
-  - Dialýza sync files + segments (homepage include)
+  USG v reálnom čase→okamžite #81 / dialýza online HDF #82):
+  - `ipvrm.htm`: 2× `v reálnom čase` → `priebežne` (sledovanie/hodnotenie
+    pokroku pri výučbe; nie USG „okamžite“ na monitore)
+  - Rovnaký odsek: genitív `zvládnutiu dialýzy a nefrológii` →
+    `nefrológie`
+  - `tools/scan-patient-copy.ps1`: default Roots + `ipvrm.htm` (súbor
+    v koreni); label `okamžite / priebežne`; README
+- Prečo ipvrm teraz: soft kandidát z #82; patient Roots už čisté;
+  kalk zostával len vo výučbovom Word HTML mimo scanneru; rozšírenie
+  Roots zabráni regresii.
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -34,40 +37,30 @@ HEAD: `ccbd11b` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / nefrologia /
-    ipvrm / nefamb synonym piles (#68) /
-    purifikacia GvHD / dialyza dwell time / dialyza-transplant EN gloss /
-    ľadvina+KTx piles / dialyza centre/membrane/cykler piles /
-    purifikácia očisťovanie/membrane piles / nefrologia CKD/AKI piles /
-    USG ultrasonografické piles / nefamb ESKD dual (#74) /
-    IgAN residual ESRD→ESKD (#75) / USG gel nanášanie (#76) /
-    lecture suplementá→suplementy (#77) / nefamb/IgAN s cieľom (#78) /
-    IgAN genetiky/prospieť (#79) / IgAN smernice→usmernenia (#80) /
-    USG okamžite (#81)
-  - `ipvrm.htm` stále má `v reálnom čase` (iné kontexty: výučba;
-    mimo Roots scanneru files/segments/blocks) → neriešené v #82
+    dialyza synonym piles (#65–#82) /
+    USG okamžite (#81; patient; iný kontext ako ipvrm priebežne)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; zjednotená len formulácia bežnej
-  online HDF ako modifikácie HD (klinicky správny termín ol-HDF).
+- Medicínsky obsah **nezmenený**; len výučbový kalk a genitív v ipvrm.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `ccbd11b`; post-commit SFTP nahral `files/dialyza.html` +
-  `segments/dialyza.html` (tools v deployignore);
-  `deploy.ps1 -Apply` 0 upload; smoke direct 200
-- Clean URL smoke (Chrome UA): `/` `/dialyza` `/nefamb` `/nefrologia`
-  `/usgo` `/transplantacia` `/privacy` `/terms` `/purifikacia` → 200 +
-  HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/dialyza` + `/`: `online hemodiafiltrácia` OK;
-  `takzvanej` / `vo forme takzvanej` neprítomné
-- GHA Deploy `42145970250` success (rsync skip)
+  (vrátane ipvrm.htm v Roots)
+- Commit `b6ecdbb`; post-commit SFTP nahral `ipvrm.htm`
+  (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
+  `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
+  `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
+- Produkcia `/ipvrm.htm`: `priebežne` ×2; `v reálnom čase` 0;
+  `nefrológie. Virtuálna` OK
+- GHA Deploy `42146467194` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -125,8 +118,10 @@ HEAD: `ccbd11b` (docs tip nasleduje)
 - `Za účelom` → `Na` + N; `s cieľom` → `aby` + veta (úradnícky kalk).
 - KDIGO guidelines v pacientskom SK: držať `usmernenia` (nie striedať so
   `smernice` v tom istom odseku).
-- USG `v reálnom čase` = EN *in real time* → `okamžite` (loop #81);
-  `ipvrm.htm` výučbové výskyty zatiaľ mimo Roots scanneru.
+- USG `v reálnom čase` = EN *in real time* → `okamžite` (loop #81;
+  zobrazenie na monitore). Výučba ipvrm: to isté EN kalk → `priebežne`
+  (sledovanie/hodnotenie pokroku; loop #83); scanner Roots zahŕňa
+  `ipvrm.htm`.
 - Dialýza HDF: `vo forme takzvanej online hemodiafiltrácie` →
   `online hemodiafiltrácia` (ol-HDF; „takzvanej“ zbytočné; loop #82).
 - IgAN research: neúplné NP `genetických a biomarkerov` → `genetiky a
@@ -157,9 +152,10 @@ HEAD: `ccbd11b` (docs tip nasleduje)
   Sync `files/purifikacia.html` + `segments/purifikacia.html`.
   `umelú membránu (dialyzátor)` nie je synonym pile (prístroj).
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
-  SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
+  SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
+  vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #83)
+## Ďalší fokus (loop #84)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -183,16 +179,15 @@ HEAD: `ccbd11b` (docs tip nasleduje)
    IgAN genetiky/prospieť (#79)/
    IgAN `smernice`→`usmernenia` (#80)/
    USG `v reálnom čase`→`okamžite` (#81)/
-   práve-shipnutý dialýza `takzvanej online HDF`→`online hemodiafiltrácia`
-   (#82); ďalší verified patient-copy/a11y/tooling mimo churn listu.
-   Soft kandidát: `ipvrm.htm` výučbové `v reálnom čase` (mimo Roots —
-   len pri vedomom rozšírení scopy); alebo iný verified non-churn fix.
+   dialýza `takzvanej online HDF`→`online hemodiafiltrácia` (#82)/
+   práve-shipnutý ipvrm `v reálnom čase`→`priebežne` (+ genitív) (#83);
+   ďalší verified patient-copy/a11y/tooling mimo churn listu.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #82 dialýza online HDF)
-- Audit: `.audit.md` Beh #93
+- Codex: `.codex/handoffs/` (loop #83 ipvrm priebežne)
+- Audit: `.audit.md` Beh #94
 
 ## Ďalší príkaz
 
