@@ -20,7 +20,8 @@
 #>
 [CmdletBinding()]
 param(
-    [string[]] $Roots = @('files', 'segments', 'blocks'),
+    # files/segments/blocks = patient UI; ipvrm.htm = teaching Word HTML at repo root
+    [string[]] $Roots = @('files', 'segments', 'blocks', 'ipvrm.htm'),
     [bool]     $FailOnMiss = $true
 )
 
@@ -41,7 +42,7 @@ $rules = @(
     @{ Pattern = 'genetických a biomarkerov'; Label = 'genetických a biomarkerov (→ genetiky a biomarkerov)' }
     @{ Pattern = 'mať prospech z'; Label = 'mať prospech z (→ prospieť / mať úžitok z)' }
     @{ Pattern = 'smernice KDIGO'; Label = 'smernice KDIGO (→ usmernenia KDIGO)' }
-    @{ Pattern = 'v reálnom čase'; Label = 'v reálnom čase (→ okamžite)' }
+    @{ Pattern = 'v reálnom čase'; Label = 'v reálnom čase (→ okamžite / priebežne)' }
     @{ Pattern = 'takzvanej online hemodiafiltr'; Label = 'takzvanej online HDF (→ online hemodiafiltrácia)' }
     @{ Pattern = 'najoptimálnejš'; Label = 'najoptimálnejšie (→ najlepšie)' }
     @{ Pattern = 'sestričk'; Label = 'sestrička (→ sestra)' }
@@ -134,6 +135,15 @@ function Get-ScanFiles {
     foreach ($root in $ScanRoots) {
         $path = Join-Path $repoRoot $root
         if (-not (Test-Path -LiteralPath $path)) { continue }
+        $item = Get-Item -LiteralPath $path
+        if (-not $item.PSIsContainer) {
+            if ($item.Extension -match '^\.(html|htm|php)$' -and
+                $item.Name -notmatch '^(privacy|terms)\.html$' -and
+                $item.Name -notmatch 'cookie-banner') {
+                [void]$list.Add($item)
+            }
+            continue
+        }
         Get-ChildItem -LiteralPath $path -Recurse -File -Include *.html, *.htm, *.php |
             Where-Object {
                 $_.FullName -notmatch '[\\/]\.kilo[\\/]' -and
