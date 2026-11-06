@@ -102,7 +102,8 @@ IgAN `genetických a biomarkerov` (→ `genetiky a biomarkerov`),
 `smernice KDIGO` (→ `usmernenia KDIGO`),
 `v reálnom čase` (→ `okamžite` patient USG; `priebežne` teaching ipvrm),
 dialýza `takzvanej online hemodiafiltr*` (→ `online hemodiafiltrácia`),
-IgAN `glomerulárn* hypotenz*` (→ `hypertenz*`; ET-1/Ang II), …).
+IgAN `glomerulárn* hypotenz*` (→ `hypertenz*`; ET-1/Ang II),
+IgAN `kaukazský pôvod` (→ `európsky pôvod`; EN Caucasian), …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje
 privacy/terms/cookie-banner a

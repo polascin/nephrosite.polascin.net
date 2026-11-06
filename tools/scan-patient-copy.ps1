@@ -129,6 +129,7 @@ $rules = @(
     @{ Pattern = 'suplementá'; Label = 'suplementá (→ suplementy; Czech/Latin plural)' }
     @{ Pattern = 'glomerulárnu hypotenziu'; Label = 'glomerulárnu hypotenziu (→ hypertenziu; ET-1/Ang II)' }
     @{ Pattern = 'glomerulárnej hypotenzie'; Label = 'glomerulárnej hypotenzie (→ hypertenzie; ET-1/Ang II)' }
+    @{ Pattern = 'kaukazský pôvod'; Label = 'kaukazský pôvod (→ európsky pôvod; EN Caucasian)' }
 )
 
 function Get-ScanFiles {
