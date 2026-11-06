@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #86)
+Aktualizované: 2026-11-06 (loop iterácia #87)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `cceba2d` (docs tip nasleduje)
+HEAD: `32a969c` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (IgAN paradigm calque; mimo tip-SHA privacy/terms/cookie/
+- Product ship (IgAN ET-1 upregulation calque; mimo tip-SHA privacy/terms/cookie/
   intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -20,13 +20,19 @@ HEAD: `cceba2d` (docs tip nasleduje)
   IgAN genetiky/prospieť #79 / IgAN smernice→usmernenia #80 /
   USG v reálnom čase→okamžite #81 / dialýza online HDF #82 /
   ipvrm priebežne #83 / IgAN glomerular hypertenzia #84 /
-  IgAN kaukazský→európsky pôvod #85):
+  IgAN kaukazský→európsky pôvod #85 /
+  IgAN paradigme→modeli liečby #86):
   - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `V súčasnej paradigme liečby` → `V súčasnom modeli liečby`
-  - Dôvod: EN *paradigm* anglicizmus/kalk; prirodzená SK
-    „súčasný model liečby“ (treatment section; mimo #84/#85
-    pathophysiology/ethnonym odsekov)
-  - `tools/scan-patient-copy.ps1`: 1 pravidlo; README
+    `regulácia endotelínu-1` → `zvýšená tvorba endotelínu-1`;
+    `regulácii endotelínovej kaskády a aktivácii endotelínových receptorov`
+    → `aktivácii endotelínovej kaskády a endotelínových receptorov`;
+    `lokálne reguluje aj endotelín-1`
+    → `lokálne zvyšuje aj tvorba endotelínu-1`
+  - Dôvod: EN *upregulation* nesprávne ako neutrálna „regulácia“;
+    klinicky presné „zvýšená tvorba“ (pathophysiology odsek; #84
+    už opravilo hypertenziu v tom istom odseku, toto je distinct
+    mistranslation; distance OK po #85/#86)
+  - `tools/scan-patient-copy.ps1`: 3 pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -35,35 +41,35 @@ HEAD: `cceba2d` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / nefrologia /
-    dialyza synonym piles (#65–#85) /
+    dialyza synonym piles (#65–#86) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
     IgAN glomerular hypertenzia (#84) /
-    IgAN európsky pôvod (#85)
-  - Soft defer #87: `regulácia endotelínu-1` (upregulation;
-    same pathophysiology paragraph as #84)
+    IgAN európsky pôvod (#85) /
+    IgAN súčasnom modeli liečby (#86)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: wording liečebného modelu len; bez zmeny liečebných
-  odporúčaní.
+- Medicínsky obsah: wording upregulation/tvorby ET-1 len; bez zmeny
+  liečebných odporúčaní.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `cceba2d`; post-commit SFTP nahral `segments/igan.html` +
+- Commit `32a969c`; post-commit SFTP nahral `segments/igan.html` +
   `IgAN.sk.html` (tools v deployignore); `deploy.ps1 -Apply` 0 upload;
   smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `súčasnom modeli liečby` ×1; residual `súčasnej paradigme` 0;
-  `/segments/igan.html` 403
-- GHA Deploy `42148039940` success (rsync skip)
+- Produkcia `/`: `zvýšená tvorba endotelínu-1` ×1; `lokálne zvyšuje aj
+  tvorba` ×1; residual `regulácia endotelínu-1` 0; residual
+  `regulácii endotelínovej` 0; `/segments/igan.html` 403
+- GHA Deploy `42148532632` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -138,6 +144,10 @@ HEAD: `cceba2d` (docs tip nasleduje)
 - IgAN liečba: `V súčasnej paradigme liečby` → `V súčasnom modeli liečby`
   (EN paradigm calque; loop #86). Sync oba IgAN segmenty; treatment
   section (mimo pathophysiology odsek #84/#ET-1).
+- IgAN ET-1: `regulácia endotelínu-1` → `zvýšená tvorba endotelínu-1`
+  (EN upregulation; loop #87). Sync oba IgAN segmenty; cascade
+  `regulácii … kaskády` → `aktivácii … kaskády a endotelínových
+  receptorov`; `lokálne reguluje` → `lokálne zvyšuje aj tvorba`.
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -167,7 +177,7 @@ HEAD: `cceba2d` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #87)
+## Ďalší fokus (loop #88)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -195,17 +205,17 @@ HEAD: `cceba2d` (docs tip nasleduje)
    ipvrm `v reálnom čase`→`priebežne` (#83)/
    IgAN glomerular hypotenzi→hypertenzi (#84)/
    IgAN `kaukazský`→`európsky pôvod` (#85)/
-   práve-shipnutý IgAN `paradigme`→`modeli liečby` (#86);
-   soft kandidáti: `regulácia endotelínu-1` (upregulation;
-   same pathophysiology paragraph as #84 — consider if enough
-   distance from #84 now, or pick another verified non-churn fix);
-   alebo iný verified patient-copy/a11y/tooling mimo churn listu.
+   IgAN `paradigme`→`modeli liečby` (#86)/
+   práve-shipnutý IgAN ET-1 `regulácia`→`zvýšená tvorba` (#87);
+   soft kandidáti: iný verified patient-copy/a11y/tooling mimo churn
+   listu (IgAN pathophysiology odsek #84/#87 už čistý; preferovať
+   iný súbor/tému).
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #86 IgAN súčasnom modeli liečby)
-- Audit: `.audit.md` Beh #97
+- Codex: `.codex/handoffs/` (loop #87 IgAN zvýšená tvorba endotelínu-1)
+- Audit: `.audit.md` Beh #98
 
 ## Ďalší príkaz
 
