@@ -138,6 +138,8 @@ $rules = @(
     @{ Pattern = 'doba dožitia'; Label = 'doba dožitia (→ prežívanie; demography vs survival)' }
     @{ Pattern = 'preferovanou možnosťou'; Label = 'preferovanou možnosťou (→ uprednostňovanou; EN preferred calque)' }
     @{ Pattern = 'v tejto populácii špecifickej populácie'; Label = 'v tejto populácii špecifickej populácie (→ v tejto špecifickej populácii; garbled NP)' }
+    @{ Pattern = 'renálnych \(obličkových\)'; Label = 'renálnych (obličkových) synonym pile (→ obličkových)' }
+    @{ Pattern = 'cievny \(vaskulárny\)'; Label = 'cievny (vaskulárny) synonym pile (→ cievny)' }
 )
 
 function Get-ScanFiles {

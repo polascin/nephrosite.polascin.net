@@ -111,6 +111,8 @@ demografia vs survival),
 transplantácia `preferovanou možnosťou` (→ `uprednostňovanou`; EN preferred),
 IgAN `v tejto populácii špecifickej populácie` (→ `v tejto špecifickej populácii`;
 garbled NP),
+nefamb `renálnych (obličkových)` (→ `obličkových`),
+`cievny (vaskulárny)` (→ `cievny`),
 …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje
