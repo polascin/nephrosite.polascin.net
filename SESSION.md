@@ -1,25 +1,26 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #73)
+Aktualizované: 2026-11-06 (loop iterácia #74)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `22ea4dc` (docs tip nasleduje)
+HEAD: `f13a882` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (USG ultrasonografické synonym piles; mimo tip-SHA
+- Product ship (nefamb ESKD dual acronym pile; mimo tip-SHA
   privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
   ľadvina+KTx piles #69 / dialyza centre/membrane/cykler #70 /
-  purifikácia očisťovanie/membrane #71 / nefrologia CKD/AKI #72):
-  - `files/usgo.html` + `segments/usgo.html`:
-    `Ultrazvukové (ultrasonografické) vyšetrovanie` →
-    `Ultrazvukové vyšetrovanie`;
-    `Ultrazvukové, teda ultrasonografické (USG) vyšetrenie` →
-    `Ultrazvukové (USG) vyšetrenie` (ponechaný pacientsky akronym USG)
-  - `tools/scan-patient-copy.ps1`: dve pravidlá; README
+  purifikácia očisťovanie/membrane #71 / nefrologia CKD/AKI #72 /
+  USG ultrasonografické #73):
+  - `files/nefamb.html`:
+    `konečného štádia obličkovej choroby (ESKD, ESRD)` →
+    `konečného štádia obličkovej choroby (ESKD)`
+    (moderný preferovaný akronym; SK text už hovorí „obličkovej“)
+  - `tools/scan-patient-copy.ps1`: pravidlo `ESKD, ESRD`; README
+  - `nefamb` nemá `segments/` mirror
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -28,35 +29,35 @@ HEAD: `22ea4dc` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / IgAN / nefrologia /
-    lectures / ipvrm / nefamb synonym piles /
+    lectures / ipvrm / nefamb synonym piles (#68) /
     purifikacia GvHD / dialyza dwell time / dialyza-transplant EN gloss /
     ľadvina+KTx piles / dialyza centre/membrane/cykler piles /
-    purifikácia očisťovanie/membrane piles / nefrologia CKD/AKI piles
+    purifikácia očisťovanie/membrane piles / nefrologia CKD/AKI piles /
+    USG ultrasonografické piles
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
-  - nefamb `(ESKD, ESRD)` a IgAN residual ponechané na ďalší loop
-    (mimo tohto jedného shipu)
-  - nefamb `ultrasonografia` (substantívum) nie je ten istý pile
+  - IgAN residual `(ESRD)` ponechané na ďalší loop (mimo tohto jedného
+    shipu; konzistencia s ESKD)
+  - nefamb `ultrasonografia` (substantívum) nie je synonym pile
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; odstránené len redundantné
-  `ultrasonografické` synonym piles vedľa `Ultrazvukové` (+ USG).
+- Medicínsky obsah **nezmenený**; odstránený len dual akronym
+  `ESRD` vedľa preferovaného `ESKD`.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `22ea4dc`; post-commit SFTP nahral `files/usgo.html`,
-  `segments/usgo.html` (tools v deployignore); `deploy.ps1 -Apply`
-  0 upload; smoke direct 200
-- Clean URL smoke (Chrome UA): `/` `/usgo` `/nefrologia` `/dialyza`
-  `/transplantacia` `/privacy` `/terms` `/purifikacia` → 200 + HSTS + CSP
-  (enforced stále s `'unsafe-inline'`)
-- Produkcia `/usgo` + homepage: `ultrasonografické` / `teda ultrasonografické`
-  neprítomné; wording `Ultrazvukové (USG)` OK
-- GHA Deploy `42141091570` success (rsync skip)
+- Commit `f13a882`; post-commit SFTP nahral `files/nefamb.html`
+  (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Clean URL smoke (Chrome UA): `/` `/nefamb` `/nefrologia` `/dialyza`
+  `/transplantacia` `/privacy` `/terms` `/usgo` `/purifikacia` → 200 +
+  HSTS + CSP (enforced stále s `'unsafe-inline'`)
+- Produkcia `/nefamb`: `ESKD, ESRD` neprítomné; wording
+  `obličkovej choroby (ESKD)` OK
+- GHA Deploy `42141531539` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -204,7 +205,7 @@ HEAD: `22ea4dc` (docs tip nasleduje)
   `chronická choroba reakcie štepu voči hostiteľovi`);
   po SK termíne stačí `(GvHD)`, nie EN full name
   `graft-versus-host disease`.
-  Sync `files/purifikacia.html` aj `segments/purifikacia.html`.
+  Sync `files/purifikacia.html` + `segments/purifikacia.html`.
 - Nefrológia: vypustiť filler `Ako sme už predtým spomínali`;
   proces = `diagnostikou` (nie `diagnózou`) vedľa `liečbou a prevenciou`.
   Synonym piles `resp.`:
@@ -241,7 +242,10 @@ HEAD: `22ea4dc` (docs tip nasleduje)
   `glomerulárnej (glomerulovej) … čiže … (GF)` → jedna forma
   `glomerulovej filtračnej rýchlosti (GFR)`; dual Latin
   `lupus erythematodes, erythematosus` → `lupus erythematosus`.
-  `nefamb` nemá `segments/` mirror.
+  Dual akronym `konečného štádia obličkovej choroby (ESKD, ESRD)` →
+  `(ESKD)` (moderný preferovaný termín; ESRD je starší „renal“ tvar).
+  `nefamb` nemá `segments/` mirror. IgAN stále používa samotné `(ESRD)`
+  (residual, nie dual pile).
 - Pacientsky synonym piles: `obličiek (ľadvín)` / `obličky (ľadviny)` →
   len `obličiek` / `obličky` (ľadvina je bohemizmus/literárny synonym
   vedľa štandardného SK termínu); trojitý akronym
@@ -266,7 +270,7 @@ HEAD: `22ea4dc` (docs tip nasleduje)
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #74)
+## Ďalší fokus (loop #75)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -281,15 +285,17 @@ HEAD: `22ea4dc` (docs tip nasleduje)
    dialyza centre/membrane/cykler piles/
    purifikácia očisťovanie/membrane piles/
    nefrologia CKD/AKI `resp.` piles/
-   práve-shipnutý USG ultrasonografické piles; ďalší verified
-   patient-copy/a11y/tooling. Kandidáti: nefamb `(ESKD, ESRD)` dual
-   acronym; IgAN residual. Spustiť
+   USG ultrasonografické piles/
+   práve-shipnutý nefamb ESKD dual acronym; ďalší verified
+   patient-copy/a11y/tooling. Kandidát: IgAN residual `(ESRD)` →
+   `(ESKD)` (zhoda s nefamb; sync `segments/igan.html` +
+   `segments/IgAN.sk.html`). Spustiť
    `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #73 USG ultrasonografické piles)
-- Audit: `.audit.md` Beh #84
+- Codex: `.codex/handoffs/` (loop #74 nefamb ESKD dual acronym)
+- Audit: `.audit.md` Beh #85
 
 ## Ďalší príkaz
 
