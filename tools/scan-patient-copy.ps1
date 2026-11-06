@@ -143,6 +143,10 @@ $rules = @(
     @{ Pattern = 'močovým systémom \(uropoetickým aparátom\)'; Label = 'močovým systémom (uropoetickým aparátom) synonym pile (→ močovým systémom)' }
     @{ Pattern = 'vnútornom lekárstve \(internej medicíne\)'; Label = 'vnútornom lekárstve (internej medicíne) synonym pile (→ vnútornom lekárstve)' }
     @{ Pattern = 'brušnú \(peritoneálnu\) membránu'; Label = 'brušnú (peritoneálnu) membránu synonym pile (→ brušnú membránu)' }
+    @{ Pattern = 'starajú sa o dlhodobú starostlivosť'; Label = 'starajú sa o dlhodobú starostlivosť (→ zabezpečujú dlhodobú starostlivosť; redundant care)' }
+    @{ Pattern = 'transplantačný orgán'; Label = 'transplantačný orgán (→ transplantovaný orgán)' }
+    @{ Pattern = 'lupusom erythematosus'; Label = 'lupusom erythematosus (→ lupus erythematosus; keep Latin undeclined)' }
+    @{ Pattern = 'zdravie a pohodu'; Label = 'zdravie a pohodu (→ zdravie; EN well-being calque)' }
 )
 
 function Get-ScanFiles {

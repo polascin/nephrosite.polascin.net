@@ -116,6 +116,10 @@ nefamb `renálnych (obličkových)` (→ `obličkových`),
 nefamb `močovým systémom (uropoetickým aparátom)` (→ `močovým systémom`),
 `vnútornom lekárstve (internej medicíne)` (→ `vnútornom lekárstve`),
 `brušnú (peritoneálnu) membránu` (→ `brušnú membránu`),
+nefrológia `starajú sa o dlhodobú starostlivosť` (→ `zabezpečujú …`),
+`transplantačný orgán` (→ `transplantovaný orgán`),
+`lupusom erythematosus` (→ `lupus erythematosus`),
+`zdravie a pohodu` (→ `zdravie`; EN well-being calque),
 …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje
