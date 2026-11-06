@@ -6,8 +6,8 @@
 	<a href="https://nephrosite.polascin.net/" target="_top">
 		<img src="/pix/nspanel.png" alt="NephroSite" class="ns-panel-image">
 		<div class="ns-panel-subtitle">
-			Stránky venované nefrológii, dialýze, metódam purifikácie (očisťovania) krvi,
-			internej medicíne (vnútornému lekárstvu),
+			Stránky venované nefrológii, dialýze, metódam purifikácie krvi,
+			internej medicíne,
 			ale aj všeobecnej medicíne a zdravotníctvu.
 		</div>
 	</a>

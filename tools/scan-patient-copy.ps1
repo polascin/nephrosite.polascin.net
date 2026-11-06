@@ -151,6 +151,8 @@ $rules = @(
     @{ Pattern = 'v pohodlí domova'; Label = 'v pohodlí domova (→ doma; EN comfort-of-home calque)' }
     @{ Pattern = 'roztok, ktorý absorbuje odpadové'; Label = 'roztok, ktorý absorbuje (→ do ktorého prechádzajú; PD diffusion)' }
     @{ Pattern = 'spol\. s\.r\.o\.'; Label = 'spol. s.r.o. (→ spol. s r.o.; Slovak company form)' }
+    @{ Pattern = 'purifikácie \(očisťovania\)'; Label = 'purifikácie (očisťovania) synonym pile (→ purifikácie)' }
+    @{ Pattern = 'internej medicíne \(vnútornému lekárstvu\)'; Label = 'internej medicíne (vnútornému lekárstvu) synonym pile (→ internej medicíne)' }
 )
 
 function Get-ScanFiles {

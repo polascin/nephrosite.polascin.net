@@ -124,6 +124,8 @@ dialýza `vedeckého skúmania` (→ `vedeckých štúdií`),
 `v pohodlí domova` (→ `doma`; EN comfort-of-home),
 `roztok, ktorý absorbuje odpadové` (→ `do ktorého prechádzajú`; PD diffusion),
 lecture `spol. s.r.o.` (→ `spol. s r.o.`; Slovak company form),
+homepage `purifikácie (očisťovania)` (→ `purifikácie`),
+`internej medicíne (vnútornému lekárstvu)` (→ `internej medicíne`),
 …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje
