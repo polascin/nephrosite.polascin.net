@@ -92,7 +92,8 @@ nefamb synonym piles `Hypertenzia … (HT)` / `Diabetická nefropatia … (DKD)`
 `Chronické zlyhanie …, resp. chronická` /
 `Akútne zlyhanie …, resp. akútne` /
 USG `Ultrazvukové (ultrasonografické)` /
-`teda ultrasonografické`, …). Preskakuje
+`teda ultrasonografické` /
+nefamb `ESKD, ESRD`, …). Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
 Lipton `vizualizácie`. Exit code 1 pri náleze.

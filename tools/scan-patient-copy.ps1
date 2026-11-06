@@ -114,6 +114,7 @@ $rules = @(
     @{ Pattern = 'Akútne zlyhanie obličiek, resp\. akútne'; Label = 'AKI resp. synonym pile (→ Akútne obličkové poškodenie)' }
     @{ Pattern = 'Ultrazvukové \(ultrasonografické\)'; Label = 'Ultrazvukové (ultrasonografické) pile (→ Ultrazvukové)' }
     @{ Pattern = 'teda ultrasonografické'; Label = 'teda ultrasonografické pile (→ Ultrazvukové (USG))' }
+    @{ Pattern = 'ESKD, ESRD'; Label = 'ESKD, ESRD dual acronym pile (→ ESKD)' }
 )
 
 function Get-ScanFiles {
