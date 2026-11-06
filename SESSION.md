@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #93)
+Aktualizované: 2026-11-06 (loop iterácia #94)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `5f2b369` (docs tip nasleduje)
+HEAD: `0ecf980` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (nefrologia residual; mimo tip-SHA privacy/terms/cookie/
+- Product ship (dialýza residual; mimo tip-SHA privacy/terms/cookie/
   intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -27,19 +27,21 @@ HEAD: `5f2b369` (docs tip nasleduje)
   transplant preferovanou→uprednostňovanou #89 /
   IgAN špecifickej populácii #90 /
   nefamb obličkových/cievny #91 /
-  nefamb brušnú/močovým/vnútornom #92):
-  - `files/nefrologia.html` + `segments/nefrologia.html`:
-    `starajú sa o dlhodobú starostlivosť o transplantačný orgán` →
-    `zabezpečujú dlhodobú starostlivosť o transplantovaný orgán`;
-    `systémovým lupusom erythematosus (SLE)` →
-    `systémovým lupus erythematosus (SLE)`;
-    `celkové zdravie a pohodu človeka` → `celkové zdravie človeka`
-  - Dôvod: redundantné „starajú sa o … starostlivosť“; nesprávny
-    adjektív `transplantačný` (má byť `transplantovaný`); zmiešaný
-    skloňovaný lupus + latinské erythematosus; EN well-being kalk
-    `pohodu`
-  - Sync files + segments (homepage include)
-  - `tools/scan-patient-copy.ps1`: 4 pravidlá; README
+  nefamb brušnú/močovým/vnútornom #92 /
+  nefrologia transplant/SLE/pohodu #93):
+  - `files/dialyza.html` + `segments/dialyza.html`:
+    `dôkazmi pochádzajúcimi z vedeckého skúmania` →
+    `dôkazmi z vedeckých štúdií`;
+    `vykonávať dialýzu v pohodlí domova` →
+    `vykonávať dialýzu doma`
+  - `files/dialyza.html` (intro; segment nemá túto pasáž):
+    `roztok, ktorý absorbuje odpadové látky a vodu z krvi` →
+    `roztok, do ktorého prechádzajú odpadové látky a voda z krvi`
+  - Dôvod: awkward research phrasing; EN comfort-of-home calque;
+    PD dialyzát neabsorbuje sponge-like, látky doň prechádzajú
+    (difúzia/UF)
+  - Sync files + segments (homepage include) pre HD odsek
+  - `tools/scan-patient-copy.ps1`: 3 pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -48,38 +50,42 @@ HEAD: `5f2b369` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / dialyza synonym piles /
-    nefamb synonym piles (#65–#92) /
+    nefamb synonym piles (#65–#93) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
     IgAN piles (#84–#90) /
     transplant `dlhšie prežívanie` (#88) /
     transplant `uprednostňovanou` (#89) /
-    nefrologia CKD/AKI `resp.` piles (#72; distinct od tohto residual)
+    nefrologia CKD/AKI `resp.` piles (#72) /
+    nefrologia residual transplant/SLE/pohodu (#93)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
-  - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
+  - HD `umelú membránu (dialyzátor)` / dialyzátor vs prístroj loose
+    naming ponechané (už vysvetlené „v užšom zmysle“)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `Katetrizácia (zavedenie dialyzačného katétra)` ponechané
   - Meta/homepage standalone `internej medicíne` ponechané
+  - Lecture `spol. s.r.o.` (→ `spol. s r.o.`) ponechané na neskorší
+    micro-ship
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: wording residual len; bez zmeny klinického významu.
+- Medicínsky obsah: wording residual len; bez zmeny klinického významu
+  (PD transport wording je presnejší popis toho istého deja).
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `5f2b369`; post-commit SFTP nahral `files/nefrologia.html` +
-  `segments/nefrologia.html` (tools v deployignore); `deploy.ps1 -Apply`
+- Commit `0ecf980`; post-commit SFTP nahral `files/dialyza.html` +
+  `segments/dialyza.html` (tools v deployignore); `deploy.ps1 -Apply`
   0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/nefrologia`: `zabezpečujú dlhodobú starostlivosť o
-  transplantovaný orgán` ×1; residual `starajú sa o dlhodobú
-  starostlivosť` 0; residual `transplantačný orgán` 0;
-  `systémovým lupus erythematosus` ×1; residual `lupusom erythematosus` 0;
-  `celkové zdravie človeka` ×1; residual `zdravie a pohodu` 0
-- GHA Deploy `42151698978` success (rsync skip)
+- Produkcia `/dialyza`: `vedeckých štúdií` ×1; residual
+  `vedeckého skúmania` 0; `vykonávať dialýzu doma` ×1; residual
+  `v pohodlí domova` 0; `do ktorého prechádzajú` ×1; residual
+  `absorbuje odpadové` 0
+- GHA Deploy: watch po docs tip (rsync skip expected)
 
 ## Poznámky k toolingu
 
@@ -187,6 +193,15 @@ HEAD: `5f2b369` (docs tip nasleduje)
   `zdravie a pohodu` → `zdravie` (EN well-being calque). Sync
   `files/nefrologia.html` + `segments/nefrologia.html`. Distinct od
   #72 CKD/AKI `resp.` piles.
+- Pacientsky dialýza residual (loop #94):
+  `dôkazmi pochádzajúcimi z vedeckého skúmania` →
+  `dôkazmi z vedeckých štúdií`;
+  `v pohodlí domova` → `doma` (EN comfort-of-home calque);
+  intro PD `roztok, ktorý absorbuje` →
+  `roztok, do ktorého prechádzajú` (difúzia/UF; segment intro nemá).
+  Sync `files/dialyza.html` + `segments/dialyza.html` pre HD odsek.
+  Distinct od #65 EN gloss / #67 dwell / #70 centre-membrane-cykler /
+  #82 online HDF.
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -216,7 +231,7 @@ HEAD: `5f2b369` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #94)
+## Ďalší fokus (loop #95)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -252,15 +267,18 @@ HEAD: `5f2b369` (docs tip nasleduje)
    nefamb `obličkových`/`cievny` (#91)/
    nefamb `brušnú membránu` / `močovým systémom` /
    `vnútornom lekárstve` (#92)/
-   práve-shipnutý nefrologia residual transplant/SLE/pohodu (#93);
+   nefrologia residual transplant/SLE/pohodu (#93)/
+   práve-shipnutý dialýza residual vedeckých štúdií/doma/PD prechádzajú
+   (#94);
    soft kandidáti: iný verified patient-copy/a11y/tooling mimo churn
-   listu (dialyza beyond prior piles, lectures, homepage blocks,
-   purifikácia, blank-hints, tooling).
+   listu (lectures napr. `spol. s.r.o.`→`spol. s r.o.`, homepage blocks,
+   purifikácia beyond GvHD/membrane piles, blank-hints, tooling;
+   dialyza beyond #65/#67/#70/#82/#94).
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #93 nefrologia residual)
+- Codex: `.codex/handoffs/` (loop #94 dialýza residual)
 - Audit: `.audit.md` Beh #100
 
 ## Ďalší príkaz
