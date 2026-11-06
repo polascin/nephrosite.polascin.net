@@ -1,49 +1,50 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #65)
+Aktualizované: 2026-11-06 (loop iterácia #66)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `c406b84` (docs tip nasleduje)
+HEAD: `8bf6880` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (redundantné EN glosses + tooling; mimo tip-SHA privacy/
-  terms/cookie/intro-Amazon/Lipton/homepage-dative; nová trieda defectu
-  paralelne s `darcu (donora)`):
-  - `files|segments/dialyza.html`: `chorobnosť (morbidity)` /
-    `úmrtnosť (mortality)` → `chorobnosť` / `úmrtnosť`
-  - `files|segments/transplantacia.html`: `odmietnutie orgánu (rejekcia)`
-    → `odmietnutie orgánu`
-  - `tools/scan-patient-copy.ps1`: pravidlá `(morbidity)`, `(mortality)`,
-    `orgánu (rejekcia)`; README poznámka
+- Product ship (redundantný EN GvHD gloss v purifikácii + tooling; mimo
+  tip-SHA privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
+  dialyza-transplant EN gloss):
+  - `files|segments/purifikacia.html`: `…hostiteľovi, teda
+    graft-versus-host disease (GvHD)` → `…hostiteľovi (GvHD)`;
+    `mycosis fungoides` ponechané
+  - `tools/scan-patient-copy.ps1`: pravidlo `graft-versus-host disease`;
+    README poznámka
+- Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
+  - dialyza `"dwell time"` teda `čas pôsobenia` (kandidát #67; tip churn
+    dialyza po #65)
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
   - Lipton genitív `Liptona` a literary wording (`vziať`/`takisto`/`na to`)
   - Homepage dative `všeobecnej medicíne`
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / IgAN / USG / nefamb /
-    lectures / ipvrm / purifikacia / nefrologia (žiadny tip churn)
+    lectures / ipvrm / dialyza / transplantacia / nefrologia
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínske fakty (HDF vs chorobnosť/úmrtnosť) **nezmenené**; odstránené
-  len zbytočné EN glossy vedľa už slovenských termínov.
+- Medicínsky obsah (GvHD / mycosis) **nezmenený**; odstránený len
+  zbytočný EN full name vedľa SK termínu + akronymu.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `c406b84`; post-commit SFTP nahral dialyza/transplant files+segments
+- Commit `8bf6880`; post-commit SFTP nahral purifikacia files+segments
   (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
-- Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/dialyza`
-  `/transplantacia` `/privacy` `/terms` `/nefrologia` `/nefamb` `/usgo`
-  `/purifikacia` `/lipton-tx` → 200 + HSTS + CSP (enforced stále s
-  `'unsafe-inline'`)
-- Produkcia `/dialyza`: `chorobnosť a úmrtnosť` OK; `morbidity`/`mortality`
-  neprítomné; `/transplantacia`: `odmietnutie orgánu,` OK; `rejekcia`
-  neprítomné
-- GHA Deploy `42136612798` success (rsync skip)
+- Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/purifikacia`
+  `/privacy` `/terms` `/dialyza` `/nefrologia` → 200 + HSTS + CSP
+  (enforced stále s `'unsafe-inline'`)
+- Produkcia `/purifikacia` a homepage segment: `chronická reakcia štepu
+  proti hostiteľovi (GvHD)` OK; `graft-versus-host disease` neprítomné;
+  `mycosis fungoides` OK
+- GHA Deploy `42137216341` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -185,7 +186,9 @@ HEAD: `c406b84` (docs tip nasleduje)
   `prevedie cez adsorbent` → `vedie cez adsorbent`; photosensitizing
   agent = `fotosenzibilizujúcej látky` (nie `fotosenzitívnej`);
   GvHD = `chronická reakcia štepu proti hostiteľovi` (nie
-  `chronická choroba reakcie štepu voči hostiteľovi`).
+  `chronická choroba reakcie štepu voči hostiteľovi`);
+  po SK termíne stačí `(GvHD)`, nie EN full name
+  `graft-versus-host disease`.
   Sync `files/purifikacia.html` aj `segments/purifikacia.html`.
 - Nefrológia: vypustiť filler `Ako sme už predtým spomínali`;
   proces = `diagnostikou` (nie `diagnózou`) vedľa `liečbou a prevenciou`.
@@ -208,12 +211,15 @@ HEAD: `c406b84` (docs tip nasleduje)
   (nie príslovka `všeobecne medicíne`; paralelné s `internej medicíne`).
 - Pacientsky EN gloss: zbytočné `(morbidity)` / `(mortality)` vedľa
   `chorobnosť` / `úmrtnosť` a `(rejekcia)` vedľa `odmietnutie orgánu`
-  (rovnaká trieda ako `darcu (donora)` → `darcu`). Medicínsky obsah
-  nezmeniť.
+  (rovnaká trieda ako `darcu (donora)` → `darcu`); aj
+  `graft-versus-host disease` vedľa už SK `chronická reakcia štepu proti
+  hostiteľovi` (+ akronym GvHD). Medicínsky obsah nezmeniť.
+- Dialyza CAPD: `"dwell time"` teda `čas pôsobenia` je rovnaká trieda
+  EN gloss (kandidát po tip-churn oddychu).
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #66)
+## Ďalší fokus (loop #67)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -223,14 +229,15 @@ HEAD: `c406b84` (docs tip nasleduje)
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
    non-tip-path ship mimo práve-shipnutý privacy/terms/cookie/intro-Amazon/
-   Lipton/homepage-dative/EN-gloss dialyza-transplant; kandidát: overený
-   patient-copy defect mimo tip path alebo ďalší tooling. Spustiť
-   `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
+   Lipton/homepage-dative/EN-gloss dialyza-transplant/purifikacia-GvHD;
+   kandidát: dialyza `"dwell time"` → `čas pôsobenia` (files+segments +
+   scanner) alebo ďalší tooling. Spustiť `scan-blank-hints.ps1` aj
+   `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #65 EN gloss + patient-copy scan)
-- Audit: `.audit.md` Beh #76
+- Codex: `.codex/handoffs/` (loop #66 purifikacia GvHD gloss)
+- Audit: `.audit.md` Beh #77
 
 ## Ďalší príkaz
 
