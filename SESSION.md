@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #85)
+Aktualizované: 2026-11-06 (loop iterácia #86)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `29b0edb` (docs tip nasleduje)
+HEAD: `cceba2d` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (IgAN ethnonym; mimo tip-SHA privacy/terms/cookie/
+- Product ship (IgAN paradigm calque; mimo tip-SHA privacy/terms/cookie/
   intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -19,11 +19,13 @@ HEAD: `29b0edb` (docs tip nasleduje)
   lecture suplementá→suplementy #77 / nefamb/IgAN s cieľom→aby #78 /
   IgAN genetiky/prospieť #79 / IgAN smernice→usmernenia #80 /
   USG v reálnom čase→okamžite #81 / dialýza online HDF #82 /
-  ipvrm priebežne #83 / IgAN glomerular hypertenzia #84):
+  ipvrm priebežne #83 / IgAN glomerular hypertenzia #84 /
+  IgAN kaukazský→európsky pôvod #85):
   - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `kaukazský pôvod` → `európsky pôvod`
-  - Dôvod: EN Caucasian ethnonym calque; prirodzená SK paralela
-    s `ázijský pôvod` (epidemiologický ancestry wording)
+    `V súčasnej paradigme liečby` → `V súčasnom modeli liečby`
+  - Dôvod: EN *paradigm* anglicizmus/kalk; prirodzená SK
+    „súčasný model liečby“ (treatment section; mimo #84/#85
+    pathophysiology/ethnonym odsekov)
   - `tools/scan-patient-copy.ps1`: 1 pravidlo; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
@@ -33,18 +35,19 @@ HEAD: `29b0edb` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / nefrologia /
-    dialyza synonym piles (#65–#84) /
+    dialyza synonym piles (#65–#85) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
-    IgAN glomerular hypertenzia (#84)
-  - Soft defer #86: `V súčasnej paradigme`; `regulácia endotelínu-1`
-    (upregulation; same pathophysiology paragraph as #84)
+    IgAN glomerular hypertenzia (#84) /
+    IgAN európsky pôvod (#85)
+  - Soft defer #87: `regulácia endotelínu-1` (upregulation;
+    same pathophysiology paragraph as #84)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: ethnonym wording len; bez zmeny liečebných
+- Medicínsky obsah: wording liečebného modelu len; bez zmeny liečebných
   odporúčaní.
 
 ## Overené na produkcii
@@ -52,15 +55,15 @@ HEAD: `29b0edb` (docs tip nasleduje)
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `29b0edb`; post-commit SFTP nahral `segments/igan.html` +
+- Commit `cceba2d`; post-commit SFTP nahral `segments/igan.html` +
   `IgAN.sk.html` (tools v deployignore); `deploy.ps1 -Apply` 0 upload;
   smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `európsky pôvod` ×1; residual `kaukazský pôvod` 0;
+- Produkcia `/`: `súčasnom modeli liečby` ×1; residual `súčasnej paradigme` 0;
   `/segments/igan.html` 403
-- GHA Deploy `42147509099` success (rsync skip)
+- GHA Deploy `42148039940` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -132,6 +135,9 @@ HEAD: `29b0edb` (docs tip nasleduje)
   `igan.html`; žiadny `files/` mirror).
 - IgAN ethnonym: `kaukazský pôvod` → `európsky pôvod` (EN Caucasian
   calque; loop #85). Sync oba IgAN segmenty.
+- IgAN liečba: `V súčasnej paradigme liečby` → `V súčasnom modeli liečby`
+  (EN paradigm calque; loop #86). Sync oba IgAN segmenty; treatment
+  section (mimo pathophysiology odsek #84/#ET-1).
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -161,7 +167,7 @@ HEAD: `29b0edb` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #86)
+## Ďalší fokus (loop #87)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -188,16 +194,18 @@ HEAD: `29b0edb` (docs tip nasleduje)
    dialýza `takzvanej online HDF`→`online hemodiafiltrácia` (#82)/
    ipvrm `v reálnom čase`→`priebežne` (#83)/
    IgAN glomerular hypotenzi→hypertenzi (#84)/
-   práve-shipnutý IgAN `kaukazský`→`európsky pôvod` (#85);
-   soft kandidáti: `V súčasnej paradigme`;
-   `regulácia endotelínu-1` (upregulation);
+   IgAN `kaukazský`→`európsky pôvod` (#85)/
+   práve-shipnutý IgAN `paradigme`→`modeli liečby` (#86);
+   soft kandidáti: `regulácia endotelínu-1` (upregulation;
+   same pathophysiology paragraph as #84 — consider if enough
+   distance from #84 now, or pick another verified non-churn fix);
    alebo iný verified patient-copy/a11y/tooling mimo churn listu.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #85 IgAN európsky pôvod)
-- Audit: `.audit.md` Beh #96
+- Codex: `.codex/handoffs/` (loop #86 IgAN súčasnom modeli liečby)
+- Audit: `.audit.md` Beh #97
 
 ## Ďalší príkaz
 
