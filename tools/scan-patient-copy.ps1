@@ -131,6 +131,9 @@ $rules = @(
     @{ Pattern = 'glomerulárnej hypotenzie'; Label = 'glomerulárnej hypotenzie (→ hypertenzie; ET-1/Ang II)' }
     @{ Pattern = 'kaukazský pôvod'; Label = 'kaukazský pôvod (→ európsky pôvod; EN Caucasian)' }
     @{ Pattern = 'súčasnej paradigme'; Label = 'súčasnej paradigme (→ súčasnom modeli; EN paradigm calque)' }
+    @{ Pattern = 'regulácia endotelínu-1'; Label = 'regulácia endotelínu-1 (→ zvýšená tvorba; EN upregulation)' }
+    @{ Pattern = 'regulácii endotelínovej kaskády'; Label = 'regulácii endotelínovej kaskády (→ aktivácii; EN upregulation)' }
+    @{ Pattern = 'lokálne reguluje aj .{0,80}endotelín'; Label = 'lokálne reguluje aj ET-1 (→ lokálne zvyšuje aj tvorba; EN upregulation)' }
 )
 
 function Get-ScanFiles {

@@ -104,7 +104,8 @@ IgAN `genetických a biomarkerov` (→ `genetiky a biomarkerov`),
 dialýza `takzvanej online hemodiafiltr*` (→ `online hemodiafiltrácia`),
 IgAN `glomerulárn* hypotenz*` (→ `hypertenz*`; ET-1/Ang II),
 IgAN `kaukazský pôvod` (→ `európsky pôvod`; EN Caucasian),
-IgAN `súčasnej paradigme` (→ `súčasnom modeli`; EN paradigm calque), …).
+IgAN `súčasnej paradigme` (→ `súčasnom modeli`; EN paradigm calque),
+IgAN `regulácia endotelínu-1` (→ `zvýšená tvorba`; EN upregulation), …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje
 privacy/terms/cookie-banner a
