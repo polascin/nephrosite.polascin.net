@@ -70,3 +70,15 @@ kotvy na `sr-only` / „otvorí sa v novom okne“ / `aria-label` (neskoro vlož
 hint v PDF karte nie je falošný miss). Ďalej hlási odkazy s textom
 „na stiahnutie“/„stiahnuť“ bez `download` a live `<img>` bez `alt` (PHP
 regex vzory ako v `topic-teaser.php` ignoruje). Exit code 1 pri náleze.
+
+## Patient-copy regression scan
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-patient-copy.ps1
+```
+
+`scan-patient-copy.ps1` hľadá high-confidence SESSION wording regresie
+(bohemizmy/kalky už opravené v tip-path textoch: `Zahrňuje`, `nahradzuj*`,
+`Amazon-e`, `v prevažnej väčšine`, …). Preskakuje privacy/terms/cookie-banner
+a `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
+Lipton `vizualizácie`. Exit code 1 pri náleze.

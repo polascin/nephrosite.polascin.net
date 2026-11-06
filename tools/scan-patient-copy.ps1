@@ -1,0 +1,147 @@
+﻿<#
+.SYNOPSIS
+    Scan NephroSite patient/UI markup for known Slovak wording regressions.
+
+.DESCRIPTION
+    Encodes high-confidence SESSION.md patient-copy lessons (bohemisms,
+    calques, defective constructions already fixed in tip-path topics).
+    Skips privacy/terms/cookie-banner legal pages and .kilo worktrees.
+    Allowlists: Lipton literary jedinec/jedincov; ABPM "Ambulantné
+    monitorovanie"; Lipton spiritual "vizualizácie".
+
+.PARAMETER Roots
+    Relative roots to scan (default: files, segments, blocks).
+
+.PARAMETER FailOnMiss
+    Exit 1 when any unallowlisted hit is found (default: true).
+
+.EXAMPLE
+    powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-patient-copy.ps1
+#>
+[CmdletBinding()]
+param(
+    [string[]] $Roots = @('files', 'segments', 'blocks'),
+    [bool]     $FailOnMiss = $true
+)
+
+Set-StrictMode -Version 2.0
+$ErrorActionPreference = 'Stop'
+
+$repoRoot = Split-Path -Parent $PSScriptRoot
+Set-Location $repoRoot
+
+# Pattern, short label, optional per-hit allow predicate name
+$rules = @(
+    @{ Pattern = 'Zahrňuje'; Label = 'Zahrňuje (→ Zahŕňa)' }
+    @{ Pattern = 'detekovať'; Label = 'detekovať (→ odhaliť)' }
+    @{ Pattern = '\bv svojom\b'; Label = 'v svojom (→ vo svojom)' }
+    @{ Pattern = 'zo rôznych'; Label = 'zo rôznych (→ z rôznych)' }
+    @{ Pattern = 'Za účelom'; Label = 'Za účelom (→ Na + N)' }
+    @{ Pattern = 'najoptimálnejš'; Label = 'najoptimálnejšie (→ najlepšie)' }
+    @{ Pattern = 'sestričk'; Label = 'sestrička (→ sestra)' }
+    @{ Pattern = 'nahradzuj'; Label = 'nahradzuj* (→ nahrádza/náhradná)' }
+    @{ Pattern = '\d-\d krát\b'; Label = 'N-M krát (→ N-M-krát)' }
+    @{ Pattern = 'z dôvodu'; Label = 'z dôvodu (→ pre + A)' }
+    @{ Pattern = 'vylepši'; Label = 'vylepši* (→ zlepši*)' }
+    @{ Pattern = '\bjedinci\b'; Label = 'jedinci (→ ľudia)' }
+    @{ Pattern = 'jednotlivc'; Label = 'jednotlivec (→ človek)' }
+    @{ Pattern = '\bmanažment\b'; Label = 'manažment (→ zvládanie)' }
+    @{ Pattern = 'Propagáci'; Label = 'Propagácia (→ Osveta)' }
+    @{ Pattern = 'platformu na'; Label = 'platformu na (→ priestor na)' }
+    @{ Pattern = 'asymptomatick'; Label = 'asymptomatick* (→ bez príznakov)' }
+    @{ Pattern = '\bTaktiež\b'; Label = 'Taktiež (→ Tiež/Musia tiež)' }
+    @{ Pattern = 'glomerulárnej nefritídy'; Label = 'glomerulárnej nefritídy (→ glomerulonefritídy)' }
+    @{ Pattern = 'dysbalanc'; Label = 'dysbalanc* (→ nerovnováh*)' }
+    @{ Pattern = 'politických zmien'; Label = 'politických zmien (→ zdravotnej politike)' }
+    @{ Pattern = 'environmentáln'; Label = 'environmentáln* (→ faktorov prostredia)' }
+    @{ Pattern = 'poskytovateľ zdravotnej'; Label = 'poskytovateľ zdravotnej (→ lekár)' }
+    @{ Pattern = 'adekvátneho odberu'; Label = 'adekvátneho odberu (→ správneho odberu)' }
+    @{ Pattern = 'v prevažnej väčšine'; Label = 'v prevažnej väčšine (→ u prevažnej väčšiny)' }
+    @{ Pattern = 'fotosenzitívn'; Label = 'fotosenzitívn* (→ fotosenzibilizujúcej)' }
+    @{ Pattern = 'prevedie cez'; Label = 'prevedie cez (→ vedie cez)' }
+    @{ Pattern = 'Medzi niektoré z'; Label = 'Medzi niektoré z (→ Medzi bežné)' }
+    @{ Pattern = 'Ako sme už predtým'; Label = 'Ako sme už predtým (filler)' }
+    @{ Pattern = 'riadenie chronických'; Label = 'riadenie chronických (→ zvládanie)' }
+    @{ Pattern = 'zodpovedá na'; Label = 'zodpovedá na (→ odpovedá na)' }
+    @{ Pattern = 'vizualizáciu'; Label = 'vizualizáciu (→ zobrazenie)' }
+    @{ Pattern = 'V rámci kurzu'; Label = 'V rámci kurzu (→ V kurze)' }
+    @{ Pattern = 'V rámci zasadnutia'; Label = 'V rámci zasadnutia (→ Na zasadnutí)' }
+    @{ Pattern = 'V rámci inovatívneho'; Label = 'V rámci inovatívneho (→ V inovatívnom)' }
+    @{ Pattern = 'Amazon-e'; Label = 'Amazon-e (→ Amazone)' }
+    @{ Pattern = 'pätu obsahových'; Label = 'pätu obsahových (→ pätičku stránky)' }
+    @{ Pattern = 'stránku súkromia'; Label = 'stránku súkromia (→ zásady ochrany súkromia)' }
+)
+
+function Get-ScanFiles {
+    param([string[]] $ScanRoots)
+    $list = New-Object System.Collections.Generic.List[System.IO.FileInfo]
+    foreach ($root in $ScanRoots) {
+        $path = Join-Path $repoRoot $root
+        if (-not (Test-Path -LiteralPath $path)) { continue }
+        Get-ChildItem -LiteralPath $path -Recurse -File -Include *.html, *.htm, *.php |
+            Where-Object {
+                $_.FullName -notmatch '[\\/]\.kilo[\\/]' -and
+                $_.Name -notmatch '^(privacy|terms)\.html$' -and
+                $_.Name -notmatch 'cookie-banner'
+            } |
+            ForEach-Object { [void]$list.Add($_) }
+    }
+    return $list
+}
+
+function Get-RelativePath {
+    param([string] $FullPath)
+    return $FullPath.Substring($repoRoot.Length).TrimStart('\', '/')
+}
+
+function Test-IsAllowlisted {
+    param(
+        [string] $RelPath,
+        [string] $Line,
+        [string] $Pattern
+    )
+    # Literary Lipton: keep jedinec/jedincov; spiritual vizualizácie is not patient UI "zobrazenie".
+    if ($RelPath -match '(?i)lipton') {
+        if ($Pattern -match 'jedin|vizualiz') { return $true }
+    }
+    # Official ABPM name in nefamb.
+    if ($Pattern -match 'monitorov' -and $Line -match 'Ambulantné monitorovanie krvného tlaku') {
+        return $true
+    }
+    return $false
+}
+
+$hits = New-Object System.Collections.Generic.List[string]
+
+foreach ($file in (Get-ScanFiles -ScanRoots $Roots)) {
+    $rel = Get-RelativePath -FullPath $file.FullName
+    $lines = [IO.File]::ReadAllLines($file.FullName)
+    for ($i = 0; $i -lt $lines.Length; $i++) {
+        $line = $lines[$i]
+        # Skip HTML comments (excluded vendor logos / commented intro Bory).
+        if ($line -match '^\s*<!--' -or $line -match '-->\s*$') { continue }
+        foreach ($rule in $rules) {
+            if ($line -notmatch $rule.Pattern) { continue }
+            if (Test-IsAllowlisted -RelPath $rel -Line $line -Pattern $rule.Pattern) { continue }
+            $snippet = $line.Trim()
+            if ($snippet.Length -gt 120) {
+                $snippet = $snippet.Substring(0, 120) + '…'
+            }
+            [void]$hits.Add(("{0}:{1} [{2}] :: {3}" -f $rel, ($i + 1), $rule.Label, $snippet))
+        }
+    }
+}
+
+Write-Host ("Patient-copy regression hits: {0}" -f $hits.Count)
+$hits | ForEach-Object { Write-Host ("  {0}" -f $_) }
+
+if ($hits.Count -eq 0) {
+    Write-Host 'Verdict: patient-copy scan clean (high-confidence SESSION patterns).'
+    exit 0
+}
+
+Write-Host ("Verdict: {0} hit(s) to review." -f $hits.Count)
+if ($FailOnMiss) {
+    exit 1
+}
+exit 0

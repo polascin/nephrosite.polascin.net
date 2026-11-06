@@ -35,9 +35,9 @@
 			</div>
 		<!--</a>-->
 		<br><br>
-		<a href="https://www.amazon.com/stores/Lubomir-Polascin/author/B07PN436VJ?store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true&linkCode=ll2&tag=mobile0f21130-20&linkId=857497f66a358285c30f667879e75f8e&language=en_US&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer" title="Moje knihy na Amazon-e">
+		<a href="https://www.amazon.com/stores/Lubomir-Polascin/author/B07PN436VJ?store_ref=ap_rdr&isDramIntegrated=true&shoppingPortalEnabled=true&linkCode=ll2&tag=mobile0f21130-20&linkId=857497f66a358285c30f667879e75f8e&language=en_US&ref_=as_li_ss_tl" target="_blank" rel="noopener noreferrer" title="Moje knihy na Amazone">
 			<h3 class="amazon-box">
-				Moje knihy na Amazon-e
+				Moje knihy na Amazone
 			</h3>
 			<span class="sr-only"> (otvorí sa v novom okne)</span>
 		</a>
