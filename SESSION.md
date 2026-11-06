@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #95)
+Aktualizované: 2026-11-06 (loop iterácia #96)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `7c8018e` (docs tip nasleduje)
+HEAD: `b3d3746` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (lecture company form; mimo tip-SHA privacy/terms/cookie/
+- Product ship (homepage synonym residual; mimo tip-SHA privacy/terms/cookie/
   intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -29,14 +29,19 @@ HEAD: `7c8018e` (docs tip nasleduje)
   nefamb obličkových/cievny #91 /
   nefamb brušnú/močovým/vnútornom #92 /
   nefrologia transplant/SLE/pohodu #93 /
-  dialýza residual vedeckých štúdií/doma/PD prechádzajú #94):
-  - `blocks/lectures.sk.php`:
-    `B. Braun Avitum spol. s.r.o.` →
-    `B. Braun Avitum spol. s r.o.`
-  - Dôvod: správna slovenská skratka spoločnosti s ručením obmedzeným
-    je `spol. s r.o.` (medzera pred `r.`), nie `spol. s.r.o.`
-  - Jediný výskyt v produkčnom markupe; žiadny files/segments mirror
-  - `tools/scan-patient-copy.ps1`: 1 pravidlo; README
+  dialýza residual vedeckých štúdií/doma/PD prechádzajú #94 /
+  lecture spol. s r.o. #95):
+  - `blocks/ns.sk.php`:
+    `metódam purifikácie (očisťovania) krvi` →
+    `metódam purifikácie krvi`;
+    `internej medicíne (vnútornému lekárstvu)` →
+    `internej medicíne`
+  - `purifikacia.php` meta description:
+    `purifikácie (očisťovania)` → `purifikácie`
+  - Dôvod: synonym piles na homepage (#92 ich zámerne nechalo;
+    #71 čistilo iba files/segments purifikácia); homepage blocks boli
+    soft kandidát
+  - `tools/scan-patient-copy.ps1`: 2 pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -45,37 +50,41 @@ HEAD: `7c8018e` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / dialyza synonym piles /
-    nefamb synonym piles (#65–#94) /
+    nefamb synonym piles (#65–#95) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
     IgAN piles (#84–#90) /
     transplant `dlhšie prežívanie` (#88) /
     transplant `uprednostňovanou` (#89) /
     nefrologia CKD/AKI `resp.` piles (#72) /
     nefrologia residual transplant/SLE/pohodu (#93) /
-    dialýza residual vedeckých štúdií/doma/PD prechádzajú (#94)
+    dialýza residual vedeckých štúdií/doma/PD prechádzajú (#94) /
+    lecture `spol. s r.o.` (#95)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` / dialyzátor vs prístroj loose
     naming ponechané (už vysvetlené „v užšom zmysle“)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `Katetrizácia (zavedenie dialyzačného katétra)` ponechané
-  - Meta/homepage standalone `internej medicíne` ponechané
+  - Meta/homepage standalone `internej medicíne` ponechané (iba synonym
+    pile odstránený)
+  - Lecture author-list commas / `HorkýTran` (kandidát #97)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: bez zmeny; len obchodná forma v lecture bloku.
+- Medicínsky obsah: bez zmeny; len synonym piles na homepage/meta.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `7c8018e`; post-commit SFTP nahral `blocks/lectures.sk.php`
-  (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `b3d3746`; post-commit SFTP nahral `blocks/ns.sk.php`,
+  `purifikacia.php` (tools v deployignore); `deploy.ps1 -Apply` 0 upload;
+  smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `spol. s r.o.` ×1; residual `spol. s.r.o.` 0;
-  `B. Braun Avitum spol. s r.o.` match
-- GHA Deploy: watch po docs tip (rsync skip expected)
+- Produkcia `/`: old synonym piles 0; `metódam purifikácie krvi` ×1;
+  subtitle match OK; `/purifikacia` meta `Metódy purifikácie krvi`
+- GHA Deploy `42153235953` success (rsync skip expected)
 
 ## Poznámky k toolingu
 
@@ -175,7 +184,8 @@ HEAD: `7c8018e` (docs tip nasleduje)
   `močovým systémom (uropoetickým aparátom)` → `močovým systémom`;
   `vnútornom lekárstve (internej medicíne)` → `vnútornom lekárstve`;
   `brušnú (peritoneálnu) membránu` → `brušnú membránu`. Sync len
-  `files/nefamb.html`.
+  `files/nefamb.html`. Homepage reverse pile
+  `internej medicíne (vnútornému lekárstvu)` riešený v #96.
 - Pacientsky nefrologia residual (loop #93):
   `starajú sa o dlhodobú starostlivosť o transplantačný orgán` →
   `zabezpečujú dlhodobú starostlivosť o transplantovaný orgán`;
@@ -196,6 +206,11 @@ HEAD: `7c8018e` (docs tip nasleduje)
   (medzera pred `r.`; štandardná SK skratka s.r.o. / spoločnosti
   s ručením obmedzeným). Sync len `blocks/lectures.sk.php` (jediný
   výskyt; žiadny files/segments mirror).
+- Homepage synonym residual (loop #96):
+  `purifikácie (očisťovania)` → `purifikácie`;
+  `internej medicíne (vnútornému lekárstvu)` → `internej medicíne`.
+  Sync `blocks/ns.sk.php` + `purifikacia.php` meta. Distinct od #71
+  (files/segments) a #92 (nefamb `vnútornom lekárstve (internej…)`).
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -225,7 +240,7 @@ HEAD: `7c8018e` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #96)
+## Ďalší fokus (loop #97)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -263,16 +278,17 @@ HEAD: `7c8018e` (docs tip nasleduje)
    `vnútornom lekárstve` (#92)/
    nefrologia residual transplant/SLE/pohodu (#93)/
    dialýza residual vedeckých štúdií/doma/PD prechádzajú (#94)/
-   práve-shipnutý lecture `spol. s.r.o.`→`spol. s r.o.` (#95);
+   lecture `spol. s.r.o.`→`spol. s r.o.` (#95)/
+   práve-shipnutý homepage synonym piles (#96);
    soft kandidáti: iný verified patient-copy/a11y/tooling mimo churn
-   listu (homepage blocks, purifikácia beyond GvHD/membrane piles,
-   blank-hints, tooling; dialyza beyond #65/#67/#70/#82/#94;
-   lectures beyond #77/#95).
+   listu (lectures beyond #77/#95: author-list commas / `HorkýTran`
+   typo; dialyza beyond #65/#67/#70/#82/#94; purifikácia cell-gloss
+   residual beyond #71/#96; blank-hints, tooling).
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #95 lecture spol. s r.o.)
+- Codex: `.codex/handoffs/` (loop #96 homepage synonym piles)
 - Audit: `.audit.md` Beh #100
 
 ## Ďalší príkaz
