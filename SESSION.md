@@ -1,28 +1,25 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #76)
+Aktualizované: 2026-11-06 (loop iterácia #77)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `8e4d00f` (docs tip nasleduje)
+HEAD: `86c100a` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (USG gel Latinism → nanášanie; mimo tip-SHA
-  privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
+- Product ship (lecture Czech/Latin `suplementá` → SK `suplementy`;
+  mimo tip-SHA privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
   ľadvina+KTx piles #69 / dialyza centre/membrane/cykler #70 /
   purifikácia očisťovanie/membrane #71 / nefrologia CKD/AKI #72 /
   USG ultrasonografické #73 / nefamb ESKD dual acronym #74 /
-  IgAN residual ESRD→ESKD #75):
-  - `files/usgo.html` + `segments/usgo.html`:
-    `aplikáciu gélu` → `nanášanie gélu`;
-    `Aplikácia gélu` / `sa aplikuje špeciálny gél` →
-    `Nanášanie gélu` / `sa nanáša špeciálny gél`
-    (zhoda s úvodným `nanáša na brucho gél`; nie #73 synonym pile)
-  - `tools/scan-patient-copy.ps1`: tri pravidlá gel Latinism; README
-  - Sync `files/` aj `segments/` (homepage include)
+  IgAN residual ESRD→ESKD #75 / USG gel aplikácia→nanášanie #76):
+  - `blocks/lectures.sk.php`: caption `suplementá` → `suplementy`
+  - `blocks/foazosszu.sk.php`: `Suplementá dodávam` → `Suplementy dodávam`
+  - `tools/scan-patient-copy.ps1`: pravidlo `suplementá`; README
+  - Lectures sú len v `blocks/` (žiadny files/segments mirror)
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -31,37 +28,37 @@ HEAD: `8e4d00f` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / nefrologia /
-    lectures / ipvrm / nefamb synonym piles (#68) /
+    ipvrm / nefamb synonym piles (#68) /
     purifikacia GvHD / dialyza dwell time / dialyza-transplant EN gloss /
     ľadvina+KTx piles / dialyza centre/membrane/cykler piles /
     purifikácia očisťovanie/membrane piles / nefrologia CKD/AKI piles /
     USG ultrasonografické piles / nefamb ESKD dual (#74) /
-    IgAN residual ESRD→ESKD (#75)
+    IgAN residual ESRD→ESKD (#75) / USG gel nanášanie (#76)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
-  - Lecture caption `suplementá` (kandidát #77) a nefamb `s cieľom`
-    ponechané v tomto loope (jeden coherent ship)
+  - nefamb `s cieľom` (a IgAN `s cieľom`) ponechané v tomto loope
+    (jeden coherent ship; kandidát #78)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; odstránený len Latinizmus
-  `aplikácia/aplikuje` pri géli v prospech pacientskyho `nanášanie/nanáša`.
+- Medicínsky obsah **nezmenený**; odstránený len Czech/Latin plurál
+  `suplementá` v prospech SK `suplementy`.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `8e4d00f`; post-commit SFTP nahral `files/usgo.html` +
-  `segments/usgo.html` (tools v deployignore); `deploy.ps1 -Apply`
+- Commit `86c100a`; post-commit SFTP nahral `blocks/lectures.sk.php` +
+  `blocks/foazosszu.sk.php` (tools v deployignore); `deploy.ps1 -Apply`
   0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/usgo` `/nefamb` `/nefrologia`
   `/dialyza` `/transplantacia` `/privacy` `/terms` `/purifikacia` → 200 +
   HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/usgo` + `/`: `Nanášanie gélu` / `sa nanáša špeciálny gél`
-  OK; staré `Aplikácia`/`aplikuje` neprítomné
-- GHA Deploy `42142937027` success (rsync skip)
+- Produkcia `/`: `suplementy` + `Suplementy dodávam` OK; staré
+  `suplementá`/`Suplementá` neprítomné
+- GHA Deploy `42143414610` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -193,13 +190,16 @@ HEAD: `8e4d00f` (docs tip nasleduje)
   Synonym piles: `Ultrazvukové (ultrasonografické)` → `Ultrazvukové`;
   `Ultrazvukové, teda ultrasonografické (USG)` → `Ultrazvukové (USG)`
   (akronym USG ponechať; nefamb `ultrasonografia` ako substantívum nie
-  je ten istý pile). Pacientsky Latinizmus pri géli:
+  je ten istý pile).   Pacientsky Latinizmus pri géli:
   `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél` →
   `Nanášanie gélu` / `nanášanie gélu` / `sa nanáša` (zhoda s úvodným
   `nanáša na brucho gél`; nie synonym pile ultrasonografické).
   Sync `files/usgo.html` aj `segments/usgo.html`
   (úvodný odsek `odpovedá` / `vyšetrovanie` je len vo `files/`;
   gel step je v oboch).
+  Lecture UI: Czech/Latin plurál `suplementá` → SK `suplementy`
+  (`blocks/lectures.sk.php` caption + `blocks/foazosszu.sk.php`
+  „Suplementy dodávam…“; lectures len v `blocks/`).
 - Pacientsky/UI: EN *visualization* → `zobrazenie` (nie `vizualizáciu`);
   `adekvátneho odberu` → `správneho odberu` (v pacientskom texte;
   odbornú „adekvátnosť dialýzy" nemenit́ bez dôvodu).
@@ -280,7 +280,7 @@ HEAD: `8e4d00f` (docs tip nasleduje)
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #77)
+## Ďalší fokus (loop #78)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -298,15 +298,16 @@ HEAD: `8e4d00f` (docs tip nasleduje)
    USG ultrasonografické piles/
    nefamb ESKD dual acronym (#74)/
    IgAN residual ESRD→ESKD (#75)/
-   práve-shipnutý USG gel aplikácia→nanášanie (#76); ďalší verified
-   patient-copy/a11y/tooling (kandidáti: lecture caption `suplementá` →
-   `suplementy`; nefamb `s cieľom` / non-pile kalky mimo #68). Spustiť
-   `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
+   USG gel aplikácia→nanášanie (#76)/
+   práve-shipnutý lecture `suplementá`→`suplementy` (#77); ďalší verified
+   patient-copy/a11y/tooling (kandidát: nefamb `s cieľom` → priame
+   `aby …` / non-pile kalky mimo #68; IgAN `s cieľom` rovnaký rad).
+   Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #76 USG gel nanášanie)
-- Audit: `.audit.md` Beh #87
+- Codex: `.codex/handoffs/` (loop #77 lecture suplementy)
+- Audit: `.audit.md` Beh #88
 
 ## Ďalší príkaz
 
