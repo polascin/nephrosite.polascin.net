@@ -1,47 +1,49 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #64)
+Aktualizované: 2026-11-06 (loop iterácia #65)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `23ac8a3` (docs tip nasleduje)
+HEAD: `c406b84` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (homepage dative + tooling; mimo tip-path a mimo
-  práve-shipnutý privacy/terms/cookie/intro-Amazon/Lipton-genitive/
-  Lipton-literary-wording):
-  - `blocks/ns.sk.php`: `všeobecne medicíne` → `všeobecnej medicíne`
-    (zhoda rodu/pádu s `internej medicíne`)
-  - `tools/scan-patient-copy.ps1`: pravidlá `všeobecne medicíne` +
-    SESSION tip-path lessons ešte chýbajúce v rulesete
-    (`pochádzajúcimi s`, `prispôsobenie životného`,
-    `prispôsobeniu liekov`, `zabezpečenie hygieny potravín`,
-    `v rámci glomerul`, `pre ľudia`, `umožnilo prenos`); README poznámka
+- Product ship (redundantné EN glosses + tooling; mimo tip-SHA privacy/
+  terms/cookie/intro-Amazon/Lipton/homepage-dative; nová trieda defectu
+  paralelne s `darcu (donora)`):
+  - `files|segments/dialyza.html`: `chorobnosť (morbidity)` /
+    `úmrtnosť (mortality)` → `chorobnosť` / `úmrtnosť`
+  - `files|segments/transplantacia.html`: `odmietnutie orgánu (rejekcia)`
+    → `odmietnutie orgánu`
+  - `tools/scan-patient-copy.ps1`: pravidlá `(morbidity)`, `(mortality)`,
+    `orgánu (rejekcia)`; README poznámka
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
   - Lipton genitív `Liptona` a literary wording (`vziať`/`takisto`/`na to`)
+  - Homepage dative `všeobecnej medicíne`
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / IgAN / USG / nefamb /
-    lectures / dialyza / transplant / ipvrm / purifikacia / nefrologia
-    (žiadny tip churn)
+    lectures / ipvrm / purifikacia / nefrologia (žiadny tip churn)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
+- Medicínske fakty (HDF vs chorobnosť/úmrtnosť) **nezmenené**; odstránené
+  len zbytočné EN glossy vedľa už slovenských termínov.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `23ac8a3`; post-commit SFTP nahral `blocks/ns.sk.php`
+- Commit `c406b84`; post-commit SFTP nahral dialyza/transplant files+segments
   (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
-- Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/lipton-tx`
-  `/privacy` `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo`
-  `/transplantacia` `/purifikacia` → 200 + HSTS + CSP (enforced stále s
+- Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/dialyza`
+  `/transplantacia` `/privacy` `/terms` `/nefrologia` `/nefamb` `/usgo`
+  `/purifikacia` `/lipton-tx` → 200 + HSTS + CSP (enforced stále s
   `'unsafe-inline'`)
-- Produkcia `/`: `všeobecnej medicíne` OK; staré `všeobecne medicíne`
+- Produkcia `/dialyza`: `chorobnosť a úmrtnosť` OK; `morbidity`/`mortality`
+  neprítomné; `/transplantacia`: `odmietnutie orgánu,` OK; `rejekcia`
   neprítomné
-- GHA Deploy `42135777717` success (rsync skip)
+- GHA Deploy `42136612798` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -204,10 +206,14 @@ HEAD: `23ac8a3` (docs tip nasleduje)
   `takisto` (nie `tak isto`), `na to` (nie jednoslovné `nato` pred `na`).
 - Homepage UI (`blocks/ns.sk.php`): datívna zhoda `všeobecnej medicíne`
   (nie príslovka `všeobecne medicíne`; paralelné s `internej medicíne`).
+- Pacientsky EN gloss: zbytočné `(morbidity)` / `(mortality)` vedľa
+  `chorobnosť` / `úmrtnosť` a `(rejekcia)` vedľa `odmietnutie orgánu`
+  (rovnaká trieda ako `darcu (donora)` → `darcu`). Medicínsky obsah
+  nezmeniť.
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #65)
+## Ďalší fokus (loop #66)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -217,14 +223,14 @@ HEAD: `23ac8a3` (docs tip nasleduje)
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
    non-tip-path ship mimo práve-shipnutý privacy/terms/cookie/intro-Amazon/
-   Lipton-genitive/Lipton-literary-wording/homepage-dative; kandidát: overený
+   Lipton/homepage-dative/EN-gloss dialyza-transplant; kandidát: overený
    patient-copy defect mimo tip path alebo ďalší tooling. Spustiť
    `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #64 homepage dative + patient-copy scan)
-- Audit: `.audit.md` Beh #75
+- Codex: `.codex/handoffs/` (loop #65 EN gloss + patient-copy scan)
+- Audit: `.audit.md` Beh #76
 
 ## Ďalší príkaz
 
