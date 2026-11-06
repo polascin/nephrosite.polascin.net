@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #87)
+Aktualizované: 2026-11-06 (loop iterácia #88)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `32a969c` (docs tip nasleduje)
+HEAD: `eeef71f` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (IgAN ET-1 upregulation calque; mimo tip-SHA privacy/terms/cookie/
+- Product ship (transplant survival wording; mimo tip-SHA privacy/terms/cookie/
   intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -21,18 +21,14 @@ HEAD: `32a969c` (docs tip nasleduje)
   USG v reálnom čase→okamžite #81 / dialýza online HDF #82 /
   ipvrm priebežne #83 / IgAN glomerular hypertenzia #84 /
   IgAN kaukazský→európsky pôvod #85 /
-  IgAN paradigme→modeli liečby #86):
-  - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `regulácia endotelínu-1` → `zvýšená tvorba endotelínu-1`;
-    `regulácii endotelínovej kaskády a aktivácii endotelínových receptorov`
-    → `aktivácii endotelínovej kaskády a endotelínových receptorov`;
-    `lokálne reguluje aj endotelín-1`
-    → `lokálne zvyšuje aj tvorba endotelínu-1`
-  - Dôvod: EN *upregulation* nesprávne ako neutrálna „regulácia“;
-    klinicky presné „zvýšená tvorba“ (pathophysiology odsek; #84
-    už opravilo hypertenziu v tom istom odseku, toto je distinct
-    mistranslation; distance OK po #85/#86)
-  - `tools/scan-patient-copy.ps1`: 3 pravidlá; README
+  IgAN paradigme→modeli liečby #86 /
+  IgAN ET-1 regulácia→zvýšená tvorba #87):
+  - `files/transplantacia.html` + `segments/transplantacia.html`:
+    `majú dlhšiu dobu dožitia` → `majú dlhšie prežívanie`
+  - Dôvod: „doba dožitia“ je demografický register (life expectancy);
+    nadpis výhody už hovorí „Dlhšie prežívanie“; pacientsky survival
+    wording musí sedieť (mimo IgAN pathophysiology)
+  - `tools/scan-patient-copy.ps1`: 2 pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -41,18 +37,22 @@ HEAD: `32a969c` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / nefrologia /
-    dialyza synonym piles (#65–#86) /
+    dialyza synonym piles (#65–#87) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
     IgAN glomerular hypertenzia (#84) /
     IgAN európsky pôvod (#85) /
-    IgAN súčasnom modeli liečby (#86)
+    IgAN súčasnom modeli liečby (#86) /
+    IgAN ET-1 zvýšená tvorba (#87)
+  - Transplant `preferovanou možnosťou liečby` ponechané (soft #89)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
+  - nefamb `glomerulovej filtračnej rýchlosti (GFR)` je zámerná forma
+    (loop #68 rozhodnutie; nie `glomerulárnej`)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: wording upregulation/tvorby ET-1 len; bez zmeny
+- Medicínsky obsah: wording survival/dožitia len; bez zmeny
   liečebných odporúčaní.
 
 ## Overené na produkcii
@@ -60,16 +60,15 @@ HEAD: `32a969c` (docs tip nasleduje)
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `32a969c`; post-commit SFTP nahral `segments/igan.html` +
-  `IgAN.sk.html` (tools v deployignore); `deploy.ps1 -Apply` 0 upload;
-  smoke direct 200
+- Commit `eeef71f`; post-commit SFTP nahral `files/transplantacia.html` +
+  `segments/transplantacia.html` (tools v deployignore); `deploy.ps1 -Apply`
+  0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `zvýšená tvorba endotelínu-1` ×1; `lokálne zvyšuje aj
-  tvorba` ×1; residual `regulácia endotelínu-1` 0; residual
-  `regulácii endotelínovej` 0; `/segments/igan.html` 403
-- GHA Deploy `42148532632` success (rsync skip)
+- Produkcia `/transplantacia` a `/`: `dlhšie prežívanie` ×2; residual
+  `dobu dožitia` 0; `/segments/transplantacia.html` 403
+- GHA Deploy `42149188203` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -148,14 +147,18 @@ HEAD: `32a969c` (docs tip nasleduje)
   (EN upregulation; loop #87). Sync oba IgAN segmenty; cascade
   `regulácii … kaskády` → `aktivácii … kaskády a endotelínových
   receptorov`; `lokálne reguluje` → `lokálne zvyšuje aj tvorba`.
+- Transplantácia výhody: `dlhšiu dobu dožitia` → `dlhšie prežívanie`
+  (loop #88; zhoda s nadpisom „Dlhšie prežívanie“; demografia vs
+  survival). Sync `files/transplantacia.html` +
+  `segments/transplantacia.html`.
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
   (GFR)` ponechať akronym kde je diagnostický.
 - Pacientsky purifikácia GvHD: `ochorenie štepu verzus hostiteľ (GvHD)`
   → `ochorenie štepu proti hostiteľovi (GvHD)` (štandardný SK).
-- Pacientsky dialýza dwell time: `čas zotrvania (dwell time)` →
-  `čas zotrvania` (EN gloss zbytočný v SK pacientskom texte).
+- Pacientsky dialýza dwell time: EN gloss `"dwell time"` pred už SK
+  `čas pôsobenia` → len `čas pôsobenia` (loop #67; scanner label).
 - Pacientsky nefamb synonym piles: `chronické ochorenie obličiek (CKD,
   chronická renálna insuficiencia)` → `chronické ochorenie obličiek
   (CKD)`; podobne AKI/ESKD dual-acronym piles.
@@ -177,7 +180,7 @@ HEAD: `32a969c` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #88)
+## Ďalší fokus (loop #89)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -206,16 +209,19 @@ HEAD: `32a969c` (docs tip nasleduje)
    IgAN glomerular hypotenzi→hypertenzi (#84)/
    IgAN `kaukazský`→`európsky pôvod` (#85)/
    IgAN `paradigme`→`modeli liečby` (#86)/
-   práve-shipnutý IgAN ET-1 `regulácia`→`zvýšená tvorba` (#87);
-   soft kandidáti: iný verified patient-copy/a11y/tooling mimo churn
-   listu (IgAN pathophysiology odsek #84/#87 už čistý; preferovať
-   iný súbor/tému).
+   IgAN ET-1 `regulácia`→`zvýšená tvorba` (#87)/
+   práve-shipnutý transplant `dobu dožitia`→`dlhšie prežívanie` (#88);
+   soft kandidáti: transplant `preferovanou možnosťou` (EN preferred);
+   nefamb `renálnych (obličkových)` / `cievny (vaskulárny)` piles
+   (distinct od #68 CKD dual); IgAN treatment
+   `v tejto populácii špecifickej populácie`; iný verified
+   patient-copy/a11y/tooling mimo churn listu.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #87 IgAN zvýšená tvorba endotelínu-1)
-- Audit: `.audit.md` Beh #98
+- Codex: `.codex/handoffs/` (loop #88 transplant dlhšie prežívanie)
+- Audit: `.audit.md` Beh #99
 
 ## Ďalší príkaz
 
