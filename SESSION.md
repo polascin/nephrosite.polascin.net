@@ -1,15 +1,15 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #96)
+Aktualizované: 2026-11-06 (loop iterácia #97)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `b3d3746` (docs tip nasleduje)
+HEAD: `b2898ab` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (homepage synonym residual; mimo tip-SHA privacy/terms/cookie/
-  intro-Amazon/Lipton/homepage-dative/
+- Product ship (lecture author-list punctuation; mimo tip-SHA privacy/terms/
+  cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
   ľadvina+KTx piles #69 / dialyza centre/membrane/cykler #70 /
@@ -30,18 +30,15 @@ HEAD: `b3d3746` (docs tip nasleduje)
   nefamb brušnú/močovým/vnútornom #92 /
   nefrologia transplant/SLE/pohodu #93 /
   dialýza residual vedeckých štúdií/doma/PD prechádzajú #94 /
-  lecture spol. s r.o. #95):
-  - `blocks/ns.sk.php`:
-    `metódam purifikácie (očisťovania) krvi` →
-    `metódam purifikácie krvi`;
-    `internej medicíne (vnútornému lekárstvu)` →
-    `internej medicíne`
-  - `purifikacia.php` meta description:
-    `purifikácie (očisťovania)` → `purifikácie`
-  - Dôvod: synonym piles na homepage (#92 ich zámerne nechalo;
-    #71 čistilo iba files/segments purifikácia); homepage blocks boli
-    soft kandidát
-  - `tools/scan-patient-copy.ps1`: 2 pravidlá; README
+  lecture spol. s r.o. #95 /
+  homepage synonym piles #96):
+  - `blocks/lectures.sk.php`:
+    glued `Karel HorkýTran` → `Karel Horký` (Martinus schema.org:
+    Widimský, Widimský jr., Horký, Monhart; `Tran` nie je autor);
+    commas medzi menami vo všetkých `Autori:` zoznamoch;
+    `X kolektív` → `X a kolektív` / `A, B a kolektív`
+  - Dôvod: soft kandidát #97; overené Martinus uItem=111412
+  - `tools/scan-patient-copy.ps1`: 1 pravidlo `HorkýTran`; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -50,7 +47,7 @@ HEAD: `b3d3746` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / dialyza synonym piles /
-    nefamb synonym piles (#65–#95) /
+    nefamb synonym piles (#65–#96) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
     IgAN piles (#84–#90) /
     transplant `dlhšie prežívanie` (#88) /
@@ -58,7 +55,8 @@ HEAD: `b3d3746` (docs tip nasleduje)
     nefrologia CKD/AKI `resp.` piles (#72) /
     nefrologia residual transplant/SLE/pohodu (#93) /
     dialýza residual vedeckých štúdií/doma/PD prechádzajú (#94) /
-    lecture `spol. s r.o.` (#95)
+    lecture `spol. s r.o.` (#95) /
+    homepage synonym piles (#96)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` / dialyzátor vs prístroj loose
@@ -66,25 +64,25 @@ HEAD: `b3d3746` (docs tip nasleduje)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `Katetrizácia (zavedenie dialyzačného katétra)` ponechané
   - Meta/homepage standalone `internej medicíne` ponechané (iba synonym
-    pile odstránený)
-  - Lecture author-list commas / `HorkýTran` (kandidát #97)
+    pile odstránený v #96)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: bez zmeny; len synonym piles na homepage/meta.
+- Medicínsky obsah: bez zmeny; len interpunkcia zoznamov autorov kníh.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `b3d3746`; post-commit SFTP nahral `blocks/ns.sk.php`,
-  `purifikacia.php` (tools v deployignore); `deploy.ps1 -Apply` 0 upload;
+- Commit `b2898ab`; post-commit SFTP nahral `blocks/lectures.sk.php`
+  (tools v deployignore); `deploy.ps1 -Apply` 0 upload;
   smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: old synonym piles 0; `metódam purifikácie krvi` ×1;
-  subtitle match OK; `/purifikacia` meta `Metódy purifikácie krvi`
-- GHA Deploy `42153235953` success (rsync skip expected)
+- Produkcia `/` (lectures include): `HorkýTran` 0;
+  `Václav Monhart, Jiří Widimský, Jiří Widimský jr., Karel Horký` ×1;
+  `Teplan a kolektív` ×2; old space-only Monhart list 0
+- GHA Deploy `42153684072` success (rsync skip expected)
 
 ## Poznámky k toolingu
 
@@ -211,6 +209,10 @@ HEAD: `b3d3746` (docs tip nasleduje)
   `internej medicíne (vnútornému lekárstvu)` → `internej medicíne`.
   Sync `blocks/ns.sk.php` + `purifikacia.php` meta. Distinct od #71
   (files/segments) a #92 (nefamb `vnútornom lekárstve (internej…)`).
+- Lecture author lists (loop #97): glued `HorkýTran` → `Horký`
+  (Martinus uItem=111412 schema.org: žiadny autor Tran); commas vo
+  všetkých `Autori:` zoznamoch; `kolektív` → `a kolektív`. Sync len
+  `blocks/lectures.sk.php` (homepage include cez `index.php`).
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -240,7 +242,7 @@ HEAD: `b3d3746` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #97)
+## Ďalší fokus (loop #98)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -279,16 +281,17 @@ HEAD: `b3d3746` (docs tip nasleduje)
    nefrologia residual transplant/SLE/pohodu (#93)/
    dialýza residual vedeckých štúdií/doma/PD prechádzajú (#94)/
    lecture `spol. s.r.o.`→`spol. s r.o.` (#95)/
-   práve-shipnutý homepage synonym piles (#96);
+   homepage synonym piles (#96)/
+   práve-shipnutý lecture author commas / `HorkýTran` (#97);
    soft kandidáti: iný verified patient-copy/a11y/tooling mimo churn
-   listu (lectures beyond #77/#95: author-list commas / `HorkýTran`
-   typo; dialyza beyond #65/#67/#70/#82/#94; purifikácia cell-gloss
-   residual beyond #71/#96; blank-hints, tooling).
+   listu (dialyza beyond #65/#67/#70/#82/#94; purifikácia cell-gloss
+   residual beyond #71/#96; lectures beyond #77/#95/#97; blank-hints,
+   tooling).
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #96 homepage synonym piles)
+- Codex: `.codex/handoffs/` (loop #97 lecture author commas / HorkýTran)
 - Audit: `.audit.md` Beh #100
 
 ## Ďalší príkaz
