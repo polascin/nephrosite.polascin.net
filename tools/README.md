@@ -82,7 +82,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-patient-copy.ps
 `Amazon-e`, `Lipton-a`, `v prevažnej väčšine`, `mŕtveho darcu`, `cycler`,
 `zobrať do úvahy`, `tak isto`, `nato na`, `všeobecne medicíne`,
 `prispôsobenie životného`, `pre ľudia`, `(morbidity)`, `(mortality)`,
-`orgánu (rejekcia)`, `graft-versus-host disease`, …). Preskakuje
+`orgánu (rejekcia)`, `graft-versus-host disease`, `dwell time`, …). Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
 Lipton `vizualizácie`. Exit code 1 pri náleze.
