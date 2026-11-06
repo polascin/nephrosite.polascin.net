@@ -79,6 +79,9 @@ $rules = @(
     @{ Pattern = 'zdieľajú s'; Label = 'zdieľajú s (→ odovzdajú/pošlú)' }
     @{ Pattern = 'v dôsledku rôznych príčin'; Label = 'v dôsledku rôznych príčin (→ pre rôzne príčiny)' }
     @{ Pattern = '\bakceptor\b'; Label = 'akceptor (→ príjemca)' }
+    @{ Pattern = 'zobrať do úvahy'; Label = 'zobrať do úvahy (→ vziať do úvahy)' }
+    @{ Pattern = '\btak isto\b'; Label = 'tak isto (→ takisto)' }
+    @{ Pattern = '\bnato na\b'; Label = 'nato na (→ na to na)' }
 )
 
 function Get-ScanFiles {
