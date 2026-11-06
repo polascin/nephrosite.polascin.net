@@ -82,6 +82,14 @@ $rules = @(
     @{ Pattern = 'zobrať do úvahy'; Label = 'zobrať do úvahy (→ vziať do úvahy)' }
     @{ Pattern = '\btak isto\b'; Label = 'tak isto (→ takisto)' }
     @{ Pattern = '\bnato na\b'; Label = 'nato na (→ na to na)' }
+    @{ Pattern = 'všeobecne medicíne'; Label = 'všeobecne medicíne (→ všeobecnej medicíne)' }
+    @{ Pattern = 'pochádzajúcimi s\b'; Label = 'pochádzajúcimi s (→ z)' }
+    @{ Pattern = 'prispôsobenie životného'; Label = 'prispôsobenie životného (→ úpravu)' }
+    @{ Pattern = 'prispôsobeniu liekov'; Label = 'prispôsobeniu liekov (→ úprave)' }
+    @{ Pattern = 'zabezpečenie hygieny potravín'; Label = 'zabezpečenie hygieny potravín (→ hygiena pri)' }
+    @{ Pattern = 'v rámci glomerul'; Label = 'v rámci glomerul* (→ v glomeruloch)' }
+    @{ Pattern = 'pre ľudia\b'; Label = 'pre ľudia (→ pre ľudí)' }
+    @{ Pattern = 'umožnilo prenos'; Label = 'umožnilo prenos (→ umožnil)' }
 )
 
 function Get-ScanFiles {

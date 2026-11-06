@@ -80,6 +80,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-patient-copy.ps
 `scan-patient-copy.ps1` hľadá high-confidence SESSION wording regresie
 (bohemizmy/kalky už opravené v tip-path textoch: `Zahrňuje`, `nahradzuj*`,
 `Amazon-e`, `Lipton-a`, `v prevažnej väčšine`, `mŕtveho darcu`, `cycler`,
-`zobrať do úvahy`, `tak isto`, `nato na`, …). Preskakuje
+`zobrať do úvahy`, `tak isto`, `nato na`, `všeobecne medicíne`,
+`prispôsobenie životného`, `pre ľudia`, …). Preskakuje
 privacy/terms/cookie-banner a `.kilo/` worktrees; allowlist: literárny
 Lipton `jedinec`, ABPM názov, Lipton `vizualizácie`. Exit code 1 pri náleze.

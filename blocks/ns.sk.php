@@ -8,7 +8,7 @@
 		<div class="ns-panel-subtitle">
 			Stránky venované nefrológii, dialýze, metódam purifikácie (očisťovania) krvi,
 			internej medicíne (vnútornému lekárstvu),
-			ale aj všeobecne medicíne a zdravotníctvu.
+			ale aj všeobecnej medicíne a zdravotníctvu.
 		</div>
 	</a>
 </div>
