@@ -1,16 +1,15 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #83)
+Aktualizované: 2026-11-06 (loop iterácia #84)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `b6ecdbb` (docs tip nasleduje)
+HEAD: `77aee0c` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (ipvrm výučba: vedomé rozšírenie scopy mimo patient USG
-  Roots; `v reálnom čase` → `priebežne` pre sledovanie pokroku; mimo tip-SHA
-  privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
+- Product ship (IgAN patofyziológia; mimo tip-SHA privacy/terms/cookie/
+  intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
   ľadvina+KTx piles #69 / dialyza centre/membrane/cykler #70 /
@@ -19,16 +18,14 @@ HEAD: `b6ecdbb` (docs tip nasleduje)
   IgAN residual ESRD→ESKD #75 / USG gel aplikácia→nanášanie #76 /
   lecture suplementá→suplementy #77 / nefamb/IgAN s cieľom→aby #78 /
   IgAN genetiky/prospieť #79 / IgAN smernice→usmernenia #80 /
-  USG v reálnom čase→okamžite #81 / dialýza online HDF #82):
-  - `ipvrm.htm`: 2× `v reálnom čase` → `priebežne` (sledovanie/hodnotenie
-    pokroku pri výučbe; nie USG „okamžite“ na monitore)
-  - Rovnaký odsek: genitív `zvládnutiu dialýzy a nefrológii` →
-    `nefrológie`
-  - `tools/scan-patient-copy.ps1`: default Roots + `ipvrm.htm` (súbor
-    v koreni); label `okamžite / priebežne`; README
-- Prečo ipvrm teraz: soft kandidát z #82; patient Roots už čisté;
-  kalk zostával len vo výučbovom Word HTML mimo scanneru; rozšírenie
-  Roots zabráni regresii.
+  USG v reálnom čase→okamžite #81 / dialýza online HDF #82 /
+  ipvrm priebežne #83):
+  - `segments/igan.html` + `segments/IgAN.sk.html`:
+    `glomerulárnu hypotenziu` → `glomerulárnu hypertenziu`;
+    `glomerulárnej hypotenzie` → `glomerulárnej hypertenzie`
+  - Klinický dôvod: ET-1 a Ang II spôsobujú intraglomerulárnu
+    hypertenziu (nie hypotenziu); chybný preklad v IgAN texte
+  - `tools/scan-patient-copy.ps1`: 2 pravidlá; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -37,30 +34,34 @@ HEAD: `b6ecdbb` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / nefrologia /
-    dialyza synonym piles (#65–#82) /
-    USG okamžite (#81; patient; iný kontext ako ipvrm priebežne)
+    dialyza synonym piles (#65–#83) /
+    USG okamžite (#81) / ipvrm priebežne (#83)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
+  - Soft kandidáti na #85: IgAN `kaukazský pôvod`; `V súčasnej paradigme`;
+    `regulácia endotelínu-1` (EN upregulation)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; len výučbový kalk a genitív v ipvrm.
+- Medicínsky obsah: opravená chybná terminológia (hypo→hyper); bez
+  zmeny liečebných odporúčaní.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-  (vrátane ipvrm.htm v Roots)
-- Commit `b6ecdbb`; post-commit SFTP nahral `ipvrm.htm`
-  (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
+- Commit `77aee0c`; post-commit SFTP nahral `segments/igan.html` +
+  `IgAN.sk.html` (tools v deployignore); `deploy.ps1 -Apply` 0 upload;
+  smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/ipvrm.htm`: `priebežne` ×2; `v reálnom čase` 0;
-  `nefrológie. Virtuálna` OK
-- GHA Deploy `42146467194` success (rsync skip)
+- Produkcia `/`: `glomerulárnu hypertenziu` ×1;
+  `glomerulárnej hypertenzie` ×1; residual hypotenzi* 0;
+  `/segments/igan.html` 403
+- GHA Deploy `42147070053` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -126,6 +127,10 @@ HEAD: `b6ecdbb` (docs tip nasleduje)
   `online hemodiafiltrácia` (ol-HDF; „takzvanej“ zbytočné; loop #82).
 - IgAN research: neúplné NP `genetických a biomarkerov` → `genetiky a
   biomarkerov`; kalk `mať prospech z` → `prospieť` + nominatív.
+- IgAN patofyziológia ET-1/Ang II: `glomerulárn* hypotenz*` →
+  `hypertenz*` (intraglomerulárna hypertenzia; loop #84). Sync
+  `segments/igan.html` + `segments/IgAN.sk.html` (live include
+  `igan.html`; žiadny `files/` mirror).
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -155,7 +160,7 @@ HEAD: `b6ecdbb` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #84)
+## Ďalší fokus (loop #85)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -180,14 +185,17 @@ HEAD: `b6ecdbb` (docs tip nasleduje)
    IgAN `smernice`→`usmernenia` (#80)/
    USG `v reálnom čase`→`okamžite` (#81)/
    dialýza `takzvanej online HDF`→`online hemodiafiltrácia` (#82)/
-   práve-shipnutý ipvrm `v reálnom čase`→`priebežne` (+ genitív) (#83);
-   ďalší verified patient-copy/a11y/tooling mimo churn listu.
+   ipvrm `v reálnom čase`→`priebežne` (#83)/
+   práve-shipnutý IgAN glomerular hypotenzi→hypertenzi (#84);
+   soft kandidáti: IgAN `kaukazský pôvod` (EN Caucasian);
+   `V súčasnej paradigme`; `regulácia endotelínu-1` (upregulation);
+   alebo iný verified patient-copy/a11y/tooling mimo churn listu.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #83 ipvrm priebežne)
-- Audit: `.audit.md` Beh #94
+- Codex: `.codex/handoffs/` (loop #84 IgAN glomerular hypertenzia)
+- Audit: `.audit.md` Beh #95
 
 ## Ďalší príkaz
 
