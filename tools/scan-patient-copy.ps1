@@ -153,6 +153,7 @@ $rules = @(
     @{ Pattern = 'spol\. s\.r\.o\.'; Label = 'spol. s.r.o. (→ spol. s r.o.; Slovak company form)' }
     @{ Pattern = 'purifikácie \(očisťovania\)'; Label = 'purifikácie (očisťovania) synonym pile (→ purifikácie)' }
     @{ Pattern = 'internej medicíne \(vnútornému lekárstvu\)'; Label = 'internej medicíne (vnútornému lekárstvu) synonym pile (→ internej medicíne)' }
+    @{ Pattern = 'HorkýTran'; Label = 'HorkýTran (→ Horký; glued surname + missing author commas)' }
 )
 
 function Get-ScanFiles {

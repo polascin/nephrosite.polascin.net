@@ -88,7 +88,7 @@
 					<br>
 					<a href="https://www.martinus.sk/?uItem=898587&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Memorix histologie - 3. vydanie.</strong>
-						<em>Autori: Ivan Varga Radovan Hudák Jan Balko Zbyněk Tonar</em>
+						<em>Autori: Ivan Varga, Radovan Hudák, Jan Balko, Zbyněk Tonar</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
@@ -100,7 +100,7 @@
 					<br>
 					<a href="https://www.martinus.sk/?uItem=848607&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Lekárska fyziológia.</strong>
-						<em>Autori: Kamil Javorka kolektív</em>
+						<em>Autori: Kamil Javorka a kolektív</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
@@ -112,13 +112,13 @@
 					<br>
 					<a href="https://www.martinus.sk/?uItem=779253&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Ultrasonografická anatómia 1.</strong>
-						<em>Autori: Ingrid Hodorová Květuše Lovásová Silvia Rybárová Jozef Mihalik Zuzana Kováčová Maroš Rudnay Božena Palovičová-Nováková</em>
+						<em>Autori: Ingrid Hodorová, Květuše Lovásová, Silvia Rybárová, Jozef Mihalik, Zuzana Kováčová, Maroš Rudnay, Božena Palovičová-Nováková</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=833153&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Rýchle fakty: Ochorenia obličiek.</strong>
-						<em>Autori: Ajay Singh Jeremy Levy Charles Pusey</em>
+						<em>Autori: Ajay Singh, Jeremy Levy, Charles Pusey</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 				</div>
@@ -177,19 +177,19 @@
 				<div>
 					<a href="https://www.martinus.sk/?uItem=661973&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Ošetřovatelství v nefrologii.</strong>
-						<em>Autori: Jana Haluzíková Bohdana Břegová</em>
+						<em>Autori: Jana Haluzíková, Bohdana Břegová</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=77371&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Akutní poškození a selhání ledvin v klinické medicíně.</strong>
-						<em>Autori: Vladimír Teplan kolektív</em>
+						<em>Autori: Vladimír Teplan a kolektív</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=1927193&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Nefrologie kritických stavů.</strong>
-						<em>Autori: Josef Zadražil Nadežda Petejová</em>
+						<em>Autori: Josef Zadražil, Nadežda Petejová</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
@@ -207,19 +207,19 @@
 					<br>
 					<a href="https://www.martinus.sk/?uItem=112393&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Nefropatie v ultrazvukovém a histologickém obraze.</strong>
-						<em>Autori: Karel Krejčí Josef Zadražil Tomáš Tichý</em>
+						<em>Autori: Karel Krejčí, Josef Zadražil, Tomáš Tichý</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=208500&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Klinická nefrologie.</strong>
-						<em>Autori: Vladimír Tesař Ondřej Viklický kolektív</em>
+						<em>Autori: Vladimír Tesař, Ondřej Viklický a kolektív</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=120668&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Praktická nefrologie.</strong>
-						<em>Autori: Vladimír Teplan kolektív</em>
+						<em>Autori: Vladimír Teplan a kolektív</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
@@ -231,13 +231,13 @@
 					<br>
 					<a href="https://www.martinus.sk/?uItem=34104&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Ošetrovateľské štandardy v nefrológii.</strong>
-						<em>Autori: Ľubica Kontrová Viera Borbélyová kolektív</em>
+						<em>Autori: Ľubica Kontrová, Viera Borbélyová a kolektív</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=111412&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Antagonisté renin-angiotenzin-aldosteronového systému.</strong>
-						<em>Autori: Václav Monhart Jiří Widimský Jiří Widimský jr. Karel HorkýTran</em>
+						<em>Autori: Václav Monhart, Jiří Widimský, Jiří Widimský jr., Karel Horký</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 				</div>
@@ -296,55 +296,55 @@
 				<div>
 					<a href="https://www.martinus.sk/?uItem=837313&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						 <strong>Transplantace orgánů v klinické praxi.</strong>
-						 <em>Autori: Mariana Wohlfahrtová Ondřej Viklický Robert Lischke</em>
+						 <em>Autori: Mariana Wohlfahrtová, Ondřej Viklický, Robert Lischke</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=121919&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Transplantace ledviny v klinické praxi.</strong>
-						<em>Autori: Ondřej Viklický kolektív</em>
+						<em>Autori: Ondřej Viklický a kolektív</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=61198&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Transplantace ledvin od nebijících dárců.</strong>
-						<em>Autori: Vladislav Třeška Daniel Hasman Tomáš Reischig Ondřej Hes</em>
+						<em>Autori: Vladislav Třeška, Daniel Hasman, Tomáš Reischig, Ondřej Hes</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=197597&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Dárci orgánů.</strong>
-						<em>Autori: Eva Kieslichová Eva Pokorná Milan Ročeň kolektív</em>
+						<em>Autori: Eva Kieslichová, Eva Pokorná, Milan Ročeň a kolektív</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=629817&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Odběry orgánů k transplantaci Odbery orgánov na transplantácie.</strong>
-						<em>Autori: Peter Baláž Július Janek Miloš Adamec kolektív</em>
+						<em>Autori: Peter Baláž, Július Janek, Miloš Adamec a kolektív</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=1578107&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Vybrané doporučené postupy v nefrologii.</strong>
-						<em>Autori: Romana Ryšavá Ondřej Viklický</em>
+						<em>Autori: Romana Ryšavá, Ondřej Viklický</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=636965&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						 <strong>Chronic Kidney Disease, Dialysis, and Transplantation.</strong>
-						 <em>Autori: Jonathan Himmelfarb T. Alp Ikizler</em>
+						 <em>Autori: Jonathan Himmelfarb, T. Alp Ikizler</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=188240&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						 <strong>Clinical Decisions in Nephrology, Hypertension and Kidney Transplantation.</strong>
-						 <em>Autori: Edgar V. Lerma Mitchell Rosner</em>
+						 <em>Autori: Edgar V. Lerma, Mitchell Rosner</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 					<br>
 					<a href="https://www.martinus.sk/?uItem=193977&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Pocket Companion to Brenner and Rector's The Kidney.</strong>
-						<em>Autori: Michael R. Clarkson Ciara Magee Barry M. Brenner</em>
+						<em>Autori: Michael R. Clarkson, Ciara Magee, Barry M. Brenner</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 				</div>
@@ -470,7 +470,7 @@
 					<br>
 					<a href="https://www.martinus.sk/?uItem=42716&z=H8DMXS&utm_source=z%3DH8DMXS&utm_medium=url&utm_campaign=partner" target="_blank" rel="noopener noreferrer">
 						<strong>Vyšetřovací metody v nefrologii a jejich klinická aplikace.</strong>
-						<em>Autori: Ondřej Viklický Sylvie Dusilová Sulková Ivan Rychlík</em>
+						<em>Autori: Ondřej Viklický, Sylvie Dusilová Sulková, Ivan Rychlík</em>
 						<span class="sr-only"> (otvorí sa v novom okne)</span>
 					</a>
 				</div>

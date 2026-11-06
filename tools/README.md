@@ -126,6 +126,7 @@ dialýza `vedeckého skúmania` (→ `vedeckých štúdií`),
 lecture `spol. s.r.o.` (→ `spol. s r.o.`; Slovak company form),
 homepage `purifikácie (očisťovania)` (→ `purifikácie`),
 `internej medicíne (vnútornému lekárstvu)` (→ `internej medicíne`),
+lecture `HorkýTran` (→ `Horký`; glued surname + author-list commas),
 …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje
