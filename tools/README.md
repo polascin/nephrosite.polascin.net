@@ -120,6 +120,9 @@ nefrológia `starajú sa o dlhodobú starostlivosť` (→ `zabezpečujú …`),
 `transplantačný orgán` (→ `transplantovaný orgán`),
 `lupusom erythematosus` (→ `lupus erythematosus`),
 `zdravie a pohodu` (→ `zdravie`; EN well-being calque),
+dialýza `vedeckého skúmania` (→ `vedeckých štúdií`),
+`v pohodlí domova` (→ `doma`; EN comfort-of-home),
+`roztok, ktorý absorbuje odpadové` (→ `do ktorého prechádzajú`; PD diffusion),
 …).
 Default Roots: `files`, `segments`, `blocks`, plus root teaching
 `ipvrm.htm`. Preskakuje

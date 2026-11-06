@@ -147,6 +147,9 @@ $rules = @(
     @{ Pattern = 'transplantačný orgán'; Label = 'transplantačný orgán (→ transplantovaný orgán)' }
     @{ Pattern = 'lupusom erythematosus'; Label = 'lupusom erythematosus (→ lupus erythematosus; keep Latin undeclined)' }
     @{ Pattern = 'zdravie a pohodu'; Label = 'zdravie a pohodu (→ zdravie; EN well-being calque)' }
+    @{ Pattern = 'vedeckého skúmania'; Label = 'vedeckého skúmania (→ vedeckých štúdií; awkward research calque)' }
+    @{ Pattern = 'v pohodlí domova'; Label = 'v pohodlí domova (→ doma; EN comfort-of-home calque)' }
+    @{ Pattern = 'roztok, ktorý absorbuje odpadové'; Label = 'roztok, ktorý absorbuje (→ do ktorého prechádzajú; PD diffusion)' }
 )
 
 function Get-ScanFiles {
