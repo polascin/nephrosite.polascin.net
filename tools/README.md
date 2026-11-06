@@ -93,7 +93,9 @@ nefamb synonym piles `Hypertenzia … (HT)` / `Diabetická nefropatia … (DKD)`
 `Akútne zlyhanie …, resp. akútne` /
 USG `Ultrazvukové (ultrasonografické)` /
 `teda ultrasonografické` /
-nefamb `ESKD, ESRD`, residual IgAN `(ESRD)`, …). Preskakuje
+nefamb `ESKD, ESRD`, residual IgAN `(ESRD)`,
+USG `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél`, …).
+Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
 Lipton `vizualizácie`. Exit code 1 pri náleze.

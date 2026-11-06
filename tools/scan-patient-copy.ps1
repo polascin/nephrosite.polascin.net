@@ -116,6 +116,9 @@ $rules = @(
     @{ Pattern = 'teda ultrasonografické'; Label = 'teda ultrasonografické pile (→ Ultrazvukové (USG))' }
     @{ Pattern = 'ESKD, ESRD'; Label = 'ESKD, ESRD dual acronym pile (→ ESKD)' }
     @{ Pattern = '\(ESRD\)'; Label = 'residual (ESRD) acronym (→ ESKD)' }
+    @{ Pattern = 'Aplikácia gélu'; Label = 'Aplikácia gélu (→ Nanášanie gélu)' }
+    @{ Pattern = 'aplikáciu gélu'; Label = 'aplikáciu gélu (→ nanášanie gélu)' }
+    @{ Pattern = 'sa aplikuje špeciálny gél'; Label = 'sa aplikuje špeciálny gél (→ sa nanáša)' }
 )
 
 function Get-ScanFiles {
