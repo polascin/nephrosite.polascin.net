@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #88)
+Aktualizované: 2026-11-06 (loop iterácia #89)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `eeef71f` (docs tip nasleduje)
+HEAD: `928d9c6` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (transplant survival wording; mimo tip-SHA privacy/terms/cookie/
+- Product ship (transplant EN preferred calque; mimo tip-SHA privacy/terms/cookie/
   intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -22,13 +22,13 @@ HEAD: `eeef71f` (docs tip nasleduje)
   ipvrm priebežne #83 / IgAN glomerular hypertenzia #84 /
   IgAN kaukazský→európsky pôvod #85 /
   IgAN paradigme→modeli liečby #86 /
-  IgAN ET-1 regulácia→zvýšená tvorba #87):
+  IgAN ET-1 regulácia→zvýšená tvorba #87 /
+  transplant dobu dožitia→dlhšie prežívanie #88):
   - `files/transplantacia.html` + `segments/transplantacia.html`:
-    `majú dlhšiu dobu dožitia` → `majú dlhšie prežívanie`
-  - Dôvod: „doba dožitia“ je demografický register (life expectancy);
-    nadpis výhody už hovorí „Dlhšie prežívanie“; pacientsky survival
-    wording musí sedieť (mimo IgAN pathophysiology)
-  - `tools/scan-patient-copy.ps1`: 2 pravidlá; README
+    `preferovanou možnosťou liečby` → `uprednostňovanou možnosťou liečby`
+  - Dôvod: EN preferred calque; pacientsky SK uprednostňovaná voľba;
+    záver stránky už má `najlepšou možnosťou liečby` (bez duplicity)
+  - `tools/scan-patient-copy.ps1`: 1 pravidlo; README
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -37,13 +37,17 @@ HEAD: `eeef71f` (docs tip nasleduje)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
   - privacy / terms / cookie / intro Amazon / nefrologia /
-    dialyza synonym piles (#65–#87) /
+    dialyza synonym piles (#65–#88) /
     USG okamžite (#81) / ipvrm priebežne (#83) /
     IgAN glomerular hypertenzia (#84) /
     IgAN európsky pôvod (#85) /
     IgAN súčasnom modeli liečby (#86) /
-    IgAN ET-1 zvýšená tvorba (#87)
-  - Transplant `preferovanou možnosťou liečby` ponechané (soft #89)
+    IgAN ET-1 zvýšená tvorba (#87) /
+    transplant `dlhšie prežívanie` (#88)
+  - nefamb `renálnych (obličkových)` / `cievny (vaskulárny)` ponechané
+    (soft #90; distinct od #68 CKD dual)
+  - IgAN treatment `v tejto populácii špecifickej populácie` ponechané
+    (soft #90 garbled NP)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
@@ -52,7 +56,7 @@ HEAD: `eeef71f` (docs tip nasleduje)
   - nefamb `glomerulovej filtračnej rýchlosti (GFR)` je zámerná forma
     (loop #68 rozhodnutie; nie `glomerulárnej`)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah: wording survival/dožitia len; bez zmeny
+- Medicínsky obsah: wording preferred-option len; bez zmeny
   liečebných odporúčaní.
 
 ## Overené na produkcii
@@ -60,15 +64,15 @@ HEAD: `eeef71f` (docs tip nasleduje)
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `eeef71f`; post-commit SFTP nahral `files/transplantacia.html` +
+- Commit `928d9c6`; post-commit SFTP nahral `files/transplantacia.html` +
   `segments/transplantacia.html` (tools v deployignore); `deploy.ps1 -Apply`
   0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/ipvrm.htm` `/dialyza` `/nefamb`
   `/nefrologia` `/usgo` `/transplantacia` `/privacy` `/terms`
   `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/transplantacia` a `/`: `dlhšie prežívanie` ×2; residual
-  `dobu dožitia` 0; `/segments/transplantacia.html` 403
-- GHA Deploy `42149188203` success (rsync skip)
+- Produkcia `/transplantacia` a `/`: `uprednostňovanou` ×1; residual
+  `preferovanou` 0; `/segments/transplantacia.html` 403
+- GHA Deploy `42149756385` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -151,6 +155,10 @@ HEAD: `eeef71f` (docs tip nasleduje)
   (loop #88; zhoda s nadpisom „Dlhšie prežívanie“; demografia vs
   survival). Sync `files/transplantacia.html` +
   `segments/transplantacia.html`.
+- Transplantácia úvod: `preferovanou možnosťou liečby` →
+  `uprednostňovanou možnosťou liečby` (loop #89; EN preferred calque).
+  Sync `files/transplantacia.html` + `segments/transplantacia.html`.
+  Záver stránky `najlepšou možnosťou liečby` ponechať (iný register).
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
   koncentrácií)` → `ekvilibrácia`; `ultrafiltrácia (odstránenie vody)` →
   `ultrafiltrácia` (vysvetlenie už v okolí); `glomerulárna filtrácia
@@ -180,7 +188,7 @@ HEAD: `eeef71f` (docs tip nasleduje)
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist; Roots
   vrátane root `ipvrm.htm`).
 
-## Ďalší fokus (loop #89)
+## Ďalší fokus (loop #90)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -210,18 +218,18 @@ HEAD: `eeef71f` (docs tip nasleduje)
    IgAN `kaukazský`→`európsky pôvod` (#85)/
    IgAN `paradigme`→`modeli liečby` (#86)/
    IgAN ET-1 `regulácia`→`zvýšená tvorba` (#87)/
-   práve-shipnutý transplant `dobu dožitia`→`dlhšie prežívanie` (#88);
-   soft kandidáti: transplant `preferovanou možnosťou` (EN preferred);
-   nefamb `renálnych (obličkových)` / `cievny (vaskulárny)` piles
-   (distinct od #68 CKD dual); IgAN treatment
+   transplant `dobu dožitia`→`dlhšie prežívanie` (#88)/
+   práve-shipnutý transplant `preferovanou`→`uprednostňovanou` (#89);
+   soft kandidáti: nefamb `renálnych (obličkových)` / `cievny (vaskulárny)`
+   piles (distinct od #68 CKD dual); IgAN treatment
    `v tejto populácii špecifickej populácie`; iný verified
    patient-copy/a11y/tooling mimo churn listu.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #88 transplant dlhšie prežívanie)
-- Audit: `.audit.md` Beh #99
+- Codex: `.codex/handoffs/` (loop #89 transplant uprednostňovanou)
+- Audit: `.audit.md` Beh #100
 
 ## Ďalší príkaz
 
