@@ -112,6 +112,8 @@ $rules = @(
     @{ Pattern = 'očisťovanie, čistenie'; Label = 'očisťovanie, čistenie synonym pile (→ Purifikácia alone + teda gloss)' }
     @{ Pattern = 'Chronické zlyhanie obličiek, resp\. chronická'; Label = 'CKD resp. synonym pile (→ Chronická obličková choroba)' }
     @{ Pattern = 'Akútne zlyhanie obličiek, resp\. akútne'; Label = 'AKI resp. synonym pile (→ Akútne obličkové poškodenie)' }
+    @{ Pattern = 'Ultrazvukové \(ultrasonografické\)'; Label = 'Ultrazvukové (ultrasonografické) pile (→ Ultrazvukové)' }
+    @{ Pattern = 'teda ultrasonografické'; Label = 'teda ultrasonografické pile (→ Ultrazvukové (USG))' }
 )
 
 function Get-ScanFiles {
