@@ -1,26 +1,28 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #75)
+Aktualizované: 2026-11-06 (loop iterácia #76)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `3346284` (docs tip nasleduje)
+HEAD: `8e4d00f` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (IgAN residual ESRD→ESKD; mimo tip-SHA
+- Product ship (USG gel Latinism → nanášanie; mimo tip-SHA
   privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
   ľadvina+KTx piles #69 / dialyza centre/membrane/cykler #70 /
   purifikácia očisťovanie/membrane #71 / nefrologia CKD/AKI #72 /
-  USG ultrasonografické #73 / nefamb ESKD dual acronym #74):
-  - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `konečného štádia ochorenia obličiek (ESRD)` →
-    `konečného štádia ochorenia obličiek (ESKD)`
-    (zhoda s nefamb moderným preferovaným akronymom)
-  - `tools/scan-patient-copy.ps1`: pravidlo residual `(ESRD)`; README
-  - IgAN nemá `files/` mirror; sync oboch segmentov
+  USG ultrasonografické #73 / nefamb ESKD dual acronym #74 /
+  IgAN residual ESRD→ESKD #75):
+  - `files/usgo.html` + `segments/usgo.html`:
+    `aplikáciu gélu` → `nanášanie gélu`;
+    `Aplikácia gélu` / `sa aplikuje špeciálny gél` →
+    `Nanášanie gélu` / `sa nanáša špeciálny gél`
+    (zhoda s úvodným `nanáša na brucho gél`; nie #73 synonym pile)
+  - `tools/scan-patient-copy.ps1`: tri pravidlá gel Latinism; README
+  - Sync `files/` aj `segments/` (homepage include)
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -33,31 +35,33 @@ HEAD: `3346284` (docs tip nasleduje)
     purifikacia GvHD / dialyza dwell time / dialyza-transplant EN gloss /
     ľadvina+KTx piles / dialyza centre/membrane/cykler piles /
     purifikácia očisťovanie/membrane piles / nefrologia CKD/AKI piles /
-    USG ultrasonografické piles / nefamb ESKD dual (#74)
+    USG ultrasonografické piles / nefamb ESKD dual (#74) /
+    IgAN residual ESRD→ESKD (#75)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
+  - Lecture caption `suplementá` (kandidát #77) a nefamb `s cieľom`
+    ponechané v tomto loope (jeden coherent ship)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; odstránený len starší akronym
-  `ESRD` v prospech moderného `ESKD`.
+- Medicínsky obsah **nezmenený**; odstránený len Latinizmus
+  `aplikácia/aplikuje` pri géli v prospech pacientskyho `nanášanie/nanáša`.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `3346284`; post-commit SFTP nahral `segments/igan.html` +
-  `segments/IgAN.sk.html` (tools v deployignore); `deploy.ps1 -Apply`
+- Commit `8e4d00f`; post-commit SFTP nahral `files/usgo.html` +
+  `segments/usgo.html` (tools v deployignore); `deploy.ps1 -Apply`
   0 upload; smoke direct 200
-- Clean URL smoke (Chrome UA): `/` `/nefamb` `/nefrologia` `/dialyza`
-  `/transplantacia` `/privacy` `/terms` `/usgo` `/purifikacia` → 200 +
+- Clean URL smoke (Chrome UA): `/` `/usgo` `/nefamb` `/nefrologia`
+  `/dialyza` `/transplantacia` `/privacy` `/terms` `/purifikacia` → 200 +
   HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `(ESRD)` neprítomné; wording
-  `ochorenia obličiek (ESKD)` OK (IgAN cez homepage include);
-  `/igan` 404 (žiadna standalone route); `/segments/igan.html` 403
-- GHA Deploy `42142210603` success (rsync skip)
+- Produkcia `/usgo` + `/`: `Nanášanie gélu` / `sa nanáša špeciálny gél`
+  OK; staré `Aplikácia`/`aplikuje` neprítomné
+- GHA Deploy `42142937027` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -189,8 +193,13 @@ HEAD: `3346284` (docs tip nasleduje)
   Synonym piles: `Ultrazvukové (ultrasonografické)` → `Ultrazvukové`;
   `Ultrazvukové, teda ultrasonografické (USG)` → `Ultrazvukové (USG)`
   (akronym USG ponechať; nefamb `ultrasonografia` ako substantívum nie
-  je ten istý pile). Sync `files/usgo.html` aj `segments/usgo.html`
-  (úvodný odsek `odpovedá` / `vyšetrovanie` je len vo `files/`).
+  je ten istý pile). Pacientsky Latinizmus pri géli:
+  `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél` →
+  `Nanášanie gélu` / `nanášanie gélu` / `sa nanáša` (zhoda s úvodným
+  `nanáša na brucho gél`; nie synonym pile ultrasonografické).
+  Sync `files/usgo.html` aj `segments/usgo.html`
+  (úvodný odsek `odpovedá` / `vyšetrovanie` je len vo `files/`;
+  gel step je v oboch).
 - Pacientsky/UI: EN *visualization* → `zobrazenie` (nie `vizualizáciu`);
   `adekvátneho odberu` → `správneho odberu` (v pacientskom texte;
   odbornú „adekvátnosť dialýzy" nemenit́ bez dôvodu).
@@ -271,7 +280,7 @@ HEAD: `3346284` (docs tip nasleduje)
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #76)
+## Ďalší fokus (loop #77)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -288,14 +297,16 @@ HEAD: `3346284` (docs tip nasleduje)
    nefrologia CKD/AKI `resp.` piles/
    USG ultrasonografické piles/
    nefamb ESKD dual acronym (#74)/
-   práve-shipnutý IgAN residual ESRD→ESKD (#75); ďalší verified
-   patient-copy/a11y/tooling. Spustiť
+   IgAN residual ESRD→ESKD (#75)/
+   práve-shipnutý USG gel aplikácia→nanášanie (#76); ďalší verified
+   patient-copy/a11y/tooling (kandidáti: lecture caption `suplementá` →
+   `suplementy`; nefamb `s cieľom` / non-pile kalky mimo #68). Spustiť
    `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #75 IgAN residual ESRD→ESKD)
-- Audit: `.audit.md` Beh #86
+- Codex: `.codex/handoffs/` (loop #76 USG gel nanášanie)
+- Audit: `.audit.md` Beh #87
 
 ## Ďalší príkaz
 
