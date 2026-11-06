@@ -130,6 +130,7 @@ $rules = @(
     @{ Pattern = 'glomerulárnu hypotenziu'; Label = 'glomerulárnu hypotenziu (→ hypertenziu; ET-1/Ang II)' }
     @{ Pattern = 'glomerulárnej hypotenzie'; Label = 'glomerulárnej hypotenzie (→ hypertenzie; ET-1/Ang II)' }
     @{ Pattern = 'kaukazský pôvod'; Label = 'kaukazský pôvod (→ európsky pôvod; EN Caucasian)' }
+    @{ Pattern = 'súčasnej paradigme'; Label = 'súčasnej paradigme (→ súčasnom modeli; EN paradigm calque)' }
 )
 
 function Get-ScanFiles {
