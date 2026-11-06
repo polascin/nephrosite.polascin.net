@@ -37,6 +37,7 @@ $rules = @(
     @{ Pattern = '\bv svojom\b'; Label = 'v svojom (→ vo svojom)' }
     @{ Pattern = 'zo rôznych'; Label = 'zo rôznych (→ z rôznych)' }
     @{ Pattern = 'Za účelom'; Label = 'Za účelom (→ Na + N)' }
+    @{ Pattern = 's cieľom'; Label = 's cieľom (→ aby …)' }
     @{ Pattern = 'najoptimálnejš'; Label = 'najoptimálnejšie (→ najlepšie)' }
     @{ Pattern = 'sestričk'; Label = 'sestrička (→ sestra)' }
     @{ Pattern = 'nahradzuj'; Label = 'nahradzuj* (→ nahrádza/náhradná)' }

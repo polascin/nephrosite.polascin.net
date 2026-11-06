@@ -95,7 +95,8 @@ USG `Ultrazvukové (ultrasonografické)` /
 `teda ultrasonografické` /
 nefamb `ESKD, ESRD`, residual IgAN `(ESRD)`,
 USG `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél` /
-lecture `suplementá` (→ `suplementy`), …).
+lecture `suplementá` (→ `suplementy`),
+`s cieľom` (→ `aby …`), …).
 Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
