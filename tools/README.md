@@ -85,7 +85,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\scan-patient-copy.ps
 `orgánu (rejekcia)`, `graft-versus-host disease`, `dwell time`,
 nefamb synonym piles `Hypertenzia … (HT)` / `Diabetická nefropatia … (DKD)` /
 `glomerulárnej (glomerulovej)` / `lupus erythematodes, erythematosus`,
-`obličiek (ľadvín)` / `obličky (ľadviny)` / `KTx, RTx, NTx`, …). Preskakuje
+`obličiek (ľadvín)` / `obličky (ľadviny)` / `KTx, RTx, NTx` /
+`centre (stredisku, stacionári)` / peritoneum membrane piles /
+`cykler "cyklovač"`, …). Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,
 Lipton `vizualizácie`. Exit code 1 pri náleze.

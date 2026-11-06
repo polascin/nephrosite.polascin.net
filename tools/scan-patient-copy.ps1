@@ -103,6 +103,10 @@ $rules = @(
     @{ Pattern = 'obličky \(ľadviny\)'; Label = 'obličky (ľadviny) synonym pile (→ obličky)' }
     @{ Pattern = 'transplantácie obličky \(ľadviny\)'; Label = 'transplantácie obličky (ľadviny) (→ bez ľadviny)' }
     @{ Pattern = 'KTx, RTx, NTx'; Label = 'KTx, RTx, NTx acronym pile (→ drop)' }
+    @{ Pattern = 'stredisku, stacionári'; Label = 'centre (stredisku, stacionári) synonym pile (→ centre alone)' }
+    @{ Pattern = 'peritoneálna membrána - peritoneum'; Label = 'peritoneum membrane pile (→ peritoneálna membrána (pobrušnica))' }
+    @{ Pattern = 'brušná membrána, pobrušnica'; Label = 'brušná membrána, pobrušnica pile (→ pobrušnica)' }
+    @{ Pattern = '"cyklovač"'; Label = 'cykler "cyklovač" synonym (→ cykler alone)' }
 )
 
 function Get-ScanFiles {
