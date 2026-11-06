@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #80)
+Aktualizované: 2026-11-06 (loop iterácia #81)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `f6c13e2` (docs tip nasleduje)
+HEAD: `7e6f433` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (IgAN KDIGO terminológia: `smernice` → `usmernenia`;
+- Product ship (USG anglicizmus: `v reálnom čase` → `okamžite`;
   mimo tip-SHA privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -17,12 +17,11 @@ HEAD: `f6c13e2` (docs tip nasleduje)
   USG ultrasonografické #73 / nefamb ESKD dual acronym #74 /
   IgAN residual ESRD→ESKD #75 / USG gel aplikácia→nanášanie #76 /
   lecture suplementá→suplementy #77 / nefamb/IgAN s cieľom→aby #78 /
-  IgAN genetiky/prospieť #79):
-  - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `smernice KDIGO` → `usmernenia KDIGO` (zhoda s `Usmernenia KDIGO`
-    v tom istom odseku podpornej liečby)
-  - `tools/scan-patient-copy.ps1`: pravidlo `smernice KDIGO`; README
-  - IgAN sync oboch segmentov (žiadny `files/` mirror)
+  IgAN genetiky/prospieť #79 / IgAN smernice→usmernenia #80):
+  - `files/usgo.html` + `segments/usgo.html`:
+    `na monitore v reálnom čase` → `na monitore okamžite`
+  - `tools/scan-patient-copy.ps1`: pravidlo `v reálnom čase`; README
+  - USG sync files + segments (homepage include)
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -38,31 +37,31 @@ HEAD: `f6c13e2` (docs tip nasleduje)
     USG ultrasonografické piles / nefamb ESKD dual (#74) /
     IgAN residual ESRD→ESKD (#75) / USG gel nanášanie (#76) /
     lecture suplementá→suplementy (#77) / nefamb/IgAN s cieľom (#78) /
-    IgAN genetiky/prospieť (#79)
-  - USG `v reálnom čase` (kandidát #81)
+    IgAN genetiky/prospieť (#79) / IgAN smernice→usmernenia (#80)
+  - `ipvrm.htm` stále má `v reálnom čase` (iné kontexty: výučba;
+    mimo Roots scanneru files/segments/blocks) → neriešené v #81
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; zjednotená len KDIGO terminológia
-  v IgAN odseku podpornej liečby.
+- Medicínsky obsah **nezmenený**; zjednotená len USG formulácia
+  zobrazovania obrazov na monitore.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `f6c13e2`; post-commit SFTP nahral `segments/igan.html` +
-  `segments/IgAN.sk.html` (tools v deployignore);
+- Commit `7e6f433`; post-commit SFTP nahral `files/usgo.html` +
+  `segments/usgo.html` (tools v deployignore);
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/usgo` `/nefamb` `/nefrologia`
   `/dialyza` `/transplantacia` `/privacy` `/terms` `/purifikacia` → 200 +
   HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `Usmernenia KDIGO` + `usmernenia KDIGO` OK;
-  `smernice KDIGO` neprítomné
-- GHA Deploy `42145015003` success (rsync skip)
+- Produkcia `/usgo` + `/`: `okamžite` OK; `v reálnom čase` neprítomné
+- GHA Deploy `42145434952` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -120,8 +119,8 @@ HEAD: `f6c13e2` (docs tip nasleduje)
 - `Za účelom` → `Na` + N; `s cieľom` → `aby` + veta (úradnícky kalk).
 - KDIGO guidelines v pacientskom SK: držať `usmernenia` (nie striedať so
   `smernice` v tom istom odseku).
-- USG `v reálnom čase` = EN *in real time* → kandidát `okamžite` /
-  bez kalu `v reálnom čase` (loop #81).
+- USG `v reálnom čase` = EN *in real time* → `okamžite` (loop #81);
+  `ipvrm.htm` výučbové výskyty zatiaľ mimo Roots scanneru.
 - IgAN research: neúplné NP `genetických a biomarkerov` → `genetiky a
   biomarkerov`; kalk `mať prospech z` → `prospieť` + nominatív.
 - Pacientsky dialýza-transplant EN gloss piles: `ekvilibrácia (vyrovnanie
@@ -152,7 +151,7 @@ HEAD: `f6c13e2` (docs tip nasleduje)
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #81)
+## Ďalší fokus (loop #82)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -174,15 +173,18 @@ HEAD: `f6c13e2` (docs tip nasleduje)
    lecture `suplementá`→`suplementy` (#77)/
    nefamb/IgAN `s cieľom`→`aby …` (#78)/
    IgAN genetiky/prospieť (#79)/
-   práve-shipnutý IgAN `smernice`→`usmernenia` (#80); ďalší verified
+   IgAN `smernice`→`usmernenia` (#80)/
+   práve-shipnutý USG `v reálnom čase`→`okamžite` (#81); ďalší verified
    patient-copy/a11y/tooling mimo churn listu.
-   Kandidát: USG `v reálnom čase` → `okamžite`.
+   Soft kandidát: dialýza `vo forme takzvanej online hemodiafiltrácie`
+   (zjednodušiť, ak overené); alebo `ipvrm.htm` výučbové
+   `v reálnom čase` (mimo Roots — len pri vedomom rozšírení scopy).
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #80 IgAN usmernenia KDIGO)
-- Audit: `.audit.md` Beh #91
+- Codex: `.codex/handoffs/` (loop #81 USG okamžite)
+- Audit: `.audit.md` Beh #92
 
 ## Ďalší príkaz
 
