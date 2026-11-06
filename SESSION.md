@@ -1,14 +1,14 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #78)
+Aktualizované: 2026-11-06 (loop iterácia #79)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `e93d190` (docs tip nasleduje)
+HEAD: `28aa80c` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
-- Product ship (úradnícky kalk `s cieľom` → priame `aby …`;
+- Product ship (IgAN research veta: neúplné NP + kalk `mať prospech z`;
   mimo tip-SHA privacy/terms/cookie/intro-Amazon/Lipton/homepage-dative/
   dialyza-transplant EN gloss #65 / purifikacia-GvHD #66 /
   dialyza dwell-time #67 / nefamb synonym piles #68 /
@@ -16,14 +16,14 @@ HEAD: `e93d190` (docs tip nasleduje)
   purifikácia očisťovanie/membrane #71 / nefrologia CKD/AKI #72 /
   USG ultrasonografické #73 / nefamb ESKD dual acronym #74 /
   IgAN residual ESRD→ESKD #75 / USG gel aplikácia→nanášanie #76 /
-  lecture suplementá→suplementy #77):
-  - `files/nefamb.html`: `s cieľom získať` → `, aby získal`
+  lecture suplementá→suplementy #77 / nefamb/IgAN s cieľom→aby #78):
   - `segments/igan.html` + `segments/IgAN.sk.html`:
-    `s cieľom zlepšiť` → `, aby zlepšili`
-  - `tools/scan-patient-copy.ps1`: pravidlo `s cieľom`; README
-  - `nefamb` nemá `segments/` mirror; IgAN sync oboch segmentov
-    (žiadny `files/` mirror)
-  - IgAN `Cieľom súčasnej liečby je` ponechané (nie kalk `s cieľom`)
+    `genetických a biomarkerov` → `genetiky a biomarkerov`;
+    `mať prospech z včasného a agresívneho zásahu` →
+    `im mohol prospieť včasný a agresívny zásah`
+  - `tools/scan-patient-copy.ps1`: pravidlá `genetických a biomarkerov`
+    a `mať prospech z`; README
+  - IgAN sync oboch segmentov (žiadny `files/` mirror)
 - Grok/XAI: žiadny NephroSite kanál/tooling; žiadna inventovaná analýza.
 - Overené a **nechane**:
   - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
@@ -38,30 +38,32 @@ HEAD: `e93d190` (docs tip nasleduje)
     purifikácia očisťovanie/membrane piles / nefrologia CKD/AKI piles /
     USG ultrasonografické piles / nefamb ESKD dual (#74) /
     IgAN residual ESRD→ESKD (#75) / USG gel nanášanie (#76) /
-    lecture suplementá→suplementy (#77)
+    lecture suplementá→suplementy (#77) / nefamb/IgAN s cieľom (#78)
+  - IgAN `smernice KDIGO` vs `Usmernenia KDIGO` (kandidát #80)
+  - USG `v reálnom čase` (kandidát #80)
   - Intro dialýzy `brušnú membránu (pobrušnicu), ktorá sa nazýva
     peritoneum` ponechané (edukačný gloss, nie trojitý pile)
   - HD `umelú membránu (dialyzátor)` ponechané (prístroj, nie synonym pile)
   - Lecture PDF branding `KTx 2023` v `foazosszu.sk.php` ponechané
   - nefamb `ultrasonografia` (substantívum) nie je synonym pile
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
-- Medicínsky obsah **nezmenený**; odstránený len úradnícky kalk
-  `s cieľom` v prospech priameho `aby …`.
+- Medicínsky obsah **nezmenený**; opravená len gramatika NP a kalk
+  v IgAN research vete.
 
 ## Overené na produkcii
 
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `e93d190`; post-commit SFTP nahral `files/nefamb.html` +
-  `segments/igan.html` + `segments/IgAN.sk.html` (tools v deployignore);
+- Commit `28aa80c`; post-commit SFTP nahral `segments/igan.html` +
+  `segments/IgAN.sk.html` (tools v deployignore);
   `deploy.ps1 -Apply` 0 upload; smoke direct 200
 - Clean URL smoke (Chrome UA): `/` `/usgo` `/nefamb` `/nefrologia`
   `/dialyza` `/transplantacia` `/privacy` `/terms` `/purifikacia` → 200 +
   HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/nefamb`: `aby získal` OK; `s cieľom` neprítomné
-- Produkcia `/`: `aby zlepšili starostlivosť` OK; `s cieľom` neprítomné
-- GHA Deploy `42143925520` success (rsync skip)
+- Produkcia `/`: `genetiky a biomarkerov` OK; `im mohol prospieť` OK;
+  `genetických a biomarkerov` a `mať prospech z` neprítomné
+- GHA Deploy `42144491819` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -156,7 +158,12 @@ HEAD: `e93d190` (docs tip nasleduje)
   `asymptomatické` → `bez príznakov` (pacientsky register + chybný
   neutrálny rod pri ženskom `nefropatia`);
   EN *policy changes* → `zmien v zdravotnej politike` (nie `politických
-  zmien`, čo v SK znamená stranícku politiku).
+  zmien`, čo v SK znamená stranícku politiku);
+  neúplné NP `genetických a biomarkerov` → `genetiky a biomarkerov`
+  (adjektívum bez substantíva); EN/CZ kalk `mať prospech z` →
+  priame `prospieť` + nominatív (`im mohol prospieť včasný … zásah`);
+  v tom istom odseku KDIGO: držať `usmernenia` (nie striedať so
+  `smernice`; kandidát #80).
 - Po `pre` je genitív: `pre ľudí s` (nie nominatív `pre ľudia s`);
   EN *balance side effects* → `vyrovnať sa s vedľajšími účinkami` (nie
   `zosúladiť vedľajšie účinky`); `osoby, ktoré majú` nie je to isté ako
@@ -198,7 +205,8 @@ HEAD: `e93d190` (docs tip nasleduje)
   `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél` →
   `Nanášanie gélu` / `nanášanie gélu` / `sa nanáša` (zhoda s úvodným
   `nanáša na brucho gél`; nie synonym pile ultrasonografické).
-  Sync `files/usgo.html` aj `segments/usgo.html`
+  EN *in real time* → kandidát `okamžite` / bez kalu `v reálnom čase`
+  (#80). Sync `files/usgo.html` aj `segments/usgo.html`
   (úvodný odsek `odpovedá` / `vyšetrovanie` je len vo `files/`;
   gel step je v oboch).
   Lecture UI: Czech/Latin plurál `suplementá` → SK `suplementy`
@@ -284,7 +292,7 @@ HEAD: `e93d190` (docs tip nasleduje)
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #79)
+## Ďalší fokus (loop #80)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -304,14 +312,17 @@ HEAD: `e93d190` (docs tip nasleduje)
    IgAN residual ESRD→ESKD (#75)/
    USG gel aplikácia→nanášanie (#76)/
    lecture `suplementá`→`suplementy` (#77)/
-   práve-shipnutý nefamb/IgAN `s cieľom`→`aby …` (#78); ďalší verified
+   nefamb/IgAN `s cieľom`→`aby …` (#78)/
+   práve-shipnutý IgAN genetiky/prospieť (#79); ďalší verified
    patient-copy/a11y/tooling mimo churn listu.
+   Kandidáti: IgAN `smernice KDIGO` → `usmernenia KDIGO`;
+   USG `v reálnom čase` → `okamžite`.
    Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #78 nefamb/IgAN s cieľom → aby)
-- Audit: `.audit.md` Beh #89
+- Codex: `.codex/handoffs/` (loop #79 IgAN genetiky/prospieť)
+- Audit: `.audit.md` Beh #90
 
 ## Ďalší príkaz
 
