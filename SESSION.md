@@ -1,25 +1,27 @@
 # SESSION – NephroSite loop handoff
 
-Aktualizované: 2026-11-06 (loop iterácia #61)
+Aktualizované: 2026-11-06 (loop iterácia #62)
 Vetva: `main` (nie `master`; premenované 21. 9. 2026)
-HEAD: `d25ea19` (docs tip nasleduje)
+HEAD: `3f96767` (docs tip nasleduje)
 
 ## Čo je hotové v tejto iterácii
 
 - RO telemetria: stále **2 smoke/test** riadky, **0** Clarity/GTM/Fastbase
   vendor hits (rozpad 0/0/0) → **neodstraňovať** enforced `'unsafe-inline'`.
 - Product ship (UI wording + tooling; mimo tip-path a mimo práve-shipnutý
-  privacy/terms/cookie):
-  - `blocks/intro.sk.php`: `Amazon-e` → `Amazone` (title + heading)
-  - `tools/scan-patient-copy.ps1`: high-confidence SESSION wording
-    regresie; skip privacy/terms/cookie; allowlist Lipton `jedinec` /
-    `vizualizácie` + ABPM; README poznámka
+  privacy/terms/cookie/intro-Amazon):
+  - `files/lipton-tx.html`: `Lipton-a` → `Liptona` (alt + body; SK genitív)
+  - `tools/scan-patient-copy.ps1`: `Lipton-a` + tip-lesson regresie
+    (`mŕtveho darcu`, `prenáša do pacienta`, `darcu (donor`,
+    `zo strany lekárov`, `cycler`, `zdieľajú s`,
+    `v dôsledku rôznych príčin`, `akceptor`); README poznámka
 - Overené a **nechane**:
-  - Lipton `jedinec`/`jedincov` (literárny preklad)
+  - Lipton literárny `jedinec`/`jedincov` (literárny preklad)
   - ASN/ISN oficiálne `<title>` stále bez akronymu → polish **neshipnutý**
   - Intro Bory zostáva zakomentovaný
-  - privacy / terms / cookie / IgAN / USG / nefamb / lectures / dialyza /
-    transplant / ipvrm / purifikacia / nefrologia (žiadny tip churn)
+  - privacy / terms / cookie / intro Amazon / IgAN / USG / nefamb /
+    lectures / dialyza / transplant / ipvrm / purifikacia / nefrologia
+    (žiadny tip churn)
 - Remote-only (~69) **nemažeť** bez súhlasu; GH secrets nevytvárané.
 
 ## Overené na produkcii
@@ -27,13 +29,15 @@ HEAD: `d25ea19` (docs tip nasleduje)
 - `csp-report-summary.ps1` → smoke-only + vendor hits 0 (Clarity 0,
   GTM/GA 0, Fastbase 0); `php tools/test-csp.php` → PASS;
   `scan-blank-hints.ps1` → 0/0/0; `scan-patient-copy.ps1` → 0 hits
-- Commit `d25ea19`; post-commit SFTP nahral `blocks/intro.sk.php`
+- Commit `3f96767`; post-commit SFTP nahral `files/lipton-tx.html`
   (tools v deployignore); `deploy.ps1 -Apply` 0 upload; smoke direct 200
-- Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/privacy`
-  `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo` `/transplantacia`
-  `/purifikacia` → 200 + HSTS + CSP (enforced stále s `'unsafe-inline'`)
-- Produkcia `/`: `Moje knihy na Amazone`; `Amazon-e` neprítomné
-- GHA Deploy `42133584145` success (rsync skip)
+- Clean URL smoke (MaximumRedirection 0, Chrome UA): `/` `/lipton-tx`
+  `/privacy` `/terms` `/nefrologia` `/dialyza` `/nefamb` `/usgo`
+  `/transplantacia` `/purifikacia` → 200 + HSTS + CSP (enforced stále s
+  `'unsafe-inline'`)
+- Produkcia `/lipton-tx`: `Liptona` prítomné; `Lipton-a` neprítomné;
+  literárny `jedinec` ostáva
+- GHA Deploy `42134342916` success (rsync skip)
 
 ## Poznámky k toolingu
 
@@ -191,10 +195,12 @@ HEAD: `d25ea19` (docs tip nasleduje)
   súkromia` (zhoda s footer legal názvami), nie na „pätu obsahových
   stránok“ / „stránku súkromia“.
 - Intro Amazon: lokatív `Amazone` (nie hyphenované `Amazon-e`).
+- Lipton UI: genitív `Liptona` (nie hyphenované `Lipton-a`); literárny
+  `jedinec` nemeniť.
 - Patient-copy regressie: `tools/scan-patient-copy.ps1` (high-confidence
   SESSION patterns; skip legal/cookie; Lipton/ABPM allowlist).
 
-## Ďalší fokus (loop #62)
+## Ďalší fokus (loop #63)
 
 1. Zbieraj RO telemetriu; drop `'unsafe-inline'` len so strong evidence +
    Clarity/GTM consent paths (sleduj súčet aj rozpad vendor hits).
@@ -203,14 +209,15 @@ HEAD: `d25ea19` (docs tip nasleduje)
 4. Bug/a11y/content/tooling ship, ak telemetria stále smoke-only (ASN/ISN
    len s oficiálnym title dôkazom; uncommented intro Bory až po rozhodnutí
    o obsahu). Nie Lipton `jedinec`. Preferovať overený non-promo /
-   non-tip-path ship mimo práve-shipnutý privacy/terms/cookie/intro-Amazon;
-   kandidát: overený patient-copy defect mimo tip path alebo ďalší tooling.
-   Spustiť `scan-blank-hints.ps1` aj `scan-patient-copy.ps1`.
+   non-tip-path ship mimo práve-shipnutý privacy/terms/cookie/intro-Amazon/
+   Lipton-genitive; kandidát: overený patient-copy defect mimo tip path
+   alebo ďalší tooling. Spustiť `scan-blank-hints.ps1` aj
+   `scan-patient-copy.ps1`.
 
 ## Handoff súbory
 
-- Codex: `.codex/handoffs/` (loop #61 Amazon + patient-copy scan)
-- Audit: `.audit.md` Beh #72
+- Codex: `.codex/handoffs/` (loop #62 Lipton genitív + patient-copy scan)
+- Audit: `.audit.md` Beh #73
 
 ## Ďalší príkaz
 
