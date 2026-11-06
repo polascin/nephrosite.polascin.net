@@ -94,7 +94,8 @@ nefamb synonym piles `Hypertenzia … (HT)` / `Diabetická nefropatia … (DKD)`
 USG `Ultrazvukové (ultrasonografické)` /
 `teda ultrasonografické` /
 nefamb `ESKD, ESRD`, residual IgAN `(ESRD)`,
-USG `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél`, …).
+USG `Aplikácia gélu` / `aplikáciu gélu` / `sa aplikuje špeciálny gél` /
+lecture `suplementá` (→ `suplementy`), …).
 Preskakuje
 privacy/terms/cookie-banner a
 `.kilo/` worktrees; allowlist: literárny Lipton `jedinec`, ABPM názov,

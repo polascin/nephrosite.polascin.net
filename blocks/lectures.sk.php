@@ -7,7 +7,7 @@
 			<th>
 				<img src="/pix/kidneyonleft.gif" alt="" class="kidney-icon" aria-hidden="true">
 				&nbsp;&nbsp;&nbsp;
-				Prednášky, prezentácie, články, texty, materiály, suplementá ...
+				Prednášky, prezentácie, články, texty, materiály, suplementy ...
 				&nbsp;&nbsp;&nbsp;
 				<img src="/pix/kidneyonright.gif" alt="" class="kidney-icon" aria-hidden="true">
 			</th>

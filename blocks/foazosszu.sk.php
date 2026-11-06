@@ -48,7 +48,7 @@
 		a modifikácie dávok vápnika podľa použitia glukonanu alebo chloridu vápenatého
 		a vrátane mnohých ďalších tém.
 		Literatúra odporúčaná na štúdium je uvedená nižšie pri prednáške z predchádzajúceho roka.
-		Suplementá dodávam len účastníkom kurzu pri prednáške na živo.
+		Suplementy dodávam len účastníkom kurzu pri prednáške na živo.
 	</div>
 
 </div>

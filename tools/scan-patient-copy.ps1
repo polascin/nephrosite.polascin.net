@@ -119,6 +119,7 @@ $rules = @(
     @{ Pattern = 'Aplikácia gélu'; Label = 'Aplikácia gélu (→ Nanášanie gélu)' }
     @{ Pattern = 'aplikáciu gélu'; Label = 'aplikáciu gélu (→ nanášanie gélu)' }
     @{ Pattern = 'sa aplikuje špeciálny gél'; Label = 'sa aplikuje špeciálny gél (→ sa nanáša)' }
+    @{ Pattern = 'suplementá'; Label = 'suplementá (→ suplementy; Czech/Latin plural)' }
 )
 
 function Get-ScanFiles {
