@@ -72,6 +72,11 @@ AddType text/plain .ofl
 
 RewriteEngine on
 
+# Skryté adresáre a súbory (.git/, .github/, .vscode/ …) nikdy nie cez web.
+# <FilesMatch "^\.git"> vyššie chráni len súbory s takým názvom, nie obsah
+# adresára .git/ (napr. /.git/config). Výnimka: /.well-known/ (ACME, security.txt).
+RewriteRule (^|/)\.(?!well-known(/|$))[^/]+ - [F,L]
+
 # Interné include fragmenty sa vkladajú cez PHP include zo súborového systému;
 # priamy prístup cez HTTP nie je nikdy potrebný (obrana do hĺbky).
 RewriteRule ^(?:blocks|segments)/ - [F,L]
