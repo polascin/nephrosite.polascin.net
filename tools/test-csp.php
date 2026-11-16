@@ -302,15 +302,39 @@ function checkReportHandlerUnit(): void
         [
             'type' => 'csp-violation',
             'body' => [
-                'effective-directive' => 'script-src',
-                'blocked-uri' => 'inline',
+                'documentURL' => 'https://nephrosite.polascin.net/',
+                'effectiveDirective' => 'script-src-elem',
+                'blockedURL' => 'https://www.clarity.ms/tag/example',
+                'originalPolicy' => str_repeat('a', 600),
+                'sample' => str_repeat('b', 80),
+                'sourceFile' => 'https://nephrosite.polascin.net/',
+                'statusCode' => 200,
+                'lineNumber' => 42,
+                'columnNumber' => 7,
+                'referrer' => '',
                 'disposition' => 'report',
+                'unknownField' => 'should-drop',
             ],
         ],
         ['type' => 'other', 'body' => ['blocked-uri' => 'ignore']],
     ]);
     check(count($reportingApi) === 1, 'Reporting API payload must keep only csp-violation bodies.');
-    check(($reportingApi[0]['disposition'] ?? '') === 'report', 'Reporting API body fields must be preserved.');
+    $expected = [
+        'document-uri' => 'https://nephrosite.polascin.net/',
+        'effective-directive' => 'script-src-elem',
+        'original-policy' => str_repeat('a', 512),
+        'blocked-uri' => 'https://www.clarity.ms/tag/example',
+        'script-sample' => str_repeat('b', 40),
+        'source-file' => 'https://nephrosite.polascin.net/',
+        'status-code' => 200,
+        'line-number' => 42,
+        'column-number' => 7,
+        'referrer' => '',
+        'disposition' => 'report',
+    ];
+    ksort($expected);
+    ksort($reportingApi[0]);
+    check($reportingApi[0] === $expected, 'Reporting API fields must be normalized and sanitized.');
 }
 
 try {

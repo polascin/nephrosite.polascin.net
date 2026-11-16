@@ -41,6 +41,17 @@ function nephrosite_csp_sanitize_reports(mixed $payload): array
     }
 
     // Reporting API: [ { "type":"csp-violation", "body":{...} }, ... ]
+    $reportingApiFields = [
+        'documentURL' => 'document-uri',
+        'effectiveDirective' => 'effective-directive',
+        'originalPolicy' => 'original-policy',
+        'blockedURL' => 'blocked-uri',
+        'statusCode' => 'status-code',
+        'sample' => 'script-sample',
+        'sourceFile' => 'source-file',
+        'lineNumber' => 'line-number',
+        'columnNumber' => 'column-number',
+    ];
     $isList = array_is_list($payload);
     if ($isList) {
         foreach ($payload as $entry) {
@@ -49,7 +60,13 @@ function nephrosite_csp_sanitize_reports(mixed $payload): array
             }
             $type = $entry['type'] ?? '';
             if ($type === 'csp-violation' && isset($entry['body']) && is_array($entry['body'])) {
-                $items[] = $entry['body'];
+                $body = $entry['body'];
+                foreach ($reportingApiFields as $field => $legacyField) {
+                    if (array_key_exists($field, $body)) {
+                        $body[$legacyField] = $body[$field];
+                    }
+                }
+                $items[] = $body;
             }
         }
     } elseif ($items === [] && isset($payload['blocked-uri'])) {
