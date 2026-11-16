@@ -210,10 +210,8 @@ function checkNonceHelpers(): void
     $b = nephrosite_csp_nonce();
     check($a === $b && strlen($a) >= 16, 'Nonce must be stable per request and non-trivial.');
     check(str_contains(nephrosite_csp_nonce_attr(), $a), 'Nonce attribute helper must embed the nonce.');
-    foreach (['blocks/scripts.sk.php', 'blocks/metatags.sk.php', 'blocks/current.sk.php'] as $file) {
-        $source = file_get_contents($file);
-        check(str_contains($source, 'nephrosite_csp_nonce_attr()'), "$file must emit a CSP nonce attribute.");
-    }
+    check(str_contains(file_get_contents('blocks/metatags.sk.php'), 'nephrosite_csp_nonce_attr()'),
+        'Structured data must retain its CSP nonce attribute.');
 }
 
 function stripNonceSources(array $tokens): array
@@ -403,13 +401,23 @@ try {
         check($exitCode === 0 && $errors === '', "$page render failed: $errors");
         check(str_contains($html, '<main id="content">'), "$page did not render its content.");
         checkMarkup($directives, $html, $page);
-        check(preg_match('/<script\b[^>]*\bnonce="[A-Za-z0-9_-]+"/', $html) === 1
-            || substr_count($html, 'nonce="') >= 2, "$page: expected nonce attributes on inline scripts.");
+        check(str_contains($html, '<script src="/files/consent-manager.js"></script>'),
+            "$page: expected the external consent manager.");
+        if ($page === 'index.php') {
+            check(str_contains($html, '<script src="/files/current-time.js"></script>'),
+                "$page: expected the external clock.");
+        }
+        preg_match_all('~<script\b[^>]*>~i', $html, $scriptTags);
+        foreach ($scriptTags[0] as $tag) {
+            check(preg_match('~\s(?:src\s*=|type="application/ld\+json")~i', $tag) === 1,
+                "$page: executable scripts must be external.");
+        }
     }
     foreach (['files/privacy.html', 'files/terms.html', 'ipvrm.htm'] as $file) {
         checkMarkup($directives, file_get_contents($file), $file);
     }
-    preg_match_all('~loadScript\("([^"]+)"~', file_get_contents('blocks/scripts.sk.php'), $scripts);
+    check(is_file('files/current-time.js'), 'Missing external clock script.');
+    preg_match_all('~loadScript\("([^"]+)"~', file_get_contents('files/consent-manager.js'), $scripts);
     check(count($scripts[1]) === 3, 'Review changed dynamic script loaders.');
     foreach ($scripts[1] as $url) {
         check(permits($directives, 'script-src', $url), 'Dynamic script not covered: ' . $url);
