@@ -132,3 +132,9 @@ Commituj cez: git -c core.hooksPath=.git/hooks commit …
 
 See `docs/REMOTE-ONLY-INVENTORY.md`. Count ~69: accidental `.git/**`, tooling,
 mirrored docs/state; keep `private/csp-reports/reports.jsonl`.
+
+## Opakované overenie 2026-11-16
+
+- Oprava v commite `4f352b3` je súčasťou `origin/main`. Opakovaná kontrola prebehla na revízii `217f7f3`. DistroWatch aj validátor W3C majú po jednom statickom upozornení na otvorenie v novom okne, overenom v produkčnom HTML bez JavaScriptu.
+- `csp-report-summary.ps1` načítal 8 riadkov. Dva sú testovacie značky, ďalším šiestim v súhrne chýba `blocked-uri`, direktíva aj `document-uri`. Bez záznamov pre Clarity, GTM/GA a Fastbase. Ponechané `'unsafe-inline'` v `script-src`. Pred sprísnením politiky overiť správanie Clarity a GTM po udelení súhlasu.
+- `php tools/test-csp.php` prešiel. Lokálny plán nasadenia porovnal 246 súborov a našiel 0 na nahratie. Priame požiadavky na `/`, `/privacy`, `/terms`, `/nefrologia` a `/transplantacia` vrátili HTTP 200, HSTS a obe hlavičky CSP. Produkčná hlavička CSP obsahovala `'unsafe-inline'` v `script-src`.
