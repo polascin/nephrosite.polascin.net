@@ -45,6 +45,18 @@ for (const [expiresAt, expected, status] of [
   assert.equal(readStoredConsent()?.choices.analytics ?? false, expected);
   assert.equal(storedConsent !== null, expected);
 }
+storedConsent = JSON.stringify({
+  version: 2,
+  expiresAt: new Date(Date.now() + 86400000).toISOString(),
+  choices: {preferences: 'false', analytics: 'false', marketing: 1}
+});
+const malformedChoices = readStoredConsent().choices;
+assert.equal(malformedChoices.preferences, false);
+assert.equal(malformedChoices.analytics, false);
+assert.equal(malformedChoices.marketing, false);
+vm.runInNewContext(privacyScript, {document: privacyDocument, localStorage});
+assert.match(summary.textContent, /preferencie=nie, analytické=nie, marketingové=nie/);
+applyConsent(malformedChoices);
 applyConsent({analytics: false, marketing: false, preferences: false});
 assert.equal(scripts.length, 0, 'No vendor scripts before consent');
 assert.equal(window.clarity, undefined);

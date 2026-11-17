@@ -143,9 +143,9 @@
     var safe = isObject(choices) ? choices : {};
     return {
       necessary: true,
-      preferences: Boolean(safe.preferences),
-      analytics: Boolean(safe.analytics),
-      marketing: Boolean(safe.marketing)
+      preferences: safe.preferences === true,
+      analytics: safe.analytics === true,
+      marketing: safe.marketing === true
     };
   }
 

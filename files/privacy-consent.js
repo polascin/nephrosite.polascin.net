@@ -69,11 +69,11 @@
       var c = parsed.choices || {};
       summary.textContent =
         "Aktuálny stav súhlasu: preferencie=" +
-        (c.preferences ? "áno" : "nie") +
+        (c.preferences === true ? "áno" : "nie") +
         ", analytické=" +
-        (c.analytics ? "áno" : "nie") +
+        (c.analytics === true ? "áno" : "nie") +
         ", marketingové=" +
-        (c.marketing ? "áno" : "nie") +
+        (c.marketing === true ? "áno" : "nie") +
         ".";
     } catch (err) {
       summary.textContent = "Aktuálny stav súhlasu: poškodený záznam.";

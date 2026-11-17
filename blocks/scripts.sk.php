@@ -1,1 +1,1 @@
-<script src="/files/consent-manager.js"></script>
+<script src="/files/consent-manager.js?v=2"></script>
