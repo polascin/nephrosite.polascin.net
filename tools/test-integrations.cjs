@@ -9,10 +9,16 @@ assert.match(source, /^\(function \(\) \{/, 'Expected consent IIFE');
 const boot = source.lastIndexOf('  if (document.readyState === "loading")');
 assert.ok(boot > 0, 'Expected consent boot entry point');
 source = source.slice(0, boot) +
-  'window.testIntegration = {applyConsent, initImageFallbacks};\n})();';
+  'window.testIntegration = {applyConsent, initImageFallbacks, readStoredConsent};\n})();';
 const scripts = [];
 let images = [];
+let storedConsent = null;
+const localStorage = {
+  getItem: () => storedConsent,
+  removeItem() { storedConsent = null; }
+};
 const document = {
+  cookie: '',
   head: {appendChild: script => scripts.push(script)},
   documentElement: {setAttribute() {}},
   querySelector: selector => scripts.find(script => selector.includes(script.src)) || null,
@@ -20,8 +26,25 @@ const document = {
   createElement: () => ({setAttribute() {}})
 };
 const window = {location: {search: ''}};
-vm.runInNewContext(source, {window, document, setTimeout() {}, clearTimeout() {}});
-const {applyConsent, initImageFallbacks} = window.testIntegration;
+vm.runInNewContext(source, {window, document, localStorage, setTimeout() {}, clearTimeout() {}});
+const {applyConsent, initImageFallbacks, readStoredConsent} = window.testIntegration;
+const privacyScript = fs.readFileSync(path.join(root, 'files/privacy-consent.js'), 'utf8');
+const summary = {};
+const privacyDocument = {
+  getElementById: id => id === 'consent-summary' ? summary : {addEventListener() {}}
+};
+const choices = {analytics: true};
+for (const [expiresAt, expected, status] of [
+  ['invalid', false, 'neplatný záznam'],
+  [new Date(Date.now() - 86400000).toISOString(), false, 'platnosť vypršala'],
+  [new Date(Date.now() + 86400000).toISOString(), true, 'analytické=áno']
+]) {
+  storedConsent = JSON.stringify({version: 2, expiresAt, choices});
+  vm.runInNewContext(privacyScript, {document: privacyDocument, localStorage});
+  assert.ok(summary.textContent.includes(status));
+  assert.equal(readStoredConsent()?.choices.analytics ?? false, expected);
+  assert.equal(storedConsent !== null, expected);
+}
 applyConsent({analytics: false, marketing: false, preferences: false});
 assert.equal(scripts.length, 0, 'No vendor scripts before consent');
 assert.equal(window.clarity, undefined);

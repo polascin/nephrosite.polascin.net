@@ -157,12 +157,13 @@
       }
 
       var parsed = JSON.parse(raw);
-      if (!isObject(parsed) || parsed.version !== VERSION || !parsed.expiresAt) {
+      if (!isObject(parsed) || parsed.version !== VERSION || typeof parsed.expiresAt !== "string") {
         clearStoredValue();
         return null;
       }
 
-      if (new Date(parsed.expiresAt).getTime() <= Date.now()) {
+      var expiresAt = Date.parse(parsed.expiresAt);
+      if (!Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
         clearStoredValue();
         return null;
       }

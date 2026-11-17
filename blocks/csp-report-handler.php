@@ -90,9 +90,6 @@ function nephrosite_csp_sanitize_reports(mixed $payload): array
 
     $clean = [];
     foreach ($items as $report) {
-        if (!is_array($report)) {
-            continue;
-        }
         $row = [];
         foreach ($allowed as $key) {
             if (!array_key_exists($key, $report)) {

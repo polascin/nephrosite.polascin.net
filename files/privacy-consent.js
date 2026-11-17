@@ -1,6 +1,7 @@
 (function () {
-  // Must stay aligned with blocks/scripts.sk.php (STORAGE_KEY / COOKIE_NAME).
+  // Keep the storage key and version in sync with consent-manager.js.
   var key = "nephro_consent_v1";
+  var version = 2;
   var summary = document.getElementById("consent-summary");
   var reset = document.getElementById("reset-consent");
 
@@ -40,7 +41,7 @@
     } catch (err) {
     }
 
-    // Same path/SameSite/Secure as the live consent writer in scripts.sk.php.
+    // Same path/SameSite/Secure as the writer in consent-manager.js.
     document.cookie =
       key + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax; Secure";
   }
@@ -54,6 +55,17 @@
 
     try {
       var parsed = JSON.parse(raw);
+      var expiresAt = parsed && typeof parsed.expiresAt === "string"
+        ? Date.parse(parsed.expiresAt)
+        : NaN;
+      if (!parsed || parsed.version !== version || !Number.isFinite(expiresAt)) {
+        summary.textContent = "Aktuálny stav súhlasu: neplatný záznam.";
+        return;
+      }
+      if (expiresAt <= Date.now()) {
+        summary.textContent = "Aktuálny stav súhlasu: platnosť vypršala.";
+        return;
+      }
       var c = parsed.choices || {};
       summary.textContent =
         "Aktuálny stav súhlasu: preferencie=" +
