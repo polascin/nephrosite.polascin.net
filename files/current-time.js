@@ -1,47 +1,43 @@
-	function getDayOfYear(date) {
-		const start = new Date(date.getFullYear(), 0, 0);
-		const diff = date - start;
-		const oneDay = 1000 * 60 * 60 * 24;
-		return Math.floor(diff / oneDay);
-	}
-	function getWeekNumber(date) {
-		const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
-		const pastDaysOfYear = (date - firstDayOfYear) / 86400000;
-		return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
-	}
-	function getISOWeekNumber(date) {
-		const tempDate = new Date(date.valueOf());
-		const dayNumber = (date.getUTCDay() + 6) % 7;
-		tempDate.setUTCDate(tempDate.getUTCDate() - dayNumber + 3);
-		const firstThursday = tempDate.valueOf();
-		tempDate.setUTCMonth(0, 1);
-		if (tempDate.getUTCDay() !== 4) {
-			tempDate.setUTCMonth(0, 1 + ((4 - tempDate.getUTCDay()) + 7) % 7);
-	}
-		return 1 + Math.ceil((firstThursday - tempDate) / (7 * 24 * 60 * 60 * 1000));
-	}
-	const today = new Date();
-	const currentYear = new Date().getFullYear();
-	const timeZone = new Intl.DateTimeFormat('sk-SK', { timeZoneName: 'long' } ).format(new Date());
-	document.querySelector('#daynumber').textContent = getDayOfYear(today);
-	document.querySelector('#weeknumber').textContent = getISOWeekNumber(today);
-	document.querySelector('#yearnumber').textContent = currentYear;
-	document.querySelector('#timezone').textContent = timeZone;
-	function updateDateTime() {
-		const now = new Date();
-		const options = {
-			dateStyle: 'full',
-			timeStyle: 'long'
-		};
-		const currentDateTime = now.toLocaleString("sk-SK", options);
-		document.querySelector('#current').textContent = currentDateTime;
-		function getInternetTime() {
-			const now = new Date();
-			const timezoneOffset = now.getTimezoneOffset() * 60000; // Offset in milliseconds
-			const bielTime = new Date(now.getTime() + timezoneOffset + 3600000); // Biel is UTC+1
-			const beats = Math.floor((bielTime.getUTCHours() * 3600 + bielTime.getUTCMinutes() * 60 + bielTime.getUTCSeconds()) / 86.4) % 1000;
-			return `@${beats.toString().padStart(3, '0')}`;
-		}
-		document.querySelector('#internettime').textContent = getInternetTime();
-	}
-	setInterval(updateDateTime, 1000);
+(() => {
+  const dayMs = 86400000;
+  const hourMs = 3600000;
+  const dateTimeFormat = new Intl.DateTimeFormat('sk-SK', {
+    dateStyle: 'full',
+    timeStyle: 'long'
+  });
+  const timeZoneFormat = new Intl.DateTimeFormat('sk-SK', {timeZoneName: 'long'});
+  const dayNumber = document.querySelector('#daynumber');
+  const weekNumber = document.querySelector('#weeknumber');
+  const yearNumber = document.querySelector('#yearnumber');
+  const timeZone = document.querySelector('#timezone');
+  const current = document.querySelector('#current');
+  const internetTime = document.querySelector('#internettime');
+
+  function getISOWeekNumber(calendarDate) {
+    const thursday = new Date(calendarDate);
+    const weekday = (thursday.getUTCDay() + 6) % 7;
+    thursday.setUTCDate(thursday.getUTCDate() + 3 - weekday);
+    const startOfYear = Date.UTC(thursday.getUTCFullYear(), 0, 1);
+    return Math.ceil(((thursday.getTime() - startOfYear) / dayMs + 1) / 7);
+  }
+
+  function updateDateTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    // Use local calendar fields on a UTC grid so daylight saving cannot shorten a day.
+    const calendarDate = Date.UTC(year, now.getMonth(), now.getDate());
+    const bielTime = new Date(now.getTime() + hourMs); // Swatch Internet Time uses UTC+1 year-round.
+    const seconds = bielTime.getUTCHours() * 3600 + bielTime.getUTCMinutes() * 60 + bielTime.getUTCSeconds();
+    const beats = Math.floor(seconds / 86.4);
+
+    dayNumber.textContent = 1 + (calendarDate - Date.UTC(year, 0, 1)) / dayMs;
+    weekNumber.textContent = getISOWeekNumber(calendarDate);
+    yearNumber.textContent = year;
+    timeZone.textContent = timeZoneFormat.format(now);
+    current.textContent = dateTimeFormat.format(now);
+    internetTime.textContent = `@${beats.toString().padStart(3, '0')}`;
+  }
+
+  updateDateTime();
+  setInterval(updateDateTime, 1000);
+})();

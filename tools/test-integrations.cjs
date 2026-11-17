@@ -95,4 +95,45 @@ assert.match(footer, /src="\/pix\/clustrmaps-visitor-map\.svg"/, 'Footer uses fi
 assert.doesNotMatch(footer, /clustrmaps\.com\/map/, 'Footer must not load live ClustrMaps image');
 assert.doesNotMatch(footer, /data-fallback-src/, 'First-party map needs no remote fallback');
 
-console.log('PASS: consent gating, Clarity tag, revocation, image fallback helper, first-party visitor map.');
+const clockScript = fs.readFileSync(path.join(root, 'files/current-time.js'), 'utf8');
+const fields = new Map();
+let updateClock;
+let instant;
+class ClockDate extends Date {
+  constructor(...args) {
+    super(...(args.length ? args : [instant]));
+  }
+}
+const previousTimeZone = process.env.TZ;
+try {
+  process.env.TZ = 'Europe/Bratislava';
+  instant = '2026-06-28T21:59:59Z';
+  vm.runInNewContext(clockScript, {
+    Date: ClockDate,
+    document: {
+      querySelector(selector) {
+        if (!fields.has(selector)) fields.set(selector, {});
+        return fields.get(selector);
+      }
+    },
+    setInterval(callback) { updateClock = callback; }
+  });
+  updateClock();
+  assert.equal(fields.get('#weeknumber').textContent, 26);
+  instant = '2026-06-28T22:00:00Z';
+  updateClock();
+  assert.equal(fields.get('#daynumber').textContent, 180, 'Local midnight during summer time starts a new day');
+  assert.equal(fields.get('#weeknumber').textContent, 27, 'Local Monday starts a new ISO week');
+  assert.equal(fields.get('#internettime').textContent, '@958', 'Internet Time uses UTC+1 year-round');
+  instant = '2026-12-31T23:30:00Z';
+  updateClock();
+  assert.equal(fields.get('#daynumber').textContent, 1);
+  assert.equal(fields.get('#weeknumber').textContent, 53);
+  assert.equal(fields.get('#yearnumber').textContent, 2027);
+  assert.equal(fields.get('#internettime').textContent, '@020');
+} finally {
+  if (previousTimeZone === undefined) delete process.env.TZ;
+  else process.env.TZ = previousTimeZone;
+}
+
+console.log('PASS: consent gating, Clarity tag, revocation, image fallback, visitor map and clock.');
