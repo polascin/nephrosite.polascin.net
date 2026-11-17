@@ -5,12 +5,8 @@ declare(strict_types=1);
 /**
  * Request-scoped CSP header emitter for PHP HTML entrypoints.
  *
- * Enforced policy keeps 'unsafe-inline' (no nonce in the header): CSP3 ignores
- * 'unsafe-inline' when a nonce/hash is present, which would break consent-gated
- * Clarity/GTM paths that still need the current allowlist.
- *
- * Report-Only adds 'nonce-…' to script-src (still without 'unsafe-inline') so
- * first-party nonced inline scripts can be measured before enforcement.
+ * Enforced script-src allows same-origin scripts and consent-gated vendors.
+ * Report-Only uses a narrower source list and a request nonce.
  *
  * Static HTML continues to receive CSP from .htaccess (FilesMatch); this
  * bootstrap owns headers for PHP document responses only.
@@ -30,7 +26,7 @@ function nephrosite_csp_enforced_policy(): string
         "object-src 'none'",
         "frame-ancestors 'self'",
         "form-action 'self'",
-        "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://fastbase.com",
+        "script-src 'self' https://www.googletagmanager.com https://www.clarity.ms https://scripts.clarity.ms https://fastbase.com",
         "style-src 'self' 'unsafe-inline'",
         "font-src 'self'",
         "img-src 'self' https://polascin.net https://www.google.sk https://www.google.com https://www.google-analytics.com https://*.clarity.ms https://c.bing.com",

@@ -153,6 +153,10 @@ function checkMarkup(array $directives, string $html, string $file): void
             $attrs[strtolower($match[1])] = html_entity_decode($match[3], ENT_QUOTES | ENT_HTML5, 'UTF-8');
         }
         $name = strtolower($tag[1]);
+        if ($name === 'script') {
+            check(isset($attrs['src']) || strtolower($attrs['type'] ?? '') === 'application/ld+json',
+                "$file: executable scripts must be external.");
+        }
         $directive = [
             'script' => 'script-src', 'img' => 'img-src', 'iframe' => 'frame-src',
             'video' => 'media-src', 'audio' => 'media-src', 'source' => 'media-src',
@@ -175,9 +179,6 @@ function checkMarkup(array $directives, string $html, string $file): void
         if (isset($attrs['poster'])) {
             check(permits($directives, 'img-src', $attrs['poster']), "$file: video poster not covered.");
         }
-    }
-    if (preg_match('~<script\b(?![^>]*\bsrc\s*=)[^>]*>~i', $html)) {
-        check(in_array("'unsafe-inline'", $directives['script-src'], true), "$file: inline scripts not covered.");
     }
     if (preg_match('~<style\b|\bstyle\s*=~i', $html)) {
         check(in_array("'unsafe-inline'", $directives['style-src'], true), "$file: inline styles not covered.");
@@ -233,9 +234,9 @@ function checkPhpBootstrap(string $htaccessEnforced, string $htaccessReportOnly)
     );
 
     $enforced = parsePolicy($phpEnforced);
-    check(in_array("'unsafe-inline'", $enforced['script-src'] ?? [], true), 'Enforced script-src must keep unsafe-inline this loop.');
+    check(!in_array("'unsafe-inline'", $enforced['script-src'] ?? [], true), 'Enforced script-src must block inline scripts.');
     foreach ($enforced['script-src'] ?? [] as $token) {
-        check(preg_match("~^'nonce-~", $token) !== 1, 'Enforced CSP must not list a nonce (CSP3 would ignore unsafe-inline).');
+        check(preg_match("~^'nonce-~", $token) !== 1, 'Enforced CSP must not list a nonce.');
     }
 
     $reportOnly = parsePolicy(nephrosite_csp_report_only_policy(true));
@@ -406,11 +407,6 @@ try {
         if ($page === 'index.php') {
             check(str_contains($html, '<script src="/files/current-time.js"></script>'),
                 "$page: expected the external clock.");
-        }
-        preg_match_all('~<script\b[^>]*>~i', $html, $scriptTags);
-        foreach ($scriptTags[0] as $tag) {
-            check(preg_match('~\s(?:src\s*=|type="application/ld\+json")~i', $tag) === 1,
-                "$page: executable scripts must be external.");
         }
     }
     foreach (['files/privacy.html', 'files/terms.html', 'ipvrm.htm'] as $file) {
