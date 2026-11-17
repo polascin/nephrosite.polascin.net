@@ -402,7 +402,7 @@ try {
         check($exitCode === 0 && $errors === '', "$page render failed: $errors");
         check(str_contains($html, '<main id="content">'), "$page did not render its content.");
         checkMarkup($directives, $html, $page);
-        check(str_contains($html, '<script src="/files/consent-manager.js?v=2"></script>'),
+        check(str_contains($html, '<script src="/files/consent-manager.js?v=3"></script>'),
             "$page: expected the external consent manager.");
         if ($page === 'index.php') {
             check(str_contains($html, '<script src="/files/current-time.js?v=2"></script>'),

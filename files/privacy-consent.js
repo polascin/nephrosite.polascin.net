@@ -36,14 +36,13 @@
   }
 
   function clearAll() {
+    // Clear the cookie fallback before notifying other tabs via localStorage.
+    document.cookie =
+      key + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax; Secure";
     try {
       localStorage.removeItem(key);
     } catch (err) {
     }
-
-    // Same path/SameSite/Secure as the writer in consent-manager.js.
-    document.cookie =
-      key + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax; Secure";
   }
 
   function render() {

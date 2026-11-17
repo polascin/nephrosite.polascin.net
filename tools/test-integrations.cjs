@@ -9,7 +9,7 @@ assert.match(source, /^\(function \(\) \{/, 'Expected consent IIFE');
 const boot = source.lastIndexOf('  if (document.readyState === "loading")');
 assert.ok(boot > 0, 'Expected consent boot entry point');
 source = source.slice(0, boot) +
-  'window.testIntegration = {applyConsent, initImageFallbacks, readStoredConsent};\n})();';
+  'window.testIntegration = {applyConsent, initImageFallbacks, readStoredConsent, handleConsentStorageChange};\n})();';
 const scripts = [];
 let images = [];
 let storedConsent = null;
@@ -25,9 +25,10 @@ const document = {
   querySelectorAll: () => images,
   createElement: () => ({setAttribute() {}})
 };
-const window = {location: {search: ''}};
+let reloads = 0;
+const window = {location: {search: '', reload() { reloads++; }}};
 vm.runInNewContext(source, {window, document, localStorage, setTimeout() {}, clearTimeout() {}});
-const {applyConsent, initImageFallbacks, readStoredConsent} = window.testIntegration;
+const {applyConsent, initImageFallbacks, readStoredConsent, handleConsentStorageChange} = window.testIntegration;
 const privacyScript = fs.readFileSync(path.join(root, 'files/privacy-consent.js'), 'utf8');
 const summary = {};
 const privacyDocument = {
@@ -73,6 +74,18 @@ applyConsent({analytics: false, marketing: false, preferences: false});
 consent = window.clarity.q.at(-1);
 assert.equal(consent[1].analytics_Storage, 'denied', 'Revocation reaches Clarity');
 assert.equal(consent[1].ad_Storage, 'denied');
+
+const consentKey = 'nephro_consent_v1';
+storedConsent = null;
+handleConsentStorageChange({storageArea: localStorage, key: 'unrelated'});
+handleConsentStorageChange({storageArea: {}, key: consentKey});
+assert.equal(reloads, 0, 'Unrelated storage changes leave the tab alone');
+storedConsent = JSON.stringify({version: 2, expiresAt: new Date(Date.now() + 86400000).toISOString(), choices});
+handleConsentStorageChange({storageArea: localStorage, key: consentKey});
+assert.equal(reloads, 0, 'Still-granted consent does not reload the tab');
+storedConsent = null;
+handleConsentStorageChange({storageArea: localStorage, key: consentKey});
+assert.equal(reloads, 1, 'Revoking consent in another tab unloads the active vendors');
 
 // Generic image fallback helper (visitor map is now a first-party SVG; no live clustrmaps.com load).
 function image(complete, naturalWidth, src) {

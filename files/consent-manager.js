@@ -131,12 +131,11 @@
   }
 
   function clearStoredValue() {
+    clearConsentCookie();
     try {
       localStorage.removeItem(STORAGE_KEY);
     } catch (err) {
     }
-
-    clearConsentCookie();
   }
 
   function normalizeChoices(choices) {
@@ -660,6 +659,19 @@
     });
   }
 
+  function handleConsentStorageChange(event) {
+    if (event.storageArea !== localStorage || (event.key !== STORAGE_KEY && event.key !== null)) {
+      return;
+    }
+
+    var storedConsent = readStoredConsent();
+    var choices = storedConsent ? storedConsent.choices : defaultChoices;
+    if ((loaded.analytics && !choices.analytics) || (loaded.marketing && !choices.marketing)) {
+      // Reload to stop vendors already running in this tab.
+      window.location.reload();
+    }
+  }
+
   function initConsent() {
     initImageFallbacks();
     consentRecord = readStoredConsent();
@@ -679,6 +691,7 @@
     }
 
     wireUiEvents();
+    window.addEventListener("storage", handleConsentStorageChange);
     setBannerVisible(shouldShowBanner());
     ensureExternalBlankLinksAreSafe();
   }
