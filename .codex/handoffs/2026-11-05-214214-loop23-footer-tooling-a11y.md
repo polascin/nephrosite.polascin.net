@@ -179,3 +179,10 @@ mirrored docs/state; keep `private/csp-reports/reports.jsonl`.
 - Súhrn zahŕňa aj regionálne koncové body `analytics.google.com`, dodávateľa určuje podľa hostiteľa a v tabuľkách vynecháva parametre a fragmenty HTTP adries. Neúplné hlásenia vykazuje samostatne a rozlišuje úplné hlásenia vynucovanej politiky.
 - Overené na 23 produkčných záznamoch. Dve testovacie značky, sedem neúplných riadkov, 14 úplných netestovacích záznamov, z toho nula z vynucovanej politiky. Rozpoznaných 11 hlásení dodávateľov (Clarity 7, GTM/GA 2, Fastbase 2).
 - Regresný test CSP prešiel. Produkčné adresy `/`, `/nefrologia`, `/privacy` a `/terms` vrátili HTTP 200 a vynucovaný `script-src` bez `'unsafe-inline'`.
+
+## Overenie expirácie súhlasu 2026-11-17
+
+- Commit `46c3e18` odmieta neplatný dátum expirácie pri obnove súhlasu, rozlišuje neplatný a vypršaný záznam na stránke ochrany súkromia a odstraňuje nadbytočnú kontrolu typu v prijímači CSP. Prešli regresné testy CSP, test integrácií aj PHPStan.
+- Lokálne nasadenie cez WebSupport. Po nahratí cez post-commit hook potvrdil `deploy.ps1 -Apply` zhodu všetkých 248 nasadzovaných súborov. Priame požiadavky na `/`, `/privacy`, `/terms` a `/nefrologia` vrátili HTTP 200.
+- Produkčný Chrome s izolovaným profilom a vypnutou vyrovnávacou pamäťou. Stránka `/privacy` správne označila neplatný aj vypršaný záznam. Titulná stránka v oboch prípadoch vymazala záznam z lokálneho úložiska aj zo súboru cookie, zobrazila voľbu súhlasu a neodoslala žiadnu požiadavku sledovaným dodávateľom.
+- Odmietnutie nevyvolalo požiadavky na analytické služby. Po povolení sa uložil nový súhlas s budúcim dátumom expirácie. Hlavné skripty Clarity a Google vrátili HTTP 200 a oba zberné koncové body HTTP 204. Bez porušenia vynucovanej politiky CSP v tomto teste.
