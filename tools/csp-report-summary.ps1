@@ -5,8 +5,8 @@
 .DESCRIPTION
     Pulls private/csp-reports/reports.jsonl over the SSH alias websupport (never
     exposes the log publicly). Aggregates blocked-uri, violated/effective
-    directive, disposition, and document-uri. Use before deciding whether to
-    drop 'unsafe-inline' from the enforced script-src.
+    directive, disposition, and document-uri. Use to monitor enforced CSP
+    separately from the stricter Report-Only policy.
 
 .PARAMETER SshHost
     SSH alias (default: websupport).
@@ -65,7 +65,7 @@ if ($body.Length -gt 0) {
 Write-Host ("CSP report lines on server: {0}" -f $countLine)
 Write-Host ("Lines loaded for summary:   {0}" -f $lines.Count)
 if ($lines.Count -eq 0) {
-    Write-Host 'Telemetry empty: do not drop enforced unsafe-inline yet.'
+    Write-Host 'Telemetry empty: verify the live policy and consent flow directly.'
     exit 0
 }
 
@@ -75,6 +75,8 @@ $byDisposition = @{}
 $byDocument = @{}
 $smokeMarkers = 0
 $realCandidates = 0
+$incompleteReports = 0
+$enforcedCandidates = 0
 $consentPathHits = 0
 $clarityHits = 0
 $gtmGaHits = 0
@@ -86,6 +88,15 @@ function Get-ReportField {
     $prop = $Report.PSObject.Properties[$Name]
     if ($null -eq $prop) { return '' }
     return [string]$prop.Value
+}
+
+function Get-HttpReportUri {
+    param([string]$Value)
+    $parsedUri = $null
+    if ([Uri]::TryCreate($Value, [UriKind]::Absolute, [ref]$parsedUri) -and
+        $parsedUri.Scheme -in @('http', 'https')) {
+        return $parsedUri
+    }
 }
 
 foreach ($line in $lines) {
@@ -114,14 +125,18 @@ foreach ($line in $lines) {
     $sample = Get-ReportField -Report $r -Name 'script-sample'
     $sourceFile = Get-ReportField -Report $r -Name 'source-file'
 
-    if (-not $byBlocked.ContainsKey($blocked)) { $byBlocked[$blocked] = 0 }
-    $byBlocked[$blocked]++
+    $blockedUrl = Get-HttpReportUri $blocked
+    $documentUrl = Get-HttpReportUri $document
+    $blockedLabel = if ($blockedUrl) { $blockedUrl.GetLeftPart([UriPartial]::Path) } else { $blocked }
+    $documentLabel = if ($documentUrl) { $documentUrl.GetLeftPart([UriPartial]::Path) } else { $document }
+    if (-not $byBlocked.ContainsKey($blockedLabel)) { $byBlocked[$blockedLabel] = 0 }
+    $byBlocked[$blockedLabel]++
     if (-not $byDirective.ContainsKey($directive)) { $byDirective[$directive] = 0 }
     $byDirective[$directive]++
     if (-not $byDisposition.ContainsKey($disposition)) { $byDisposition[$disposition] = 0 }
     $byDisposition[$disposition]++
-    if (-not $byDocument.ContainsKey($document)) { $byDocument[$document] = 0 }
-    $byDocument[$document]++
+    if (-not $byDocument.ContainsKey($documentLabel)) { $byDocument[$documentLabel] = 0 }
+    $byDocument[$documentLabel]++
 
     $looksLikeSmoke = ($blocked -match 'evil\.example') -or (
         $blocked -eq 'inline' -and
@@ -130,14 +145,19 @@ foreach ($line in $lines) {
     )
     if ($looksLikeSmoke) {
         $smokeMarkers++
+    } elseif ($blocked -eq '(empty)' -or $directive -eq '(empty)' -or $document -eq '(empty)') {
+        $incompleteReports++
+        continue
     } else {
         $realCandidates++
+        if ($disposition -eq 'enforce') { $enforcedCandidates++ }
     }
 
     # Vendor hosts loaded only after analytics/marketing consent.
-    $isClarity = $blocked -match '(?i)clarity\.ms'
-    $isGtmGa = $blocked -match '(?i)googletagmanager\.com|google-analytics\.com|googletagservices\.com'
-    $isFastbase = $blocked -match '(?i)fastbase\.com'
+    $blockedHost = if ($blockedUrl) { $blockedUrl.DnsSafeHost } else { '' }
+    $isClarity = $blockedHost -match '(^|\.)clarity\.ms$'
+    $isGtmGa = $blockedHost -match '(^|\.)(googletagmanager\.com|google-analytics\.com|analytics\.google\.com|googletagservices\.com)$'
+    $isFastbase = $blockedHost -match '(^|\.)fastbase\.com$'
     if ($isClarity -or $isGtmGa -or $isFastbase) {
         $consentPathHits++
         if ($isClarity) { $clarityHits++ }
@@ -164,14 +184,16 @@ Write-CountTable -Map $byDocument -Title 'document-uri'
 Write-Host ""
 Write-Host ("Likely smoke/test markers: {0}" -f $smokeMarkers)
 Write-Host ("Other / real candidates:   {0}" -f $realCandidates)
+Write-Host ("Incomplete reports:        {0}" -f $incompleteReports)
+Write-Host ("Enforced candidates:       {0}" -f $enforcedCandidates)
 Write-Host ("Clarity/GTM/vendor hits:   {0}" -f $consentPathHits)
 Write-Host ("  Clarity:                 {0}" -f $clarityHits)
 Write-Host ("  GTM/GA:                  {0}" -f $gtmGaHits)
 Write-Host ("  Fastbase:                {0}" -f $fastbaseHits)
-if ($realCandidates -eq 0) {
-    Write-Host "Verdict: telemetry too fresh or smoke-only. Keep enforced 'unsafe-inline'."
-} elseif ($consentPathHits -eq 0) {
-    Write-Host "Verdict: real candidates present, but no Clarity/GTM/vendor blocks yet. Keep 'unsafe-inline' until consent-path evidence is reviewed."
+if ($enforcedCandidates -gt 0) {
+    Write-Host 'Verdict: inspect candidates reported by the enforced policy.'
+} elseif ($realCandidates -gt 0) {
+    Write-Host 'Verdict: no complete enforced candidates. Review Report-Only and unknown-disposition candidates separately.'
 } else {
-    Write-Host "Verdict: review real candidates (Clarity/GTM consent paths) before tightening enforced script-src."
+    Write-Host 'Verdict: no complete non-smoke reports. Verify the live policy and consent flow directly.'
 }
