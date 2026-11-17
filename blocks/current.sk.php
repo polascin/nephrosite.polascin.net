@@ -15,5 +15,5 @@
 	</a>
 </div>
 
-<script src="/files/current-time.js"></script>
+<script src="/files/current-time.js?v=2"></script>
 

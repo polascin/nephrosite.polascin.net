@@ -405,7 +405,7 @@ try {
         check(str_contains($html, '<script src="/files/consent-manager.js"></script>'),
             "$page: expected the external consent manager.");
         if ($page === 'index.php') {
-            check(str_contains($html, '<script src="/files/current-time.js"></script>'),
+            check(str_contains($html, '<script src="/files/current-time.js?v=2"></script>'),
                 "$page: expected the external clock.");
         }
     }
