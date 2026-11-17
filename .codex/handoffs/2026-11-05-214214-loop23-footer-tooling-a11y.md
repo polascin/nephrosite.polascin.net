@@ -186,3 +186,9 @@ mirrored docs/state; keep `private/csp-reports/reports.jsonl`.
 - Lokálne nasadenie cez WebSupport. Po nahratí cez post-commit hook potvrdil `deploy.ps1 -Apply` zhodu všetkých 248 nasadzovaných súborov. Priame požiadavky na `/`, `/privacy`, `/terms` a `/nefrologia` vrátili HTTP 200.
 - Produkčný Chrome s izolovaným profilom a vypnutou vyrovnávacou pamäťou. Stránka `/privacy` správne označila neplatný aj vypršaný záznam. Titulná stránka v oboch prípadoch vymazala záznam z lokálneho úložiska aj zo súboru cookie, zobrazila voľbu súhlasu a neodoslala žiadnu požiadavku sledovaným dodávateľom.
 - Odmietnutie nevyvolalo požiadavky na analytické služby. Po povolení sa uložil nový súhlas s budúcim dátumom expirácie. Hlavné skripty Clarity a Google vrátili HTTP 200 a oba zberné koncové body HTTP 204. Bez porušenia vynucovanej politiky CSP v tomto teste.
+
+## Oprava hodín na titulnej stránke 2026-11-17
+
+- `c946458` opravuje výpočet poradového dňa a týždňa ISO podľa miestneho kalendára. Hodiny aktualizujú dátum pri prechode cez polnoc a internetový čas Swatch používajú s pevným posunom UTC+1. Regresný test v pásme Europe/Bratislava pred opravou zlyhal a po nej prešiel. Overuje letný prechod z nedele na pondelok aj hranicu kalendárneho roka.
+- Prvý produkčný test ešte dostal starý JavaScript z adresy bez verzie. Kontrolný súčet obsahu z adresy s `?v=2` sa zhodoval s lokálnym súborom. Commit `a2508d5` preto aktualizoval odkaz v šablóne aj očakávanie v teste CSP.
+- Lokálne nasadenie cez WebSupport overilo zhodu všetkých 248 nasadzovaných súborov. Priame požiadavky na `/`, `/privacy`, `/terms` a `/nefrologia` vrátili HTTP 200. Produkčný Chrome načítal verziovaný skript a v pásme Europe/Bratislava potvrdil zmenu z dňa 179 a týždňa 26 na deň 180 a týždeň 27. Na Nový rok zobrazil deň 1, týždeň 53, rok 2027 a čas `@020`. Bez porušenia vynucovanej CSP.
